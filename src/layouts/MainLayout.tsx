@@ -7,25 +7,23 @@ const MainLayout = () => {
    const isHomePage = location.pathname === "/";
 
    return (
-      <div className="w-full flex overflow-hidden">
+      <div className="w-full flex overflow-hidden bg-americanSilver">
          {isHomePage ? (
             <Ellipses>
-               <div className="flex overflow-hidden">
-                  <Sidebar />
-
-                  <div className="main-content">
-                     <Outlet />
-                  </div>
-               </div>
-            </Ellipses>
-         ) : (
-            <div className="flex overflow-hidden">
                <Sidebar />
 
                <div className="main-content">
                   <Outlet />
                </div>
-            </div>
+            </Ellipses>
+         ) : (
+            <>
+               <Sidebar />
+
+               <div className="main-content">
+                  <Outlet />
+               </div>
+            </>
          )}
       </div>
    );

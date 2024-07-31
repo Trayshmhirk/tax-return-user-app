@@ -1,81 +1,60 @@
-import { sidebarIcons } from "../components/sidebarIcons";
+import { GoHome } from "react-icons/go";
+import { IoCloudUploadOutline } from "react-icons/io5";
+import { MdOutlineReceiptLong } from "react-icons/md";
+import { BsChat } from "react-icons/bs";
+import { GoFileDirectory } from "react-icons/go";
+import { MdOutlineNewspaper } from "react-icons/md";
+import { GrBarChart } from "react-icons/gr";
 
 export const navItemsData = [
    {
       title: "Home",
-      ...sidebarIcons.home,
+      navIcon: GoHome,
       route: "",
       id: "homeNavItem",
       tourContent: "See all the key functionalities of the web app",
    },
    {
       title: "Documents",
-      ...sidebarIcons.cloud,
+      navIcon: IoCloudUploadOutline,
+
       route: "documents",
       id: "documentsNavItem",
       tourContent: "View all scanned and uploaded documents",
    },
    {
       title: "Receipts",
-      ...sidebarIcons.receipts,
+      navIcon: MdOutlineReceiptLong,
       route: "receipts",
       id: "receiptsNavItem",
       tourContent: "Upload and view all business related receipts",
    },
    {
       title: "Live Chat",
-      ...sidebarIcons.liveChat,
+      navIcon: BsChat,
       route: "live-chat",
       id: "liveChatNavItem",
       tourContent: "Chat with and agent to get assistance ",
    },
    {
       title: "Previous filing",
-      ...sidebarIcons.previousFiling,
+      navIcon: GoFileDirectory,
       route: "previous-filing",
       id: "previousFilingNavItem",
       tourContent: "See annum based tax filing for previous years",
    },
    {
       title: "Knowledge base",
-      ...sidebarIcons.knowledgeBase,
+      navIcon: MdOutlineNewspaper,
       route: "knowledge-base",
       id: "knowledgeBaseNavItem",
       tourContent: "Watch tutorials on how to effectively use the app",
    },
    {
       title: "Transactions",
-      ...sidebarIcons.transactions,
+      navIcon: GrBarChart,
       route: "transactions",
       id: "transactionsNavItem",
       tourContent: "See all transactions related to Okeh CPA",
-   },
-   {
-      title: "Profile",
-      ...sidebarIcons.profile,
-      route: "profile",
-      id: "profileNavItem",
-      tourContent: "Check your profile and manage your account",
-   },
-   {
-      title: "Help and support",
-      ...sidebarIcons.helpAndSupport,
-      route: "help-and-support",
-      id: "helpAndSupportNavItem",
-      tourContent: "See all the key functionalities of the web app",
-   },
-   {
-      title: "Terms and conditions",
-      ...sidebarIcons.termsAndConditions,
-      route: "terms-and-conditions",
-      id: "termsAndConditionsNavItem",
-      tourContent: "See all the key functionalities of the web app",
-   },
-   {
-      title: "Privacy policy",
-      ...sidebarIcons.privacyPolicy,
-      route: "privacy-policy",
-      id: "privacyPolicyNavItem",
-      tourContent: "See all the key functionalities of the web app",
    },
 ];

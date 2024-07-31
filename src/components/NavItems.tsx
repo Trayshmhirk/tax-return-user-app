@@ -1,7 +1,8 @@
+import { IconType } from "react-icons";
+
 type NavItemsProps = {
    title: string;
-   navIcon: string;
-   activeNavIcon?: string;
+   navIcon: IconType;
    onClick?: () => void;
    isLogout?: boolean;
    id: string;
@@ -9,33 +10,27 @@ type NavItemsProps = {
    tourContent?: string;
 };
 
-// type LogoutNavItemsProps = {
-//    onClick: () => void;
-//    title: string;
-//    navIcon: string;
-//    islogout: boolean;
-// };
-
 export const NavItems = ({
    title,
    id,
-   navIcon,
+   navIcon: NavIcon,
    onClick,
-   activeNavIcon,
    isActive,
    isLogout,
 }: NavItemsProps) => (
    <div
       className={`
-               flex items-center p-4 gap-4 rounded-xl cursor-pointer
-               ${isActive ? "bg-white text-richElectricBlue" : ""}
-               ${isLogout ? "logout" : ""}
-            `}
+         flex items-center p-3 gap-4 rounded-lg cursor-pointer
+         ${isActive ? "bg-richElectricBlue text-white shadow-custom-active" : ""}
+         ${isLogout ? "logout" : ""}
+      `}
       id={id}
       onClick={onClick}
       data-testid={`joyride-step-${id}`} // Add this data-testid for Joyride
    >
-      <img className="w-6 h-6" src={isActive ? activeNavIcon : navIcon} />
+      <NavIcon
+         className={`w-6 h-6 ${isActive ? "text-white" : "text-darkElectricBlue"}`}
+      />
       <p className="text-base">{title}</p>
    </div>
 );

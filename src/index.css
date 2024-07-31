@@ -22,7 +22,7 @@
    }
 
    .main-content {
-      @apply w-full h-fit overflow-hidden;
-      width: calc(100% - 320px);
+      @apply h-fit overflow-hidden;
+      width: calc(100% - 300px);
    }
 }
