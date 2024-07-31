@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+   .ellipses {
+      @apply absolute w-[340px] h-[340px] rounded-[340px] z-0;
+      background: rgba(0, 201, 141, 0.50);
+      filter: blur(190px);
+   }
+
+   .main-content {
+      @apply w-full h-fit overflow-hidden;
+      width: calc(100% - 320px);
+   }
+}

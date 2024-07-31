@@ -1,23 +1,12 @@
 import "./App.css";
-import {
-   createBrowserRouter,
-   createRoutesFromElements,
-   RouterProvider,
-   Route,
-} from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
-import Homepage from "./pages/Homepage";
-
-const router = createBrowserRouter(
-   createRoutesFromElements(
-      <Route path="/" element={<MainLayout />}>
-         <Route index element={<Homepage />} />
-      </Route>
-   )
-);
+import { Router } from "./Router";
 
 function App() {
-   return <RouterProvider router={router} />;
+   return (
+      <div className="App min-h-screen flex content-center">
+         <Router />
+      </div>
+   );
 }
 
 export default App;
