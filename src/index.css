@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+   width: 0em;
+}
+
+::-webkit-scrollbar-thumb {
+   background: none;
+}
+
+::-webkit-scrollbar-track {
+   background: transparent;
+}
+
 @layer components {
    .ellipses {
-      @apply absolute w-[340px] h-[340px] rounded-[340px] z-0;
+      @apply absolute w-[340px] h-[340px] rounded-[340px] z-[-1];
       background: rgba(0, 201, 141, 0.50);
       filter: blur(190px);
    }

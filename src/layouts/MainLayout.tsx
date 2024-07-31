@@ -7,7 +7,7 @@ const MainLayout = () => {
    const isHomePage = location.pathname === "/";
 
    return (
-      <div className="w-full">
+      <div className="w-full flex overflow-hidden">
          {isHomePage ? (
             <Ellipses>
                <div className="flex overflow-hidden">

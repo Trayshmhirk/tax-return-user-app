@@ -1,0 +1,81 @@
+import { sidebarIcons } from "../components/sidebarIcons";
+
+export const navItemsData = [
+   {
+      title: "Home",
+      ...sidebarIcons.home,
+      route: "",
+      id: "homeNavItem",
+      tourContent: "See all the key functionalities of the web app",
+   },
+   {
+      title: "Documents",
+      ...sidebarIcons.cloud,
+      route: "documents",
+      id: "documentsNavItem",
+      tourContent: "View all scanned and uploaded documents",
+   },
+   {
+      title: "Receipts",
+      ...sidebarIcons.receipts,
+      route: "receipts",
+      id: "receiptsNavItem",
+      tourContent: "Upload and view all business related receipts",
+   },
+   {
+      title: "Live Chat",
+      ...sidebarIcons.liveChat,
+      route: "live-chat",
+      id: "liveChatNavItem",
+      tourContent: "Chat with and agent to get assistance ",
+   },
+   {
+      title: "Previous filing",
+      ...sidebarIcons.previousFiling,
+      route: "previous-filing",
+      id: "previousFilingNavItem",
+      tourContent: "See annum based tax filing for previous years",
+   },
+   {
+      title: "Knowledge base",
+      ...sidebarIcons.knowledgeBase,
+      route: "knowledge-base",
+      id: "knowledgeBaseNavItem",
+      tourContent: "Watch tutorials on how to effectively use the app",
+   },
+   {
+      title: "Transactions",
+      ...sidebarIcons.transactions,
+      route: "transactions",
+      id: "transactionsNavItem",
+      tourContent: "See all transactions related to Okeh CPA",
+   },
+   {
+      title: "Profile",
+      ...sidebarIcons.profile,
+      route: "profile",
+      id: "profileNavItem",
+      tourContent: "Check your profile and manage your account",
+   },
+   {
+      title: "Help and support",
+      ...sidebarIcons.helpAndSupport,
+      route: "help-and-support",
+      id: "helpAndSupportNavItem",
+      tourContent: "See all the key functionalities of the web app",
+   },
+   {
+      title: "Terms and conditions",
+      ...sidebarIcons.termsAndConditions,
+      route: "terms-and-conditions",
+      id: "termsAndConditionsNavItem",
+      tourContent: "See all the key functionalities of the web app",
+   },
+   {
+      title: "Privacy policy",
+      ...sidebarIcons.privacyPolicy,
+      route: "privacy-policy",
+      id: "privacyPolicyNavItem",
+      tourContent: "See all the key functionalities of the web app",
+   },
+];
