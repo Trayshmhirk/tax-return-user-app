@@ -7,7 +7,7 @@ const MainLayout = () => {
    const isHomePage = location.pathname === "/";
 
    return (
-      <div className="w-full flex overflow-hidden bg-americanSilver">
+      <div className="w-full flex overflow-hidden bg-americanSilver dark:bg-gunMetal">
          {isHomePage ? (
             <Ellipses>
                <Sidebar />

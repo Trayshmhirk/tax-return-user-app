@@ -20,15 +20,16 @@ export const NavItems = ({
 }: NavItemsProps) => (
    <div
       className={`
-         flex items-center p-3 gap-4 rounded-lg cursor-pointer
+         flex items-center p-[10px] gap-4 rounded-lg cursor-pointer
          ${isActive ? "bg-richElectricBlue text-white shadow-custom-active" : ""}
+         ${isCollapsed ? "" : "justify-center"}
       `}
       id={id}
       onClick={onClick}
       data-testid={`joyride-step-${id}`} // Add this data-testid for Joyride
    >
       <NavIcon
-         className={`w-6 h-6 ${isActive ? "text-white" : "text-darkElectricBlue"}`}
+         className={`w-6 h-6 ${isActive ? "text-white" : "text-darkElectricBlue dark:text-white"}`}
       />
       {isCollapsed && <p className="text-base">{title}</p>}
    </div>
