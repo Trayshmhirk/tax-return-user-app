@@ -1,28 +1,29 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Ellipses } from "../components/Ellipses";
 import Sidebar from "../components/Sidebar";
+import ContentLayout from "./ContentLayout";
 
 const MainLayout = () => {
    const location = useLocation();
    const isHomePage = location.pathname === "/";
 
    return (
-      <div className="w-full flex overflow-hidden bg-americanSilver dark:bg-gunMetal">
+      <div className="w-full flex overflow-hidden bg-chineseWhite dark:bg-darkGunMetal">
          {isHomePage ? (
             <Ellipses>
                <Sidebar />
 
-               <div className="main-content">
+               <ContentLayout>
                   <Outlet />
-               </div>
+               </ContentLayout>
             </Ellipses>
          ) : (
             <>
                <Sidebar />
 
-               <div className="main-content">
+               <ContentLayout>
                   <Outlet />
-               </div>
+               </ContentLayout>
             </>
          )}
       </div>

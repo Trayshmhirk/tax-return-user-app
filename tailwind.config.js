@@ -31,7 +31,7 @@ export default {
             // dark
             darkElectricBlue: "#546E7A",
             charcoal: "#37474F",
-            gunMetal: "#263238",
+            darkGunMetal: "#1E292E",
          },
          boxShadow: {
             "custom-active":

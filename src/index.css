@@ -25,4 +25,8 @@
       @apply h-fit overflow-hidden;
       width: calc(100% - 300px);
    }
+
+   .content-body {
+      height: calc(100vh - 80px);
+   }
 }

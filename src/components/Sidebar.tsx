@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { navItemsData } from "../mocks/NavItemData";
 import { NavItems } from "./NavItems";
-import { BiLogOut } from "react-icons/bi";
 
-import { useLocation, useNavigate } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
 import { HamburgerIcon } from "./HamburgerIcon";
+import { BiLogOut } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 
