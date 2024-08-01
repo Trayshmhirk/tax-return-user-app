@@ -8,7 +8,6 @@ export default {
          sm: "576px",
          md: "768px",
          lg: "1024px",
-         xl: "1200px",
       },
       // fontFamily: {
       //    sans: ["Roboto", "sans-serif"],
@@ -20,7 +19,7 @@ export default {
             richElectricBlue: "#00A2C9",
             darkRichElectricBlue: "#007A9B",
             antiFlashWhite: "#EEF0F2",
-            ghostWhite: "#FAFAFF",
+            ghostWhite: "#FBFAF9",
 
             //
             lightGray: "#F4F4F4",
@@ -47,6 +46,8 @@ export default {
             richBlack: "#010409",
          },
          boxShadow: {
+            custom:
+               "0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1)",
             "custom-active":
                "0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)",
          },

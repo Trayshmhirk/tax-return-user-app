@@ -9,7 +9,7 @@ const MainLayout = () => {
    const isNotApproved = location.pathname === "/not-approved";
 
    return (
-      <div className="w-full flex overflow-hidden bg-lightGray dark:bg-eerieBlack">
+      <div className="w-full flex overflow-hidden bg-ghostWhite dark:bg-eerieBlack">
          {isHomePage ? (
             <Ellipses>
                <Sidebar />

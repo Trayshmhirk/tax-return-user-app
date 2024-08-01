@@ -23,28 +23,27 @@ const Hero = ({
       <div
          className={`
             relative w-full h-56 rounded-2xl bg-richElectricBlue dark:bg-gray text-white
-            flex flex-col justify-center items-center gap-5 overflow-hidden shadow-custom-active
+            flex flex-col justify-center items-center gap-5 overflow-hidden shadow-md
             ${isNotApprovedHome ? "text-center md:h-[270px]" : ""}
          `}
       >
-         <>
-            <img
-               className="absolute top-0 left-0 md:hidden"
-               src={HeroTopLeftImage}
-            />
-            <img
-               className="absolute bottom-0 right-0 md:hidden"
-               src={HeroBottomRightImage}
-            />
+         <img
+            className="absolute top-0 left-0 md:hidden"
+            src={HeroTopLeftImage}
+         />
+         <img
+            className="absolute bottom-0 right-0 md:hidden"
+            src={HeroBottomRightImage}
+         />
 
-            <div className="hidden circle bottom-12 -left-32 md:block" />
-            <div className="hidden circle bottom-12 -left-48 md:block" />
-            <div className="hidden circle bottom-12 -left-64 md:block" />
-            <div className="hidden circle circle-transform top-8 -right-[250px] md:block" />
-            <div className="hidden circle circle-transform top-14 -right-[200px] md:block" />
-            <div className="hidden circle circle-transform top-20 -right-[150px] md:block" />
-         </>
+         <div className="hidden circle bottom-12 -left-32 md:block" />
+         <div className="hidden circle bottom-12 -left-48 md:block" />
+         <div className="hidden circle bottom-12 -left-64 md:block" />
+         <div className="hidden circle circle-transform top-8 -right-[250px] md:block" />
+         <div className="hidden circle circle-transform top-14 -right-[200px] md:block" />
+         <div className="hidden circle circle-transform top-20 -right-[150px] md:block" />
 
+         {/* Hero */}
          {isBankDetails ? (
             <div className="flex flex-col items-center justify-center gap-2">
                <p className="text-xl">{card?.name}</p>
