@@ -4,10 +4,10 @@ type NavItemsProps = {
    title: string;
    navIcon: IconType;
    onClick?: () => void;
-   isLogout?: boolean;
    id: string;
    isActive?: boolean;
    tourContent?: string;
+   isCollapsed?: boolean;
 };
 
 export const NavItems = ({
@@ -16,13 +16,12 @@ export const NavItems = ({
    navIcon: NavIcon,
    onClick,
    isActive,
-   isLogout,
+   isCollapsed,
 }: NavItemsProps) => (
    <div
       className={`
          flex items-center p-3 gap-4 rounded-lg cursor-pointer
          ${isActive ? "bg-richElectricBlue text-white shadow-custom-active" : ""}
-         ${isLogout ? "logout" : ""}
       `}
       id={id}
       onClick={onClick}
@@ -31,6 +30,6 @@ export const NavItems = ({
       <NavIcon
          className={`w-6 h-6 ${isActive ? "text-white" : "text-darkElectricBlue"}`}
       />
-      <p className="text-base">{title}</p>
+      {isCollapsed && <p className="text-base">{title}</p>}
    </div>
 );

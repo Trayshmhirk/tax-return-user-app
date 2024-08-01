@@ -33,7 +33,6 @@ export default {
             gunMetal: "#263238",
          },
          boxShadow: {
-            // "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
             "custom-active":
                "0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)",
          },
