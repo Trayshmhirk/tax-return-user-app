@@ -6,9 +6,10 @@ import ContentLayout from "./ContentLayout";
 const MainLayout = () => {
    const location = useLocation();
    const isHomePage = location.pathname === "/";
+   const isNotApproved = location.pathname === "/not-approved";
 
    return (
-      <div className="w-full flex overflow-hidden bg-chineseWhite dark:bg-darkGunMetal">
+      <div className="w-full flex overflow-hidden bg-lightGray dark:bg-eerieBlack">
          {isHomePage ? (
             <Ellipses>
                <Sidebar />
@@ -19,7 +20,7 @@ const MainLayout = () => {
             </Ellipses>
          ) : (
             <>
-               <Sidebar />
+               <Sidebar isNotApproved={isNotApproved} />
 
                <ContentLayout>
                   <Outlet />

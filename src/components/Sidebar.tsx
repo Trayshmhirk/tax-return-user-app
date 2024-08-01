@@ -9,11 +9,14 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 
-const Sidebar = () => {
+type SidebarProps = {
+   isNotApproved?: boolean;
+};
+
+const Sidebar = ({ isNotApproved }: SidebarProps) => {
    const location = useLocation();
    const navigate = useNavigate();
 
-   const isNotApprovedHome = location.pathname !== "/";
    const [isOpen, setIsOpen] = useState(true);
    const [toggleTheme, setToggleTheme] = useState(
       localStorage.getItem("theme") === "dark"
@@ -31,7 +34,10 @@ const Sidebar = () => {
 
    const handleNavigate = (route: string, id: string) => {
       // Navigate to the corresponding page
-      if (isNotApprovedHome) {
+      console.log("handle Navigate");
+
+      if (isNotApproved) {
+         // display you dont have access modal
          return null;
       } else {
          navigate(`/${route}`);
@@ -63,7 +69,7 @@ const Sidebar = () => {
 
    return (
       <aside
-         className={`relative ${isOpen ? "w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-charcoal text-darkElectricBlue dark:text-white p-6`}
+         className={`relative ${isOpen ? "w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6`}
       >
          <div className="h-full flex flex-col justify-between">
             <div className="flex flex-col gap-4">
@@ -118,13 +124,13 @@ const Sidebar = () => {
                         {toggleTheme ? (
                            <MdOutlineLightMode className="w-6 h-6 text-white" />
                         ) : (
-                           <BsMoonStars className="w-6 h-6 text-darkElectricBlue" />
+                           <BsMoonStars className="w-6 h-6 text-eerieBlack" />
                         )}
                      </>
 
                      {isOpen && (
                         <>
-                           <p className="text-base text-darkElectricBlue dark:text-white">
+                           <p className="text-base text-eerieBlack dark:text-white">
                               {toggleTheme ? "Light Mode" : "Dark Mode"}
                            </p>
                         </>
@@ -138,13 +144,13 @@ const Sidebar = () => {
                onClick={() => handleNavigate("profile", "profileNavItem")}
             >
                <div
-                  className={`${isOpen ? "w-10 h-10" : "w-8 h-8"} flex items-center justify-center bg-lotion dark:bg-darkElectricBlue rounded-full`}
+                  className={`${isOpen ? "w-10 h-10" : "w-8 h-8"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
                >
-                  <FaUserAlt className="text-darkElectricBlue dark:text-white" />
+                  <FaUserAlt className="text-eerieBlack dark:text-white" />
                </div>
 
                {isOpen && (
-                  <span className="text-darkElectricBlue">Frank Micheal</span>
+                  <span className="text-eerieBlack">Frank Micheal</span>
                )}
             </div>
          </div>
