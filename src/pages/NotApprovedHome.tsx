@@ -75,9 +75,7 @@ const NotApprovedHome = () => {
 
                   <label
                      onClick={() => handleUploadDocument("2")}
-                     className={`
-                        flex justify-between items-center p-3 bg-white dark:bg-spanishGray dark:text-eerieBlack rounded shadow-md dark:shadow-md-dark cursor-pointer
-                     `}
+                     className="flex justify-between items-center p-3 bg-white dark:bg-spanishGray dark:text-eerieBlack rounded shadow-md dark:shadow-md-dark cursor-pointer hover-shadow-body"
                   >
                      <span className="font-semibold">Upload document</span>
                      {isUploaded && (

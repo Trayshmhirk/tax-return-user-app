@@ -119,7 +119,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
 
                   <div
                      onClick={handleToggleTheme}
-                     className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer`}
+                     className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
                   >
                      <>
                         {toggleTheme ? (
@@ -141,7 +141,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             </div>
 
             <div
-               className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
+               className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
                onClick={() => handleNavigate("profile", "profileNavItem")}
             >
                <div

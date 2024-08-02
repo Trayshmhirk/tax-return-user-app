@@ -23,7 +23,7 @@ export const NavItems = ({
    <div
       className={`
          flex items-center p-[10px] gap-4 rounded-lg text-eerieBlack dark:text-white
-         ${isActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : ""}
+         ${isActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : "hover-bg-shadow"}
          ${isCollapsed ? "" : "justify-center"}
          ${navBarAccess ? "text-opacity-35 dark:text-opacity-35 cursor-not-allowed" : "cursor-pointer "}
       `}

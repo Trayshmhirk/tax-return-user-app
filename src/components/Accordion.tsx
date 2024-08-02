@@ -14,7 +14,7 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
 
    return (
       <div className="accordion">
-         <div className="flex flex-col bg-white dark:bg-gray p-4 rounded-md shadow-md dark:shadow-md-dark">
+         <div className="flex flex-col bg-white dark:bg-gray p-4 rounded-md shadow-md dark:shadow-md-dark hover-shadow-body">
             <h2 className="accordion-header py-1" onClick={handleToggle}>
                <button
                   className="font-semibold rounded-md w-full text-left"

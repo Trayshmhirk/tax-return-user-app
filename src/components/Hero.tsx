@@ -65,7 +65,7 @@ const Hero = ({
                <p className="md:text-xl">Download the IRS app</p>
 
                <div className="flex gap-3">
-                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded z-50 cursor-pointer">
+                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded z-50 cursor-pointer hover-shadow-body">
                      <img src={GooglePlayImg} />
 
                      <div className="flex flex-col">
@@ -77,7 +77,7 @@ const Hero = ({
                         </p>
                      </div>
                   </div>
-                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded z-50 cursor-pointer">
+                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded z-50 cursor-pointer hover-shadow-body">
                      <img src={AppStoreImg} />
 
                      <div className="flex flex-col">
