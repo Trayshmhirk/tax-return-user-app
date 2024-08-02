@@ -43,9 +43,7 @@ export default {
             "md-dark":
                "0 2px 5px 0px rgb(0 0 0 / 0.5), 0 1px 3px -1px rgb(0 0 0 / 0.7)",
             custom:
-               "0 2px 4px 0px rgba(0, 0, 0, .1), 0 3px 6px -1px rgba(0, 0, 0, .2)",
-            "custom-active":
-               "0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)",
+               "0 2px 5px rgba(0, 0, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.4)",
          },
       },
    },

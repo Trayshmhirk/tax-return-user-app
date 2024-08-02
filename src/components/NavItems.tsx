@@ -21,7 +21,7 @@ export const NavItems = ({
    <div
       className={`
          flex items-center p-[10px] gap-4 rounded-lg cursor-pointer
-         ${isActive ? "bg-richElectricBlue text-white shadow-custom-active" : ""}
+         ${isActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : ""}
          ${isCollapsed ? "" : "justify-center"}
       `}
       id={id}
