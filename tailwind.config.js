@@ -21,6 +21,7 @@ export default {
             darkRichElectricBlue: "#007A9B",
             antiFlashWhite: "#EEF0F2",
             ghostWhite: "#FBFAF9",
+            bostonRed: "#C30000",
 
             // grey
             lightGray: "#F4F4F4",
