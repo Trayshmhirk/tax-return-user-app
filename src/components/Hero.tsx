@@ -23,7 +23,7 @@ const Hero = ({
       <div
          className={`
             relative w-full h-56 rounded-2xl bg-richElectricBlue dark:bg-gray text-white
-            flex flex-col justify-center items-center gap-5 overflow-hidden shadow-md
+            flex flex-col justify-center items-center gap-5 overflow-hidden shadow-custom dark:shadow-md-dark
             ${isNotApprovedHome ? "text-center md:h-[270px]" : ""}
          `}
       >

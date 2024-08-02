@@ -17,37 +17,33 @@ export default {
             // primary
             alabaster: "#ECEBE4",
             richElectricBlue: "#00A2C9",
+            bubbles: "#E5F6F9",
             darkRichElectricBlue: "#007A9B",
             antiFlashWhite: "#EEF0F2",
             ghostWhite: "#FBFAF9",
 
-            //
-            lightGray: "#F4F4F4",
-
             // grey
+            lightGray: "#F4F4F4",
             americanSilver: "#CCD0Cf",
             lotion: "#FCFCFC",
             cultured: "#F5F5F5",
             brightGray: "#EEEEEE",
             chineseWhite: "#E0E0E0",
+            spanishGray: "#B8B8B8",
 
             // dark
             darkGray: "#2A2A2A",
-            eerieBlack: "#1E1E1E",
             gray: "#2E2E2E",
+            eerieBlack: "#1E1E1E",
             mutedGray: "#555555",
-
-            //
-            darkElectricBlue: "#546E7A",
-            charcoal: "#37474F",
-            gunMetal: "#2F3141",
-            darkGunMetal: "#11212D",
-            chineseBlack: "#0D1117",
             richBlack: "#010409",
          },
          boxShadow: {
+            md: "0 2px 5px 0px rgb(0 0 0 / 0.1), 0 1px 3px -1px rgb(0 0 0 / 0.1)",
+            "md-dark":
+               "0 2px 5px 0px rgb(0 0 0 / 0.5), 0 1px 3px -1px rgb(0 0 0 / 0.7)",
             custom:
-               "0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1)",
+               "0 2px 4px 0px rgba(0, 0, 0, .1), 0 3px 6px -1px rgba(0, 0, 0, .2)",
             "custom-active":
                "0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)",
          },

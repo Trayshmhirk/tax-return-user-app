@@ -6,11 +6,11 @@ type ContentLayoutProps = {
 
 const ContentLayout = ({ children }: ContentLayoutProps) => {
    return (
-      <div className="main-content flex flex-col text-darkGunMetal dark:text-white">
+      <div className="w-full h-fit flex flex-col text-darkGunMetal overflow-hidden dark:text-white md:w-[calc(100% - 300px)]">
          <Header />
 
-         <div className="content-body overflow-scroll py-12 px-16">
-            {children}
+         <div className="h-[calc(100vh - 80px)] py-12 px-16 overflow-scroll">
+            <div className="h-full flex flex-col gap-4">{children}</div>
          </div>
       </div>
    );

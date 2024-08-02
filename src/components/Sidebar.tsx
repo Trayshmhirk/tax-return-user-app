@@ -69,7 +69,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
 
    return (
       <aside
-         className={`relative ${isOpen ? "w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6`}
+         className={`relative ${isOpen ? "w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-xl shadow-md dark:shadow-md-dark`}
       >
          <div className="h-full flex flex-col justify-between">
             <div className="flex flex-col gap-4">
@@ -87,7 +87,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                   <HamburgerIcon toggle={() => setIsOpen(!isOpen)} />
                </div>
 
-               <div className="w-full h-[1px] bg-darkElectricBlue dark:bg-white opacity-40" />
+               <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
 
                <div className="flex flex-col gap-3">
                   <nav className="flex flex-col gap-2">
@@ -106,7 +106,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      ))}
                   </nav>
 
-                  <div className="w-full h-[1px] bg-darkElectricBlue dark:bg-white opacity-40" />
+                  <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
 
                   <NavItems
                      title="Logout"
@@ -140,7 +140,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             </div>
 
             <div
-               className="flex items-center bg-chineseWhite p-2 gap-4 rounded-lg cursor-pointer"
+               className="flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg cursor-pointer"
                onClick={() => handleNavigate("profile", "profileNavItem")}
             >
                <div
