@@ -2,7 +2,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 const Header: React.FC = () => {
    return (
-      <header className="h-20 flex justify-end py-4 px-24 border-b border-alabaster">
+      <header className="h-16 flex justify-end py-4 px-24 border-b border-alabaster">
          <div className=""></div>
 
          <div className="flex items-center gap-4">

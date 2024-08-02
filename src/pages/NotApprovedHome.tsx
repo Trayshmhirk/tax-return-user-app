@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hero from "../components/Hero";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { FaAngleLeft } from "react-icons/fa6";
+import { Accordion } from "../components/Accordion";
 
 type StateProp = {
    documentNumber: string;
@@ -59,10 +60,15 @@ const NotApprovedHome = () => {
                </div>
             </div>
          ) : (
-            <>
+            <div className="flex flex-col gap-10">
                <Hero isNotApprovedHome />
 
-               <div className="flex flex-col gap-4">{/* accordion */}</div>
+               <div className="flex flex-col gap-4">
+                  <Accordion
+                     question="Why is my profile under review?"
+                     answer="This is the answer"
+                  />
+               </div>
 
                <div className="flex flex-col gap-4">
                   <p className="font-semibold text-xl">Action steps</p>
@@ -79,7 +85,7 @@ const NotApprovedHome = () => {
                      )}
                   </label>
                </div>
-            </>
+            </div>
          )}
       </>
    );
