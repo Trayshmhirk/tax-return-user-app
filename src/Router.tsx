@@ -13,6 +13,7 @@ import LiveChat from "./pages/LiveChat";
 import PreviousFiling from "./pages/PreviousFiling";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import Transactions from "./pages/Transactions";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
          <Route path="previous-filing" element={<PreviousFiling />} />
          <Route path="knowledge-base" element={<KnowledgeBase />} />
          <Route path="transactions" element={<Transactions />} />
+         <Route path="profile" element={<Profile />} />
       </Route>
    )
 );

@@ -42,4 +42,14 @@
    .hover-shadow-body {
       @apply transition-all duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-lg dark:hover:shadow-lg-dark;
    }
+
+   .todo-card {
+      width: calc(100% / 2.12);
+   }
+
+   @media screen and (min-width: 768px) {
+      .todo-card {
+         width: calc(100% / 4.20);
+      }
+   }
 }

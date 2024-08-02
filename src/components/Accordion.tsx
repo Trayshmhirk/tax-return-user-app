@@ -24,7 +24,7 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
                </button>
             </h2>
             <div
-               className={`overflow-hidden transition-height duration-500 ease-in-out ${
+               className={`overflow-hidden transition-height duration-700 ease-in-out ${
                   isOpen ? "max-h-screen" : "max-h-0"
                }`}
             >
