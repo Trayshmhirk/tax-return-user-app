@@ -14,7 +14,7 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
 
    return (
       <div className="accordion">
-         <div className="accordion-item flex flex-col bg-white dark:bg-gray p-4 rounded-md shadow-md dark:shadow-md-dark">
+         <div className="flex flex-col bg-white dark:bg-gray p-4 rounded-md shadow-md dark:shadow-md-dark">
             <h2 className="accordion-header py-1" onClick={handleToggle}>
                <button
                   className="font-semibold rounded-md w-full text-left"
@@ -28,10 +28,10 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
                   isOpen ? "max-h-screen" : "max-h-0"
                }`}
             >
-               <div className="w-full h-[1px] bg-eerieBlack dark:bg-white mt-3 opacity-30" />
+               <div className="w-full h-[1px] bg-eerieBlack dark:bg-white my-3 opacity-30" />
 
-               <div className="accordion-body py-3">
-                  <div className="flex flex-col gap-2 pb-2">
+               <div className="accordion-body py-1">
+                  <div className="flex flex-col gap-2">
                      {Array.isArray(answer) ? (
                         answer.map((ans, index) => <p key={index}>{ans}</p>)
                      ) : (
