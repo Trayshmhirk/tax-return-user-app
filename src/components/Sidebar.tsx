@@ -102,6 +102,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                            isActive={location.pathname === `/${navItem.route}`}
                            id={navItem.id}
                            isCollapsed={isOpen}
+                           navBarAccess={isNotApproved}
                         />
                      ))}
                   </nav>
@@ -140,7 +141,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             </div>
 
             <div
-               className="flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg cursor-pointer"
+               className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
                onClick={() => handleNavigate("profile", "profileNavItem")}
             >
                <div

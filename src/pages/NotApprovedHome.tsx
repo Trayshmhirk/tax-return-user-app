@@ -33,7 +33,7 @@ const NotApprovedHome = () => {
             <div className="flex flex-col gap-4 bg-white dark:bg-gray p-8 rounded-lg md:p-10 shadow-md dark:shadow-md-dark">
                <div
                   onClick={handleCancelUpload}
-                  className="w-8 h-8 flex items-center justify-center bg-bubbles dark:bg-mutedGray rounded-md"
+                  className="w-8 h-8 flex items-center justify-center bg-bubbles dark:bg-mutedGray rounded-md cursor-pointer"
                >
                   <FaAngleLeft className="font-light text-lg" />
                </div>
@@ -79,7 +79,7 @@ const NotApprovedHome = () => {
                         flex justify-between items-center p-3 bg-white dark:bg-spanishGray dark:text-eerieBlack rounded shadow-md dark:shadow-md-dark cursor-pointer
                      `}
                   >
-                     <span className="font-bold">Upload document</span>
+                     <span className="font-semibold">Upload document</span>
                      {isUploaded && (
                         <span className="font-medium">Uploaded</span>
                      )}
