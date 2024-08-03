@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 
 const Profile = () => {
@@ -24,27 +24,27 @@ const Profile = () => {
          </div>
 
          <div className="flex flex-col gap-4">
-            <Link
+            <NavLink
                to="my-requests"
                className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
             >
                <span>My requests</span>
                <FaAngleRight className="" />
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to="integrated-banks"
                className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
             >
                <span>Integrated bank accounts</span>
                <FaAngleRight className="" />
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to="my-documents"
                className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
             >
                <span>My documents</span>
                <FaAngleRight className="" />
-            </Link>
+            </NavLink>
          </div>
 
          <div className="settings flex flex-col gap-3">
@@ -58,35 +58,35 @@ const Profile = () => {
                   <span>Change password</span>
                   <FaAngleRight className="" />
                </div>
-               <Link
+               <NavLink
                   to="/terms-and-conditions"
                   className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
                >
                   <span>Terms and conditions</span>
                   <FaAngleRight className="" />
-               </Link>
+               </NavLink>
 
-               <Link
-                  to="faq"
+               <NavLink
+                  to="/faq"
                   className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
                >
                   <span>FAQ</span>
                   <FaAngleRight className="" />
-               </Link>
-               <Link
-                  to="help-and-support"
+               </NavLink>
+               <NavLink
+                  to="/help-and-support"
                   className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
                >
                   <span>Help and support</span>
                   <FaAngleRight className="" />
-               </Link>
-               <Link
-                  to="privacy-policy"
+               </NavLink>
+               <NavLink
+                  to="/privacy-policy"
                   className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
                >
                   <span>Privacy policy</span>
                   <FaAngleRight className="" />
-               </Link>
+               </NavLink>
                <div
                   // onClick={handleShowModal}
                   className="flex items-center justify-between bg-white dark:bg-gray text-eerieBlack dark:text-white py-3 px-5 rounded-lg no-underline shadow-md dark:shadow-md-dark cursor-pointer hover-shadow-body"

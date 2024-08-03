@@ -14,10 +14,15 @@ import PreviousFiling from "./pages/PreviousFiling";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import Transactions from "./pages/Transactions";
 import Profile from "./pages/Profile";
+import { ErrorPage } from "./pages/ErrorPage";
+import Terms from "./pages/Terms";
+import Help from "./pages/Help";
+import Privacy from "./pages/Privacy";
+import Faq from "./pages/Faq";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
-      <Route path="/" element={<MainLayout />}>
+      <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
          <Route index element={<Home />} />
          <Route path="not-approved" element={<NotApprovedHome />} />
          <Route path="documents" element={<Documents />} />
@@ -28,6 +33,10 @@ const router = createBrowserRouter(
          <Route path="knowledge-base" element={<KnowledgeBase />} />
          <Route path="transactions" element={<Transactions />} />
          <Route path="profile" element={<Profile />} />
+         <Route path="terms-and-conditions" element={<Terms />} />
+         <Route path="help-and-support" element={<Help />} />
+         <Route path="privacy-policy" element={<Privacy />} />
+         <Route path="faq" element={<Faq />} />
       </Route>
    )
 );

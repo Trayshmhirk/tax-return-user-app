@@ -4,7 +4,7 @@ import TodoCard from "../components/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineAddCard } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = () => {
    const navigate = useNavigate();
@@ -44,9 +44,9 @@ const Home = () => {
             <div className="flex flex-col gap-2">
                <div className="flex justify-between items-center">
                   <p className="font-medium text-xl">Previous Filing</p>
-                  <Link to={"/previous-filing"} className="font-bold">
+                  <NavLink to={"/previous-filing"} className="font-bold">
                      See all
-                  </Link>
+                  </NavLink>
                </div>
 
                <div className="flex flex-wrap gap-3"></div>

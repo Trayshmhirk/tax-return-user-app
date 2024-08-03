@@ -22,6 +22,14 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Transactions";
          case "/profile":
             return "Profile";
+         case "/terms-and-conditions":
+            return "Terms and conditions";
+         case "/faq":
+            return "FAQ";
+         case "/help-and-support":
+            return "Help and support";
+         case "/privacy-policy":
+            return "Privacy policy";
          default:
             return "Welcome";
       }
