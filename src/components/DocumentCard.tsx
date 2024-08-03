@@ -1,23 +1,46 @@
-// import { useState } from "react";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CardDropdown } from "./CardDropdown";
 import DocumentTypeIcon from "./DocumentTypeIcon";
+import { FaSquareCheck } from "react-icons/fa6";
+
+type FileType = "application/pdf" | "image/png";
 
 type DocumentCardProps = {
    docId: string;
    documentName: string;
    documentSize: string;
    documentType: FileType;
+   onSelect?: (doc: {
+      docId: string;
+      documentName: string;
+      documentSize: string;
+      documentType: FileType;
+   }) => void;
+   isSelectClicked?: boolean;
+   handleSendToChat?: () => void;
 };
-
-type FileType = "application/pdf" | "image/png";
 
 export const DocumentCard = ({
    docId,
    documentType,
    documentName,
    documentSize,
+   onSelect,
+   isSelectClicked,
+   handleSendToChat,
 }: DocumentCardProps) => {
-   // const [isSelected, setIsSelected] = useState(false);
+   const [isSelected, setIsSelected] = useState(false);
+   const navigate = useNavigate();
+
+   const handleSelect = () => {
+      if (isSelectClicked) {
+         setIsSelected(!isSelected);
+         if (onSelect) {
+            onSelect({ docId, documentName, documentSize, documentType });
+         }
+      }
+   };
 
    const truncateString = (str: string, num: number) => {
       if (str.length <= num) {
@@ -37,53 +60,55 @@ export const DocumentCard = ({
       return fileTypeMapping[fileType];
    };
 
+   const handleViewDocument = () => {
+      navigate("/view-document", {
+         state: { data: { docId, documentName, documentSize, documentType } },
+      });
+   };
+
    return (
       <div
          id={docId}
          className={`
             document-card flex items-center justify-between bg-white dark:bg-gray p-3 rounded-lg shadow-md dark:shadow-md-dark
+            ${isSelected ? "checked" : ""}
+            ${isSelectClicked ? "select-enabled" : "select-disabled"}
          `}
       >
-         <div
-            className="flex items-center gap-2"
-            // onClick={handleSelect}
-         >
-            {/* {isSelectClicked && (
+         <div className="flex items-center gap-3" onClick={handleSelect}>
+            {isSelectClicked && (
                <>
                   <input
                      type="checkbox"
                      checked={isSelected}
-                     onChange={() => {}}
+                     // onChange={() => {}}
+                     className="hidden"
                   />
                   <span
-                     className={`custom-checkbox ${isSelected ? "d-flex align-items-center justify-content-center" : "d-none"}`}
+                     className={`inline-block font-[15px] text-richElectricBlue ${isSelected ? "flex items-center justify-center" : "hidden"}`}
                   >
-                     <FontAwesomeIcon icon={faSquareCheck} />
+                     <FaSquareCheck className="" />
                   </span>
                </>
-            )} */}
+            )}
 
             <DocumentTypeIcon
                docType={mapFileTypeToDocumentType(documentType)}
             />
 
             <div className="flex flex-col gap-1">
-               <h6 className="font-normal">
+               <h6 className="font-medium">
                   {truncateString(documentName, 15)}
                </h6>
                <span className="text-xs">{`${documentSize}MB`}</span>
             </div>
          </div>
 
-         {/* <NavDropdown
-            handleShare={handleSendToChat}
+         <CardDropdown
+            handleShare={handleSendToChat ?? (() => {})}
             handleViewDoc={handleViewDocument}
-            handleDeleteDoc={handleShowModal}
-         /> */}
+            // handleDeleteDoc={handleShowModal}
+         />
       </div>
    );
 };
-
-// ${isSelected ? "checked" : ""}
-// ${isSelectClicked ? "select-enabled" : "select-disabled"}
-// ${isMobileView ? "w-100 gap-1" : "gap-2"}

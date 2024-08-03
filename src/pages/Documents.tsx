@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import UploadPdfImage from "../components/UploadPdfImage";
 import SearchAndFilter from "../components/SearchAndFilter";
-import { useState } from "react";
+import React, { useState } from "react";
 import { DocumentCard } from "../components/DocumentCard";
 
 type Document = {
@@ -108,14 +108,15 @@ const Documents = () => {
                {filteredDocs.length ? (
                   <>
                      {filteredDocs.map((doc) => (
-                        <DocumentCard
-                           key={doc.id}
-                           docId={doc.id}
-                           documentName={doc.title}
-                           documentSize={doc.document_size}
-                           documentType={doc.document_type}
-                           // document={doc}
-                        />
+                        <React.Fragment key={doc.id}>
+                           <DocumentCard
+                              docId={doc.id}
+                              documentName={doc.title}
+                              documentSize={doc.document_size}
+                              documentType={doc.document_type}
+                              // document={doc}
+                           />
+                        </React.Fragment>
                      ))}
                   </>
                ) : (
