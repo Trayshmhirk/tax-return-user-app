@@ -23,27 +23,25 @@ const SearchAndFilter = ({
 
    return (
       <div className="flex flex-col md:flex-row gap-4">
-         <label className="w-100 h-14 flex items-center bg-white dark:bg-spanishGray px-4 py-3 rounded-lg md:w-[350px]">
+         <label className="w-full h-12 flex items-center bg-white dark:bg-mutedGray p-3 pr-5 rounded-lg md:w-[350px] shadow-md dark:shadow-md-dark">
             <button className="px-3 cursor-pointer">
                <FaMagnifyingGlass className="w-4 h-4 text-gray dark:text-white" />
             </button>
             <input
                type="text"
                placeholder="Search"
-               className="flex-grow bg-transparent border-none placeholder:text-gray outline-none"
+               className="flex-grow bg-transparent border-none placeholder:text-gray dark:placeholder:text-white placeholder:text-opacity-70 dark:placeholder:text-opacity-70 outline-none"
                onChange={handleSearch}
             />
          </label>
 
-         <div className="filter min-w-full overflow-scroll flex items-center gap-3 md:w-full md:overflow-visible">
+         <div className="filter flex items-center gap-3">
             {title.map((title, index) => (
                <div
                   key={index}
                   className={`
-                  filter-item
-                     ${activeFilter === "All" ? "filter-all" : ""}
-                     ${activeFilter === title ? "filter-active active-padding" : "filter-users"}
-                     flex items-center justify-center
+                     h-10 flex items-center justify-center text-[13px] text-eerieBlack font-medium py-3 px-4 rounded-3xl shadow-md dark:shadow-md-dark
+                     ${activeFilter === title ? "bg-richElectricBlue text-white px-5" : "bg-white dark:bg-spanishGray"}
                   `}
                   id={title}
                   onClick={() => handleFilterClick(title)}

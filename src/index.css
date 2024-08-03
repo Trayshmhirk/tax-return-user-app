@@ -58,9 +58,17 @@
       width: calc(100% / 2.12);
    }
 
+   .document-card {
+      width: calc(100% / 4.23);
+   }
+
    @media screen and (min-width: 768px) {
       .todo-card {
          width: calc(100% / 4.20);
+      }
+
+      .filter {
+         width: calc(100% - 350px);
       }
    }
 }

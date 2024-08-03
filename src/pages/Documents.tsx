@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import UploadPdfImage from "../components/UploadPdfImage";
 import SearchAndFilter from "../components/SearchAndFilter";
 import { useState } from "react";
+import { DocumentCard } from "../components/DocumentCard";
 
 type Document = {
    id: string;
@@ -15,7 +16,7 @@ type FileType = "application/pdf" | "image/png";
 const uploadedDocuments: Document[] = [
    {
       id: "id1",
-      title: "document",
+      title: "Document 1adfuubadfdajhjahdf",
       document_size: "20",
       document_type: "application/pdf",
    },
@@ -78,13 +79,13 @@ const Documents = () => {
    };
 
    return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-9">
          <UploadPdfImage
             isUploadDoc
             handleClick={handleNavigateUploadDocument}
          />
 
-         <div className="flex flex-col gap-4">
+         <div className="flex flex-col gap-7">
             <div className="flex items-center gap-2 text-xl">
                <p className="font-medium">Uploaded documents</p>
 
@@ -103,18 +104,18 @@ const Documents = () => {
                title={filterTitleList}
             />
 
-            <div className="w-full flex flex-wrap gap-4">
+            <div className="w-full flex flex-wrap gap-5">
                {filteredDocs.length ? (
                   <>
                      {filteredDocs.map((doc) => (
-                        <div key={doc.id}>
-                           <p>{doc.title}</p>
-                           <p>Size: {doc.document_size}</p>
-                           <p>
-                              Type:{" "}
-                              {mapFileTypeToDocumentType(doc.document_type)}
-                           </p>
-                        </div>
+                        <DocumentCard
+                           key={doc.id}
+                           docId={doc.id}
+                           documentName={doc.title}
+                           documentSize={doc.document_size}
+                           documentType={doc.document_type}
+                           // document={doc}
+                        />
                      ))}
                   </>
                ) : (

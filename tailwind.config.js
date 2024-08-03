@@ -33,10 +33,10 @@ export default {
             spanishGray: "#B8B8B8",
 
             // dark
+            mutedGray: "#555555",
             darkGray: "#2A2A2A",
             gray: "#2E2E2E",
             eerieBlack: "#1E1E1E",
-            mutedGray: "#555555",
             richBlack: "#010409",
          },
          boxShadow: {
