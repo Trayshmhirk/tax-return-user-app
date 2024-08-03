@@ -3,23 +3,27 @@ import UploadPdfImage from "../components/UploadPdfImage";
 import SearchAndFilter from "../components/SearchAndFilter";
 import { useState } from "react";
 
-type FileType = {
-   "application/pdf": string;
-   "image/png": string;
+type Document = {
+   id: string;
+   title: string;
+   document_size: string;
+   document_type: FileType;
 };
 
-const uploadedDocuments = [
+type FileType = "application/pdf" | "image/png";
+
+const uploadedDocuments: Document[] = [
    {
       id: "id1",
       title: "document",
       document_size: "20",
-      document_type: "pdf",
+      document_type: "application/pdf",
    },
    {
       id: "id2",
       title: "document",
       document_size: "20",
-      document_type: "pdf",
+      document_type: "application/pdf",
    },
 ];
 
@@ -35,7 +39,7 @@ const Documents = () => {
       setSearchInput(e.target.value);
    };
 
-   const searchDocs = (doc) => {
+   const searchDocs = (doc: Document) => {
       const docName = doc.title;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
@@ -46,16 +50,16 @@ const Documents = () => {
 
    // Map file types to document types
    const mapFileTypeToDocumentType = (fileType: FileType) => {
-      const fileTypeMapping = {
+      const fileTypeMapping: Record<FileType, string> = {
          "application/pdf": "PDF",
          "image/png": "PNG",
          // Add more mappings as needed
       };
       // Default to the original fileType if no mapping is founda
-      return fileTypeMapping[fileType] || fileType;
+      return fileTypeMapping[fileType];
    };
 
-   const filterByDoctype = (doc) => {
+   const filterByDoctype = (doc: Document) => {
       if (selectedFilter === "" || selectedFilter === "All") {
          // if no filter is selected, all users should be included
          return true;
