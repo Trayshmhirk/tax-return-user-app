@@ -30,10 +30,10 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
    const title = getTitle(location.pathname);
 
    return (
-      <div className="w-full h-fit flex flex-col text-darkGunMetal overflow-hidden dark:text-white">
+      <div className="content-layout h-fit flex flex-col text-darkGunMetal overflow-hidden dark:text-white">
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div className="content-layout relative py-10 px-7 overflow-scroll sm:px-10 md:px-16">
+         <div className="content relative py-10 px-7 overflow-scroll sm:px-10 md:px-16">
             {children}
          </div>
       </div>

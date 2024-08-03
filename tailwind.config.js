@@ -40,7 +40,7 @@ export default {
             richBlack: "#010409",
          },
          boxShadow: {
-            md: "0 2px 5px 0px rgb(0 0 0 / 0.1), 0 1px 3px -1px rgb(0 0 0 / 0.1)",
+            md: "0 1px 4px 0px rgb(0 0 0 / 0.1), 0 1px 3px -1px rgb(0 0 0 / 0.1)",
             "md-dark":
                "0 2px 5px 0px rgb(0 0 0 / 0.5), 0 1px 3px -1px rgb(0 0 0 / 0.7)",
             lg: "0 3px 5px 1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",

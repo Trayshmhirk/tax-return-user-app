@@ -34,6 +34,11 @@
    }
 
    .content-layout {
+      width: 100%;
+      width: calc(100% - 300px);
+   }
+
+   .content {
       height: calc(100vh - 90px);
    }
 
@@ -42,11 +47,11 @@
    }
 
    .hover-shadow {
-      @apply transition-all duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-md dark:hover:shadow-md-dark;
+      @apply transition-transform duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-md dark:hover:shadow-md-dark;
    }
 
    .hover-shadow-body {
-      @apply transition-all duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-lg dark:hover:shadow-lg-dark;
+      @apply transition-transform duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-lg dark:hover:shadow-lg-dark;
    }
 
    .todo-card {
