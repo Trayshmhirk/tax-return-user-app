@@ -1,5 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import UploadPdfImage from "../components/UploadPdfImage";
+import SearchAndFilter from "../components/SearchAndFilter";
+import { useState } from "react";
+
+type FileType = {
+   "application/pdf": string;
+   "image/png": string;
+};
 
 const uploadedDocuments = [
    {
@@ -18,6 +25,49 @@ const uploadedDocuments = [
 
 const Documents = () => {
    const navigate = useNavigate();
+
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
+   const [activeFilter, setActiveFilter] = useState("All");
+   const filterTitleList = ["All", "PDF", "PNG", "DOC", "XLS"];
+
+   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInput(e.target.value);
+   };
+
+   const searchDocs = (doc) => {
+      const docName = doc.title;
+      return docName.toLowerCase().includes(searchInput.toLowerCase());
+   };
+
+   const handleFilter = (title: string) => {
+      setSelectedFilter(title);
+   };
+
+   // Map file types to document types
+   const mapFileTypeToDocumentType = (fileType: FileType) => {
+      const fileTypeMapping = {
+         "application/pdf": "PDF",
+         "image/png": "PNG",
+         // Add more mappings as needed
+      };
+      // Default to the original fileType if no mapping is founda
+      return fileTypeMapping[fileType] || fileType;
+   };
+
+   const filterByDoctype = (doc) => {
+      if (selectedFilter === "" || selectedFilter === "All") {
+         // if no filter is selected, all users should be included
+         return true;
+      }
+      return mapFileTypeToDocumentType(doc.document_type) === selectedFilter;
+   };
+
+   const filteredDocs = uploadedDocuments
+      ? uploadedDocuments.filter(
+           (doc) => searchDocs(doc) && filterByDoctype(doc)
+        )
+      : [];
 
    const handleNavigateUploadDocument = () => {
       navigate("/upload-document");
@@ -41,7 +91,27 @@ const Documents = () => {
                </span>
             </div>
 
-            <div>search</div>
+            <SearchAndFilter
+               handleSearch={handleSearch}
+               handleFilter={handleFilter}
+               activeFilter={activeFilter}
+               setActiveFilter={setActiveFilter}
+               title={filterTitleList}
+            />
+
+            <div className="w-full flex flex-wrap gap-4">
+               {filteredDocs.length ? (
+                  <>
+                     {filteredDocs.map((doc) => (
+                        <>{doc}</>
+                     ))}
+                  </>
+               ) : (
+                  <p className="pending-text w-full text-center">
+                     No results found.
+                  </p>
+               )}
+            </div>
          </div>
       </div>
    );
