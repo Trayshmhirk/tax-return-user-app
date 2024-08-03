@@ -23,7 +23,7 @@ const uploadedDocuments: Document[] = [
       id: "id2",
       title: "document",
       document_size: "20",
-      document_type: "application/pdf",
+      document_type: "image/png",
    },
 ];
 
@@ -107,7 +107,14 @@ const Documents = () => {
                {filteredDocs.length ? (
                   <>
                      {filteredDocs.map((doc) => (
-                        <>{doc}</>
+                        <div key={doc.id}>
+                           <p>{doc.title}</p>
+                           <p>Size: {doc.document_size}</p>
+                           <p>
+                              Type:{" "}
+                              {mapFileTypeToDocumentType(doc.document_type)}
+                           </p>
+                        </div>
                      ))}
                   </>
                ) : (

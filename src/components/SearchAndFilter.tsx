@@ -12,15 +12,13 @@ type SearchFilterProps = {
 const SearchAndFilter = ({
    title,
    handleSearch,
-   // handleFilter,
-   // setActiveFilter,
+   handleFilter,
+   setActiveFilter,
    activeFilter,
 }: SearchFilterProps) => {
-   const handleFilterClick = () => {
-      console.log("filter clicked");
-
-      // handleFilter(title);
-      // setActiveFilter(title);
+   const handleFilterClick = (title: string) => {
+      handleFilter(title);
+      setActiveFilter(title);
    };
 
    return (
@@ -48,7 +46,7 @@ const SearchAndFilter = ({
                      flex items-center justify-center
                   `}
                   id={title}
-                  onClick={handleFilterClick}
+                  onClick={() => handleFilterClick(title)}
                >
                   {title}
                </div>
