@@ -8,7 +8,7 @@ type HeaderProps = {
 const Header = ({ title, isHome }: HeaderProps) => {
    return (
       <header className="h-16 flex justify-between py-4 px-7 border-b border-alabaster sm:px-10 md:px-20">
-         <div className="font-bold text-xl">
+         <div className="font-bold text-lg md:text-xl">
             {isHome ? `${title} {Username}!` : title}
          </div>
 

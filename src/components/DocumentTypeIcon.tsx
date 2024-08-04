@@ -1,33 +1,25 @@
-// import React from 'react'
-import DocumentTypeBg from "../assets/document-type-bg.png";
+import { FaFile } from "react-icons/fa6";
 
 type DocumentTypeIconProps = {
    docType: string;
 };
 
 const DocumentTypeIcon = ({ docType }: DocumentTypeIconProps) => {
-   const imageStyle = {
-      background: `url(${DocumentTypeBg})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      width: "16px",
-      height: "20px",
-   };
-
    return (
-      <div className="text-center pt-2" style={imageStyle}>
+      <div className="relative">
+         <FaFile className="text-spanishGray w-4 h-5" />
          <div
             style={{
                background: `
-                  ${docType === "PDF" ? "#DB6262" : ""}
-                  ${docType === "PNG" ? "#B255D3" : ""}
-                  ${docType === "XLS" ? "#29CE9C" : ""}
-                  ${docType === "DOC" ? "#29B0CE" : ""}
-               `,
-               height: "8px",
-               fontSize: "6px",
+                     ${docType === "PDF" ? "#DB6262" : ""}
+                     ${docType === "PNG" ? "#B255D3" : ""}
+                     ${docType === "XLS" ? "#29CE9C" : ""}
+                     ${docType === "DOC" ? "#29B0CE" : ""}
+                  `,
+               height: "10px",
                color: "white",
             }}
+            className="absolute bottom-[3px] w-full text-[7px] text-center rounded-sm"
          >
             {docType}
          </div>

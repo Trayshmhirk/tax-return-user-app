@@ -71,7 +71,9 @@ const NotApprovedHome = () => {
                </div>
 
                <div className="flex flex-col gap-4">
-                  <p className="font-semibold text-xl">Action steps</p>
+                  <p className="font-semibold text-lg md:text-xl">
+                     Action steps
+                  </p>
 
                   <label
                      onClick={() => handleUploadDocument("2")}
@@ -79,7 +81,9 @@ const NotApprovedHome = () => {
                   >
                      <span className="font-semibold">Upload document</span>
                      {isUploaded && (
-                        <span className="font-medium">Uploaded</span>
+                        <span className="font-medium text-sm md:text-base">
+                           Uploaded
+                        </span>
                      )}
                   </label>
                </div>

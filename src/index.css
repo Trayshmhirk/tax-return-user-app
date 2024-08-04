@@ -67,8 +67,8 @@
          width: calc(100% / 4.20);
       }
 
-      .filter {
+      /* .filter {
          width: calc(100% - 350px);
-      }
+      } */
    }
 }

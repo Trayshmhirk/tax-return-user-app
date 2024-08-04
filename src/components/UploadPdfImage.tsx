@@ -16,7 +16,7 @@ const UploadPdfImage = ({
 }: UploadPdfProps) => {
    return (
       <label
-         className="h-36 flex flex-col justify-center items-center gap-2 bg-bubbles dark:bg-mutedGray text-xl text-richElectricBlue dark:text-white font-medium shadow-md dark:shadow-md-dark rounded cursor-pointer"
+         className="h-40 flex flex-col justify-center items-center gap-2 bg-bubbles dark:bg-mutedGray text-xl text-richElectricBlue dark:text-white font-medium shadow-md dark:shadow-md-dark rounded cursor-pointer"
          onClick={handleClick}
       >
          <IoCloudUploadOutline className="w-8 h-8" />

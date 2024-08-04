@@ -46,7 +46,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
       >
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div className="content relative py-10 px-7 overflow-scroll sm:px-10 md:px-16">
+         <div className="content relative py-10 px-6 overflow-scroll sm:px-10 md:px-16">
             {children}
          </div>
       </div>

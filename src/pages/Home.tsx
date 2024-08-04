@@ -14,11 +14,11 @@ const Home = () => {
          <Hero isHome />
 
          <div className="flex flex-col gap-4">
-            <span className="font-medium text-xl">
+            <span className="font-medium md:text-xl">
                What would you like to do?
             </span>
 
-            <div className="flex flex-wrap justify-between gap-3">
+            <div className="flex flex-wrap gap-3 lg:justify-between">
                <TodoCard
                   todoIcon={BsCardChecklist}
                   text="Request service"
@@ -43,7 +43,7 @@ const Home = () => {
 
             <div className="flex flex-col gap-2">
                <div className="flex justify-between items-center">
-                  <p className="font-medium text-xl">Previous Filing</p>
+                  <p className="font-medium md:text-xl">Previous Filing</p>
                   <NavLink to={"/previous-filing"} className="font-bold">
                      See all
                   </NavLink>
