@@ -35,7 +35,7 @@
 
    .content-layout {
       width: 100%;
-      width: calc(100% - 300px);
+      width: calc(100% - 250px);
    }
 
    .content {
@@ -54,21 +54,28 @@
       @apply transition-transform duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-lg dark:hover:shadow-lg-dark;
    }
 
-   .todo-card {
+   .calc-width-two {
       width: calc(100% / 2.12);
    }
 
-   .document-card {
-      width: calc(100% / 4.23);
+   .calc-width-three {
+      width: calc(100% / 3.23);
+   }
+
+   .calc-width-three {
+      width: calc(100% / 3.12);
    }
 
    @media screen and (min-width: 768px) {
-      .todo-card {
+      .calc-width-two {
          width: calc(100% / 4.20);
       }
+   }
 
-      /* .filter {
-         width: calc(100% - 350px);
-      } */
+   @media screen and (min-width: 1024px) {
+      .content-layout {
+         width: 100%;
+         width: calc(100% - 300px);
+      }
    }
 }

@@ -18,7 +18,7 @@ const Home = () => {
                What would you like to do?
             </span>
 
-            <div className="flex flex-wrap gap-3 lg:justify-between">
+            <div className="flex flex-wrap gap-3 xl:justify-between">
                <TodoCard
                   todoIcon={BsCardChecklist}
                   text="Request service"

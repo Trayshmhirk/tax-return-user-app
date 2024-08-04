@@ -69,7 +69,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
 
    return (
       <aside
-         className={`relative ${isOpen ? "w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
+         className={`relative ${isOpen ? "w-[250px] lg:w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
       >
          <div className="h-full flex flex-col justify-between">
             <div className="flex flex-col gap-4">

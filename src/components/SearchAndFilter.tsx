@@ -1,5 +1,6 @@
 import { SetStateAction } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useSidebar } from "../hooks/UseSidebar";
 
 const SearchAndFilter = ({
    title,
@@ -8,13 +9,17 @@ const SearchAndFilter = ({
    setActiveFilter,
    activeFilter,
 }: SearchFilterProps) => {
+   const { isOpen } = useSidebar();
+
    const handleFilterClick = (title: string) => {
       handleFilter(title);
       setActiveFilter(title);
    };
 
    return (
-      <div className="flex flex-col md:flex-row gap-4">
+      <div
+         className={`flex ${isOpen ? "lg:flex-row" : "md:flex-row"} flex-col  gap-4`}
+      >
          <label className="w-full h-12 flex items-center bg-white dark:bg-mutedGray p-3 pr-5 rounded-lg md:w-[350px] shadow-md dark:shadow-md-dark">
             <button className="px-3 cursor-pointer">
                <FaMagnifyingGlass className="w-4 h-4 text-gray dark:text-white" />

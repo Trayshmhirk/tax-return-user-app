@@ -29,12 +29,12 @@ export const CardDropdown = ({
             {isSelectBank ? (
                <FaAngleDown className="w-6 h-6" />
             ) : (
-               <IoEllipsisVertical className="w-6 h-6 text-gray" />
+               <IoEllipsisVertical className="w-6 h-6" />
             )}
          </button>
 
          <div
-            className={`absolute right-0 w-48 mt-4 p-4 bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark ${
+            className={`absolute right-0 w-48 mt-4 p-4 bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark z-50 ${
                isDropdownOpen ? "block" : "hidden"
             }`}
          >

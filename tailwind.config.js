@@ -8,6 +8,7 @@ export default {
          sm: "576px",
          md: "768px",
          lg: "1024px",
+         xl: "1200px",
       },
       // fontFamily: {
       //    sans: ["Roboto", "sans-serif"],
