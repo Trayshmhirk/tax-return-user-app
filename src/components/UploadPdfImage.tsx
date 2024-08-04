@@ -1,8 +1,7 @@
-// import React from 'react'
 import { IoCloudUploadOutline } from "react-icons/io5";
 
 type UploadPdfProps = {
-   handleFileUpload?: () => void;
+   handleFileUpload?: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
    isUploadReceipt?: boolean;
    handleClick?: () => void;
    isUploadDoc?: boolean;

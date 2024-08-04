@@ -33,8 +33,10 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Help and support";
          case "/privacy-policy":
             return "Privacy policy";
+         case "/upload-document":
+            return "Upload document";
          default:
-            return "Welcome";
+            return "";
       }
    };
 

@@ -19,6 +19,7 @@ import Terms from "./pages/Terms";
 import Help from "./pages/Help";
 import Privacy from "./pages/Privacy";
 import Faq from "./pages/Faq";
+import UploadDocument from "./pages/UploadDocument";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
          <Route path="help-and-support" element={<Help />} />
          <Route path="privacy-policy" element={<Privacy />} />
          <Route path="faq" element={<Faq />} />
+         <Route path="upload-document" element={<UploadDocument />} />
       </Route>
    )
 );
