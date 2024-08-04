@@ -7,7 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
-import { useSidebar } from "../context/SidebarContext";
+import { useSidebar } from "../hooks/UseSidebar";
 
 type SidebarProps = {
    isNotApproved?: boolean;
