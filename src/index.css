@@ -66,6 +66,10 @@
       width: calc(100% / 3.12);
    }
 
+   .pending-text {
+      @apply text-sm text-mutedGray dark:text-chineseWhite italic;
+   }
+
    @media screen and (min-width: 768px) {
       .calc-width-two {
          width: calc(100% / 4.20);

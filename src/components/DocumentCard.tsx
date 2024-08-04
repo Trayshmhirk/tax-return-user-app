@@ -58,7 +58,7 @@ export const DocumentCard = ({
       <div
          id={docId}
          className={`
-            w-full flex items-center justify-between bg-white dark:bg-gray p-3 rounded-lg shadow-md dark:shadow-md-dark lg:calc-width-three
+            w-full flex items-center justify-between bg-white dark:bg-gray p-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three
             ${isSelected ? "checked" : ""}
             ${isSelectClicked ? "select-enabled" : "select-disabled"}
          `}
