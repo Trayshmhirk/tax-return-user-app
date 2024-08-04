@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { navItemsData } from "../mocks/NavItemData";
 import { NavItems } from "./NavItems";
-
 import { HamburgerIcon } from "./HamburgerIcon";
 import { BiLogOut } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
+import { useSidebar } from "../context/SidebarContext";
 
 type SidebarProps = {
    isNotApproved?: boolean;
@@ -17,7 +17,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    const location = useLocation();
    const navigate = useNavigate();
 
-   const [isOpen, setIsOpen] = useState(true);
+   const { isOpen, toggleSidebar } = useSidebar();
    const [toggleTheme, setToggleTheme] = useState(
       localStorage.getItem("theme") === "dark"
    );
@@ -84,7 +84,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                         alt="external-tax-taxes-flatarticons-blue-flatarticons"
                      />
                   </div>
-                  <HamburgerIcon toggle={() => setIsOpen(!isOpen)} />
+                  <HamburgerIcon toggle={toggleSidebar} />
                </div>
 
                <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />

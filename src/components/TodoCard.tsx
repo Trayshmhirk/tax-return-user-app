@@ -1,11 +1,5 @@
 import { IconType } from "react-icons";
 
-type TodoCardProps = {
-   handleClick: () => void;
-   todoIcon: IconType;
-   text: string;
-};
-
 const TodoCard = ({ todoIcon: TodoIcon, text, handleClick }: TodoCardProps) => {
    return (
       <div
@@ -19,3 +13,9 @@ const TodoCard = ({ todoIcon: TodoIcon, text, handleClick }: TodoCardProps) => {
 };
 
 export default TodoCard;
+
+type TodoCardProps = {
+   handleClick: () => void;
+   todoIcon: IconType;
+   text: string;
+};

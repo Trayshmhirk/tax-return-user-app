@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
+import { useSidebar } from "../context/SidebarContext";
 
 type ContentLayoutProps = {
    children: React.ReactNode;
@@ -7,6 +8,8 @@ type ContentLayoutProps = {
 
 const ContentLayout = ({ children }: ContentLayoutProps) => {
    const location = useLocation();
+
+   const { isOpen } = useSidebar();
 
    const getTitle = (pathname: string) => {
       switch (pathname) {
@@ -38,7 +41,9 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
    const title = getTitle(location.pathname);
 
    return (
-      <div className="content-layout h-fit flex flex-col text-darkGunMetal overflow-hidden dark:text-white">
+      <div
+         className={`content-layout h-fit ${!isOpen && "w-full"} flex flex-col text-darkGunMetal overflow-hidden dark:text-white`}
+      >
          <Header title={title} isHome={location.pathname === "/"} />
 
          <div className="content relative py-10 px-7 overflow-scroll sm:px-10 md:px-16">

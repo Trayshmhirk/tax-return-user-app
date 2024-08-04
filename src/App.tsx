@@ -1,10 +1,13 @@
 import "./App.css";
 import { Router } from "./Router";
+import { SidebarProvider } from "./context/SidebarContext";
 
 function App() {
    return (
       <div className="App min-h-screen flex content-center">
-         <Router />
+         <SidebarProvider>
+            <Router />
+         </SidebarProvider>
       </div>
    );
 }
