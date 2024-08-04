@@ -1,14 +1,6 @@
 import { SetStateAction } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-type SearchFilterProps = {
-   title: string[];
-   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-   handleFilter: (title: string) => void;
-   activeFilter: string;
-   setActiveFilter: React.Dispatch<SetStateAction<string>>;
-};
-
 const SearchAndFilter = ({
    title,
    handleSearch,
@@ -40,7 +32,7 @@ const SearchAndFilter = ({
                <div
                   key={index}
                   className={`
-                     h-10 flex items-center justify-center text-[13px] text-eerieBlack font-medium py-3 px-4 rounded-3xl shadow-md dark:shadow-md-dark
+                     h-10 flex items-center justify-center text-[13px] text-eerieBlack font-medium py-3 px-4 rounded-3xl shadow-md dark:shadow-md-dark cursor-pointer
                      ${activeFilter === title ? "bg-richElectricBlue text-white px-5" : "bg-white dark:bg-spanishGray"}
                   `}
                   id={title}
@@ -55,3 +47,11 @@ const SearchAndFilter = ({
 };
 
 export default SearchAndFilter;
+
+type SearchFilterProps = {
+   title: string[];
+   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+   handleFilter: (title: string) => void;
+   activeFilter: string;
+   setActiveFilter: React.Dispatch<SetStateAction<string>>;
+};

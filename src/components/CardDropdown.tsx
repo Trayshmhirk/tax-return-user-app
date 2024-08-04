@@ -1,5 +1,3 @@
-// import React from 'react'
-// import Line from "../line";
 import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoEllipsisVertical } from "react-icons/io5";
@@ -7,20 +5,14 @@ import { DropdownItem } from "./DropdownItem";
 import { FaRegEye } from "react-icons/fa6";
 import { MdOutlineIosShare } from "react-icons/md";
 // import { RiDeleteBin6Line } from "react-icons/ri";
-
-type CardDropdownProps = {
-   handleShare: () => void;
-   handleViewDoc: () => void;
-   isSelectBank?: boolean;
-   handleDeleteDoc?: () => void;
-};
+import { CardDropdownPropsTypes } from "../types/DocumentTypes";
 
 export const CardDropdown = ({
    handleShare,
    handleViewDoc,
    isSelectBank,
    // handleDeleteDoc,
-}: CardDropdownProps) => {
+}: CardDropdownPropsTypes) => {
    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
    const toggleDropdown = () => {
@@ -37,7 +29,7 @@ export const CardDropdown = ({
             {isSelectBank ? (
                <FaAngleDown className="w-6 h-6" />
             ) : (
-               <IoEllipsisVertical className="w-6 h-6" />
+               <IoEllipsisVertical className="w-6 h-6 text-gray" />
             )}
          </button>
 

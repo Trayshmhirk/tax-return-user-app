@@ -3,17 +3,10 @@ import UploadPdfImage from "../components/UploadPdfImage";
 import SearchAndFilter from "../components/SearchAndFilter";
 import React, { useState } from "react";
 import { DocumentCard } from "../components/DocumentCard";
+import { DocumentsPropTypes } from "../types/DocumentTypes";
+import { FileType } from "../types/DocumentTypes";
 
-type Document = {
-   id: string;
-   title: string;
-   document_size: string;
-   document_type: FileType;
-};
-
-type FileType = "application/pdf" | "image/png";
-
-const uploadedDocuments: Document[] = [
+const uploadedDocuments: DocumentsPropTypes[] = [
    {
       id: "id1",
       title: "Document 1adfuubadfdajhjahdf",
@@ -25,6 +18,18 @@ const uploadedDocuments: Document[] = [
       title: "document",
       document_size: "20",
       document_type: "image/png",
+   },
+   {
+      id: "id3",
+      title: "Excel file",
+      document_size: "20",
+      document_type: "application/vnd.ms-excel",
+   },
+   {
+      id: "id4",
+      title: "Word file",
+      document_size: "20",
+      document_type: "application/msword",
    },
 ];
 
@@ -40,7 +45,7 @@ const Documents = () => {
       setSearchInput(e.target.value);
    };
 
-   const searchDocs = (doc: Document) => {
+   const searchDocs = (doc: DocumentsPropTypes) => {
       const docName = doc.title;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
@@ -54,13 +59,17 @@ const Documents = () => {
       const fileTypeMapping: Record<FileType, string> = {
          "application/pdf": "PDF",
          "image/png": "PNG",
+         "application/msword": "DOC",
+         "image/jpeg": "JPEG",
+         "application/vnd.ms-excel": "XLS",
+
          // Add more mappings as needed
       };
       // Default to the original fileType if no mapping is founda
       return fileTypeMapping[fileType];
    };
 
-   const filterByDoctype = (doc: Document) => {
+   const filterByDoctype = (doc: DocumentsPropTypes) => {
       if (selectedFilter === "" || selectedFilter === "All") {
          // if no filter is selected, all users should be included
          return true;

@@ -3,23 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { CardDropdown } from "./CardDropdown";
 import DocumentTypeIcon from "./DocumentTypeIcon";
 import { FaSquareCheck } from "react-icons/fa6";
-
-type FileType = "application/pdf" | "image/png";
-
-type DocumentCardProps = {
-   docId: string;
-   documentName: string;
-   documentSize: string;
-   documentType: FileType;
-   onSelect?: (doc: {
-      docId: string;
-      documentName: string;
-      documentSize: string;
-      documentType: FileType;
-   }) => void;
-   isSelectClicked?: boolean;
-   handleSendToChat?: () => void;
-};
+import { FileType } from "../types/DocumentTypes";
+import { DocumentCardPropsTypes } from "../types/DocumentTypes";
 
 export const DocumentCard = ({
    docId,
@@ -29,7 +14,7 @@ export const DocumentCard = ({
    onSelect,
    isSelectClicked,
    handleSendToChat,
-}: DocumentCardProps) => {
+}: DocumentCardPropsTypes) => {
    const [isSelected, setIsSelected] = useState(false);
    const navigate = useNavigate();
 
@@ -54,6 +39,9 @@ export const DocumentCard = ({
       const fileTypeMapping: Record<FileType, string> = {
          "application/pdf": "PDF",
          "image/png": "PNG",
+         "application/msword": "DOC",
+         "image/jpeg": "JPEG",
+         "application/vnd.ms-excel": "XLS",
          // Add more mappings as needed
       };
       // Default to the original fileType if no mapping is founda
