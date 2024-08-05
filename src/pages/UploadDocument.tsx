@@ -1,8 +1,7 @@
 import { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import UploadPdfImage from "../components/UploadPdfImage";
-import { DocumentsPropTypes } from "../types/DocumentTypes";
-import { FileType } from "../types/DocumentTypes";
+import { DocumentsPropTypes, FileType } from "../types/DocumentTypes";
 import { DocumentCard } from "../components/DocumentCard";
 import DocumentTypeIcon from "../components/DocumentTypeIcon";
 
