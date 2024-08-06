@@ -1,18 +1,21 @@
 import { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import UploadPdfImage from "../components/UploadPdfImage";
+import ReceiptCard from "../components/ReceiptCard";
+import { useNavigate } from "react-router-dom";
 
 type ReceiptsPropTypes = {
-   receipt: string;
+   id: string;
    title: string;
    owner_info: {
       fullname: string;
    };
-   date: Date;
+   date: string;
 };
 
 const receipts: ReceiptsPropTypes[] = [
    {
+      id: "retdb2137",
       title: "receipt",
       owner_info: {
          fullname: "Micheal",
@@ -22,6 +25,8 @@ const receipts: ReceiptsPropTypes[] = [
 ];
 
 const Receipts = () => {
+   const navigate = useNavigate();
+
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
    const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -40,7 +45,7 @@ const Receipts = () => {
       setSelectedFilter(title);
    };
 
-   const getTimelyValue = (dateString) => {
+   const getTimelyValue = (dateString: string) => {
       const receiptDate = new Date(dateString);
       const currentDate = new Date();
 
@@ -132,6 +137,17 @@ const Receipts = () => {
       }
    };
 
+   const handleOpenReceipt = (
+      receiptId: string,
+      title: string,
+      fullname: string,
+      date: string
+   ) => {
+      navigate("view-receipt", {
+         state: { data: { receiptId, title, fullname, date } },
+      });
+   };
+
    return (
       <div className="flex flex-col gap-9">
          <UploadPdfImage
@@ -150,18 +166,16 @@ const Receipts = () => {
          <div className="w-full flex flex-wrap gap-5">
             {filteredReceipts.length ? (
                <>
-                  {/* {filteredReceipts.map((receipt, index) => (
-                     <>
-                        <ReceiptsCard
-                           key={index}
-                           receipt={receipt}
-                           handleClick={handleOpenReceipt}
-                           title={receipt.title}
-                           owner_info={receipt.owner_info}
-                           date={receipt.date}
-                        />
-                     </>
-                  ))} */}
+                  {filteredReceipts.map((receipt, index) => (
+                     <ReceiptCard
+                        key={index}
+                        receiptId={receipt.id}
+                        handleClick={() => handleOpenReceipt}
+                        title={receipt.title}
+                        owner_info={receipt.owner_info}
+                        date={receipt.date}
+                     />
+                  ))}
                </>
             ) : (
                <p className="pending-text w-100 text-center">
