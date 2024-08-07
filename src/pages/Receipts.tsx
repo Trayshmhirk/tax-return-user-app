@@ -20,6 +20,30 @@ const receipts: ReceiptsPropTypes[] = [
       owner_info: {
          fullname: "Micheal",
       },
+      date: "08/07/2024",
+   },
+   {
+      id: "retug7457",
+      title: "receipt",
+      owner_info: {
+         fullname: "Micheal",
+      },
+      date: "06/07/2024",
+   },
+   {
+      id: "rettg4567",
+      title: "receipt",
+      owner_info: {
+         fullname: "Micheal",
+      },
+      date: "12/02/1999",
+   },
+   {
+      id: "rettg4567",
+      title: "receipt",
+      owner_info: {
+         fullname: "Micheal",
+      },
       date: "12/02/1999",
    },
 ];
@@ -178,7 +202,7 @@ const Receipts = () => {
                   ))}
                </>
             ) : (
-               <p className="pending-text w-100 text-center">
+               <p className="pending-text w-full text-center">
                   No results found.
                </p>
             )}

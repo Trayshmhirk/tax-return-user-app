@@ -58,12 +58,17 @@
       width: calc(100% / 2.12);
    }
 
+   /* 
    .calc-width-three {
       width: calc(100% / 3.23);
-   }
+   } */
 
    .calc-width-three {
       width: calc(100% / 3.12);
+   }
+
+   .calc-width-four {
+      width: calc(100% / 4.23);
    }
 
    .pending-text {

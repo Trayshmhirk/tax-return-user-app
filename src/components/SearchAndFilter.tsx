@@ -37,7 +37,7 @@ const SearchAndFilter = ({
                <div
                   key={index}
                   className={`
-                     h-10 flex items-center justify-center text-[13px] text-eerieBlack font-medium py-3 px-4 rounded-3xl shadow-md dark:shadow-md-dark cursor-pointer hover-shadow-body
+                     h-10 flex items-center justify-center text-[13px] text-eerieBlack font-medium py-3 px-4 text-center rounded-3xl shadow-md dark:shadow-md-dark cursor-pointer hover-shadow-body
                      ${activeFilter === title ? "bg-richElectricBlue text-white px-5" : "bg-white dark:bg-spanishGray"}
                   `}
                   id={title}
