@@ -1,19 +1,5 @@
 import ReceiptImg from "../assets/invoice-image.jpeg";
-
-type ReceiptCardPropTypes = {
-   receiptId: string;
-   handleClick: (receipt: {
-      receiptId: string;
-      title: string;
-      fullname: string;
-      date: string;
-   }) => void;
-   title: string;
-   owner_info: {
-      fullname: string;
-   };
-   date: string;
-};
+import { ReceiptCardPropTypes } from "../types/ReceiptTypes";
 
 const ReceiptCard = ({
    receiptId,

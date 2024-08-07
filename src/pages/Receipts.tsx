@@ -3,15 +3,7 @@ import SearchAndFilter from "../components/SearchAndFilter";
 import UploadPdfImage from "../components/UploadPdfImage";
 import ReceiptCard from "../components/ReceiptCard";
 import { useNavigate } from "react-router-dom";
-
-type ReceiptsPropTypes = {
-   id: string;
-   title: string;
-   owner_info: {
-      fullname: string;
-   };
-   date: string;
-};
+import { ReceiptsPropTypes } from "../types/ReceiptTypes";
 
 const receipts: ReceiptsPropTypes[] = [
    {
