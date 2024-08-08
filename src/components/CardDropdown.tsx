@@ -1,30 +1,24 @@
-import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { DropdownItem } from "./DropdownItem";
 import { FaRegEye } from "react-icons/fa6";
 import { MdOutlineIosShare } from "react-icons/md";
-// import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { CardDropdownPropsTypes } from "../types/DocumentTypes";
 
 export const CardDropdown = ({
    handleShare,
    handleViewDoc,
    isSelectBank,
-   // handleDeleteDoc,
+   handleDeleteDoc,
+   isDropdownOpen,
+   handleDropdownToggle,
 }: CardDropdownPropsTypes) => {
-   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-   const toggleDropdown = () => {
-      setDropdownOpen(!isDropdownOpen);
-   };
-
    return (
       <div className="card-dropdown relative">
          <button
             className="flex items-center gap-1"
-            type="button"
-            onClick={toggleDropdown}
+            onClick={handleDropdownToggle}
          >
             {isSelectBank ? (
                <FaAngleDown className="w-6 h-6" />
@@ -34,7 +28,7 @@ export const CardDropdown = ({
          </button>
 
          <div
-            className={`absolute right-0 w-48 mt-4 p-4 bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark z-50 ${
+            className={`absolute right-0 w-48 mt-3 p-4 bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark z-50 ${
                isDropdownOpen ? "block" : "hidden"
             }`}
          >
@@ -81,13 +75,13 @@ export const CardDropdown = ({
                         action="Share"
                         handleClick={handleShare}
                      />
-                     {/* <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" /> */}
-                     {/* <DropdownItem
+                     <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
+                     <DropdownItem
                         dropdownIcon={RiDeleteBin6Line}
                         action="Delete"
                         handleClick={handleDeleteDoc}
                         isDeleteDropdownitem
-                     /> */}
+                     />
                   </div>
                </>
             )}

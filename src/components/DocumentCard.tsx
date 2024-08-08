@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardDropdown } from "./CardDropdown";
 import DocumentTypeIcon from "./DocumentTypeIcon";
@@ -15,8 +15,10 @@ export const DocumentCard = ({
    isSelectClicked,
    handleSendToChat,
 }: DocumentCardPropsTypes) => {
-   const [isSelected, setIsSelected] = useState(false);
    const navigate = useNavigate();
+   const [isSelected, setIsSelected] = useState(false);
+   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+   const dropdownRef = useRef<HTMLDivElement>(null);
 
    const handleSelect = () => {
       if (isSelectClicked) {
@@ -54,6 +56,28 @@ export const DocumentCard = ({
       });
    };
 
+   const handleDropdownToggle = (id: string) => {
+      setActiveDropdown(activeDropdown === id ? null : id);
+   };
+
+   const handleClickOutside = (event: MouseEvent) => {
+      if (
+         dropdownRef.current &&
+         !dropdownRef.current.contains(event.target as Node)
+      ) {
+         setActiveDropdown(null);
+      }
+   };
+
+   useEffect(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+         document.removeEventListener("mousedown", handleClickOutside);
+      };
+   }, []);
+
+   const handleShowModal = () => {};
+
    return (
       <div
          id={docId}
@@ -62,6 +86,7 @@ export const DocumentCard = ({
             ${isSelected ? "checked" : ""}
             ${isSelectClicked ? "select-enabled" : "select-disabled"}
          `}
+         ref={dropdownRef}
       >
          <div className="flex items-center gap-3" onClick={handleSelect}>
             {isSelectClicked && (
@@ -95,7 +120,9 @@ export const DocumentCard = ({
          <CardDropdown
             handleShare={handleSendToChat ?? (() => {})}
             handleViewDoc={handleViewDocument}
-            // handleDeleteDoc={handleShowModal}
+            handleDeleteDoc={handleShowModal}
+            isDropdownOpen={activeDropdown === docId}
+            handleDropdownToggle={() => handleDropdownToggle(docId)}
          />
       </div>
    );

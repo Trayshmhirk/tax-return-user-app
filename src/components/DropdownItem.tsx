@@ -8,7 +8,7 @@ export const DropdownItem = ({
 }: DropdownItemsProps) => {
    return (
       <div
-         className={`flex gap-2 cursor-pointer ${isDeleteDropdownitem ? "text-bostonRed" : "text-gray dark:text-lightGray"}`}
+         className={`flex items-center gap-2 cursor-pointer ${isDeleteDropdownitem ? "text-bostonRed" : "text-gray dark:text-lightGray"}`}
          onClick={handleClick}
       >
          <DropdownIcon className="" />

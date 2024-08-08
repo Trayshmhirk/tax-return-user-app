@@ -31,5 +31,7 @@ export type CardDropdownPropsTypes = {
    handleShare: () => void;
    handleViewDoc: () => void;
    isSelectBank?: boolean;
-   handleDeleteDoc?: () => void;
+   handleDeleteDoc: () => void;
+   isDropdownOpen: boolean;
+   handleDropdownToggle: () => void;
 };
