@@ -7,6 +7,7 @@ import CustomButton from "../components/CustomButton";
 type QuestionsPropsType = {
    question: string;
    answer: string | string[];
+   questionCategory?: string;
 };
 
 const questions: QuestionsPropsType[] = [
@@ -105,7 +106,7 @@ const Help = () => {
    const handleSubmitQuestion = () => {};
 
    return (
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-7">
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
