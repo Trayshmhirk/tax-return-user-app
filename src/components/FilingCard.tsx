@@ -27,7 +27,7 @@ const FilingCard = ({
             <div
                className={`
                      calc-width-two h-36 flex flex-col gap-2 justify-center items-center md:calc-width-three
-                     bg-bubbles dark:bg-gray text-richElectricBlue dark:text-white p-4 rounded-lg cursor-pointer hover-shadow-body
+                     bg-bubbles dark:bg-gray text-richElectricBlue dark:text-white p-4 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body
                      ${integrateBank ? "" : ""} 
                   `}
                onClick={() => handleClick}
@@ -46,7 +46,7 @@ const FilingCard = ({
             </div>
          ) : (
             <div
-               className={`calc-width-two  h-36 flex flex-col justify-center gap-2 p-4 bg-bubbles dark:bg-gray text-white rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body md:calc-width-three`}
+               className={`calc-width-twos h-36 flex flex-col justify-center gap-2 p-4 bg-bubbles dark:bg-gray text-white rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body md:calc-width-three`}
                style={{ background: `${color}` }}
                onClick={handleCardClick}
             >

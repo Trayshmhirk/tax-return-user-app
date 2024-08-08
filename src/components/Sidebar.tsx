@@ -34,7 +34,6 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
 
    const handleNavigate = (route: string, id: string) => {
       // Navigate to the corresponding page
-      console.log("handle Navigate");
 
       if (isNotApproved) {
          // display you dont have access modal
