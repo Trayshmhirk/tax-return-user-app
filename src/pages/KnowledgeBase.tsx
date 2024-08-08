@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import VideoCard from "../components/VideoCard";
+import { useNavigate } from "react-router-dom";
 
 type VideoDataTypes = {
    title: string;
@@ -49,6 +50,8 @@ const videoData: VideoDataTypes[] = [
 ];
 
 const KnowledgeBase = () => {
+   const navigate = useNavigate();
+
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
    const [activeFilter, setActiveFilter] = useState("All");
@@ -65,8 +68,8 @@ const KnowledgeBase = () => {
    };
 
    const searchVideos = (video: VideoDataTypes) => {
-      const videos = video.category;
-      return videos.toLowerCase().includes(searchInput.toLowerCase());
+      const title = video.title;
+      return title.toLowerCase().includes(searchInput.toLowerCase());
    };
 
    const handleFilter = (title: string) => {
@@ -94,7 +97,10 @@ const KnowledgeBase = () => {
       (video) => video.category === "payment"
    );
 
-   const handleSelectVideo = () => {};
+   const handleSelectVideo = (videoId: string) => {
+      // Navigate to the "Watch Video" route and pass the title as a parameter
+      navigate(`watch-video/${videoId}`);
+   };
 
    return (
       <div className="flex flex-col gap-7">
@@ -115,7 +121,7 @@ const KnowledgeBase = () => {
                         key={index}
                         title={video.title}
                         time={video.time}
-                        handleClick={() => handleSelectVideo()}
+                        handleClick={() => handleSelectVideo(video.id)}
                      />
                   ))
                ) : (
@@ -135,7 +141,7 @@ const KnowledgeBase = () => {
                         key={index}
                         title={video.title}
                         time={video.time}
-                        handleClick={() => handleSelectVideo()}
+                        handleClick={() => handleSelectVideo(video.id)}
                      />
                   ))
                ) : (
