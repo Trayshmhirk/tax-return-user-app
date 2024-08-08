@@ -40,38 +40,39 @@ const Home = () => {
    };
 
    return (
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-6">
          <Hero isHome />
 
-         <div className="flex flex-col gap-4">
-            <span className="font-medium md:text-xl">
-               What would you like to do?
-            </span>
-
-            <div className="flex flex-wrap gap-3 xl:justify-between">
-               <TodoCard
-                  todoIcon={BsCardChecklist}
-                  text="Request service"
-                  handleClick={() => navigate("request-service")}
-               />
-               <TodoCard
-                  todoIcon={IoCloudUploadOutline}
-                  text="Upload pdf or image"
-                  handleClick={() => navigate("upload-document")}
-               />
-               <TodoCard
-                  todoIcon={MdOutlineAddCard}
-                  text="Integrate bank account"
-                  handleClick={() => navigate("add-new-bank")}
-               />
-               <TodoCard
-                  todoIcon={MdErrorOutline}
-                  text="Tax notice"
-                  handleClick={() => navigate("tax-notice")}
-               />
+         <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
+               <span className="font-medium md:text-xl">
+                  What would you like to do?
+               </span>
+               <div className="flex flex-wrap gap-3 xl:justify-between">
+                  <TodoCard
+                     todoIcon={BsCardChecklist}
+                     text="Request service"
+                     handleClick={() => navigate("request-service")}
+                  />
+                  <TodoCard
+                     todoIcon={IoCloudUploadOutline}
+                     text="Upload pdf or image"
+                     handleClick={() => navigate("upload-document")}
+                  />
+                  <TodoCard
+                     todoIcon={MdOutlineAddCard}
+                     text="Integrate bank account"
+                     handleClick={() => navigate("add-new-bank")}
+                  />
+                  <TodoCard
+                     todoIcon={MdErrorOutline}
+                     text="Tax notice"
+                     handleClick={() => navigate("tax-notice")}
+                  />
+               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
                <div className="flex justify-between items-center">
                   <p className="font-medium md:text-xl">Previous Filing</p>
                   <NavLink to={"/previous-filing"} className="font-bold">
@@ -79,7 +80,7 @@ const Home = () => {
                   </NavLink>
                </div>
 
-               <div className="flex flex-wrap gap-4">
+               <div className="flex flex-wrap gap-4 xl:justify-between">
                   {filings.length ? (
                      <>
                         {filings.map((filing, index) => (
