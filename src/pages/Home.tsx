@@ -6,14 +6,7 @@ import { MdOutlineAddCard } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import FilingCard from "../components/FilingCard";
-
-type CardType = {
-   id: number;
-   cardName: string;
-   cardNumber: number;
-   cardText: string;
-   color: string;
-};
+import { CardType } from "../types/FilingTypes";
 
 const filings: CardType[] = [
    {

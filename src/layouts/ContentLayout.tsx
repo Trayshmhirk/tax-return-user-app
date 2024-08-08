@@ -13,6 +13,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
 
    const getTitle = (pathname: string) => {
       switch (pathname) {
+         case "/":
+            return "Welcome";
          case "/documents":
             return "Documents";
          case "/receipts":
