@@ -20,6 +20,7 @@ import Help from "./pages/Help";
 import Privacy from "./pages/Privacy";
 import Faq from "./pages/Faq";
 import UploadDocument from "./pages/UploadDocument";
+import MyRequests from "./pages/MyRequests";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -33,7 +34,9 @@ const router = createBrowserRouter(
          <Route path="previous-filing" element={<PreviousFiling />} />
          <Route path="knowledge-base" element={<KnowledgeBase />} />
          <Route path="transactions" element={<Transactions />} />
-         <Route path="profile" element={<Profile />} />
+         <Route path="profile" element={<Profile />}>
+            <Route path="my-request" element={<MyRequests />} />
+         </Route>
          <Route path="terms-and-conditions" element={<Terms />} />
          <Route path="help-and-support" element={<Help />} />
          <Route path="privacy-policy" element={<Privacy />} />
