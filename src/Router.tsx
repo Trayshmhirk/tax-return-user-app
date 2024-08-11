@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
+import RequestService from "./pages/RequestService";
 import NotApprovedHome from "./pages/NotApprovedHome";
 import Documents from "./pages/Documents";
 import Receipts from "./pages/Receipts";
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
    createRoutesFromElements(
       <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
          <Route index element={<Home />} />
+         <Route path="request-service" element={<RequestService />} />
          <Route path="not-approved" element={<NotApprovedHome />} />
          <Route path="documents" element={<Documents />} />
          <Route path="receipts" element={<Receipts />} />
