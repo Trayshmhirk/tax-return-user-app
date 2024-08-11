@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SelectCategory from "../components/SelectCategory";
+import SelectService from "../components/SelectService";
 
 const RequestService = () => {
    const [currentForm, setCurrentForm] = useState(1);
@@ -20,11 +21,7 @@ const RequestService = () => {
          )}
 
          {currentForm === 2 && (
-            <div>
-               Select services
-               <p>{selectedCategory}</p>
-            </div>
-            //   <SelectServices selectedCategory={selectedCategory} />
+            <SelectService selectedCategory={selectedCategory} />
          )}
       </div>
    );

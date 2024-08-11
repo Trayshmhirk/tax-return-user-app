@@ -81,8 +81,8 @@ const SelectCategory = ({
       <>
          {isSelectCategory ? (
             <div className="h-full flex flex-col justify-between">
-               <div className="flex flex-col gap-9">
-                  <h2 className="font-medium text-2xl">
+               <div className="flex flex-col gap-7">
+                  <h2 className="font-medium text-xl">
                      Select the category you fall under
                   </h2>
 
