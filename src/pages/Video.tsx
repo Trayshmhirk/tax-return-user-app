@@ -14,6 +14,7 @@ const Video = () => {
       backgroundSize: "cover",
    };
 
+   // Work flow would be to use video id to make a get request from the api and get the video data
    // Find the selected video based on the videoId
    const selectedVideo = videoData.find((video) => video.id === videoId);
 
@@ -22,18 +23,8 @@ const Video = () => {
       (video) => video.category === selectedVideo?.category
    );
 
-   // Find the videoData that matches the videoID
-   // videoData.forEach((category) => {
-   //    const video = category.videos.find((video) => video.id === videoId);
-   //    if (video) {
-   //       selectedVideo = video;
-   //       parentTitle = category.category;
-   //       siblingVideo = category.videos;
-   //    }
-   // });
-
+   // Navigate to the "Watch Video" route and pass the title as a parameter
    const handleSelectVideo = (videoId: string) => {
-      // Navigate to the "Watch Video" route and pass the title as a parameter
       navigate(`/knowledge-base/video/${videoId}`);
    };
 
