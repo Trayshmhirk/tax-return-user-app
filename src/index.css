@@ -70,6 +70,11 @@
       @apply text-sm text-mutedGray dark:text-chineseWhite italic;
    }
 
+   .pending {
+      @apply text-bostonRed border border-bostonRed;
+      background: rgba(195, 0, 0, 0.05);
+   }
+
    /* @media screen and (min-width: 768px) {
       .calc-width-two {
          width: calc(100% / 4.20);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import VideoCard from "../components/VideoCard";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 type VideoDataTypes = {
    title: string;
@@ -16,41 +16,42 @@ const videoData: VideoDataTypes[] = [
       title: "View previous filing",
       time: "1mins 15secs",
       uploaded: "1 day ago",
-      id: "previous-filing",
+      id: "ad3f79ja7HD985af",
       category: "tax",
    },
    {
       title: "Create new filing",
       time: "2mins 15secs",
       uploaded: "2 days ago",
-      id: "new-filing",
+      id: "7fdYbfj73748ffgb",
       category: "tax",
    },
    {
       title: "Scan receipt",
       time: "1mins 15secs",
       uploaded: "4 days ago",
-      id: "scan-receipt",
+      id: "vnFHu830847bjhbf",
       category: "payment",
    },
    {
       title: "Upload e-receipt",
       time: "2mins 15secs",
       uploaded: "5 days ago",
-      id: "upload-receipt",
+      id: "Pfb7bYB8fbY47cb",
       category: "payment",
    },
    {
       title: "Share receipt",
       time: "1mins 15secs",
       uploaded: "7 days ago",
-      id: "share-receipt",
+      id: "0bfbd74BvdtGff8bf9j",
       category: "payment",
    },
 ];
 
 const KnowledgeBase = () => {
    const navigate = useNavigate();
+   const location = useLocation();
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
@@ -99,59 +100,65 @@ const KnowledgeBase = () => {
 
    const handleSelectVideo = (videoId: string) => {
       // Navigate to the "Watch Video" route and pass the title as a parameter
-      navigate(`watch-video/${videoId}`);
+      navigate(`video/${videoId}`);
    };
 
    return (
-      <div className="flex flex-col gap-7">
-         <SearchAndFilter
-            handleSearch={handleSearch}
-            handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-            title={filterTitleList}
-         />
+      <>
+         {location.pathname === "/knowledge-base" ? (
+            <div className="flex flex-col gap-7">
+               <SearchAndFilter
+                  handleSearch={handleSearch}
+                  handleFilter={handleFilter}
+                  activeFilter={activeFilter}
+                  setActiveFilter={setActiveFilter}
+                  title={filterTitleList}
+               />
 
-         <div className="flex flex-col gap-3">
-            <p className="font-medium">Tax filing</p>
-            <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
-               {taxFilteredVideos.length ? (
-                  taxFilteredVideos.map((video, index) => (
-                     <VideoCard
-                        key={index}
-                        title={video.title}
-                        time={video.time}
-                        handleClick={() => handleSelectVideo(video.id)}
-                     />
-                  ))
-               ) : (
-                  <p className="w-full pending-text text-center">
-                     No results found
-                  </p>
-               )}
-            </div>
-         </div>
+               <div className="flex flex-col gap-3">
+                  <p className="font-medium">Tax filing</p>
+                  <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
+                     {taxFilteredVideos.length ? (
+                        taxFilteredVideos.map((video, index) => (
+                           <VideoCard
+                              key={index}
+                              title={video.title}
+                              time={video.time}
+                              handleClick={() => handleSelectVideo(video.id)}
+                           />
+                        ))
+                     ) : (
+                        <p className="w-full pending-text text-center">
+                           No results found
+                        </p>
+                     )}
+                  </div>
+               </div>
 
-         <div className="flex flex-col gap-3">
-            <p className="font-medium">Store receipts</p>
-            <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
-               {paymentFilteredVideos.length ? (
-                  paymentFilteredVideos.map((video, index) => (
-                     <VideoCard
-                        key={index}
-                        title={video.title}
-                        time={video.time}
-                        handleClick={() => handleSelectVideo(video.id)}
-                     />
-                  ))
-               ) : (
-                  <p className="w-full pending-text text-center">
-                     No results found
-                  </p>
-               )}
+               <div className="flex flex-col gap-3">
+                  <p className="font-medium">Store receipts</p>
+                  <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
+                     {paymentFilteredVideos.length ? (
+                        paymentFilteredVideos.map((video, index) => (
+                           <VideoCard
+                              key={index}
+                              title={video.title}
+                              time={video.time}
+                              handleClick={() => handleSelectVideo(video.id)}
+                           />
+                        ))
+                     ) : (
+                        <p className="w-full pending-text text-center">
+                           No results found
+                        </p>
+                     )}
+                  </div>
+               </div>
             </div>
-         </div>
-      </div>
+         ) : (
+            <Outlet />
+         )}
+      </>
    );
 };
 

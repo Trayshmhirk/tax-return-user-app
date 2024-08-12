@@ -22,6 +22,7 @@ import Privacy from "./pages/Privacy";
 import Faq from "./pages/Faq";
 import UploadDocument from "./pages/UploadDocument";
 import MyRequests from "./pages/MyRequests";
+import Video from "./pages/Video";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -34,10 +35,15 @@ const router = createBrowserRouter(
          <Route path="live-chat" element={<LiveChat />} />
          <Route path="documents" element={<Documents />} />
          <Route path="previous-filing" element={<PreviousFiling />} />
-         <Route path="knowledge-base" element={<KnowledgeBase />} />
+         <Route path="knowledge-base/" element={<KnowledgeBase />}>
+            <Route path="video/:videoId" element={<Video />}></Route>
+            {/* <Route path="video/" element={<KnowledgeBase />}>
+               <Route path=":videoId" element={<KnowledgeBase />} />
+            </Route> */}
+         </Route>
          <Route path="transactions" element={<Transactions />} />
-         <Route path="profile" element={<Profile />}>
-            <Route path="my-request" element={<MyRequests />} />
+         <Route path="profile/" element={<Profile />}>
+            <Route path="my-requests" element={<MyRequests />} />
          </Route>
          <Route path="terms-and-conditions" element={<Terms />} />
          <Route path="help-and-support" element={<Help />} />

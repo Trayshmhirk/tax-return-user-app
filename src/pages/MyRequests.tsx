@@ -11,7 +11,7 @@ export type RequestsPropTypes = {
 const requests: RequestsPropTypes[] = [
    {
       service_id: "string",
-      status: "string",
+      status: "Pending",
       requestDate: "string",
       service_title: "string",
    },
