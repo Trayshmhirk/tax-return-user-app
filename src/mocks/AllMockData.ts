@@ -10,28 +10,6 @@ import {
    RequestsPropTypes,
 } from "../types/AllTypes";
 
-// filing
-export const filings: CardType[] = [
-   {
-      id: 1,
-      cardName: "Filing",
-      cardNumber: 345273,
-      cardText: "6th Aug, 2024",
-   },
-   {
-      id: 2,
-      cardName: "Filing",
-      cardNumber: 453682,
-      cardText: "6th Aug, 2024",
-   },
-   {
-      id: 3,
-      cardName: "Filing",
-      cardNumber: 346864,
-      cardText: "6th Aug, 2024",
-   },
-];
-
 // request service
 export const servicesList: ServicesListTypes[] = [
    {

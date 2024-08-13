@@ -5,16 +5,9 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineAddCard } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
-import FilingCard from "../components/FilingCard";
-import { filings } from "../mocks/AllMockData";
 
 const Home = () => {
    const navigate = useNavigate();
-   const colorPalette = ["#62C3DB", "#0F6074", "#121212"];
-
-   const handleOpenFIling = () => {
-      navigate("/previous-filing/otp-verification");
-   };
 
    return (
       <div className="flex flex-col gap-6">
@@ -51,32 +44,10 @@ const Home = () => {
 
             <div className="flex flex-col gap-3">
                <div className="flex justify-between items-center">
-                  <p className="font-medium md:text-xl">Previous Filing</p>
-                  <NavLink to={"/previous-filing"} className="font-bold">
+                  <p className="font-medium md:text-xl">Transactions</p>
+                  <NavLink to={"/cards"} className="font-bold">
                      See all
                   </NavLink>
-               </div>
-
-               <div className="flex flex-wrap gap-4 xl:justify-between">
-                  {filings.length ? (
-                     <>
-                        {filings.map((filing, index) => (
-                           <FilingCard
-                              key={index}
-                              card={filing}
-                              handleClick={handleOpenFIling}
-                              color={colorPalette[index % colorPalette.length]}
-                              cardName={filing.cardName}
-                              cardNumber={filing.cardNumber}
-                              cardText={filing.cardText}
-                           />
-                        ))}
-                     </>
-                  ) : (
-                     <p className="w-100 pending-text text-center">
-                        No previous filings to show here
-                     </p>
-                  )}
                </div>
             </div>
          </div>

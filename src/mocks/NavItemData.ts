@@ -30,6 +30,13 @@ export const navItemsData = [
       tourContent: "Upload and view all business related receipts",
    },
    {
+      title: "Transactions",
+      navIcon: GrBarChart,
+      route: "transactions",
+      id: "transactionsNavItem",
+      tourContent: "See all transactions related to Okeh CPA",
+   },
+   {
       title: "Live Chat",
       navIcon: BsChat,
       route: "live-chat",
@@ -37,10 +44,10 @@ export const navItemsData = [
       tourContent: "Chat with and agent to get assistance ",
    },
    {
-      title: "Previous filing",
+      title: "Cards",
       navIcon: GoFileDirectory,
-      route: "previous-filing",
-      id: "previousFilingNavItem",
+      route: "cards",
+      id: "cardsNavItem",
       tourContent: "See annum based tax filing for previous years",
    },
    {
@@ -50,11 +57,5 @@ export const navItemsData = [
       id: "knowledgeBaseNavItem",
       tourContent: "Watch tutorials on how to effectively use the app",
    },
-   {
-      title: "Transactions",
-      navIcon: GrBarChart,
-      route: "transactions",
-      id: "transactionsNavItem",
-      tourContent: "See all transactions related to Okeh CPA",
-   },
+   
 ];
