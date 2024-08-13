@@ -6,34 +6,11 @@ import { MdOutlineAddCard } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import FilingCard from "../components/FilingCard";
-import { CardType } from "../types/FilingTypes";
-
-const filings: CardType[] = [
-   {
-      id: 1,
-      cardName: "Filing",
-      cardNumber: 345273,
-      cardText: "6th Aug, 2024",
-      color: "#62C3DB",
-   },
-   {
-      id: 2,
-      cardName: "Filing",
-      cardNumber: 453682,
-      cardText: "6th Aug, 2024",
-      color: "#0F6074",
-   },
-   {
-      id: 3,
-      cardName: "Filing",
-      cardNumber: 346864,
-      cardText: "6th Aug, 2024",
-      color: "#121212",
-   },
-];
+import { filings } from "../mocks/AllMockData";
 
 const Home = () => {
    const navigate = useNavigate();
+   const colorPalette = ["#62C3DB", "#0F6074", "#121212"];
 
    const handleOpenFIling = () => {
       navigate("/previous-filing/otp-verification");
@@ -88,8 +65,7 @@ const Home = () => {
                               key={index}
                               card={filing}
                               handleClick={handleOpenFIling}
-                              // color={colorPalette[index % colorPalette.length]}
-                              color={filing.color}
+                              color={colorPalette[index % colorPalette.length]}
                               cardName={filing.cardName}
                               cardNumber={filing.cardNumber}
                               cardText={filing.cardText}

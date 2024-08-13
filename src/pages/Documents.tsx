@@ -3,35 +3,8 @@ import UploadPdfImage from "../components/UploadPdfImage";
 import SearchAndFilter from "../components/SearchAndFilter";
 import React, { useState } from "react";
 import { DocumentCard } from "../components/DocumentCard";
-import { DocumentsPropTypes } from "../types/DocumentTypes";
-import { FileType } from "../types/DocumentTypes";
-
-const uploadedDocuments: DocumentsPropTypes[] = [
-   {
-      id: "id1",
-      title: "Document 1adfuubadfdajhjahdf",
-      document_size: "20",
-      document_type: "application/pdf",
-   },
-   {
-      id: "id2",
-      title: "document",
-      document_size: "20",
-      document_type: "image/png",
-   },
-   {
-      id: "id3",
-      title: "Excel file",
-      document_size: "20",
-      document_type: "application/vnd.ms-excel",
-   },
-   {
-      id: "id4",
-      title: "Word file",
-      document_size: "20",
-      document_type: "application/msword",
-   },
-];
+import { DocumentsPropTypes, FileType } from "../types/AllTypes";
+import { uploadedDocuments } from "../mocks/AllMockData";
 
 const Documents = () => {
    const navigate = useNavigate();

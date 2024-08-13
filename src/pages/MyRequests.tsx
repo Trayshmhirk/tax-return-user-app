@@ -1,21 +1,7 @@
 import { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
-
-export type RequestsPropTypes = {
-   service_id: string;
-   status: string;
-   requestDate: string;
-   service_title: string;
-};
-
-const requests: RequestsPropTypes[] = [
-   {
-      service_id: "string",
-      status: "Pending",
-      requestDate: "string",
-      service_title: "string",
-   },
-];
+import { RequestsPropTypes } from "../types/AllTypes";
+import { requests } from "../mocks/AllMockData";
 
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");

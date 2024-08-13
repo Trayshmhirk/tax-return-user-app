@@ -1,5 +1,5 @@
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { FilingCardProps } from "../types/FilingTypes";
+import { FilingCardProps } from "../types/AllTypes";
 
 const FilingCard = ({
    color,

@@ -1,52 +1,8 @@
-type InvoicePropTypes = {
-   id: string;
-   transaction_id: string;
-   title: string;
-   date: string;
-   total: string;
-};
-
-const invoices: InvoicePropTypes[] = [
-   {
-      id: "345",
-      transaction_id: "3adfb84tbdvber78",
-      title: "Transact",
-      date: "4th aug, 2024",
-      total: "300",
-   },
-   {
-      id: "234",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "456",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "940",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "257",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-];
-
 import { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import InvoiceCard from "../components/InvoiceCard";
+import { invoices } from "../mocks/AllMockData";
+import { InvoicePropTypes } from "../types/AllTypes";
 
 const Transactions = () => {
    const [searchInput, setSearchInput] = useState("");

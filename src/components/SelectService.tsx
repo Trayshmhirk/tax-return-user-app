@@ -2,46 +2,8 @@ import { useState } from "react";
 import CustomButton from "./CustomButton";
 import TextArea from "./TextArea";
 import RadioCheckInput from "./RadioCheckInput";
-
-type SelectServicePropType = {
-   selectedCategory: string;
-};
-
-type ServicesListTypes = {
-   title: string;
-   service_id: string;
-};
-
-const servicesList: ServicesListTypes[] = [
-   {
-      title: "Accounting",
-      service_id: "",
-   },
-   {
-      title: "Attestation services",
-      service_id: "",
-   },
-   {
-      title: "Management consulting",
-      service_id: "",
-   },
-   {
-      title: "Tax services",
-      service_id: "",
-   },
-   {
-      title: "Payment services",
-      service_id: "",
-   },
-   {
-      title: "Other",
-      service_id: "",
-   },
-   {
-      title: "Tax notice",
-      service_id: "",
-   },
-];
+import { SelectServicePropType } from "../types/AllTypes";
+import { servicesList } from "../mocks/AllMockData";
 
 const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    const [checkedRadio, setCheckedRadio] = useState("");

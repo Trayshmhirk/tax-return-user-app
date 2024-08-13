@@ -1,36 +1,10 @@
 import { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import UploadPdfImage from "../components/UploadPdfImage";
-import { DocumentsPropTypes, FileType } from "../types/DocumentTypes";
 import { DocumentCard } from "../components/DocumentCard";
 import DocumentTypeIcon from "../components/DocumentTypeIcon";
-
-const documents: DocumentsPropTypes[] = [
-   {
-      id: "id1",
-      title: "Document 1adfuubadfdajhjahdf",
-      document_size: "20",
-      document_type: "application/pdf",
-   },
-   {
-      id: "id2",
-      title: "document",
-      document_size: "20",
-      document_type: "image/png",
-   },
-   {
-      id: "id3",
-      title: "Excel file",
-      document_size: "20",
-      document_type: "application/vnd.ms-excel",
-   },
-   {
-      id: "id4",
-      title: "Word file",
-      document_size: "20",
-      document_type: "application/msword",
-   },
-];
+import { DocumentsPropTypes, FileType } from "../types/AllTypes";
+import { uploadedDocuments } from "../mocks/AllMockData";
 
 const UploadDocument = () => {
    const [searchInput, setSearchInput] = useState<string>("");
@@ -79,8 +53,10 @@ const UploadDocument = () => {
       return mapFileTypeToDocumentType(doc.document_type) === selectedFilter;
    };
 
-   const filteredFiles = documents
-      ? documents.filter((doc) => searchDocs(doc) && filterByDoctype(doc))
+   const filteredFiles = uploadedDocuments
+      ? uploadedDocuments.filter(
+           (doc) => searchDocs(doc) && filterByDoctype(doc)
+        )
       : [];
 
    function getBase64(file: File): Promise<string | ArrayBuffer | null> {
@@ -236,8 +212,8 @@ const UploadDocument = () => {
                <div className="flex items-center gap-2">
                   <p className="font-medium">Recent upload</p>
                   <span>
-                     {documents && documents.length
-                        ? `(${documents.length})`
+                     {uploadedDocuments && uploadedDocuments.length
+                        ? `(${uploadedDocuments.length})`
                         : "(0)"}
                   </span>
                </div>

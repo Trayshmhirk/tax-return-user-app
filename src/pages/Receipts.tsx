@@ -3,42 +3,8 @@ import SearchAndFilter from "../components/SearchAndFilter";
 import UploadPdfImage from "../components/UploadPdfImage";
 import ReceiptCard from "../components/ReceiptCard";
 import { useNavigate } from "react-router-dom";
-import { ReceiptsPropTypes } from "../types/ReceiptTypes";
-
-const receipts: ReceiptsPropTypes[] = [
-   {
-      id: "retdb2137",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "08/07/2024",
-   },
-   {
-      id: "retug7457",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "06/07/2024",
-   },
-   {
-      id: "rettg4567",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "12/02/1999",
-   },
-   {
-      id: "rettg4567",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "12/02/1999",
-   },
-];
+import { ReceiptsPropTypes } from "../types/AllTypes";
+import { receipts } from "../mocks/AllMockData";
 
 const Receipts = () => {
    const navigate = useNavigate();

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import VideoCard from "../components/VideoCard";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { videoData, VideoDataTypes } from "../mocks/VideoData";
+import { videoData } from "../mocks/AllMockData";
+import { VideoDataTypes } from "../types/AllTypes";
 
 const KnowledgeBase = () => {
    const navigate = useNavigate();

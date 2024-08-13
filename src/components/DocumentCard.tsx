@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CardDropdown } from "./CardDropdown";
 import DocumentTypeIcon from "./DocumentTypeIcon";
 import { FaSquareCheck } from "react-icons/fa6";
-import { FileType } from "../types/DocumentTypes";
-import { DocumentCardPropsTypes } from "../types/DocumentTypes";
+import { FileType, DocumentCardPropsTypes } from "../types/AllTypes";
 
 export const DocumentCard = ({
    docId,

@@ -2,40 +2,8 @@ import { useState } from "react";
 import CustomButton from "./CustomButton";
 import { useNavigate } from "react-router-dom";
 import RadioCheckInput from "./RadioCheckInput";
-
-type SelectCategoryPropTypes = {
-   isSelectCategory: boolean;
-   onNext: () => void;
-   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
-};
-
-type CategoryListTypes = {
-   name: string;
-   category_id: string;
-};
-
-const categoryList: CategoryListTypes[] = [
-   {
-      name: "Individuals",
-      category_id: "",
-   },
-   {
-      name: "Partnership",
-      category_id: "",
-   },
-   {
-      name: "Corporation",
-      category_id: "",
-   },
-   {
-      name: "Sole Proprietorship",
-      category_id: "",
-   },
-   {
-      name: "Others",
-      category_id: "",
-   },
-];
+import { SelectCategoryPropTypes } from "../types/AllTypes";
+import { categoryList } from "../mocks/AllMockData";
 
 const SelectCategory = ({
    isSelectCategory,

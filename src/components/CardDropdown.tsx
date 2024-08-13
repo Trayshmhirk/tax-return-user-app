@@ -4,7 +4,7 @@ import { DropdownItem } from "./DropdownItem";
 import { FaRegEye } from "react-icons/fa6";
 import { MdOutlineIosShare } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { CardDropdownPropsTypes } from "../types/DocumentTypes";
+import { CardDropdownPropsTypes } from "../types/AllTypes";
 
 export const CardDropdown = ({
    handleShare,

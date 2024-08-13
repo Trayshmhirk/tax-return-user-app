@@ -1,10 +1,4 @@
-type InvoicePropTypes = {
-   id: string;
-   transaction_id: string;
-   title: string;
-   date: string;
-   total: string;
-};
+import { InvoicePropTypes } from "../types/AllTypes";
 
 type InvoiceCardPropTypes = {
    handleClick: (invoice: InvoicePropTypes) => void;

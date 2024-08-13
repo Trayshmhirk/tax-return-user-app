@@ -1,30 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import FilingCard from "../components/FilingCard";
-import { CardType } from "../types/FilingTypes";
-
-const filings: CardType[] = [
-   {
-      id: 1,
-      cardName: "Filing",
-      cardNumber: 345273,
-      cardText: "6th Aug, 2024",
-      color: "#62C3DB",
-   },
-   {
-      id: 2,
-      cardName: "Filing",
-      cardNumber: 453682,
-      cardText: "6th Aug, 2024",
-      color: "#0F6074",
-   },
-   {
-      id: 3,
-      cardName: "Filing",
-      cardNumber: 346864,
-      cardText: "6th Aug, 2024",
-      color: "#121212",
-   },
-];
+import { CardType } from "../types/AllTypes";
+import { filings } from "../mocks/AllMockData";
 
 const PreviousFiling = () => {
    const navigate = useNavigate();
