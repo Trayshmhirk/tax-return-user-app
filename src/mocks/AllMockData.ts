@@ -1,6 +1,5 @@
 import {
    DocumentsPropTypes,
-   CardType,
    ReceiptsPropTypes,
    InvoicePropTypes,
    VideoDataTypes,
@@ -34,10 +33,6 @@ export const servicesList: ServicesListTypes[] = [
    },
    {
       title: "Other",
-      service_id: "",
-   },
-   {
-      title: "Tax notice",
       service_id: "",
    },
 ];

@@ -3,7 +3,6 @@ import { BsCardChecklist } from "react-icons/bs";
 import TodoCard from "../components/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineAddCard } from "react-icons/md";
-import { MdErrorOutline } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -18,7 +17,7 @@ const Home = () => {
                <span className="font-medium md:text-xl">
                   What would you like to do?
                </span>
-               <div className="flex flex-wrap gap-3 xl:justify-between">
+               <div className="flex flex-wrap gap-3">
                   <TodoCard
                      todoIcon={BsCardChecklist}
                      text="Request service"
@@ -34,18 +33,13 @@ const Home = () => {
                      text="Integrate bank account"
                      handleClick={() => navigate("add-new-bank")}
                   />
-                  <TodoCard
-                     todoIcon={MdErrorOutline}
-                     text="Tax notice"
-                     handleClick={() => navigate("tax-notice")}
-                  />
                </div>
             </div>
 
             <div className="flex flex-col gap-3">
                <div className="flex justify-between items-center">
                   <p className="font-medium md:text-xl">Transactions</p>
-                  <NavLink to={"/cards"} className="font-bold">
+                  <NavLink to={"/credit-cards"} className="font-bold">
                      See all
                   </NavLink>
                </div>

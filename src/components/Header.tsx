@@ -1,4 +1,6 @@
 import { MdOutlineNotifications } from "react-icons/md";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { useSidebar } from "../hooks/UseSidebar";
 
 type HeaderProps = {
    title: string;
@@ -6,14 +8,20 @@ type HeaderProps = {
 };
 
 const Header = ({ title, isHome }: HeaderProps) => {
+   const { toggleSidebar } = useSidebar();
+
    return (
-      <header className="h-16 flex justify-between py-4 px-7 border-b border-alabaster sm:px-10 md:px-20">
-         <div className="font-bold text-lg md:text-xl">
+      <header className="h-16 flex justify-between items-center py-4 px-6 border-b border-alabaster sm:px-8 md:px-20">
+         <div className="font-bold sm:text-xl">
             {isHome ? `${title} {Username}!` : title}
          </div>
 
          <div className="flex items-center gap-4">
             <MdOutlineNotifications className="w-6 h-6 text-darkGunMetal dark:text-white cursor-pointer" />
+            <HiOutlineMenuAlt3
+               className="block w-6 h-6 sm:hidden"
+               onClick={toggleSidebar}
+            />
          </div>
       </header>
    );

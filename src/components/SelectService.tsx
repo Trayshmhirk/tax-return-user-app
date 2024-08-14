@@ -25,19 +25,7 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    };
 
    const handleSelectService = (serviceTitle: string) => {
-      if (serviceTitle === "Tax notice") {
-         // setModalData({
-         //    show: true,
-         //    title: "Upload pdf or image",
-         //    onClose: () => {
-         //       setModalData({ show: false });
-         //    },
-         //    onSelectedFile: (file) => {
-         //       setSelectedFile(file);
-         //    },
-         // });
-         setToggleTextArea(false);
-      } else if (serviceTitle === "Other") {
+      if (serviceTitle === "Other") {
          setToggleTextArea(true);
       } else {
          setToggleTextArea(false);

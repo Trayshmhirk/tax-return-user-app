@@ -46,11 +46,11 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
 
    return (
       <div
-         className={`content-layout h-fit ${!isOpen && "w-full"} flex flex-col text-darkGunMetal overflow-hidden dark:text-white`}
+         className={`content-layout h-fit ${!isOpen && "w-full"} w-full flex flex-col text-darkGunMetal overflow-hidden dark:text-white`}
       >
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div className="content relative py-10 px-6 overflow-scroll sm:px-10 md:px-16">
+         <div className="content relative py-10 px-6 overflow-scroll sm:px-8 md:px-16">
             {children}
          </div>
       </div>

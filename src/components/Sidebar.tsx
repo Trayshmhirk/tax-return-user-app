@@ -8,6 +8,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { useSidebar } from "../hooks/UseSidebar";
+import Overlay from "./Overlay";
 
 type SidebarProps = {
    isNotApproved?: boolean;
@@ -40,7 +41,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
          return null;
       } else {
          navigate(`/${route}`);
-         // dispatch(toggleSidebar());
+         toggleSidebar();
 
          // Scroll to the bottom if the clicked item is one of the last items
          const lastItemsIds = [
@@ -67,94 +68,110 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    };
 
    return (
-      <aside
-         className={`relative ${isOpen ? "w-[250px] lg:w-[300px]" : "w-fit px-4"} flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
-      >
-         <div className="h-full flex flex-col justify-between">
-            <div className="flex flex-col gap-4">
-               <div
-                  className={`flex ${isOpen ? "items-center justify-between" : "w-fit flex-col-reverse items-center gap-3"} `}
-               >
-                  <div className="w-fit text-darkElectricBlue">
-                     <img
-                        width="48"
-                        height="48"
-                        src="https://img.icons8.com/external-flatarticons-blue-flatarticons/65/external-tax-taxes-flatarticons-blue-flatarticons.png"
-                        alt="external-tax-taxes-flatarticons-blue-flatarticons"
-                     />
-                  </div>
-                  <HamburgerIcon toggle={toggleSidebar} />
-               </div>
-
-               <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
-
-               <div className="flex flex-col gap-3">
-                  <nav className="flex flex-col gap-2">
-                     {navItemsData.map((navItem) => (
-                        <NavItems
-                           key={navItem.id}
-                           title={navItem.title}
-                           navIcon={navItem.navIcon}
-                           onClick={() =>
-                              handleNavigate(navItem.route, navItem.id)
-                           }
-                           isActive={location.pathname === `/${navItem.route}`}
-                           id={navItem.id}
-                           isCollapsed={isOpen}
-                           navBarAccess={isNotApproved}
+      <>
+         <Overlay isOpen={isOpen} />
+         <aside
+            className={`fixed inset-y-0 z-50 transform ${
+               isOpen ? "translate-x-0" : "-translate-x-full"
+            } sm:static sm:translate-x-0 transition-transform duration-300 ease-in-out ${
+               isOpen ? "w-[275px] md:w-[250px] lg:w-[300px]" : "w-fit px-4"
+            } flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
+         >
+            <div className="h-full flex flex-col justify-between">
+               <div className="flex flex-col gap-4">
+                  <div
+                     className={`flex ${isOpen ? "items-center justify-between" : "w-fit flex-col-reverse items-center gap-3"} `}
+                  >
+                     <div className="w-fit text-darkElectricBlue">
+                        <img
+                           width="48"
+                           height="48"
+                           src="https://img.icons8.com/external-flatarticons-blue-flatarticons/65/external-tax-taxes-flatarticons-blue-flatarticons.png"
+                           alt="external-tax-taxes-flatarticons-blue-flatarticons"
                         />
-                     ))}
-                  </nav>
+                     </div>
+                     <HamburgerIcon toggle={toggleSidebar} isOpen={isOpen} />
+                  </div>
 
                   <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
 
-                  <NavItems
-                     title="Logout"
-                     navIcon={BiLogOut}
-                     id="logout" // Ensure to provide an id for the logout item
-                     onClick={() => console.log("Logout clicked")} // handleLogout function
-                     isCollapsed={isOpen}
-                  />
+                  <div className="flex flex-col gap-3">
+                     <nav className="flex flex-col gap-2">
+                        {navItemsData.map((navItem) => (
+                           <NavItems
+                              key={navItem.id}
+                              title={navItem.title}
+                              navIcon={navItem.navIcon}
+                              onClick={() =>
+                                 handleNavigate(navItem.route, navItem.id)
+                              }
+                              isActive={
+                                 location.pathname === `/${navItem.route}`
+                              }
+                              id={navItem.id}
+                              isCollapsed={isOpen}
+                              navBarAccess={isNotApproved}
+                           />
+                        ))}
+                     </nav>
 
-                  <div
-                     onClick={handleToggleTheme}
-                     className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
-                  >
-                     <>
-                        {toggleTheme ? (
-                           <MdOutlineLightMode className="w-6 h-6 text-white" />
-                        ) : (
-                           <BsMoonStars className="w-6 h-6 text-eerieBlack" />
-                        )}
-                     </>
+                     <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
 
-                     {isOpen && (
+                     <NavItems
+                        title="Logout"
+                        navIcon={BiLogOut}
+                        id="logout" // Ensure to provide an id for the logout item
+                        onClick={() => console.log("Logout clicked")} // handleLogout function
+                        isCollapsed={isOpen}
+                     />
+
+                     <div
+                        onClick={handleToggleTheme}
+                        className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
+                     >
                         <>
-                           <p className="text-base text-eerieBlack dark:text-white">
-                              {toggleTheme ? "Light Mode" : "Dark Mode"}
-                           </p>
+                           {toggleTheme ? (
+                              <MdOutlineLightMode className="w-6 h-6 text-white" />
+                           ) : (
+                              <BsMoonStars className="w-6 h-6 text-eerieBlack" />
+                           )}
                         </>
-                     )}
+
+                        {isOpen && (
+                           <>
+                              <p className="text-base text-eerieBlack dark:text-white">
+                                 {toggleTheme ? "Light Mode" : "Dark Mode"}
+                              </p>
+                           </>
+                        )}
+                     </div>
                   </div>
                </div>
-            </div>
 
-            <div
-               className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-4 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
-               onClick={() => handleNavigate("profile", "profileNavItem")}
-            >
                <div
-                  className={`${isOpen ? "w-10 h-10" : "w-8 h-8"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
+                  className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-2 md:gap-3 md:px-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
+                  onClick={() => handleNavigate("profile", "profileNavItem")}
                >
-                  <FaUserAlt className="text-eerieBlack dark:text-white" />
-               </div>
+                  <div
+                     className={`${isOpen ? "w-8 h-8" : "w-6 h-6"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
+                  >
+                     <FaUserAlt className="text-eerieBlack dark:text-white text-xs" />
+                  </div>
 
-               {isOpen && (
-                  <span className="text-eerieBlack">Frank Micheal</span>
-               )}
+                  {isOpen && (
+                     <div className="flex flex-col">
+                        <span className="text-eerieBlack text-sm font-medium">
+                           Frank M.
+                        </span>
+                        <span className="text-xs text-eerieBlack">
+                           harlex.mikkey@gm...
+                        </span>
+                     </div>
+                  )}
+               </div>
             </div>
-         </div>
-      </aside>
+         </aside>
+      </>
    );
 };
 
