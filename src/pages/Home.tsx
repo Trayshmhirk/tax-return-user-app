@@ -31,7 +31,7 @@ const Home = () => {
                   <TodoCard
                      todoIcon={MdOutlineAddCard}
                      text="Integrate bank account"
-                     handleClick={() => navigate("add-new-bank")}
+                     handleClick={() => navigate("add-card")}
                   />
                </div>
             </div>

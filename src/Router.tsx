@@ -22,12 +22,14 @@ import Faq from "./pages/Faq";
 import UploadDocument from "./pages/UploadDocument";
 import MyRequests from "./pages/MyRequests";
 import Video from "./pages/Video";
+import AddCard from "./pages/AddCard";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
       <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
          <Route index element={<Home />} />
          <Route path="request-service" element={<RequestService />} />
+         <Route path="add-card" element={<AddCard />} />
          <Route path="not-approved" element={<NotApprovedHome />} />
          <Route path="documents" element={<Documents />} />
          <Route path="receipts" element={<Receipts />} />
