@@ -75,6 +75,10 @@
       background: rgba(195, 0, 0, 0.05);
    }
 
+   .form-index {
+      width: calc(100% / 4);
+   }
+
    /* @media screen and (min-width: 768px) {
       .calc-width-two {
          width: calc(100% / 4.20);

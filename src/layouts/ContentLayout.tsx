@@ -15,6 +15,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
       switch (pathname) {
          case "/":
             return "Welcome";
+         case "/not-approved":
+            return "Please wait...";
          case "/documents":
             return "Documents";
          case "/receipts":

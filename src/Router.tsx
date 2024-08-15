@@ -23,34 +23,41 @@ import UploadDocument from "./pages/UploadDocument";
 import MyRequests from "./pages/MyRequests";
 import Video from "./pages/Video";
 import AddCard from "./pages/AddCard";
+import FormLayout from "./layouts/FormLayout";
+import Login from "./components/Login";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
-      <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
-         <Route index element={<Home />} />
-         <Route path="request-service" element={<RequestService />} />
-         <Route path="add-card" element={<AddCard />} />
-         <Route path="not-approved" element={<NotApprovedHome />} />
-         <Route path="documents" element={<Documents />} />
-         <Route path="receipts" element={<Receipts />} />
-         <Route path="live-chat" element={<LiveChat />} />
-         <Route path="documents" element={<Documents />} />
-         <Route path="knowledge-base/" element={<KnowledgeBase />}>
-            <Route path="video/:videoId" element={<Video />}></Route>
-            {/* <Route path="video/" element={<KnowledgeBase />}>
+      <>
+         <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
+            <Route index element={<Home />} />
+            <Route path="request-service" element={<RequestService />} />
+            <Route path="add-card" element={<AddCard />} />
+            <Route path="not-approved" element={<NotApprovedHome />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="receipts" element={<Receipts />} />
+            <Route path="live-chat" element={<LiveChat />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="knowledge-base/" element={<KnowledgeBase />}>
+               <Route path="video/:videoId" element={<Video />}></Route>
+               {/* <Route path="video/" element={<KnowledgeBase />}>
                <Route path=":videoId" element={<KnowledgeBase />} />
             </Route> */}
+            </Route>
+            <Route path="transactions" element={<Transactions />} />
+            <Route path="profile/" element={<Profile />}>
+               <Route path="my-requests" element={<MyRequests />} />
+            </Route>
+            <Route path="terms-and-conditions" element={<Terms />} />
+            <Route path="help-and-support" element={<Help />} />
+            <Route path="privacy-policy" element={<Privacy />} />
+            <Route path="faq" element={<Faq />} />
+            <Route path="upload-document" element={<UploadDocument />} />
          </Route>
-         <Route path="transactions" element={<Transactions />} />
-         <Route path="profile/" element={<Profile />}>
-            <Route path="my-requests" element={<MyRequests />} />
+         <Route element={<FormLayout />}>
+            <Route path="login" element={<Login />} />
          </Route>
-         <Route path="terms-and-conditions" element={<Terms />} />
-         <Route path="help-and-support" element={<Help />} />
-         <Route path="privacy-policy" element={<Privacy />} />
-         <Route path="faq" element={<Faq />} />
-         <Route path="upload-document" element={<UploadDocument />} />
-      </Route>
+      </>
    )
 );
 
