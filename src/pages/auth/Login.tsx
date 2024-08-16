@@ -1,4 +1,4 @@
-import Forms from "./Forms";
+import Forms from "../../components/Forms";
 
 const Login = () => {
    const handleSubmit = () => {};
