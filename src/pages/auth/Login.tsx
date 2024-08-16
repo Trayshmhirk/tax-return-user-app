@@ -1,7 +1,21 @@
-import Forms from "../../components/Forms";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Forms from "../../components/auth/Forms";
+import { logInSchema } from "../../validation/schema";
+
+export type ILoginForm = {
+   email: string;
+   password: string;
+};
 
 const Login = () => {
-   const handleSubmit = () => {};
+   const {
+      // register,
+      handleSubmit,
+      // formState: { errors },
+   } = useForm<ILoginForm>({ resolver: yupResolver(logInSchema) });
+
+   const onSubmit = () => {};
    // const onSubmit = async () => {
    //    if (!email || !password) {
    //       // handle empty fields
@@ -40,9 +54,9 @@ const Login = () => {
 
    return (
       <Forms
-         handleSubmit={handleSubmit}
-         title="Log in"
-         description="Please enter your basic details to access your account"
+         handleSubmit={handleSubmit(onSubmit)}
+         title="Welcome back!"
+         description="Please enter your details"
       >
          <div className="flex flex-col gap-3 mb-auto"></div>
       </Forms>

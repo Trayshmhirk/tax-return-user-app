@@ -48,7 +48,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
 
    return (
       <div
-         className={`content-layout h-fit ${!isOpen && "w-full"} w-full flex flex-col text-darkGunMetal overflow-hidden dark:text-white`}
+         className={`content-layout h-fit ${!isOpen && "w-full"} w-full flex flex-col overflow-hidden dark:text-white`}
       >
          <Header title={title} isHome={location.pathname === "/"} />
 

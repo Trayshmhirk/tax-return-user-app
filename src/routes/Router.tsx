@@ -150,7 +150,6 @@ const router = createBrowserRouter(
                }
             />
          </Route>
-         {/* <Route path="*" element={<ErrorPage />} /> */}
       </>
    )
 );
