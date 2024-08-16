@@ -2,20 +2,37 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Forms from "../../components/auth/Forms";
 import { logInSchema } from "../../validation/schema";
-
-export type ILoginForm = {
-   email: string;
-   password: string;
-};
+import FormInput from "../../components/auth/FormInput";
+import { ILoginForm } from "../../types/AllTypes";
+import { NavLink, useNavigate } from "react-router-dom";
+import CustomButton from "../../components/CustomButton";
+import { useState } from "react";
 
 const Login = () => {
+   const navigate = useNavigate();
+   const [isLoading, setIsLoading] = useState(false);
+   const [loginError] = useState<string | null>(null);
+
    const {
-      // register,
+      register,
       handleSubmit,
-      // formState: { errors },
+      formState: { errors },
    } = useForm<ILoginForm>({ resolver: yupResolver(logInSchema) });
 
-   const onSubmit = () => {};
+   const onSubmit = async (data: ILoginForm) => {
+      setIsLoading(true);
+
+      console.log(data);
+
+      //  // Simulate API call with setTimeout
+      setTimeout(() => {
+         setIsLoading(false);
+         console.log("Login successful");
+         // Navigate after mock success
+         navigate("/");
+      }, 2000); // Mock API call delay of 2 seconds
+   };
+
    // const onSubmit = async () => {
    //    if (!email || !password) {
    //       // handle empty fields
@@ -36,6 +53,7 @@ const Login = () => {
    //          });
    //       navigate("/");
    //    } catch (error) {
+   //          setLoginError("Login failed. Please check your credentials and try again.");
    //       if (error.response) {
    //          // The request was made and the server responded with a status code
    //          // that falls out of the range of 2xx
@@ -58,7 +76,47 @@ const Login = () => {
          title="Welcome back!"
          description="Please enter your details"
       >
-         <div className="flex flex-col gap-3 mb-auto"></div>
+         <div className="flex flex-col gap-4 mb-auto">
+            <FormInput
+               label="Email address"
+               type="email"
+               register={register}
+               name="email"
+               placeholder="Example@email.com"
+               error={errors}
+            />
+            <FormInput
+               label="Password"
+               type="password"
+               register={register}
+               name="password"
+               placeholder="Password"
+               error={errors}
+            />
+
+            <NavLink
+               className="self-end font-semibold text-xs"
+               to={"/password-recovery"}
+            >
+               Forgot password?
+            </NavLink>
+         </div>
+
+         {loginError && (
+            <p className="text-red-500 text-center">{loginError}</p>
+         )}
+
+         <div className="w-full text-center flex flex-col gap-3">
+            <CustomButton type="submit" isDisabled={isLoading}>
+               {isLoading ? "Logging in..." : "Log in"}
+            </CustomButton>
+            <span className="self-center text-sm">
+               {`Don't have an account? `}
+               <NavLink className="font-semibold" to={"/sign-up"}>
+                  Sign up
+               </NavLink>
+            </span>
+         </div>
       </Forms>
    );
 };

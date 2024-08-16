@@ -40,7 +40,7 @@ const Forms = ({
 
    return (
       <form
-         className="relative w-full h-full flex flex-col justify-center gap-5 px-6 py-8 bg-white z-30 sm:w-[400px] sm:px-12 sm:py-10 sm:rounded-md"
+         className="relative w-full h-full flex flex-col justify-center gap-7 px-6 py-8 bg-white z-30 sm:w-[400px] sm:px-12 sm:py-10 sm:rounded-xl"
          onSubmit={handleSubmit}
       >
          {isDocUpload ? (
@@ -66,7 +66,7 @@ const Forms = ({
                alt="external-tax-taxes-flatarticons-blue-flatarticons"
             />
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
                <h2 className="text-2xl font-bold">{title}</h2>
                <p className={`${isCategoryDesc ? "" : "text-xs"}`}>
                   {description}

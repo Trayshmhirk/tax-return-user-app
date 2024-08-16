@@ -136,3 +136,9 @@ export type RequestsPropTypes = {
    requestDate: string;
    service_title: string;
 };
+
+// forms
+export type ILoginForm = {
+   email: string;
+   password: string;
+};
