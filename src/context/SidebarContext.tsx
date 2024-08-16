@@ -14,7 +14,7 @@ type SidebarProviderProps = {
 };
 
 export const SidebarProvider = ({ children }: SidebarProviderProps) => {
-   const [isOpen, setIsOpen] = useState(true);
+   const [isOpen, setIsOpen] = useState(false);
 
    const toggleSidebar = () => {
       setIsOpen((prev) => !prev);

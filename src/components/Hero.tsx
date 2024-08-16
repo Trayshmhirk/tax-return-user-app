@@ -27,22 +27,6 @@ const Hero = ({
             ${isNotApprovedHome ? "text-center md:h-[270px]" : ""}
          `}
       >
-         <img
-            className="absolute top-0 left-0 md:hidden"
-            src={HeroTopLeftImage}
-         />
-         <img
-            className="absolute bottom-0 right-0 md:hidden"
-            src={HeroBottomRightImage}
-         />
-
-         <div className="hidden circle bottom-12 -left-32 md:block" />
-         <div className="hidden circle bottom-12 -left-48 md:block" />
-         <div className="hidden circle bottom-12 -left-64 md:block" />
-         <div className="hidden circle circle-transform top-8 -right-[250px] md:block" />
-         <div className="hidden circle circle-transform top-14 -right-[200px] md:block" />
-         <div className="hidden circle circle-transform top-20 -right-[150px] md:block" />
-
          {/* Hero */}
          {isBankDetails ? (
             <div className="flex flex-col items-center justify-center gap-2">
@@ -50,18 +34,36 @@ const Hero = ({
                <div>{card?.brand}</div>
             </div>
          ) : (
-            <h1 className="font-medium text-xl md:text-3xl">{`${isHome ? "Where's my tax return?" : "Your profile is under review"}`}</h1>
+            <>
+               <img
+                  className="absolute top-0 left-0 md:hidden z-0"
+                  src={HeroTopLeftImage}
+               />
+               <img
+                  className="absolute bottom-0 right-0 md:hidden z-0"
+                  src={HeroBottomRightImage}
+               />
+
+               <div className="hidden circle bottom-12 -left-32 md:block z-0" />
+               <div className="hidden circle bottom-12 -left-48 md:block z-0" />
+               <div className="hidden circle bottom-12 -left-64 md:block z-0" />
+               <div className="hidden circle circle-transform top-8 -right-[250px] md:block z-0" />
+               <div className="hidden circle circle-transform top-14 -right-[200px] md:block z-0" />
+               <div className="hidden circle circle-transform top-20 -right-[150px] md:block z-0" />
+
+               <h1 className="font-medium text-xl z-10 md:text-3xl">{`${isHome ? "Where's my tax return?" : "Your profile is under review"}`}</h1>
+            </>
          )}
 
          {isNotApprovedHome && (
-            <p className="w-auto md:w-96">
+            <p className="w-auto z-10 md:w-96">
                Your profile is being verified by the admin and you would be
                granted access to the app once you are verified
             </p>
          )}
 
          {isHome && (
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 z-10">
                <p className="md:text-xl">Download the IRS app</p>
 
                <div className="flex gap-3">

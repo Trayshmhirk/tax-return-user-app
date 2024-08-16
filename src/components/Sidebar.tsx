@@ -33,7 +33,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
       }
    }, [toggleTheme]);
 
-   const handleNavigate = (route: string, id: string) => {
+   const handleNavigate = (route: string) => {
       // Navigate to the corresponding page
 
       if (isNotApproved) {
@@ -41,25 +41,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
          return null;
       } else {
          navigate(`/${route}`);
-         toggleSidebar();
-
-         // Scroll to the bottom if the clicked item is one of the last items
-         const lastItemsIds = [
-            "helpAndSupportNavItem",
-            "termsAndConditionsNavItem",
-            "privacyPolicyNavItem",
-         ];
-         if (lastItemsIds.includes(id)) {
-            const lastItemElement = document.getElementById(
-               "privacyPolicyNavItem"
-            ); // Choose any last item to reference
-            if (lastItemElement) {
-               lastItemElement.scrollIntoView({
-                  behavior: "smooth",
-                  block: "end",
-               });
-            }
-         }
+         isOpen && toggleSidebar();
       }
    };
 
@@ -102,9 +84,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                               key={navItem.id}
                               title={navItem.title}
                               navIcon={navItem.navIcon}
-                              onClick={() =>
-                                 handleNavigate(navItem.route, navItem.id)
-                              }
+                              onClick={() => handleNavigate(navItem.route)}
                               isActive={
                                  location.pathname === `/${navItem.route}`
                               }
@@ -150,7 +130,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
 
                <div
                   className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-2 md:gap-3 md:px-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
-                  onClick={() => handleNavigate("profile", "profileNavItem")}
+                  onClick={() => handleNavigate("profile")}
                >
                   <div
                      className={`${isOpen ? "w-8 h-8" : "w-6 h-6"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
