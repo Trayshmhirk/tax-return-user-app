@@ -40,7 +40,7 @@ const Forms = ({
 
    return (
       <form
-         className="relative min-h-screen min-w-full flex flex-col justify-center gap-5 px-16 py-10 bg-white z-30 md:w-[600px] md:h-[600px] md:rounded-2xl"
+         className="relative w-full h-full flex flex-col justify-center gap-5 px-6 py-8 bg-white z-30 sm:w-[600px] sm:h-[600px] sm:px-16 sm:py-10 sm:rounded-xl"
          onSubmit={handleSubmit}
       >
          {isDocUpload ? (

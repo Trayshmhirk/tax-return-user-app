@@ -4,7 +4,7 @@ import {
    CardElement,
    // PaymentElement,
 } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 
 const CheckOutForm = () => {
    const stripe = useStripe();
@@ -18,10 +18,10 @@ const CheckOutForm = () => {
       expiry: "",
       cvv: "",
    });
-   const [cardResponse, setCardResponse] = useState("");
-   const [tokenError, setTokenError] = useState(null);
+   const [cardResponse] = useState("");
+   // const [tokenError, setTokenError] = useState(null);
 
-   function handleChange(e) {
+   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       const { name, value } = e.target;
 
       // CARD NUMBER
@@ -33,7 +33,7 @@ const CheckOutForm = () => {
 
       // EXPIRY DATE
       else if (name === "expiry") {
-         let onlyNumeric = value.replace(/\D/g, "");
+         const onlyNumeric = value.replace(/\D/g, "");
          let formattedExpiryDate = "";
 
          // Extract and validate the month (MM)
@@ -67,10 +67,10 @@ const CheckOutForm = () => {
       }
    }
 
-   const handleSubmit = async (event) => {
+   const handleSubmit = async (event: FormEventHandler<HTMLFormElement>) => {
       // We don't want to let default form submission happen here,
       // which would refresh the page.
-      event.preventDefault();
+      console.log(event);
 
       if (!stripe || !elements) {
          // Stripe.js hasn't yet loaded.
@@ -98,7 +98,7 @@ const CheckOutForm = () => {
 
    return (
       <form
-         onSubmit={handleSubmit}
+         onSubmit={() => handleSubmit}
          onClick={(e) => {
             e.stopPropagation();
          }}

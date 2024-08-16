@@ -12,9 +12,7 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    const [selectedServiceId, setSelectedServiceId] = useState<
       string | undefined
    >("");
-   const [selectedFile, setSelectedFile] = useState<File | undefined>(
-      undefined
-   );
+   const [selectedFile] = useState<File | undefined>(undefined);
 
    const handleRadioChange = (value: string, serviceId: string | undefined) => {
       setCheckedRadio(value);
