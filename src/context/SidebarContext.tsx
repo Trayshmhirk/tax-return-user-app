@@ -13,7 +13,7 @@ type SidebarProviderProps = {
    children: ReactNode;
 };
 
-export const SidebarProvider = ({ children }: SidebarProviderProps) => {
+export const SidebarContextProvider = ({ children }: SidebarProviderProps) => {
    const [isOpen, setIsOpen] = useState(false);
 
    const toggleSidebar = () => {

@@ -6,17 +6,30 @@ type Error = {
    statusText: string;
 };
 
-export const ErrorPage = () => {
-   const error = useRouteError();
+type ErrorPageProps = {
+   error?: Error; // Accepting error from ErrorBoundary
+   resetErrorBoundary?: () => void; // Used for ErrorBoundary reset
+};
+
+export const ErrorPage = ({
+   error: boundaryError,
+   resetErrorBoundary,
+}: ErrorPageProps) => {
+   // Hook to capture route-specific errors
+   const routeError = useRouteError();
+
+   // Combining the errors from ErrorBoundary and RouteError
+   const error = boundaryError || routeError;
 
    // Type guard to check if the error is of type 'Error'
    const isError = (error: unknown): error is Error => {
       return (
          typeof error === "object" &&
          error !== null &&
-         "data" in error &&
-         "status" in error &&
-         "statusText" in error
+         ("data" in error ||
+            "message" in error ||
+            "status" in error ||
+            "statusText" in error)
       );
    };
 
@@ -36,6 +49,22 @@ export const ErrorPage = () => {
             </>
          ) : (
             <p className="text-bostonRed">Unknown error occurred.</p>
+         )}
+         {resetErrorBoundary && (
+            <button
+               onClick={resetErrorBoundary}
+               className="px-4 py-2 bg-blue-500 text-white rounded-md"
+            >
+               Try Again
+            </button>
+         )}
+         {resetErrorBoundary && (
+            <button
+               onClick={resetErrorBoundary}
+               className="px-4 py-2 bg-blue-500 text-white rounded-md"
+            >
+               Try Again
+            </button>
          )}
       </div>
    );
