@@ -31,7 +31,7 @@ const FormInput = ({
    return (
       <div className="flex flex-col gap-1 input">
          <div className="">
-            <label className="w-fit text-sm text-mutedGray font-bold">
+            <label className="w-fit text-sm text-mutedGray dark:text-ghostWhite font-bold">
                {label}
             </label>
          </div>
@@ -40,7 +40,7 @@ const FormInput = ({
             className={`h-12 flex justify-between py-3 px-5 border  ${error && error[name] ? "border-[#dc3545]" : "border-spanishGray"} rounded`}
          >
             <input
-               className="w-full outline-none"
+               className="w-full outline-none dark:bg-transparent"
                placeholder={placeholder}
                type={type === "password" && showPassword ? "text" : type}
                {...register(name)}

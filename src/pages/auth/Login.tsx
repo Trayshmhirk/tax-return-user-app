@@ -7,6 +7,7 @@ import { ILoginForm } from "../../types/AllTypes";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const Login = () => {
    const navigate = useNavigate();
@@ -108,7 +109,7 @@ const Login = () => {
 
          <div className="w-full text-center flex flex-col gap-3">
             <CustomButton type="submit" isDisabled={isLoading}>
-               {isLoading ? "Logging in..." : "Log in"}
+               {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Log in"}
             </CustomButton>
             <span className="self-center text-sm">
                {`Don't have an account? `}

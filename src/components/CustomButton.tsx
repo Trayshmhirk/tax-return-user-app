@@ -13,7 +13,7 @@ const CustomButton = ({
 }: CustomButton) => {
    return (
       <button
-         className={`w-full px-4 py-3 bg-richElectricBlue text-white border-0 rounded shadow-md dark:shadow-md-dark hover-shadow-body`}
+         className={`w-full px-4 py-3 bg-richElectricBlue text-white font-medium border-0 rounded shadow-md dark:shadow-md-dark hover-shadow-body`}
          onClick={handleClick}
          type={type && type}
          disabled={isDisabled}

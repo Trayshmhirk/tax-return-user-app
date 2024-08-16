@@ -8,7 +8,7 @@ import { lazy, Suspense } from "react";
 import MainLayout from "../layouts/MainLayout";
 import FormLayout from "../layouts/FormLayout";
 import { ErrorPage } from "../pages/ErrorPage";
-import FullSpinner from "../components/loaders/FullSpinner";
+import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
 
 // Lazy-loaded pages
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
       <>
          <Route
             element={
-               <Suspense fallback={<FullSpinner />}>
+               <Suspense fallback={<PageLoader />}>
                   <FormLayout />
                </Suspense>
             }
@@ -48,7 +48,7 @@ const router = createBrowserRouter(
          <Route
             path="/"
             element={
-               <Suspense fallback={<FullSpinner />}>
+               <Suspense fallback={<PageLoader />}>
                   <MainLayout />
                </Suspense>
             }

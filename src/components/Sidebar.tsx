@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { navItemsData } from "../mocks/NavItemData";
 import { NavItems } from "./NavItems";
@@ -8,6 +7,8 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { useSidebar } from "../hooks/UseSidebar";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 import Overlay from "./Overlay";
 
 type SidebarProps = {
@@ -18,20 +19,12 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    const location = useLocation();
    const navigate = useNavigate();
 
-   const { isOpen, toggleSidebar } = useSidebar();
-   const [toggleTheme, setToggleTheme] = useState(
-      localStorage.getItem("theme") === "dark"
-   );
+   const themeContext = useContext(ThemeContext);
 
-   useEffect(() => {
-      if (toggleTheme) {
-         document.documentElement.classList.add("dark");
-         localStorage.setItem("theme", "dark");
-      } else {
-         document.documentElement.classList.remove("dark");
-         localStorage.setItem("theme", "light");
-      }
-   }, [toggleTheme]);
+   const { isOpen, toggleSidebar } = useSidebar();
+
+   if (!themeContext) return null; // Add a fallback for when context is not available
+   const { isDarkMode, toggleTheme } = themeContext;
 
    const handleNavigate = (route: string) => {
       // Navigate to the corresponding page
@@ -43,10 +36,6 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
          navigate(`/${route}`);
          isOpen && toggleSidebar();
       }
-   };
-
-   const handleToggleTheme = () => {
-      setToggleTheme(!toggleTheme);
    };
 
    return (
@@ -106,11 +95,11 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      />
 
                      <div
-                        onClick={handleToggleTheme}
+                        onClick={toggleTheme}
                         className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
                      >
                         <>
-                           {toggleTheme ? (
+                           {isDarkMode ? (
                               <MdOutlineLightMode className="w-6 h-6 text-white" />
                            ) : (
                               <BsMoonStars className="w-6 h-6 text-eerieBlack" />
@@ -120,7 +109,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                         {isOpen && (
                            <>
                               <p className="text-base text-eerieBlack dark:text-white">
-                                 {toggleTheme ? "Light Mode" : "Dark Mode"}
+                                 {isDarkMode ? "Light Mode" : "Dark Mode"}
                               </p>
                            </>
                         )}
