@@ -40,7 +40,7 @@ const Forms = ({
 
    return (
       <form
-         className="relative w-full h-full flex flex-col justify-center gap-5 px-6 py-8 bg-white z-30 sm:w-[600px] sm:h-[600px] sm:px-16 sm:py-10 sm:rounded-xl"
+         className="relative w-full h-full flex flex-col justify-center gap-7 px-6 py-8 bg-white dark:bg-gray text-eerieBlack dark:text-white z-30 md:w-[400px] sm:px-12 sm:py-10 sm:rounded-xl"
          onSubmit={handleSubmit}
       >
          {isDocUpload ? (
@@ -58,11 +58,20 @@ const Forms = ({
             <div className="flex gap-1">{renderFormIndex()}</div>
          )}
 
-         <div className="flex flex-col gap-3">
-            <h2 className="text-3xl font-bold">{title}</h2>
-            <p className={`${isCategoryDesc ? "text-xl font-medium" : ""}`}>
-               {description}
-            </p>
+         <div className="flex flex-col items-center gap-4 text-center">
+            <img
+               width="48"
+               height="48"
+               src="https://img.icons8.com/external-flatarticons-blue-flatarticons/65/external-tax-taxes-flatarticons-blue-flatarticons.png"
+               alt="external-tax-taxes-flatarticons-blue-flatarticons"
+            />
+
+            <div className="flex flex-col gap-1">
+               <h2 className="text-2xl font-bold">{title}</h2>
+               <p className={`${isCategoryDesc ? "" : "text-xs"}`}>
+                  {description}
+               </p>
+            </div>
          </div>
 
          {children}
