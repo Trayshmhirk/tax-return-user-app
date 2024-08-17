@@ -55,6 +55,7 @@ const Forms = ({
 
       return formIndex;
    };
+
    return (
       <form
          className={`relative w-full h-full flex flex-col justify-center gap-7 px-6 py-8 bg-white dark:bg-gray text-eerieBlack dark:text-white z-30 ${isCurrentForm ? "md:w-[540px]" : "md:w-[400px]"}  sm:px-12 sm:py-10 sm:rounded-xl`}
@@ -69,7 +70,7 @@ const Forms = ({
             </div>
          )}
 
-         <div className="flex flex-col items-center gap-4  text-center">
+         <div className="flex flex-col items-center gap-4 text-center">
             {!isCurrentForm && (
                <img
                   width="48"

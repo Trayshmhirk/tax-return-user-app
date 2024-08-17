@@ -76,7 +76,10 @@ const Faq = () => {
                      label="Have a question?"
                      placeholder="Type question here"
                   />
-                  <CustomButton handleClick={handleSubmitQuestion}>
+                  <CustomButton
+                     type="button"
+                     handleClick={handleSubmitQuestion}
+                  >
                      Submit question
                   </CustomButton>
                </div>

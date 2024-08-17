@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { createUserSchema } from "../../validation/schema";
 import { ISignUpForm } from "../../types/AllTypes";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Forms from "./Forms";
 import FormInput from "./FormInput";
 import CustomButton from "../CustomButton";
@@ -12,9 +12,10 @@ import { NavLink } from "react-router-dom";
 type UserFormPropTypes = {
    onNext: () => void;
    currentForm: number;
+   setOTPEmail: React.Dispatch<SetStateAction<string>>;
 };
 
-const UserForm = ({ onNext, currentForm }: UserFormPropTypes) => {
+const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
    const [isLoading, setIsLoading] = useState(false);
    const [loginError] = useState<string | null>(null);
 
@@ -25,13 +26,10 @@ const UserForm = ({ onNext, currentForm }: UserFormPropTypes) => {
    } = useForm<ISignUpForm>({ resolver: yupResolver(createUserSchema) });
 
    const onSubmit = async (data: ISignUpForm) => {
-      console.log("clicked");
-
       setIsLoading(true);
+      setOTPEmail(data.email);
 
-      console.log(data);
-
-      //  // Simulate API call with setTimeout
+      // Simulate API call with setTimeout
       setTimeout(() => {
          setIsLoading(false);
          console.log("Create user successful");

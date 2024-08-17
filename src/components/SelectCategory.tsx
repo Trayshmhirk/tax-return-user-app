@@ -69,6 +69,7 @@ const SelectCategory = ({
 
                <CustomButton
                   handleClick={onSubmit}
+                  type="submit"
                   isDisabled={isButtonDisabled}
                >
                   Proceed
