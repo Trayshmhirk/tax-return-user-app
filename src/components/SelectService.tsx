@@ -173,6 +173,7 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
          </div>
 
          <CustomButton
+            type="button"
             handleClick={
                checkedRadio === "Tax notice" ? handleRequestTaxNotice : onSubmit
             }
