@@ -3,6 +3,8 @@ import Forms from "./Forms";
 import { NavLink } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import OtpInput from "./OtpInput";
+import { ClipLoader } from "react-spinners";
+import { useState } from "react";
 
 type OtpPropTypes = {
    title: string;
@@ -23,20 +25,37 @@ const Otp = ({
    onPrev,
    isRecoverPasswordOTP,
 }: OtpPropTypes) => {
+   const [otp, setOtp] = useState("");
+   const [isLoading, setIsLoading] = useState(false);
+   const [loginMessage, setLoginMessage] = useState<string | null>(null);
+
    const {
       handleSubmit,
       // register,
       // formState: { errors },
    } = useForm();
 
-   console.log(email);
-
    const onSubmit = async () => {
       // Check if OTP is empty
       if (!isRecoverPasswordOTP) {
          console.log(email);
+         console.log(otp);
 
-         handleNextForm();
+         setIsLoading(true);
+
+         // Simulate API call with setTimeout
+         setTimeout(() => {
+            setIsLoading(false);
+            setLoginMessage("OTP verification successful!");
+
+            setTimeout(() => {
+               setLoginMessage("");
+               handleNextForm();
+            }, 2000);
+
+            // Navigate after mock success
+            // navigate("/");
+         }, 2000);
       } else {
          // try {
          //    const response = await api.post("/confirm-pin", {
@@ -83,8 +102,8 @@ const Otp = ({
          {/* {errors.otp && (
             <div className="text-danger mb-3">{errors.message}</div>
          )} */}
-         <div className="flex flex-col gap-3 mb-auto">
-            <OtpInput handleOtpChange={(otp: string) => console.log(otp)} />
+         <div className="flex flex-col gap-6 mb-auto">
+            <OtpInput handleOtpChange={(otp: string) => setOtp(otp)} />
             <span className="self-center">
                {`Didn't receive OTP? `}
                <NavLink className="font-bold" to={"/login"}>
@@ -93,11 +112,15 @@ const Otp = ({
             </span>
          </div>
 
+         {loginMessage && <p className="text-center">{loginMessage}</p>}
+
          <div className="w-full flex gap-4 text-center">
             <CustomButton type="button" handleClick={handlePrevForm} isPrevBtn>
                Previous
             </CustomButton>
-            <CustomButton type="submit">Next</CustomButton>
+            <CustomButton type="submit" isDisabled={isLoading}>
+               {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
+            </CustomButton>
          </div>
       </Forms>
    );

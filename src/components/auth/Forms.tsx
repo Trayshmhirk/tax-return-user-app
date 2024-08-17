@@ -42,7 +42,7 @@ const Forms = ({
                {/* Render connecting line except for the last item */}
                {i < totalForms && (
                   <div
-                     className={`w-14 h-[3px] ${
+                     className={`w-12 h-[3px] sm:w-14 ${
                         isCurrentForm && i < isCurrentForm
                            ? "bg-richElectricBlue"
                            : "bg-spanishGray"

@@ -34,6 +34,8 @@ const SignUp = () => {
                onPrev={handlePrevForm}
             />
          )}
+
+         {currentForm === 3 && <div>Select category form</div>}
       </>
    );
 };
