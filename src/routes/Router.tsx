@@ -10,6 +10,7 @@ import FormLayout from "../layouts/FormLayout";
 import { ErrorPage } from "../pages/ErrorPage";
 import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
+import SignUp from "../pages/auth/SignUp";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -34,15 +35,26 @@ const Video = lazy(() => import("../pages/Video"));
 const router = createBrowserRouter(
    createRoutesFromElements(
       <>
+         {/* Login */}
          <Route
             element={
                <Suspense fallback={<PageLoader />}>
                   <FormLayout />
                </Suspense>
             }
-            errorElement={<ErrorPage />}
          >
             <Route path="login" element={<Login />} />
+         </Route>
+
+         {/* Login */}
+         <Route
+            element={
+               <Suspense fallback={<PageLoader />}>
+                  <FormLayout />
+               </Suspense>
+            }
+         >
+            <Route path="sign-up" element={<SignUp />} />
          </Route>
 
          <Route
@@ -52,6 +64,7 @@ const router = createBrowserRouter(
                   <MainLayout />
                </Suspense>
             }
+            errorElement={<ErrorPage />}
          >
             <Route
                path="not-approved"

@@ -142,3 +142,12 @@ export type ILoginForm = {
    email: string;
    password: string;
 };
+
+export type ISignUpForm = {
+   firstName: string;
+   lastName: string;
+   phone: string;
+   email: string;
+   password: string;
+   confirmPassword: string;
+};

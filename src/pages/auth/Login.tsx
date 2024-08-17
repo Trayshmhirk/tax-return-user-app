@@ -78,7 +78,7 @@ const Login = () => {
          description="Please enter your details"
       >
          <div className="flex flex-col gap-4 mb-auto">
-            <FormInput
+            <FormInput<ILoginForm>
                label="Email address"
                type="email"
                register={register}
@@ -86,7 +86,7 @@ const Login = () => {
                placeholder="Example@email.com"
                error={errors}
             />
-            <FormInput
+            <FormInput<ILoginForm>
                label="Password"
                type="password"
                register={register}
