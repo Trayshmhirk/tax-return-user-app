@@ -21,23 +21,40 @@ const Forms = ({
    isDocUpload,
    onCancel,
 }: FormLayoutPropType) => {
-   const totalForms = 5;
-   //
+   const totalForms = 4;
+
+   // Helper function to render form index as circles with lines
    const renderFormIndex = () => {
       const formIndex = [];
 
       for (let i = 1; i <= totalForms; i++) {
          formIndex.push(
-            <div
-               key={i}
-               className={`form-index h-[5px] bg-americanSilver rounded-lg ${isCurrentForm && i <= isCurrentForm && "bg-richElectricBlue"}`}
-            ></div>
+            <div key={i} className="flex items-center">
+               <div
+                  className={`flex items-center justify-center w-9 h-9 font-medium rounded-full border-[3px] ${
+                     isCurrentForm && i <= isCurrentForm
+                        ? "bg-richElectricBlue text-white border-richElectricBlue"
+                        : "bg-white text-mutedGray border-spanishGray"
+                  }`}
+               >
+                  {i}
+               </div>
+               {/* Render connecting line except for the last item */}
+               {i < totalForms && (
+                  <div
+                     className={`w-14 h-[3px] ${
+                        isCurrentForm && i < isCurrentForm
+                           ? "bg-richElectricBlue"
+                           : "bg-spanishGray"
+                     }`}
+                  ></div>
+               )}
+            </div>
          );
       }
 
       return formIndex;
    };
-
    return (
       <form
          className={`relative w-full h-full flex flex-col justify-center gap-7 px-6 py-8 bg-white dark:bg-gray text-eerieBlack dark:text-white z-30 ${isCurrentForm ? "md:w-[540px]" : "md:w-[400px]"}  sm:px-12 sm:py-10 sm:rounded-xl`}
@@ -52,11 +69,7 @@ const Forms = ({
             </div>
          )}
 
-         {isCurrentForm && (
-            <div className="flex gap-1">{renderFormIndex()}</div>
-         )}
-
-         <div className="flex flex-col items-center gap-4 text-center">
+         <div className="flex flex-col items-center gap-4  text-center">
             {!isCurrentForm && (
                <img
                   width="48"
@@ -69,9 +82,15 @@ const Forms = ({
             <div className="flex flex-col gap-1">
                <h2 className="text-2xl font-bold">{title}</h2>
                <p className={`${isCategoryDesc ? "" : "text-xs"}`}>
-                  {description}
+                  {isCurrentForm ? "" : description}
                </p>
             </div>
+
+            {isCurrentForm && (
+               <div className="w-full flex justify-center">
+                  {renderFormIndex()}
+               </div>
+            )}
          </div>
 
          {children}
