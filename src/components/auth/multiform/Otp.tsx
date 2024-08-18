@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import Forms from "./Forms";
-import CustomButton from "../CustomButton";
-import OtpInput from "./OtpInput";
+import Forms from "../Forms";
+import CustomButton from "../../form-components/CustomButton";
+import OtpInput from "../../form-components/OtpInput";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 

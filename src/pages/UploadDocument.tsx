@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import UploadPdfImage from "../components/UploadPdfImage";
-import { DocumentCard } from "../components/DocumentCard";
-import DocumentTypeIcon from "../components/DocumentTypeIcon";
+import SearchAndFilter from "../components/common/SearchAndFilter";
+import UploadPdfImage from "../components/common/UploadPdfImage";
+import { DocumentCard } from "../components/cards/DocumentCard";
+import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
 

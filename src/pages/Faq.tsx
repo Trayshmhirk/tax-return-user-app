@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import TextArea from "../components/TextArea";
-import CustomButton from "../components/CustomButton";
-import { Accordion } from "../components/Accordion";
+import SearchAndFilter from "../components/common/SearchAndFilter";
+import TextArea from "../components/form-components/TextArea";
+import CustomButton from "../components/form-components/CustomButton";
+import { Accordion } from "../components/common/Accordion";
 import { faqs } from "../mocks/AllMockData";
 import { QuestionsPropsType } from "../types/AllTypes";
 

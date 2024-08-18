@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import UploadPdfImage from "../components/UploadPdfImage";
-import ReceiptCard from "../components/ReceiptCard";
+import SearchAndFilter from "../components/common/SearchAndFilter";
+import UploadPdfImage from "../components/common/UploadPdfImage";
+import ReceiptCard from "../components/cards/ReceiptCard";
 import { useNavigate } from "react-router-dom";
 import { ReceiptsPropTypes } from "../types/AllTypes";
 import { receipts } from "../mocks/AllMockData";

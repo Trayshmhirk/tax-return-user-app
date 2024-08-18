@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { createUserSchema } from "../../validation/schema";
-import { ISignUpForm } from "../../types/AllTypes";
+import { createUserSchema } from "../../../validation/schema";
+import { ISignUpForm } from "../../../types/AllTypes";
 import { SetStateAction, useState } from "react";
-import Forms from "./Forms";
-import FormInput from "./FormInput";
-import CustomButton from "../CustomButton";
+import Forms from "../Forms";
+import FormInput from "../../form-components/FormInput";
+import CustomButton from "../../form-components/CustomButton";
 import { ClipLoader } from "react-spinners";
 import { NavLink } from "react-router-dom";
 

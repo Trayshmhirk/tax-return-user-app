@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CustomButton from "./CustomButton";
-import RadioCheckInput from "./RadioCheckInput";
-import { SelectCategoryPropTypes } from "../types/AllTypes";
-import { categoryList } from "../mocks/AllMockData";
-import Forms from "./auth/Forms";
+import CustomButton from "../../form-components/CustomButton";
+import RadioCheckInput from "../../form-components/RadioCheckInput";
+import { SelectCategoryPropTypes } from "../../../types/AllTypes";
+import { categoryList } from "../../../mocks/AllMockData";
+import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 

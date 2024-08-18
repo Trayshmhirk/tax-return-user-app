@@ -1,7 +1,7 @@
 import { useState } from "react";
-import UserForm from "../../components/auth/UserForm";
-import Otp from "../../components/auth/Otp";
-import SelectCategory from "../../components/SelectCategory";
+import UserForm from "../../components/auth/multiform/UserForm";
+import Otp from "../../components/auth/multiform/Otp";
+import SelectCategory from "../../components/auth/multiform/SelectCategory";
 
 const SignUp = () => {
    const [currentForm, setCurrentForm] = useState(1);

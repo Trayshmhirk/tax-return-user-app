@@ -1,6 +1,6 @@
-import Hero from "../components/Hero";
+import Hero from "../components/home/Hero";
 import { BsCardChecklist } from "react-icons/bs";
-import TodoCard from "../components/TodoCard";
+import TodoCard from "../components/cards/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineAddCard } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";

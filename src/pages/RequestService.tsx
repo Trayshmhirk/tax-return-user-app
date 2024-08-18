@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SelectCategory from "../components/SelectCategory";
-import SelectService from "../components/SelectService";
+import SelectCategory from "../components/auth/multiform/SelectCategory";
+import SelectService from "../components/auth/multiform/SelectService";
 
 const RequestService = () => {
    const [currentForm, setCurrentForm] = useState(1);

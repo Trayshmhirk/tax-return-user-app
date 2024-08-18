@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Hero from "../components/Hero";
+import Hero from "../components/home/Hero";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { FaAngleLeft } from "react-icons/fa6";
-import { Accordion } from "../components/Accordion";
+import { Accordion } from "../components/common/Accordion";
 
 type StateProp = {
    documentNumber: string;

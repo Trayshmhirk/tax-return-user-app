@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
+import SearchAndFilter from "../components/common/SearchAndFilter";
 import { RequestsPropTypes } from "../types/AllTypes";
 import { requests } from "../mocks/AllMockData";
 
