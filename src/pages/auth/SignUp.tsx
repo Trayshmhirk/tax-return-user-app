@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UserForm from "../../components/auth/UserForm";
 import Otp from "../../components/auth/Otp";
+import SelectCategory from "../../components/SelectCategory";
 
 const SignUp = () => {
    const [currentForm, setCurrentForm] = useState(1);
@@ -26,7 +27,7 @@ const SignUp = () => {
 
          {currentForm === 2 && (
             <Otp
-               title="Otp verification"
+               title="OTP verification"
                description="Please enter your OTP (one-time password)"
                handleNextForm={handleNextForm}
                currentForm={currentForm}
@@ -35,7 +36,19 @@ const SignUp = () => {
             />
          )}
 
-         {currentForm === 3 && <div>Select category form</div>}
+         {currentForm === 3 && (
+            <SelectCategory
+               onNext={handleNextForm}
+               onPrev={handlePrevForm}
+               currentForm={currentForm}
+            />
+         )}
+
+         {currentForm === 4 && (
+            <div className="h-full flex flex-col self-center">
+               Upload Document
+            </div>
+         )}
       </>
    );
 };

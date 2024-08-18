@@ -14,7 +14,7 @@ const RequestService = () => {
       <div className="h-full flex flex-col self-center">
          {currentForm === 1 && (
             <SelectCategory
-               isSelectCategory
+               isRequestService
                onNext={handleNextForm}
                setSelectedCategory={setSelectedCategory}
             />

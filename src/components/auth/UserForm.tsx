@@ -32,7 +32,6 @@ const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
       // Simulate API call with setTimeout
       setTimeout(() => {
          setIsLoading(false);
-         console.log("Create user successful");
          // Navigate after mock success
          // navigate("/");
          onNext();
@@ -108,7 +107,11 @@ const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
          )}
 
          <div className="w-full text-center flex flex-col gap-3">
-            <CustomButton type="submit" isDisabled={isLoading}>
+            <CustomButton
+               type="submit"
+               isDisabled={isLoading}
+               isLoading={isLoading}
+            >
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
             </CustomButton>
             <span className="self-center text-sm">

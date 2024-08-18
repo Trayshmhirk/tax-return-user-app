@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import Forms from "./Forms";
-import { NavLink } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import OtpInput from "./OtpInput";
 import { ClipLoader } from "react-spinners";
@@ -38,14 +37,13 @@ const Otp = ({
    const onSubmit = async () => {
       // Check if OTP is empty
       if (!isRecoverPasswordOTP) {
-         console.log(email);
-         console.log(otp);
-
          setIsLoading(true);
 
          // Simulate API call with setTimeout
          setTimeout(() => {
             setIsLoading(false);
+            console.log(email);
+            console.log(otp);
             setLoginMessage("OTP verification successful!");
 
             setTimeout(() => {
@@ -102,13 +100,14 @@ const Otp = ({
          {/* {errors.otp && (
             <div className="text-danger mb-3">{errors.message}</div>
          )} */}
+
          <div className="flex flex-col gap-6 mb-auto">
             <OtpInput handleOtpChange={(otp: string) => setOtp(otp)} />
             <span className="self-center">
                {`Didn't receive OTP? `}
-               <NavLink className="font-bold" to={"/login"}>
+               <span className="font-bold text-richElectricBlue underline cursor-pointer">
                   Resend
-               </NavLink>
+               </span>
             </span>
          </div>
 
@@ -118,7 +117,11 @@ const Otp = ({
             <CustomButton type="button" handleClick={handlePrevForm} isPrevBtn>
                Previous
             </CustomButton>
-            <CustomButton type="submit" isDisabled={isLoading}>
+            <CustomButton
+               type="submit"
+               isDisabled={isLoading}
+               isLoading={isLoading}
+            >
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
             </CustomButton>
          </div>

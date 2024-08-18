@@ -6,7 +6,6 @@ type FormLayoutPropType = {
    title: string;
    description: string;
    isCurrentForm?: number;
-   isCategoryDesc?: boolean;
    isDocUpload?: boolean;
    onCancel?: () => void;
 };
@@ -17,7 +16,6 @@ const Forms = ({
    title,
    description,
    isCurrentForm,
-   isCategoryDesc,
    isDocUpload,
    onCancel,
 }: FormLayoutPropType) => {
@@ -82,9 +80,7 @@ const Forms = ({
 
             <div className="flex flex-col gap-1">
                <h2 className="text-2xl font-bold">{title}</h2>
-               <p className={`${isCategoryDesc ? "" : "text-xs"}`}>
-                  {isCurrentForm ? "" : description}
-               </p>
+               <p className="text-xs">{description}</p>
             </div>
 
             {isCurrentForm && (

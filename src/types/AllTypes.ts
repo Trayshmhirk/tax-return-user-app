@@ -30,9 +30,11 @@ export type ServicesListTypes = {
 };
 
 export type SelectCategoryPropTypes = {
-   isSelectCategory: boolean;
+   isRequestService?: boolean;
    onNext: () => void;
-   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+   onPrev?: () => void;
+   setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
+   currentForm?: number;
 };
 
 export type CategoryListTypes = {

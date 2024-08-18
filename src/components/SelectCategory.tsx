@@ -1,19 +1,25 @@
 import { useState } from "react";
 import CustomButton from "./CustomButton";
-import { useNavigate } from "react-router-dom";
 import RadioCheckInput from "./RadioCheckInput";
 import { SelectCategoryPropTypes } from "../types/AllTypes";
 import { categoryList } from "../mocks/AllMockData";
+import Forms from "./auth/Forms";
+import { useForm } from "react-hook-form";
+import { ClipLoader } from "react-spinners";
 
 const SelectCategory = ({
-   isSelectCategory,
+   isRequestService,
    onNext,
    setSelectedCategory,
+   onPrev,
+   currentForm,
 }: SelectCategoryPropTypes) => {
-   const navigate = useNavigate();
+   const { handleSubmit } = useForm();
 
+   const [isLoading, setIsLoading] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+   const [category, setCategory] = useState("");
    // const [selectedCheckBox, setSelectedCheckBox] = useState([]);
 
    // const handleCheckBoxChange = (value) => {
@@ -30,24 +36,34 @@ const SelectCategory = ({
    const handleRadioChange = (value: string) => {
       setCheckedRadio(value);
       setIsButtonDisabled(!value);
-      setSelectedCategory(value);
+      setSelectedCategory && setSelectedCategory(value);
+      setCategory(value);
    };
 
    const onSubmit = () => {
-      isSelectCategory
-         ? onNext()
-         : navigate("/retention-form", {
-              //   state: { data: selectedCheckBox },
-           });
+      if (isRequestService) {
+         onNext();
+      } else {
+         setIsLoading(true);
+
+         // Simulate API call with setTimeout
+         setTimeout(() => {
+            setIsLoading(false);
+            console.log(category);
+            // Navigate after mock success
+            // navigate("/");
+            onNext();
+         }, 2000); // Mock API call delay of 2 seconds
+      }
    };
 
-   // const handlePrevForm = () => {
-   //    navigate(-1);
-   // };
+   const handlePrevForm = () => {
+      onPrev && onPrev();
+   };
 
    return (
       <>
-         {isSelectCategory ? (
+         {isRequestService ? (
             <div className="h-full flex flex-col justify-between">
                <div className="flex flex-col gap-7">
                   <h2 className="font-medium text-xl">
@@ -71,48 +87,47 @@ const SelectCategory = ({
                   handleClick={onSubmit}
                   type="submit"
                   isDisabled={isButtonDisabled}
+                  isLoading={isLoading}
                >
                   Proceed
                </CustomButton>
             </div>
          ) : (
-            <></>
-            // <FormLayout>
-            //    <FormContainer
-            //       handleLogin={handleSubmit(onSubmit)}
-            //       description="Select the category you fall under"
-            //       isCategoryDesc
-            //       isCurrentForm={3}
-            //    >
-            //       <div className="d-flex flex-column gap-3 overflow-y-scroll mb-auto p-1">
-            //          {categoryList.map((category, index) => (
-            //             <RadioAndCheckLabel
-            //                key={index}
-            //                value={category.name}
-            //                register={register}
-            //                isCheckBox
-            //                isChecked={selectedCheckBox.includes(
-            //                   `${category.name}`
-            //                )}
-            //                onRadioAndCheckChange={handleCheckBoxChange}
-            //             />
-            //          ))}
-            //       </div>
+            <Forms
+               handleSubmit={handleSubmit(onSubmit)}
+               title="Select category"
+               description=""
+               isCurrentForm={currentForm}
+            >
+               <div className="flex flex-col gap-3 mb-auto mt-2">
+                  {categoryList.map((category, index) => (
+                     <RadioCheckInput
+                        key={index}
+                        value={category.name}
+                        isRadio
+                        isChecked={checkedRadio === `${category.name}`}
+                        onRadioAndCheckChange={handleRadioChange}
+                     />
+                  ))}
+               </div>
 
-            //       <div className="w-100 text-center d-flex gap-4">
-            //          <CustomButton
-            //             type="button"
-            //             handleClick={handlePrevForm}
-            //             isPrevBtn
-            //          >
-            //             Previous
-            //          </CustomButton>
-            //          <CustomButton type="submit" isDisabled={isButtonDisabled}>
-            //             Next
-            //          </CustomButton>
-            //       </div>
-            //    </FormContainer>
-            // </FormLayout>
+               <div className="w-full flex gap-4 text-center">
+                  <CustomButton
+                     type="button"
+                     handleClick={handlePrevForm}
+                     isPrevBtn
+                  >
+                     Previous
+                  </CustomButton>
+                  <CustomButton type="submit" isDisabled={isButtonDisabled}>
+                     {isLoading ? (
+                        <ClipLoader color="#ffffff" size={20} />
+                     ) : (
+                        "Next"
+                     )}
+                  </CustomButton>
+               </div>
+            </Forms>
          )}
       </>
    );
