@@ -45,6 +45,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
    };
 
    const title = getTitle(location.pathname);
+   const isSettings = location.pathname === "/settings/profile";
 
    return (
       <div
@@ -52,7 +53,9 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
       >
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div className="content relative py-10 px-6 overflow-scroll sm:px-8 md:px-16">
+         <div
+            className={`content relative  px-6 ${isSettings ? "py-7 overflow-hidden sm:px-8 md:px-14" : "py-10 overflow-scroll sm:px-8 md:px-16"}`}
+         >
             {children}
          </div>
       </div>

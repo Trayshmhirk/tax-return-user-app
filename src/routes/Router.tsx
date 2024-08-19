@@ -11,6 +11,7 @@ import { ErrorPage } from "../pages/ErrorPage";
 import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "../pages/auth/SignUp";
+import SettingsLayout from "../layouts/SettingsLayout";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -46,7 +47,7 @@ const router = createBrowserRouter(
             <Route path="login" element={<Login />} />
          </Route>
 
-         {/* Login */}
+         {/* Sign up */}
          <Route
             element={
                <Suspense fallback={<PageLoader />}>
@@ -141,15 +142,25 @@ const router = createBrowserRouter(
                }
             />
             <Route
-               path="profile/"
+               path="settings/"
                element={
-                  <ProtectedRoute>
-                     <Profile />
-                  </ProtectedRoute>
+                  <Suspense fallback={<PageLoader />}>
+                     <SettingsLayout />
+                  </Suspense>
                }
+               errorElement={<ErrorPage />}
             >
+               <Route
+                  path="profile"
+                  element={
+                     <ProtectedRoute>
+                        <Profile />
+                     </ProtectedRoute>
+                  }
+               />
                <Route path="my-requests" element={<MyRequests />} />
             </Route>
+
             <Route path="terms-and-conditions" element={<Terms />} />
             <Route path="help-and-support" element={<Help />} />
             <Route path="privacy-policy" element={<Privacy />} />

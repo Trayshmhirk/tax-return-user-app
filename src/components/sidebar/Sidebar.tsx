@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { navItemsData } from "../../mocks/NavItemData";
 import { NavItems } from "./NavItems";
 import { HamburgerIcon } from "../icons/HamburgerIcon";
@@ -117,9 +117,9 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                   </div>
                </div>
 
-               <div
+               <NavLink
                   className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 px-[10px] gap-2 md:gap-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
-                  onClick={() => handleNavigate("profile")}
+                  to={"/settings/profile"}
                >
                   <div
                      className={`${isOpen ? "w-8 h-8" : "w-6 h-6"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
@@ -137,7 +137,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                         </span>
                      </div>
                   )}
-               </div>
+               </NavLink>
             </div>
          </aside>
       </>

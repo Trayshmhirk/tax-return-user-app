@@ -38,6 +38,11 @@
       width: calc(100% - 250px);
    }
 
+   .settings-content-layout {
+      width: 100%;
+      width: calc(100% - 200px);
+   }
+
    .content {
       height: calc(100vh - 90px);
    }
