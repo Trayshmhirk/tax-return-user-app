@@ -1,6 +1,6 @@
 import { SetStateAction } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { useSidebar } from "../hooks/UseSidebar";
+import { useSidebar } from "../../hooks/UseSidebar";
 
 const SearchAndFilter = ({
    title,

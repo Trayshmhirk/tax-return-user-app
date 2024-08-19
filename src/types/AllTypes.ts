@@ -30,9 +30,11 @@ export type ServicesListTypes = {
 };
 
 export type SelectCategoryPropTypes = {
-   isSelectCategory: boolean;
+   isRequestService?: boolean;
    onNext: () => void;
-   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+   onPrev?: () => void;
+   setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
+   currentForm?: number;
 };
 
 export type CategoryListTypes = {
@@ -141,4 +143,13 @@ export type RequestsPropTypes = {
 export type ILoginForm = {
    email: string;
    password: string;
+};
+
+export type ISignUpForm = {
+   firstName: string;
+   lastName: string;
+   phone: string;
+   email: string;
+   password: string;
+   confirmPassword: string;
 };

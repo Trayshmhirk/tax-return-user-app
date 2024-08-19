@@ -1,15 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { navItemsData } from "../mocks/NavItemData";
+import { navItemsData } from "../../mocks/NavItemData";
 import { NavItems } from "./NavItems";
-import { HamburgerIcon } from "./HamburgerIcon";
+import { HamburgerIcon } from "../icons/HamburgerIcon";
 import { BiLogOut } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
-import { useSidebar } from "../hooks/UseSidebar";
+import { useSidebar } from "../../hooks/UseSidebar";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
-import Overlay from "./Overlay";
+import { ThemeContext } from "../../context/ThemeContext";
+import Overlay from "../common/Overlay";
 
 type SidebarProps = {
    isNotApproved?: boolean;

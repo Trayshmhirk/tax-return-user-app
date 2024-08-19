@@ -13,27 +13,27 @@ import {
 export const servicesList: ServicesListTypes[] = [
    {
       title: "Accounting",
-      service_id: "",
+      service_id: "1",
    },
    {
       title: "Attestation services",
-      service_id: "",
+      service_id: "2",
    },
    {
       title: "Management consulting",
-      service_id: "",
+      service_id: "3",
    },
    {
       title: "Tax services",
-      service_id: "",
+      service_id: "4",
    },
    {
       title: "Payment services",
-      service_id: "",
+      service_id: "5",
    },
    {
       title: "Other",
-      service_id: "",
+      service_id: "6",
    },
 ];
 

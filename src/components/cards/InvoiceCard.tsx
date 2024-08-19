@@ -1,4 +1,4 @@
-import { InvoicePropTypes } from "../types/AllTypes";
+import { InvoicePropTypes } from "../../types/AllTypes";
 
 type InvoiceCardPropTypes = {
    handleClick: (invoice: InvoicePropTypes) => void;

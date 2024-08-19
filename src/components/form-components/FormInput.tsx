@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import {
+   FieldErrors,
+   FieldValues,
+   Path,
+   UseFormRegister,
+} from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { ILoginForm } from "../../types/AllTypes";
 
-type FormInputPropTypes = {
+type FormInputPropTypes<T extends FieldValues> = {
    label: string;
    type: string;
-   register: UseFormRegister<ILoginForm>;
-   name: keyof ILoginForm;
-   error?: FieldErrors<ILoginForm>;
+   register: UseFormRegister<T>;
+   name: Path<T>; // Use ValidInputNames here
+   error?: FieldErrors<T>;
    placeholder: string;
    isReadOnly?: boolean;
 };
 
-const FormInput = ({
+const FormInput = <T extends FieldValues>({
    label,
    type,
    register,
@@ -21,29 +25,38 @@ const FormInput = ({
    error,
    placeholder,
    isReadOnly,
-}: FormInputPropTypes) => {
+}: FormInputPropTypes<T>) => {
    const [showPassword, setShowPassword] = useState(false);
 
    const togglePasswordVisibility = () => {
       setShowPassword((prevShowPassword) => !prevShowPassword);
    };
 
+   // Extract error message as a string or default to an empty string
+   const errorMessage = error?.[name]?.message as string | undefined;
+
    return (
-      <div className="flex flex-col gap-1 input">
+      <div className="w-full flex flex-col gap-1">
          <div className="">
-            <label className="w-fit text-sm text-mutedGray dark:text-ghostWhite font-bold">
+            <label
+               htmlFor={name}
+               className="w-fit text-sm text-mutedGray dark:text-ghostWhite font-bold"
+            >
                {label}
             </label>
          </div>
 
          <div
-            className={`h-12 flex justify-between py-3 px-5 border  ${error && error[name] ? "border-[#dc3545]" : "border-spanishGray"} rounded`}
+            className={`h-12 flex justify-between py-3 px-5 border ${
+               errorMessage ? "border-[#dc3545]" : "border-spanishGray"
+            } rounded`}
          >
             <input
+               id={name}
                className="w-full outline-none dark:bg-transparent"
                placeholder={placeholder}
                type={type === "password" && showPassword ? "text" : type}
-               {...register(name)}
+               {...register(name as Path<T>)}
                readOnly={isReadOnly}
             />
             {type === "password" && (
@@ -60,8 +73,8 @@ const FormInput = ({
                </button>
             )}
          </div>
-         {error && error[name] && (
-            <p className="text-[#dc3545] text-xs">{error[name].message}</p>
+         {errorMessage && (
+            <p className="text-[#dc3545] text-xs">{errorMessage}</p>
          )}
       </div>
    );

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CardDropdown } from "./CardDropdown";
-import DocumentTypeIcon from "./DocumentTypeIcon";
+import { CardDropdown } from "../common/CardDropdown";
+import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { FaSquareCheck } from "react-icons/fa6";
-import { FileType, DocumentCardPropsTypes } from "../types/AllTypes";
+import { FileType, DocumentCardPropsTypes } from "../../types/AllTypes";
 
 export const DocumentCard = ({
    docId,

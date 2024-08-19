@@ -1,5 +1,5 @@
 import { FaSquareCheck } from "react-icons/fa6";
-import FormPreviewImg from "../assets/preview-form image.jpg";
+import FormPreviewImg from "../../assets/preview-form image.jpg";
 import { IoRadioButtonOnSharp } from "react-icons/io5";
 
 type RadioCheckInputPropTypes = {

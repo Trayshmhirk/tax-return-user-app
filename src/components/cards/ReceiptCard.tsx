@@ -1,5 +1,5 @@
-import ReceiptImg from "../assets/invoice-image.jpeg";
-import { ReceiptCardPropTypes } from "../types/AllTypes";
+import ReceiptImg from "../../assets/invoice-image.jpeg";
+import { ReceiptCardPropTypes } from "../../types/AllTypes";
 
 const ReceiptCard = ({
    receiptId,

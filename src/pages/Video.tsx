@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import WatchImg from "../assets/watch-large.png";
 import { MdOutlinePlayCircle } from "react-icons/md";
-import VideoCard from "../components/VideoCard";
+import VideoCard from "../components/cards/VideoCard";
 import { videoData } from "../mocks/AllMockData";
 
 const Video = () => {

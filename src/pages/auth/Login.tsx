@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Forms from "../../components/auth/Forms";
 import { logInSchema } from "../../validation/schema";
-import FormInput from "../../components/auth/FormInput";
+import FormInput from "../../components/form-components/FormInput";
 import { ILoginForm } from "../../types/AllTypes";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomButton from "../../components/CustomButton";
+import CustomButton from "../../components/form-components/CustomButton";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 
@@ -78,7 +78,7 @@ const Login = () => {
          description="Please enter your details"
       >
          <div className="flex flex-col gap-4 mb-auto">
-            <FormInput
+            <FormInput<ILoginForm>
                label="Email address"
                type="email"
                register={register}
@@ -86,7 +86,7 @@ const Login = () => {
                placeholder="Example@email.com"
                error={errors}
             />
-            <FormInput
+            <FormInput<ILoginForm>
                label="Password"
                type="password"
                register={register}

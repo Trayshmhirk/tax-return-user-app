@@ -1,6 +1,6 @@
 import { MdOutlineNotifications } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useSidebar } from "../hooks/UseSidebar";
+import { useSidebar } from "../../hooks/UseSidebar";
 
 type HeaderProps = {
    title: string;

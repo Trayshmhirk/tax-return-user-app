@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CustomButton from "./CustomButton";
-import TextArea from "./TextArea";
-import RadioCheckInput from "./RadioCheckInput";
-import { SelectServicePropType } from "../types/AllTypes";
-import { servicesList } from "../mocks/AllMockData";
+import CustomButton from "../../form-components/CustomButton";
+import TextArea from "../../form-components/TextArea";
+import RadioCheckInput from "../../form-components/RadioCheckInput";
+import { SelectServicePropType } from "../../../types/AllTypes";
+import { servicesList } from "../../../mocks/AllMockData";
 
 const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    const [checkedRadio, setCheckedRadio] = useState("");
@@ -12,7 +12,6 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    const [selectedServiceId, setSelectedServiceId] = useState<
       string | undefined
    >("");
-   const [selectedFile] = useState<File | undefined>(undefined);
 
    const handleRadioChange = (value: string, serviceId: string | undefined) => {
       setCheckedRadio(value);
@@ -31,79 +30,9 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
       }
    };
 
-   function getBase64(file: File): Promise<string | ArrayBuffer | null> {
-      return new Promise((resolve, reject) => {
-         const reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = () => resolve(reader.result);
-         reader.onerror = (error) => reject(error);
-      });
-   }
-
-   const handleRequestTaxNotice = async () => {
-      if (selectedFile) {
-         const base64File = await getBase64(selectedFile);
-
-         console.log(base64File);
-         console.log(selectedCategory);
-
-         // in megabytes
-         const fileSizeInBytes = selectedFile.size;
-         console.log(fileSizeInBytes);
-
-         // const fileSizeInMB = (fileSizeInBytes / (1024 * 1024)).toFixed(2);
-         // const { email, token } = userProfile;
-         //    try {
-         //       const uploadResponse = await api.post(
-         //          "/request-tax-notice",
-         //          {
-         //             category: selectedCategory,
-         //             documents: [
-         //                {
-         //                   name: selectedFile.name,
-         //                   size: fileSizeInMB,
-         //                   type: selectedFile.type,
-         //                   image: base64File,
-         //                },
-         //             ],
-         //          },
-         //          {
-         //             headers: {
-         //                useremail: email,
-         //                usertoken: token,
-         //             },
-         //          }
-         //       );
-
-         //       // If upload is successful, add the new document to the Redux state
-         //       if (uploadResponse.status === 200) {
-         //          // Optionally fetch the updated list of documents from the server
-         //          const updatedDocuments = await getTaxNotice(email, token);
-         //          dispatch(setTaxNoticeDoc(updatedDocuments.data.taxnotices));
-
-         //          setConfirmationModal({
-         //             show: true,
-         //             title: "Your tax notice request has been successful",
-         //             content:
-         //                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-         //          });
-
-         //          setTimeout(() => {
-         //             setConfirmationModal({ show: false });
-         //             navigate(-1);
-         //          }, 2000);
-         //       }
-
-         //       // Handle successful response here
-         //    } catch (error) {
-         //       console.error("API Error:", error);
-         //       // Handle error, log it, or display a user-friendly message
-         //    }
-      }
-   };
-
    const onSubmit = async () => {
       console.log(selectedServiceId);
+      console.log(selectedCategory);
 
       // const { email, token } = userProfile;
       // try {
@@ -173,9 +102,8 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
          </div>
 
          <CustomButton
-            handleClick={
-               checkedRadio === "Tax notice" ? handleRequestTaxNotice : onSubmit
-            }
+            type="button"
+            handleClick={onSubmit}
             isDisabled={isButtonDisabled}
          >
             {checkedRadio === "Tax notice"

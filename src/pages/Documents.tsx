@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import UploadPdfImage from "../components/UploadPdfImage";
-import SearchAndFilter from "../components/SearchAndFilter";
+import UploadPdfImage from "../components/common/UploadPdfImage";
+import SearchAndFilter from "../components/common/SearchAndFilter";
 import React, { useState } from "react";
-import { DocumentCard } from "../components/DocumentCard";
+import { DocumentCard } from "../components/cards/DocumentCard";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
 

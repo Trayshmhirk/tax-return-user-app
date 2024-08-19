@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import InvoiceCard from "../components/InvoiceCard";
+import SearchAndFilter from "../components/common/SearchAndFilter";
+import InvoiceCard from "../components/cards/InvoiceCard";
 import { invoices } from "../mocks/AllMockData";
 import { InvoicePropTypes } from "../types/AllTypes";
 

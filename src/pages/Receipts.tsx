@@ -1,10 +1,11 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import UploadPdfImage from "../components/UploadPdfImage";
-import ReceiptCard from "../components/ReceiptCard";
+import SearchAndFilter from "../components/common/SearchAndFilter";
+import UploadPdfImage from "../components/common/UploadPdfImage";
+import ReceiptCard from "../components/cards/ReceiptCard";
 import { useNavigate } from "react-router-dom";
 import { ReceiptsPropTypes } from "../types/AllTypes";
 import { receipts } from "../mocks/AllMockData";
+import { getBase64 } from "../helpers/getBase64";
 
 const Receipts = () => {
    const navigate = useNavigate();
@@ -68,15 +69,6 @@ const Receipts = () => {
            (receipt) => searchReceipts(receipt) && filterByDate(receipt)
         )
       : [];
-
-   function getBase64(file: File): Promise<string | ArrayBuffer | null> {
-      return new Promise((resolve, reject) => {
-         const reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = () => resolve(reader.result);
-         reader.onerror = (error) => reject(error);
-      });
-   }
 
    const handleSelectedFile = async (
       e: React.ChangeEvent<HTMLInputElement>
