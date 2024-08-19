@@ -31,7 +31,7 @@ export const NavItems = ({
       onClick={onClick}
       data-testid={`joyride-step-${id}`} // Add this data-testid for Joyride
    >
-      <NavIcon className={`w-6 h-6 ${isActive ? "text-white" : ""}`} />
-      {isCollapsed && <p className="text-base">{title}</p>}
+      <NavIcon className={`w-5 h-5 ${isActive ? "text-white" : ""}`} />
+      {isCollapsed && <p className="text-sm font-medium">{title}</p>}
    </div>
 );

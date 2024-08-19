@@ -51,12 +51,12 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             <div className="h-full flex flex-col justify-between">
                <div className="flex flex-col gap-4">
                   <div
-                     className={`flex ${isOpen ? "items-center justify-between" : "w-fit flex-col-reverse items-center gap-3"} `}
+                     className={`flex ${isOpen ? "items-center justify-between" : "w-fit flex-col-reverse items-center self-center gap-4"} `}
                   >
                      <div className="w-fit text-darkElectricBlue">
                         <img
-                           width="48"
-                           height="48"
+                           width="44"
+                           height="44"
                            src="https://img.icons8.com/external-flatarticons-blue-flatarticons/65/external-tax-taxes-flatarticons-blue-flatarticons.png"
                            alt="external-tax-taxes-flatarticons-blue-flatarticons"
                         />
@@ -100,15 +100,15 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      >
                         <>
                            {isDarkMode ? (
-                              <MdOutlineLightMode className="w-6 h-6 text-white" />
+                              <MdOutlineLightMode className="w-5 h-5 text-white" />
                            ) : (
-                              <BsMoonStars className="w-6 h-6 text-eerieBlack" />
+                              <BsMoonStars className="w-5 h-5 text-eerieBlack" />
                            )}
                         </>
 
                         {isOpen && (
                            <>
-                              <p className="text-base text-eerieBlack dark:text-white">
+                              <p className="text-sm font-medium text-eerieBlack dark:text-white">
                                  {isDarkMode ? "Light Mode" : "Dark Mode"}
                               </p>
                            </>
@@ -118,7 +118,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                </div>
 
                <div
-                  className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 gap-2 md:gap-3 md:px-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
+                  className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 px-[10px] gap-2 md:gap-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
                   onClick={() => handleNavigate("profile")}
                >
                   <div
