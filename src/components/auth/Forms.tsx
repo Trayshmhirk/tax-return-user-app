@@ -1,4 +1,4 @@
-import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleLeft, FaCheck } from "react-icons/fa6";
 
 type FormLayoutPropType = {
    children: React.ReactNode;
@@ -8,6 +8,7 @@ type FormLayoutPropType = {
    isCurrentForm?: number;
    isDocUpload?: boolean;
    onCancel?: () => void;
+   isFormSuccess?: { completed: boolean; index: number }[];
 };
 
 const Forms = ({
@@ -18,6 +19,7 @@ const Forms = ({
    isCurrentForm,
    isDocUpload,
    onCancel,
+   isFormSuccess,
 }: FormLayoutPropType) => {
    const totalForms = 4;
 
@@ -35,7 +37,11 @@ const Forms = ({
                         : "bg-white text-mutedGray border-spanishGray"
                   }`}
                >
-                  {i}
+                  {isFormSuccess && isFormSuccess[i - 1].completed ? (
+                     <FaCheck />
+                  ) : (
+                     i
+                  )}
                </div>
                {/* Render connecting line except for the last item */}
                {i < totalForms && (

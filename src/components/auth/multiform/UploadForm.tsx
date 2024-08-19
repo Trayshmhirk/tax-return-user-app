@@ -10,9 +10,16 @@ import { useNavigate } from "react-router-dom";
 type UploadFormPropTypes = {
    onPrev: () => void;
    currentForm: number;
+   formSuccess: { completed: boolean; index: number }[];
+   setFormSuccess: (success: boolean) => void;
 };
 
-const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
+const UploadForm = ({
+   onPrev,
+   currentForm,
+   formSuccess,
+   setFormSuccess,
+}: UploadFormPropTypes) => {
    const { handleSubmit } = useForm();
    const navigate = useNavigate();
 
@@ -80,14 +87,18 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
          type: fileData.file.type,
       }));
 
-      console.log(documents);
-
       // Simulate API call with setTimeout
       setTimeout(() => {
          setIsLoading(false);
-         // Navigate after mock success
-         navigate("/");
-         // onNext();
+         documents;
+         setFormSuccess(true);
+
+         if (documents) {
+            setTimeout(() => {
+               // Navigate after mock success
+               navigate("/");
+            }, 2000);
+         }
       }, 2000);
 
       // try {
@@ -122,6 +133,7 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
          title="Upload Files"
          description=""
          isCurrentForm={currentForm}
+         isFormSuccess={formSuccess}
       >
          <div className="flex flex-col gap-4 mb-auto mt-2">
             {/* First Upload Field */}

@@ -13,6 +13,8 @@ type OtpPropTypes = {
    onNext: () => void;
    onPrev: () => void;
    isRecoverPasswordOTP?: boolean;
+   formSuccess: { completed: boolean; index: number }[];
+   setFormSuccess: (success: boolean) => void;
 };
 
 const Otp = ({
@@ -23,11 +25,12 @@ const Otp = ({
    onNext,
    onPrev,
    isRecoverPasswordOTP,
+   formSuccess,
+   setFormSuccess,
 }: OtpPropTypes) => {
    const [otp, setOtp] = useState("");
    const [isLoading, setIsLoading] = useState(false);
    const [loginMessage, setLoginMessage] = useState<string | null>(null);
-
    const {
       handleSubmit,
       // register,
@@ -42,17 +45,15 @@ const Otp = ({
          // Simulate API call with setTimeout
          setTimeout(() => {
             setIsLoading(false);
-            console.log(email);
-            console.log(otp);
+            email;
+            otp;
             setLoginMessage("OTP verification successful!");
+            setFormSuccess(true);
 
             setTimeout(() => {
                setLoginMessage("");
                onNext();
             }, 2000);
-
-            // Navigate after mock success
-            // navigate("/");
          }, 2000);
       } else {
          // try {
@@ -96,6 +97,7 @@ const Otp = ({
          title={title}
          description={description}
          isCurrentForm={isRecoverPasswordOTP ? undefined : currentForm}
+         isFormSuccess={formSuccess}
       >
          {/* {errors.otp && (
             <div className="text-danger mb-3">{errors.message}</div>

@@ -13,9 +13,17 @@ type UserFormPropTypes = {
    onNext: () => void;
    currentForm: number;
    setOTPEmail: React.Dispatch<SetStateAction<string>>;
+   formSuccess: { completed: boolean; index: number }[];
+   setFormSuccess: (success: boolean) => void;
 };
 
-const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
+const UserForm = ({
+   onNext,
+   currentForm,
+   setOTPEmail,
+   formSuccess,
+   setFormSuccess,
+}: UserFormPropTypes) => {
    const [isLoading, setIsLoading] = useState(false);
    const [loginError] = useState<string | null>(null);
 
@@ -32,9 +40,12 @@ const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
       // Simulate API call with setTimeout
       setTimeout(() => {
          setIsLoading(false);
-         // Navigate after mock success
-         // navigate("/");
-         onNext();
+         setFormSuccess(true);
+
+         setTimeout(() => {
+            // Next after mock success
+            onNext();
+         }, 2000);
       }, 2000); // Mock API call delay of 2 seconds
    };
 
@@ -44,6 +55,7 @@ const UserForm = ({ onNext, currentForm, setOTPEmail }: UserFormPropTypes) => {
          title="Create account"
          description="Please enter your details"
          isCurrentForm={currentForm}
+         isFormSuccess={formSuccess}
       >
          <div className="flex flex-col gap-3 mb-auto">
             <div className="flex flex-col gap-4 sm:flex-row">
