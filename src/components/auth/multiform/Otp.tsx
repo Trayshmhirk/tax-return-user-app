@@ -30,6 +30,7 @@ const Otp = ({
 }: OtpPropTypes) => {
    const [otp, setOtp] = useState("");
    const [isLoading, setIsLoading] = useState(false);
+   const [error, setError] = useState<string | null>(null);
    const [loginMessage, setLoginMessage] = useState<string | null>(null);
    const {
       handleSubmit,
@@ -38,53 +39,34 @@ const Otp = ({
    } = useForm();
 
    const onSubmit = async () => {
-      // Check if OTP is empty
-      if (!isRecoverPasswordOTP) {
-         setIsLoading(true);
+      // Check for OTP length and validity
+      if (otp.length < 6) {
+         setError("Invalid OTP: Please enter a 6-digit code.");
+         return; // Prevent further form submission
+      }
 
-         // Simulate API call with setTimeout
-         setTimeout(() => {
-            setIsLoading(false);
-            email;
-            otp;
+      // Check if OTP is empty
+      setIsLoading(true);
+
+      // Simulate API call with setTimeout
+      setTimeout(() => {
+         setIsLoading(false);
+         email;
+         otp;
+
+         // Replace with your actual OTP validation logic
+         if (otp === "123456") {
+            setError("");
             setLoginMessage("OTP verification successful!");
             setFormSuccess(true);
-
             setTimeout(() => {
                setLoginMessage("");
                onNext();
-            }, 2000);
-         }, 2000);
-      } else {
-         // try {
-         //    const response = await api.post("/confirm-pin", {
-         //       type: "email",
-         //       email: "harlex.mikkey@gmail.com",
-         //       pin: otp,
-         //    });
-         //    console.log(response.data);
-         // } catch (error) {
-         //    if (error.response) {
-         //       // The request was made and the server responded with a status code
-         //       // that falls out of the range of 2xx
-         //       console.log(error.response.data);
-         //       console.log(error.response.status);
-         //       console.log(error.response.headers);
-         //    } else if (error.request) {
-         //       // The request was made but no response was received
-         //       console.log(error.request);
-         //    } else {
-         //       // Something happened in setting up the request that triggered an Error
-         //       console.log("Error", error.message);
-         //    }
-         //    if (error.response) {
-         //       setError({
-         //          otpError: error.response.data.message,
-         //       });
-         //    }
-         // }
-         // onNext();
-      }
+            }, 700);
+         } else {
+            setError("Invalid OTP: Please try again.");
+         }
+      }, 2000);
    };
 
    const handlePrevForm = () => {
@@ -99,10 +81,6 @@ const Otp = ({
          isCurrentForm={isRecoverPasswordOTP ? undefined : currentForm}
          isFormSuccess={formSuccess}
       >
-         {/* {errors.otp && (
-            <div className="text-danger mb-3">{errors.message}</div>
-         )} */}
-
          <div className="flex flex-col gap-6 mb-auto">
             <OtpInput handleOtpChange={(otp: string) => setOtp(otp)} />
             <span className="self-center">
@@ -113,6 +91,7 @@ const Otp = ({
             </span>
          </div>
 
+         {error && <div className="text-bostonRed text-center">{error}</div>}
          {loginMessage && <p className="text-center">{loginMessage}</p>}
 
          <div className="w-full flex gap-4 text-center">

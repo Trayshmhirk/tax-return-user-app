@@ -45,7 +45,7 @@ const UserForm = ({
          setTimeout(() => {
             // Next after mock success
             onNext();
-         }, 2000);
+         }, 700);
       }, 2000); // Mock API call delay of 2 seconds
    };
 

@@ -28,6 +28,7 @@ const UploadForm = ({
    const [selectedFiles, setSelectedFiles] = useState<
       { file: File; base64: string | ArrayBuffer | null; sizeInMB: number }[]
    >([]);
+   const [error, setError] = useState<string | null>(null);
 
    const handleFileUpload = async (
       e: React.ChangeEvent<HTMLInputElement>,
@@ -77,6 +78,12 @@ const UploadForm = ({
    };
 
    const onSubmit = async () => {
+      // Profile picture validation
+      if (!selectedFiles[0]?.file) {
+         setError("Please upload a profile picture.");
+         return;
+      }
+
       setIsLoading(true);
 
       // Prepare documents array
@@ -92,12 +99,13 @@ const UploadForm = ({
          setIsLoading(false);
          documents;
          setFormSuccess(true);
+         setError("");
 
          if (documents) {
             setTimeout(() => {
                // Navigate after mock success
                navigate("/");
-            }, 2000);
+            }, 700);
          }
       }, 2000);
 
@@ -187,6 +195,7 @@ const UploadForm = ({
             </label>
          </div>
 
+         {error && <div className="text-bostonRed text-center">{error}</div>}
          <div className="w-full flex gap-4 text-center">
             <CustomButton type="button" handleClick={handlePrevForm} isPrevBtn>
                Previous
