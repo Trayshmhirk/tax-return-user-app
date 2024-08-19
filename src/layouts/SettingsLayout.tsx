@@ -12,7 +12,7 @@ const SettingsLayout = () => {
                <div className="w-[1px] h-full bg-eerieBlack dark:bg-white opacity-10" />
             </div>
 
-            <div className="settings-content-layout">
+            <div className="settings-content-layout px-2">
                <Outlet />
             </div>
          </div>

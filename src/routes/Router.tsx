@@ -159,12 +159,12 @@ const router = createBrowserRouter(
                   }
                />
                <Route path="my-requests" element={<MyRequests />} />
+               <Route path="terms-and-conditions" element={<Terms />} />
+               <Route path="help-and-support" element={<Help />} />
+               <Route path="privacy-policy" element={<Privacy />} />
+               <Route path="faq" element={<Faq />} />
             </Route>
 
-            <Route path="terms-and-conditions" element={<Terms />} />
-            <Route path="help-and-support" element={<Help />} />
-            <Route path="privacy-policy" element={<Privacy />} />
-            <Route path="faq" element={<Faq />} />
             <Route
                path="upload-document"
                element={

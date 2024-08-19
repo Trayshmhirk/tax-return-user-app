@@ -1,11 +1,11 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { navItemsData } from "../../mocks/NavItemData";
 import { NavItems } from "./NavItems";
 import { HamburgerIcon } from "../icons/HamburgerIcon";
 import { BiLogOut } from "react-icons/bi";
-import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
 import { useSidebar } from "../../hooks/UseSidebar";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -17,7 +17,6 @@ type SidebarProps = {
 
 const Sidebar = ({ isNotApproved }: SidebarProps) => {
    const location = useLocation();
-   const navigate = useNavigate();
 
    const themeContext = useContext(ThemeContext);
 
@@ -26,14 +25,13 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    if (!themeContext) return null; // Add a fallback for when context is not available
    const { isDarkMode, toggleTheme } = themeContext;
 
-   const handleNavigate = (route: string) => {
+   const handleToggleSidebar = () => {
       // Navigate to the corresponding page
 
       if (isNotApproved) {
          // display you dont have access modal
          return null;
       } else {
-         navigate(`/${route}`);
          isOpen && toggleSidebar();
       }
    };
@@ -73,7 +71,8 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                               key={navItem.id}
                               title={navItem.title}
                               navIcon={navItem.navIcon}
-                              onClick={() => handleNavigate(navItem.route)}
+                              linkTo={navItem.route}
+                              onClick={() => handleToggleSidebar()}
                               isActive={
                                  location.pathname === `/${navItem.route}`
                               }
@@ -93,51 +92,44 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                         onClick={() => console.log("Logout clicked")} // handleLogout function
                         isCollapsed={isOpen}
                      />
-
-                     <div
-                        onClick={toggleTheme}
-                        className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
-                     >
-                        <>
-                           {isDarkMode ? (
-                              <MdOutlineLightMode className="w-5 h-5 text-white" />
-                           ) : (
-                              <BsMoonStars className="w-5 h-5 text-eerieBlack" />
-                           )}
-                        </>
-
-                        {isOpen && (
-                           <>
-                              <p className="text-sm font-medium text-eerieBlack dark:text-white">
-                                 {isDarkMode ? "Light Mode" : "Dark Mode"}
-                              </p>
-                           </>
-                        )}
-                     </div>
                   </div>
                </div>
 
-               <NavLink
-                  className={`flex items-center bg-chineseWhite dark:bg-spanishGray p-2 px-[10px] gap-2 md:gap-3 rounded-lg hover-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
-                  to={"/settings/profile"}
-               >
+               <div className="flex flex-col gap-2">
                   <div
-                     className={`${isOpen ? "w-8 h-8" : "w-6 h-6"} flex items-center justify-center bg-lotion dark:bg-eerieBlack rounded-full`}
+                     onClick={toggleTheme}
+                     className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
                   >
-                     <FaUserAlt className="text-eerieBlack dark:text-white text-xs" />
+                     <>
+                        {isDarkMode ? (
+                           <MdOutlineLightMode className="w-5 h-5 text-white" />
+                        ) : (
+                           <BsMoonStars className="w-5 h-5 text-eerieBlack" />
+                        )}
+                     </>
+
+                     {isOpen && (
+                        <>
+                           <p className="text-sm font-medium text-eerieBlack dark:text-white">
+                              {isDarkMode ? "Light Mode" : "Dark Mode"}
+                           </p>
+                        </>
+                     )}
                   </div>
 
-                  {isOpen && (
-                     <div className="flex flex-col">
-                        <span className="text-eerieBlack text-sm font-medium">
-                           Frank M.
-                        </span>
-                        <span className="text-xs text-eerieBlack">
-                           harlex.mikkey@gm...
-                        </span>
-                     </div>
-                  )}
-               </NavLink>
+                  <NavLink
+                     className={`flex items-center p-[10px] gap-4 rounded-lg no-underline hover-bg-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
+                     to={"/settings/profile"}
+                  >
+                     <IoSettingsOutline className="w-5 h-5 text-eerieBlack dark:text-white" />
+
+                     {isOpen && (
+                        <p className="text-sm font-medium text-eerieBlack dark:text-white">
+                           Settings
+                        </p>
+                     )}
+                  </NavLink>
+               </div>
             </div>
          </aside>
       </>

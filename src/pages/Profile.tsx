@@ -16,7 +16,7 @@ const Profile = () => {
 
    return (
       <div className="flex flex-col gap-8 self-center">
-         <div className="h-[550px] flex flex-col gap-4 mt-4  px-2 overflow-scroll">
+         <div className="h-[550px] flex flex-col gap-4 mt-4 px-2 py-3 overflow-scroll">
             <div className="flex flex-col justify-center items-center gap-3 md:flex-row">
                <div className="w-16 h-16 flex items-center justify-center bg-brightGray dark:bg-spanishGray text-eerieBlack font-semibold rounded-full">
                   {initials}
