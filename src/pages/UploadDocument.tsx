@@ -5,6 +5,8 @@ import { DocumentCard } from "../components/cards/DocumentCard";
 import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
+import { getBase64 } from "../helpers/getBase64";
+import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 
 const UploadDocument = () => {
    const [searchInput, setSearchInput] = useState<string>("");
@@ -30,21 +32,6 @@ const UploadDocument = () => {
       setSelectedFilter(title);
    };
 
-   // Map file types to document types
-   const mapFileTypeToDocumentType = (fileType: FileType): string => {
-      const fileTypeMapping: Record<FileType, string> = {
-         "application/pdf": "PDF",
-         "image/png": "PNG",
-         "application/msword": "DOC",
-         "image/jpeg": "JPEG",
-         "application/vnd.ms-excel": "XLS",
-
-         // Add more mappings as needed
-      };
-      // Default to the original fileType if no mapping is founda
-      return fileTypeMapping[fileType] || fileType;
-   };
-
    const filterByDoctype = (doc: DocumentsPropTypes) => {
       if (selectedFilter === "" || selectedFilter === "All") {
          // if no filter is selected, all users should be included
@@ -59,15 +46,6 @@ const UploadDocument = () => {
         )
       : [];
 
-   function getBase64(file: File): Promise<string | ArrayBuffer | null> {
-      return new Promise((resolve, reject) => {
-         const reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = () => resolve(reader.result);
-         reader.onerror = (error) => reject(error);
-      });
-   }
-
    const handleSelectedFile = async (
       e: React.ChangeEvent<HTMLInputElement>
    ) => {
@@ -77,8 +55,7 @@ const UploadDocument = () => {
       for (let index = 0; index < selectedFiles.length; index++) {
          const selectedFile = selectedFiles[index];
          const base64File = await getBase64(selectedFile);
-
-         console.log(base64File);
+         base64File;
 
          setSelectedFile(selectedFile);
 

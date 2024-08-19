@@ -10,7 +10,7 @@ type OtpPropTypes = {
    description: string;
    email: string;
    currentForm: number;
-   handleNextForm: () => void;
+   onNext: () => void;
    onPrev: () => void;
    isRecoverPasswordOTP?: boolean;
 };
@@ -20,7 +20,7 @@ const Otp = ({
    description,
    email,
    currentForm,
-   handleNextForm,
+   onNext,
    onPrev,
    isRecoverPasswordOTP,
 }: OtpPropTypes) => {
@@ -48,7 +48,7 @@ const Otp = ({
 
             setTimeout(() => {
                setLoginMessage("");
-               handleNextForm();
+               onNext();
             }, 2000);
 
             // Navigate after mock success
@@ -82,7 +82,7 @@ const Otp = ({
          //       });
          //    }
          // }
-         // handleNextForm();
+         // onNext();
       }
    };
 

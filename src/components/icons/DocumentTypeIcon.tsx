@@ -13,6 +13,7 @@ const DocumentTypeIcon = ({ docType }: DocumentTypeIconProps) => {
                background: `
                      ${docType === "PDF" ? "#DB6262" : ""}
                      ${docType === "PNG" ? "#B255D3" : ""}
+                     ${docType === "JPEG" ? "#B255D3" : ""}
                      ${docType === "XLS" ? "#29CE9C" : ""}
                      ${docType === "DOC" ? "#29B0CE" : ""}
                   `,

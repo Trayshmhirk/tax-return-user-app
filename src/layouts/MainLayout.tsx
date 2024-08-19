@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar/Sidebar";
 import ContentLayout from "./ContentLayout";
 
 const MainLayout = () => {
