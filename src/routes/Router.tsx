@@ -15,10 +15,10 @@ import SettingsLayout from "../layouts/SettingsLayout";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
-const Home = lazy(() => import("../pages/Home"));
+const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
-const AddCard = lazy(() => import("../pages/AddCard"));
-const NotApprovedHome = lazy(() => import("../pages/NotApprovedHome"));
+const AddCard = lazy(() => import("../pages/payment/AddCard"));
+const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
 const Documents = lazy(() => import("../pages/Documents"));
 const Receipts = lazy(() => import("../pages/Receipts"));
 const LiveChat = lazy(() => import("../pages/LiveChat"));
