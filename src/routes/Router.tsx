@@ -23,15 +23,17 @@ const Documents = lazy(() => import("../pages/Documents"));
 const Receipts = lazy(() => import("../pages/Receipts"));
 const LiveChat = lazy(() => import("../pages/LiveChat"));
 const KnowledgeBase = lazy(() => import("../pages/KnowledgeBase"));
-const Transactions = lazy(() => import("../pages/Transactions"));
-const Profile = lazy(() => import("../pages/Profile"));
-const Terms = lazy(() => import("../pages/Terms"));
-const Help = lazy(() => import("../pages/Help"));
-const Privacy = lazy(() => import("../pages/Privacy"));
-const Faq = lazy(() => import("../pages/Faq"));
-const UploadDocument = lazy(() => import("../pages/UploadDocument"));
-const MyRequests = lazy(() => import("../pages/MyRequests"));
 const Video = lazy(() => import("../pages/Video"));
+const Transactions = lazy(() => import("../pages/Transactions"));
+const Profile = lazy(() => import("../pages/settings/Profile"));
+const Terms = lazy(() => import("../pages/settings/Terms"));
+const Help = lazy(() => import("../pages/settings/Help"));
+const Privacy = lazy(() => import("../pages/settings/Privacy"));
+const Faq = lazy(() => import("../pages/settings/Faq"));
+const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
+const IntegratedBanks = lazy(() => import("../pages/settings/IntegratedBanks"));
+const MyDocuments = lazy(() => import("../pages/settings/MyDocuments"));
+const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -163,6 +165,8 @@ const router = createBrowserRouter(
                <Route path="help-and-support" element={<Help />} />
                <Route path="privacy-policy" element={<Privacy />} />
                <Route path="faq" element={<Faq />} />
+               <Route path="integrated-banks" element={<IntegratedBanks />} />
+               <Route path="my-documents" element={<MyDocuments />} />
             </Route>
 
             <Route

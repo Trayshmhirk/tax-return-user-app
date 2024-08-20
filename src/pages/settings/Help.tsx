@@ -1,23 +1,16 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import TextArea from "../components/form-components/TextArea";
-import CustomButton from "../components/form-components/CustomButton";
-import { Accordion } from "../components/common/Accordion";
-import { faqs } from "../mocks/AllMockData";
-import { QuestionsPropsType } from "../types/AllTypes";
+import SearchAndFilter from "../../components/common/SearchAndFilter";
+import { Accordion } from "../../components/common/Accordion";
+import TextArea from "../../components/form-components/TextArea";
+import CustomButton from "../../components/form-components/CustomButton";
+import { QuestionsPropsType } from "../../types/AllTypes";
+import { help } from "../../mocks/AllMockData";
 
-const Faq = () => {
+const Help = () => {
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
    const [activeFilter, setActiveFilter] = useState("All");
-   const filterTitleList = [
-      "All",
-      "Services",
-      "Audits",
-      "Tax",
-      "Security",
-      "Technology",
-   ];
+   const filterTitleList = ["All", "Ask a question"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -32,20 +25,16 @@ const Faq = () => {
       setSelectedFilter(title);
    };
 
-   const filterByQuestions = (question: QuestionsPropsType) => {
+   const filterByQuestions = () => {
       if (selectedFilter === "" || selectedFilter === "All") {
          return true;
       }
-      return (
-         question.questionCategory?.toLowerCase() ===
-         selectedFilter.toLowerCase()
-      );
+      return;
    };
 
-   const filterQuestions = faqs
-      ? faqs.filter(
-           (question) =>
-              searchQuestions(question) && filterByQuestions(question)
+   const filterQuestions = help
+      ? help.filter(
+           (question) => searchQuestions(question) && filterByQuestions()
         )
       : [];
 
@@ -54,7 +43,7 @@ const Faq = () => {
    return (
       <div className="">
          <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
-            <h1 className="text-lg font-semibold">FAQs</h1>
+            <h1 className="text-lg font-semibold">Help and support</h1>
 
             <SearchAndFilter
                handleSearch={handleSearch}
@@ -93,4 +82,4 @@ const Faq = () => {
    );
 };
 
-export default Faq;
+export default Help;
