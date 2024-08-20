@@ -43,6 +43,8 @@ const Help = () => {
    return (
       <div className="">
          <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
+            <h1 className="text-lg font-semibold">Help and support</h1>
+
             <SearchAndFilter
                handleSearch={handleSearch}
                handleFilter={handleFilter}
@@ -51,7 +53,7 @@ const Help = () => {
                title={filterTitleList}
             />
 
-            <div className="flex flex-col gap-4 md:h-full">
+            <div className="flex flex-col gap-4">
                {filterQuestions.length ? (
                   filterQuestions.map((question, index) => (
                      <Accordion

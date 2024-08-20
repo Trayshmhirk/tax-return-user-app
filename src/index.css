@@ -21,12 +21,6 @@
 }
 
 @layer components {
-   .ellipses {
-      @apply absolute w-[340px] h-[340px] rounded-[340px] z-[-1];
-      background: rgba(0, 201, 141, 0.50);
-      filter: blur(190px);
-   }
-
    .circle {
       @apply absolute w-[385.321px] h-[385.321px] rounded-full;
       background: rgba(255, 255, 255, 0.30);
@@ -79,12 +73,6 @@
       @apply text-bostonRed border border-bostonRed;
       background: rgba(195, 0, 0, 0.05);
    }
-
-   /* @media screen and (min-width: 768px) {
-      .calc-width-two {
-         width: calc(100% / 4.20);
-      }
-   } */
 
    @media screen and (min-width: 1024px) {
       .content-layout {

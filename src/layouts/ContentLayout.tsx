@@ -28,12 +28,17 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
          case "/help-and-support":
          case "/upload-document":
             return "Upload document";
-         case "/settings/profile" ||
-            "/settings/faq" ||
-            "/settings/help-and-suppor" ||
-            "/settings/privacy-policy" ||
-            "/settings/my-requests" ||
-            "/settings/terms-and-conditions":
+         case "/settings/profile":
+            return "Account settings";
+         case "/settings/faq":
+            return "Account settings";
+         case "/settings/help-and-support":
+            return "Account settings";
+         case "/settings/privacy-policy":
+            return "Account settings";
+         case "/settings/my-requests":
+            return "Account settings";
+         case "/settings/terms-and-conditions":
             return "Account settings";
          default:
             return "";
@@ -43,7 +48,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
    const title = getTitle(location.pathname);
 
    // Check if current route starts with /settings/
-   const isSettings = location.pathname.startsWith("/settings/");
+   const isSettings = location.pathname.startsWith("/settings");
 
    return (
       <main
