@@ -363,4 +363,16 @@ export const requests: RequestsPropTypes[] = [
       requestDate: "string",
       service_title: "string",
    },
+   {
+      service_id: "string",
+      status: "Completed",
+      requestDate: "string",
+      service_title: "string",
+   },
+   {
+      service_id: "string",
+      status: "Paid",
+      requestDate: "string",
+      service_title: "string",
+   },
 ];
