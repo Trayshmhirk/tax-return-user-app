@@ -15,7 +15,7 @@ const PageLoader = () => {
 
    return (
       <div
-         className={`flex justify-center items-center ${isSettings ? "w-full h-full rounded-3xl" : "w-screen h-screen"} bg-ghostWhite dark:bg-gray`}
+         className={`flex justify-center items-center ${isSettings ? "w-full h-full bg-white rounded-3xl" : "w-screen h-screen bg-ghostWhite"}  dark:bg-gray`}
       >
          {isDarkMode ? (
             <ScaleLoader color="#ffffff" height={37} />

@@ -160,13 +160,34 @@ const router = createBrowserRouter(
                      </ProtectedRoute>
                   }
                />
-               <Route path="my-requests" element={<MyRequests />} />
+               <Route
+                  path="my-requests"
+                  element={
+                     <ProtectedRoute>
+                        <MyRequests />
+                     </ProtectedRoute>
+                  }
+               />
                <Route path="terms-and-conditions" element={<Terms />} />
                <Route path="help-and-support" element={<Help />} />
                <Route path="privacy-policy" element={<Privacy />} />
                <Route path="faq" element={<Faq />} />
-               <Route path="integrated-banks" element={<IntegratedBanks />} />
-               <Route path="my-documents" element={<MyDocuments />} />
+               <Route
+                  path="integrated-banks"
+                  element={
+                     <ProtectedRoute>
+                        <IntegratedBanks />
+                     </ProtectedRoute>
+                  }
+               />
+               <Route
+                  path="my-documents"
+                  element={
+                     <ProtectedRoute>
+                        <MyDocuments />
+                     </ProtectedRoute>
+                  }
+               />
             </Route>
 
             <Route
@@ -178,6 +199,8 @@ const router = createBrowserRouter(
                }
             />
          </Route>
+
+         <Route path="*" element={<ErrorPage />} />
       </>
    )
 );
