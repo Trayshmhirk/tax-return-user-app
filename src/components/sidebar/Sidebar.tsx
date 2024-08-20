@@ -25,6 +25,9 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    if (!themeContext) return null; // Add a fallback for when context is not available
    const { isDarkMode, toggleTheme } = themeContext;
 
+   // Check if current route starts with /settings/
+   const isSettingsActive = location.pathname.startsWith("/settings/");
+
    const handleToggleSidebar = () => {
       // Navigate to the corresponding page
 
@@ -118,13 +121,21 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                   </div>
 
                   <NavLink
-                     className={`flex items-center p-[10px] gap-4 rounded-lg no-underline hover-bg-shadow ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}`}
+                     className={`
+                        flex items-center p-[10px] gap-4 rounded-lg no-underline
+                        ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}
+                        ${isSettingsActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : " hover-bg-shadow"}
+                     `}
                      to={"/settings/profile"}
                   >
-                     <IoSettingsOutline className="w-5 h-5 text-eerieBlack dark:text-white" />
+                     <IoSettingsOutline
+                        className={`w-5 h-5 ${isSettingsActive ? "text-white" : "text-eerieBlack dark:text-white"} `}
+                     />
 
                      {isOpen && (
-                        <p className="text-sm font-medium text-eerieBlack dark:text-white">
+                        <p
+                           className={`text-sm font-medium ${isSettingsActive ? "text-white" : "text-eerieBlack dark:text-white"}`}
+                        >
                            Settings
                         </p>
                      )}

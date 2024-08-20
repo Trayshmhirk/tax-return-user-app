@@ -41,38 +41,40 @@ const Help = () => {
    const handleSubmitQuestion = () => {};
 
    return (
-      <div className="flex flex-col gap-7">
-         <SearchAndFilter
-            handleSearch={handleSearch}
-            handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-            title={filterTitleList}
-         />
+      <div className="">
+         <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
+            <SearchAndFilter
+               handleSearch={handleSearch}
+               handleFilter={handleFilter}
+               activeFilter={activeFilter}
+               setActiveFilter={setActiveFilter}
+               title={filterTitleList}
+            />
 
-         <div className="flex flex-col gap-4 md:h-full">
-            {filterQuestions.length ? (
-               filterQuestions.map((question, index) => (
-                  <Accordion
-                     key={index}
-                     question={question.question}
-                     answer={question.answer}
-                  />
-               ))
-            ) : (
-               <div className="flex flex-col gap-4">
-                  <TextArea
-                     label="Have a question?"
-                     placeholder="Type question here"
-                  />
-                  <CustomButton
-                     type="button"
-                     handleClick={handleSubmitQuestion}
-                  >
-                     Submit question
-                  </CustomButton>
-               </div>
-            )}
+            <div className="flex flex-col gap-4 md:h-full">
+               {filterQuestions.length ? (
+                  filterQuestions.map((question, index) => (
+                     <Accordion
+                        key={index}
+                        question={question.question}
+                        answer={question.answer}
+                     />
+                  ))
+               ) : (
+                  <div className="flex flex-col gap-4">
+                     <TextArea
+                        label="Have a question?"
+                        placeholder="Type question here"
+                     />
+                     <CustomButton
+                        type="button"
+                        handleClick={handleSubmitQuestion}
+                     >
+                        Submit question
+                     </CustomButton>
+                  </div>
+               )}
+            </div>
          </div>
       </div>
    );

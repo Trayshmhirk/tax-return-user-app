@@ -5,7 +5,7 @@ const SettingsAside = () => {
 
    return (
       <aside className="w-[185px] h-full">
-         <div className="h-[550px] flex flex-col gap-4 mt-4 px-2 pb-3 overflow-scroll">
+         <div className="h-[650px] flex flex-col gap-4 mt-4 px-2 overflow-scroll">
             <div className="flex flex-col gap-2">
                <h2 className="font-medium">Settings</h2>
 

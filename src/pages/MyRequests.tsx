@@ -39,58 +39,60 @@ const MyRequests = () => {
    const handleRequestCardClick = () => {};
 
    return (
-      <div className="flex flex-col gap-9">
-         <SearchAndFilter
-            handleSearch={handleSearch}
-            handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-            title={filterTitleList}
-         />
+      <div className="">
+         <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
+            <SearchAndFilter
+               handleSearch={handleSearch}
+               handleFilter={handleFilter}
+               activeFilter={activeFilter}
+               setActiveFilter={setActiveFilter}
+               title={filterTitleList}
+            />
 
-         <div className="w-full flex flex-wrap gap-5">
-            {filteredRequests.length ? (
-               <>
-                  {filteredRequests.map((request, index) => (
-                     <div
-                        key={index}
-                        onClick={handleRequestCardClick}
-                        className="relative w-full flex flex-col justify-center gap-3 bg-white dark:bg-gray p-6 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
-                     >
+            <div className="w-full flex flex-wrap gap-5">
+               {filteredRequests.length ? (
+                  <>
+                     {filteredRequests.map((request, index) => (
                         <div
-                           className={`
+                           key={index}
+                           onClick={handleRequestCardClick}
+                           className="relative w-full flex flex-col justify-center gap-3 bg-white dark:bg-gray p-6 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
+                        >
+                           <div
+                              className={`
                               absolute right-4 top-4 py-1 px-2 rounded
                               ${request.status.toLowerCase() === "pending" ? "pending" : ""}
                               ${request.status.toLowerCase() === "paid" ? "paid" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
                            `}
-                        >
-                           {request.status}
-                        </div>
+                           >
+                              {request.status}
+                           </div>
 
-                        <div className="text-lg">
-                           Request ID: {request.service_id}
-                        </div>
+                           <div className="text-lg">
+                              Request ID: {request.service_id}
+                           </div>
 
-                        <div className="flex gap-3">
-                           <p>Request: </p>
-                           <span className="text-richElectricBlue">
-                              {request.service_title}
-                           </span>
-                        </div>
+                           <div className="flex gap-3">
+                              <p>Request: </p>
+                              <span className="text-richElectricBlue">
+                                 {request.service_title}
+                              </span>
+                           </div>
 
-                        <div className="flex gap-3">
-                           <p>Request date: </p>
-                           <span className="">{request.requestDate}</span>
+                           <div className="flex gap-3">
+                              <p>Request date: </p>
+                              <span className="">{request.requestDate}</span>
+                           </div>
                         </div>
-                     </div>
-                  ))}
-               </>
-            ) : (
-               <p className="pending-text w-full text-center">
-                  Nothing to show here.
-               </p>
-            )}
+                     ))}
+                  </>
+               ) : (
+                  <p className="pending-text w-full text-center">
+                     Nothing to show here.
+                  </p>
+               )}
+            </div>
          </div>
       </div>
    );
