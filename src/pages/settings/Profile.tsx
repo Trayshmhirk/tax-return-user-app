@@ -14,12 +14,12 @@ const Profile = () => {
    const initials = getInitials("Frank Micheal");
 
    return (
-      <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
+      <>
          <h1 className="text-lg font-semibold">My Profile</h1>
 
          <div className="flex flex-col gap-5">
-            <div className="flex items-center justify-between p-4 border border-chineseWhite dark:border-opacity-50 rounded-xl">
-               <div className="flex flex-col items-center gap-4 md:flex-row">
+            <div className="flex items-start justify-between p-4 border border-chineseWhite dark:border-opacity-50 rounded-xl sm:items-center">
+               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                   <div className="w-16 h-16 flex items-center justify-center bg-brightGray dark:bg-spanishGray text-eerieBlack font-semibold rounded-full">
                      {initials}
                   </div>
@@ -56,16 +56,16 @@ const Profile = () => {
                   </div>
                </div>
 
-               <div className="flex flex-col gap-7">
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="flex flex-col gap-1 flex-grow">
+               <div className="flex flex-col gap-4 sm:gap-7">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            First Name
                         </p>
                         <p className="font-medium">Micheal</p>
                      </div>
 
-                     <div className="flex flex-col gap-1 flex-grow">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Last Name
                         </p>
@@ -73,8 +73,8 @@ const Profile = () => {
                      </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="flex flex-col gap-1 flex-grow">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Email address
                         </p>
@@ -83,7 +83,7 @@ const Profile = () => {
                         </p>
                      </div>
 
-                     <div className="flex flex-col gap-1 flex-grow">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Phone
                         </p>
@@ -91,8 +91,8 @@ const Profile = () => {
                      </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="flex flex-col gap-1 flex-grow">
+                  <div className="grid grid-cols-1  sm:grid-cols-2 gap-4">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            User category
                         </p>
@@ -114,16 +114,16 @@ const Profile = () => {
                   </div>
                </div>
 
-               <div className="flex flex-col gap-7">
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="flex flex-col gap-1 flex-grow">
+               <div className="flex flex-col gap-4 sm:gap-7">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Country
                         </p>
                         <p className="font-medium">Nigeria</p>
                      </div>
 
-                     <div className="flex flex-col gap-1 flex-grow">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            City/state
                         </p>
@@ -131,15 +131,15 @@ const Profile = () => {
                      </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="flex flex-col gap-1 flex-grow">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Postal code
                         </p>
                         <p className="font-medium">105690</p>
                      </div>
 
-                     <div className="flex flex-col gap-1 flex-grow">
+                     <div className="flex flex-col gap-1">
                         <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                            Tax ID
                         </p>
@@ -149,7 +149,7 @@ const Profile = () => {
                </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 

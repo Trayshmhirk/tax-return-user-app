@@ -34,7 +34,7 @@
 
    .settings-content-layout {
       width: 100%;
-      width: calc(100% - 200px);
+      width: calc(100% - 0px);
    }
 
    .content {
@@ -89,6 +89,11 @@
       .content-layout {
          width: 100%;
          width: calc(100% - 300px);
+      }
+
+      .settings-content-layout {
+         width: 100%;
+         width: calc(100% - 226px);
       }
    }
 

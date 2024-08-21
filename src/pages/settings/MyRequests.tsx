@@ -39,64 +39,62 @@ const MyRequests = () => {
    const handleRequestCardClick = () => {};
 
    return (
-      <div className="">
-         <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
-            <h1 className="text-lg font-semibold">My requests</h1>
+      <>
+         <h1 className="text-lg font-semibold">My requests</h1>
 
-            <SearchAndFilter
-               handleSearch={handleSearch}
-               handleFilter={handleFilter}
-               activeFilter={activeFilter}
-               setActiveFilter={setActiveFilter}
-               title={filterTitleList}
-            />
+         <SearchAndFilter
+            handleSearch={handleSearch}
+            handleFilter={handleFilter}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            title={filterTitleList}
+         />
 
-            <div className="w-full flex flex-wrap gap-5">
-               {filteredRequests.length ? (
-                  <>
-                     {filteredRequests.map((request, index) => (
+         <div className="w-full flex flex-wrap gap-5">
+            {filteredRequests.length ? (
+               <>
+                  {filteredRequests.map((request, index) => (
+                     <div
+                        key={index}
+                        onClick={handleRequestCardClick}
+                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
+                     >
                         <div
-                           key={index}
-                           onClick={handleRequestCardClick}
-                           className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
-                        >
-                           <div
-                              className={`
+                           className={`
                               absolute right-4 top-4 py-1 px-2 text-xs rounded
                               ${request.status.toLowerCase() === "pending" ? "pending" : ""}
                               ${request.status.toLowerCase() === "paid" ? "paid" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
                            `}
-                           >
-                              {request.status}
-                           </div>
-
-                           <div className="text">
-                              Request ID: {request.service_id}
-                           </div>
-
-                           <div className="text-sm flex gap-3">
-                              <p>Request: </p>
-                              <span className="text-richElectricBlue">
-                                 {request.service_title}
-                              </span>
-                           </div>
-
-                           <div className="text-sm flex gap-3">
-                              <p>Request date: </p>
-                              <span className="">{request.requestDate}</span>
-                           </div>
+                        >
+                           {request.status}
                         </div>
-                     ))}
-                  </>
-               ) : (
-                  <p className="pending-text w-full text-center">
-                     Nothing to show here.
-                  </p>
-               )}
-            </div>
+
+                        <div className="text">
+                           Request ID: {request.service_id}
+                        </div>
+
+                        <div className="text-sm flex gap-3">
+                           <p>Request: </p>
+                           <span className="text-richElectricBlue">
+                              {request.service_title}
+                           </span>
+                        </div>
+
+                        <div className="text-sm flex gap-3">
+                           <p>Request date: </p>
+                           <span className="">{request.requestDate}</span>
+                        </div>
+                     </div>
+                  ))}
+               </>
+            ) : (
+               <p className="pending-text w-full text-center">
+                  Nothing to show here.
+               </p>
+            )}
          </div>
-      </div>
+      </>
    );
 };
 

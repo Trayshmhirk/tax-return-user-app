@@ -37,35 +37,33 @@ const Help = () => {
       : [];
 
    return (
-      <div className="">
-         <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
-            <h1 className="text-lg font-semibold">Help and support</h1>
+      <>
+         <h1 className="text-lg font-semibold">Help and support</h1>
 
-            <SearchAndFilter
-               handleSearch={handleSearch}
-               handleFilter={handleFilter}
-               activeFilter={activeFilter}
-               setActiveFilter={setActiveFilter}
-               title={filterTitleList}
-            />
+         <SearchAndFilter
+            handleSearch={handleSearch}
+            handleFilter={handleFilter}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            title={filterTitleList}
+         />
 
-            <div className="flex flex-col gap-4">
-               {filterQuestions.length ? (
-                  filterQuestions.map((question, index) => (
-                     <Accordion
-                        key={index}
-                        question={question.question}
-                        answer={question.answer}
-                     />
-                  ))
-               ) : (
-                  <p className="pending-text w-full text-center">
-                     No results found.
-                  </p>
-               )}
-            </div>
+         <div className="flex flex-col gap-4">
+            {filterQuestions.length ? (
+               filterQuestions.map((question, index) => (
+                  <Accordion
+                     key={index}
+                     question={question.question}
+                     answer={question.answer}
+                  />
+               ))
+            ) : (
+               <p className="pending-text w-full text-center">
+                  No results found.
+               </p>
+            )}
          </div>
-      </div>
+      </>
    );
 };
 

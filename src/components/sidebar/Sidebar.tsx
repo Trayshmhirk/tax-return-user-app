@@ -46,7 +46,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             className={`fixed inset-y-0 z-50 transform ${
                isOpen ? "translate-x-0" : "-translate-x-full"
             } sm:static sm:translate-x-0 transition-transform duration-300 ease-in-out ${
-               isOpen ? "w-[275px] lg:w-[300px]" : "w-fit px-4"
+               isOpen ? "w-[265px] lg:w-[300px]" : "w-fit px-4"
             } flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
          >
             <div className="h-full flex flex-col justify-between">
