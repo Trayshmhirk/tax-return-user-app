@@ -10,9 +10,16 @@ import { useNavigate } from "react-router-dom";
 type UploadFormPropTypes = {
    onPrev: () => void;
    currentForm: number;
+   formSuccess: { completed: boolean; index: number }[];
+   setFormSuccess: (success: boolean) => void;
 };
 
-const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
+const UploadForm = ({
+   onPrev,
+   currentForm,
+   formSuccess,
+   setFormSuccess,
+}: UploadFormPropTypes) => {
    const { handleSubmit } = useForm();
    const navigate = useNavigate();
 
@@ -21,6 +28,7 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
    const [selectedFiles, setSelectedFiles] = useState<
       { file: File; base64: string | ArrayBuffer | null; sizeInMB: number }[]
    >([]);
+   const [error, setError] = useState<string | null>(null);
 
    const handleFileUpload = async (
       e: React.ChangeEvent<HTMLInputElement>,
@@ -70,6 +78,12 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
    };
 
    const onSubmit = async () => {
+      // Profile picture validation
+      if (!selectedFiles[0]?.file) {
+         setError("Please upload a profile picture.");
+         return;
+      }
+
       setIsLoading(true);
 
       // Prepare documents array
@@ -80,14 +94,19 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
          type: fileData.file.type,
       }));
 
-      console.log(documents);
-
       // Simulate API call with setTimeout
       setTimeout(() => {
          setIsLoading(false);
-         // Navigate after mock success
-         navigate("/");
-         // onNext();
+         documents;
+         setFormSuccess(true);
+         setError("");
+
+         if (documents) {
+            setTimeout(() => {
+               // Navigate after mock success
+               navigate("/");
+            }, 700);
+         }
       }, 2000);
 
       // try {
@@ -122,6 +141,7 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
          title="Upload Files"
          description=""
          isCurrentForm={currentForm}
+         isFormSuccess={formSuccess}
       >
          <div className="flex flex-col gap-4 mb-auto mt-2">
             {/* First Upload Field */}
@@ -175,6 +195,7 @@ const UploadForm = ({ onPrev, currentForm }: UploadFormPropTypes) => {
             </label>
          </div>
 
+         {error && <div className="text-bostonRed text-center">{error}</div>}
          <div className="w-full flex gap-4 text-center">
             <CustomButton type="button" handleClick={handlePrevForm} isPrevBtn>
                Previous

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import { RequestsPropTypes } from "../types/AllTypes";
-import { requests } from "../mocks/AllMockData";
+import SearchAndFilter from "../../components/common/SearchAndFilter";
+import { RequestsPropTypes } from "../../types/AllTypes";
+import { requests } from "../../mocks/AllMockData";
 
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -27,7 +27,7 @@ const MyRequests = () => {
          // if no filter is selected, all users should be included
          return true;
       }
-      return request.status === selectedFilter.toLowerCase();
+      return request.status.toLowerCase() === selectedFilter.toLowerCase();
    };
 
    const filteredRequests = requests
@@ -39,7 +39,9 @@ const MyRequests = () => {
    const handleRequestCardClick = () => {};
 
    return (
-      <div className="flex flex-col gap-9">
+      <>
+         <h1 className="text-lg font-semibold">My requests</h1>
+
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
@@ -55,11 +57,11 @@ const MyRequests = () => {
                      <div
                         key={index}
                         onClick={handleRequestCardClick}
-                        className="relative w-full flex flex-col justify-center gap-3 bg-white dark:bg-gray p-6 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
+                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
                      >
                         <div
                            className={`
-                              absolute right-4 top-4 py-1 px-2 rounded
+                              absolute right-4 top-4 py-1 px-2 text-xs rounded
                               ${request.status.toLowerCase() === "pending" ? "pending" : ""}
                               ${request.status.toLowerCase() === "paid" ? "paid" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
@@ -68,18 +70,18 @@ const MyRequests = () => {
                            {request.status}
                         </div>
 
-                        <div className="text-lg">
+                        <div className="text">
                            Request ID: {request.service_id}
                         </div>
 
-                        <div className="flex gap-3">
+                        <div className="text-sm flex gap-3">
                            <p>Request: </p>
                            <span className="text-richElectricBlue">
                               {request.service_title}
                            </span>
                         </div>
 
-                        <div className="flex gap-3">
+                        <div className="text-sm flex gap-3">
                            <p>Request date: </p>
                            <span className="">{request.requestDate}</span>
                         </div>
@@ -92,7 +94,7 @@ const MyRequests = () => {
                </p>
             )}
          </div>
-      </div>
+      </>
    );
 };
 

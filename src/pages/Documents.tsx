@@ -3,8 +3,9 @@ import UploadPdfImage from "../components/common/UploadPdfImage";
 import SearchAndFilter from "../components/common/SearchAndFilter";
 import React, { useState } from "react";
 import { DocumentCard } from "../components/cards/DocumentCard";
-import { DocumentsPropTypes, FileType } from "../types/AllTypes";
+import { DocumentsPropTypes } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
+import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 
 const Documents = () => {
    const navigate = useNavigate();
@@ -25,21 +26,6 @@ const Documents = () => {
 
    const handleFilter = (title: string) => {
       setSelectedFilter(title);
-   };
-
-   // Map file types to document types
-   const mapFileTypeToDocumentType = (fileType: FileType) => {
-      const fileTypeMapping: Record<FileType, string> = {
-         "application/pdf": "PDF",
-         "image/png": "PNG",
-         "application/msword": "DOC",
-         "image/jpeg": "JPEG",
-         "application/vnd.ms-excel": "XLS",
-
-         // Add more mappings as needed
-      };
-      // Default to the original fileType if no mapping is founda
-      return fileTypeMapping[fileType];
    };
 
    const filterByDoctype = (doc: DocumentsPropTypes) => {

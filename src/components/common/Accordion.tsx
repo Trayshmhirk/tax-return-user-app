@@ -14,17 +14,36 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
 
    return (
       <div className="accordion">
-         <div className="flex flex-col bg-white dark:bg-gray p-4 rounded-md shadow-md dark:shadow-md-dark hover-shadow-body">
-            <h2 className="accordion-header py-1" onClick={handleToggle}>
+         <div className="flex flex-col bg-white dark:bg-gray px-4 py-3 rounded-md shadow-md dark:shadow-md-dark hover-shadow-body">
+            <h2
+               className="accordion-header flex items-center justify-between py-1"
+               onClick={handleToggle}
+            >
                <button
                   className="font-semibold rounded-md w-full text-left"
                   type="button"
                >
                   {question}
                </button>
+
+               <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`transition transform duration-300 ease-in-out dark:fill-gray-300 ${
+                     isOpen ? "rotate-180" : ""
+                  }`}
+               >
+                  <path
+                     d="M5 10L10 5L15 10L13.59 11.41L10 7.84L6.41 11.41L5 10Z"
+                     fill="currentColor"
+                  />
+               </svg>
             </h2>
             <div
-               className={`overflow-hidden transition-height duration-700 ease-in-out ${
+               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   isOpen ? "max-h-screen" : "max-h-0"
                }`}
             >

@@ -11,26 +11,29 @@ import { ErrorPage } from "../pages/ErrorPage";
 import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "../pages/auth/SignUp";
+import SettingsLayout from "../layouts/SettingsLayout";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
-const Home = lazy(() => import("../pages/Home"));
+const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
-const AddCard = lazy(() => import("../pages/AddCard"));
-const NotApprovedHome = lazy(() => import("../pages/NotApprovedHome"));
+const AddCard = lazy(() => import("../pages/payment/AddCard"));
+const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
 const Documents = lazy(() => import("../pages/Documents"));
 const Receipts = lazy(() => import("../pages/Receipts"));
 const LiveChat = lazy(() => import("../pages/LiveChat"));
 const KnowledgeBase = lazy(() => import("../pages/KnowledgeBase"));
-const Transactions = lazy(() => import("../pages/Transactions"));
-const Profile = lazy(() => import("../pages/Profile"));
-const Terms = lazy(() => import("../pages/Terms"));
-const Help = lazy(() => import("../pages/Help"));
-const Privacy = lazy(() => import("../pages/Privacy"));
-const Faq = lazy(() => import("../pages/Faq"));
-const UploadDocument = lazy(() => import("../pages/UploadDocument"));
-const MyRequests = lazy(() => import("../pages/MyRequests"));
 const Video = lazy(() => import("../pages/Video"));
+const Transactions = lazy(() => import("../pages/Transactions"));
+const Profile = lazy(() => import("../pages/settings/Profile"));
+const Terms = lazy(() => import("../pages/settings/Terms"));
+const Help = lazy(() => import("../pages/settings/Help"));
+const Privacy = lazy(() => import("../pages/settings/Privacy"));
+const Faq = lazy(() => import("../pages/settings/Faq"));
+const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
+const IntegratedBanks = lazy(() => import("../pages/settings/IntegratedBanks"));
+const MyDocuments = lazy(() => import("../pages/settings/MyDocuments"));
+const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -46,7 +49,7 @@ const router = createBrowserRouter(
             <Route path="login" element={<Login />} />
          </Route>
 
-         {/* Login */}
+         {/* Sign up */}
          <Route
             element={
                <Suspense fallback={<PageLoader />}>
@@ -141,19 +144,52 @@ const router = createBrowserRouter(
                }
             />
             <Route
-               path="profile/"
+               path="settings/"
                element={
-                  <ProtectedRoute>
-                     <Profile />
-                  </ProtectedRoute>
+                  <Suspense fallback={<PageLoader />}>
+                     <SettingsLayout />
+                  </Suspense>
                }
+               errorElement={<ErrorPage />}
             >
-               <Route path="my-requests" element={<MyRequests />} />
+               <Route
+                  path="profile"
+                  element={
+                     <ProtectedRoute>
+                        <Profile />
+                     </ProtectedRoute>
+                  }
+               />
+               <Route
+                  path="my-requests"
+                  element={
+                     <ProtectedRoute>
+                        <MyRequests />
+                     </ProtectedRoute>
+                  }
+               />
+               <Route path="terms-and-conditions" element={<Terms />} />
+               <Route path="help-and-support" element={<Help />} />
+               <Route path="privacy-policy" element={<Privacy />} />
+               <Route path="faq" element={<Faq />} />
+               <Route
+                  path="integrated-banks"
+                  element={
+                     <ProtectedRoute>
+                        <IntegratedBanks />
+                     </ProtectedRoute>
+                  }
+               />
+               <Route
+                  path="my-documents"
+                  element={
+                     <ProtectedRoute>
+                        <MyDocuments />
+                     </ProtectedRoute>
+                  }
+               />
             </Route>
-            <Route path="terms-and-conditions" element={<Terms />} />
-            <Route path="help-and-support" element={<Help />} />
-            <Route path="privacy-policy" element={<Privacy />} />
-            <Route path="faq" element={<Faq />} />
+
             <Route
                path="upload-document"
                element={
@@ -163,6 +199,8 @@ const router = createBrowserRouter(
                }
             />
          </Route>
+
+         <Route path="*" element={<ErrorPage />} />
       </>
    )
 );

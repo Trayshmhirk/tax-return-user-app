@@ -13,6 +13,8 @@ const SelectCategory = ({
    setSelectedCategory,
    onPrev,
    currentForm,
+   formSuccess,
+   setFormSuccess,
 }: SelectCategoryPropTypes) => {
    const { handleSubmit } = useForm();
 
@@ -49,10 +51,13 @@ const SelectCategory = ({
          // Simulate API call with setTimeout
          setTimeout(() => {
             setIsLoading(false);
-            console.log(category);
-            // Navigate after mock success
-            // navigate("/");
-            onNext();
+            category;
+            setFormSuccess && setFormSuccess(true);
+
+            setTimeout(() => {
+               // Next after mock success
+               onNext();
+            }, 700);
          }, 2000); // Mock API call delay of 2 seconds
       }
    };
@@ -98,6 +103,7 @@ const SelectCategory = ({
                title="Select category"
                description=""
                isCurrentForm={currentForm}
+               isFormSuccess={formSuccess && formSuccess}
             >
                <div className="flex flex-col gap-3 mb-auto mt-2">
                   {categoryList.map((category, index) => (

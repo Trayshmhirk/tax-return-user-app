@@ -1,10 +1,10 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import TextArea from "../components/form-components/TextArea";
-import CustomButton from "../components/form-components/CustomButton";
-import { Accordion } from "../components/common/Accordion";
-import { faqs } from "../mocks/AllMockData";
-import { QuestionsPropsType } from "../types/AllTypes";
+import SearchAndFilter from "../../components/common/SearchAndFilter";
+import TextArea from "../../components/form-components/TextArea";
+import CustomButton from "../../components/form-components/CustomButton";
+import { Accordion } from "../../components/common/Accordion";
+import { faqs } from "../../mocks/AllMockData";
+import { QuestionsPropsType } from "../../types/AllTypes";
 
 const Faq = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -52,7 +52,9 @@ const Faq = () => {
    const handleSubmitQuestion = () => {};
 
    return (
-      <div className="flex flex-col gap-7">
+      <>
+         <h1 className="text-lg font-semibold">FAQs</h1>
+
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
@@ -61,7 +63,7 @@ const Faq = () => {
             title={filterTitleList}
          />
 
-         <div className="flex flex-col gap-4 md:h-full">
+         <div className="flex flex-col gap-4">
             {filterQuestions.length ? (
                filterQuestions.map((question, index) => (
                   <Accordion
@@ -85,7 +87,7 @@ const Faq = () => {
                </div>
             )}
          </div>
-      </div>
+      </>
    );
 };
 

@@ -18,14 +18,11 @@ export const FileUploadProgress = ({
 
    return (
       <div className="flex flex-col gap-1">
-         <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-               <DocumentTypeIcon
-                  docType={mapFileTypeToDocumentType(file.type as FileType)}
-               />
-               <p className="text-xs font-medium">{file.name}</p>
-            </div>
-            <div className="text-xs text-mutedGray dark:text-white">{`${currentFileSize} of ${fileSizeInMB}mb`}</div>
+         <div className="flex items-center gap-2">
+            <DocumentTypeIcon
+               docType={mapFileTypeToDocumentType(file.type as FileType)}
+            />
+            <p className="text-xs font-medium">{file.name}</p>
          </div>
 
          <div className="w-full h-1 bg-spanishGray rounded-md">
@@ -35,7 +32,8 @@ export const FileUploadProgress = ({
             ></div>
          </div>
 
-         <div className="flex self-end">
+         <div className="flex justify-between">
+            <div className="text-xs text-mutedGray dark:text-white">{`${currentFileSize} of ${fileSizeInMB}mb`}</div>
             <div className="text-richElectricBlue text-xs">
                {`${progress === 100 ? "Uploaded" : "Uploading..."}`}
             </div>

@@ -1,10 +1,8 @@
 import { useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import { Accordion } from "../components/common/Accordion";
-import TextArea from "../components/form-components/TextArea";
-import CustomButton from "../components/form-components/CustomButton";
-import { QuestionsPropsType } from "../types/AllTypes";
-import { help } from "../mocks/AllMockData";
+import SearchAndFilter from "../../components/common/SearchAndFilter";
+import { Accordion } from "../../components/common/Accordion";
+import { QuestionsPropsType } from "../../types/AllTypes";
+import { help } from "../../mocks/AllMockData";
 
 const Help = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -38,10 +36,10 @@ const Help = () => {
         )
       : [];
 
-   const handleSubmitQuestion = () => {};
-
    return (
-      <div className="flex flex-col gap-7">
+      <>
+         <h1 className="text-lg font-semibold">Help and support</h1>
+
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
@@ -50,7 +48,7 @@ const Help = () => {
             title={filterTitleList}
          />
 
-         <div className="flex flex-col gap-4 md:h-full">
+         <div className="flex flex-col gap-4">
             {filterQuestions.length ? (
                filterQuestions.map((question, index) => (
                   <Accordion
@@ -60,21 +58,12 @@ const Help = () => {
                   />
                ))
             ) : (
-               <div className="flex flex-col gap-4">
-                  <TextArea
-                     label="Have a question?"
-                     placeholder="Type question here"
-                  />
-                  <CustomButton
-                     type="button"
-                     handleClick={handleSubmitQuestion}
-                  >
-                     Submit question
-                  </CustomButton>
-               </div>
+               <p className="pending-text w-full text-center">
+                  No results found.
+               </p>
             )}
          </div>
-      </div>
+      </>
    );
 };
 

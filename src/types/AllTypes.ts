@@ -35,6 +35,8 @@ export type SelectCategoryPropTypes = {
    onPrev?: () => void;
    setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
    currentForm?: number;
+   formSuccess?: { completed: boolean; index: number }[];
+   setFormSuccess?: (success: boolean) => void;
 };
 
 export type CategoryListTypes = {

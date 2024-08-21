@@ -21,12 +21,6 @@
 }
 
 @layer components {
-   .ellipses {
-      @apply absolute w-[340px] h-[340px] rounded-[340px] z-[-1];
-      background: rgba(0, 201, 141, 0.50);
-      filter: blur(190px);
-   }
-
    .circle {
       @apply absolute w-[385.321px] h-[385.321px] rounded-full;
       background: rgba(255, 255, 255, 0.30);
@@ -38,8 +32,13 @@
       width: calc(100% - 250px);
    }
 
+   .settings-content-layout {
+      width: 100%;
+      width: calc(100% - 0px);
+   }
+
    .content {
-      height: calc(100vh - 90px);
+      height: calc(100vh - 80px);
    }
 
    .hover-bg-shadow {
@@ -71,20 +70,30 @@
    }
 
    .pending {
-      @apply text-bostonRed border border-bostonRed;
+      @apply text-bostonRed border border-bostonRed dark:text-red-500 dark:border-red-500;
       background: rgba(195, 0, 0, 0.05);
    }
 
-   /* @media screen and (min-width: 768px) {
-      .calc-width-two {
-         width: calc(100% / 4.20);
-      }
-   } */
+   .paid {
+      @apply text-richElectricBlue border border-richElectricBlue dark:text-blue-500 dark:border-blue-500;
+      background: rgba(0, 0, 195, 0.05);
+   }
+
+   .completed {
+      border: 1px solid #29CE9C;
+      color: #29CE9C;
+      background: rgba(41, 206, 156, 0.05);
+   }
 
    @media screen and (min-width: 1024px) {
       .content-layout {
          width: 100%;
          width: calc(100% - 300px);
+      }
+
+      .settings-content-layout {
+         width: 100%;
+         width: calc(100% - 226px);
       }
    }
 

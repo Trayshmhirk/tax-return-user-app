@@ -97,7 +97,7 @@ const Transactions = () => {
                   ))}
                </>
             ) : (
-               <p className="pending-text w-100 text-center">
+               <p className="pending-text w-full text-center">
                   No transactions found.
                </p>
             )}

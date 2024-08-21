@@ -17,28 +17,35 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Welcome";
          case "/not-approved":
             return "Please wait...";
+         case "/add-card":
+            return "Add card";
          case "/documents":
             return "Documents";
          case "/receipts":
             return "Receipts";
-         case "/previous-filing":
-            return "Previous filing";
          case "/knowledge-base":
             return "Knowledge base";
          case "/transactions":
             return "Transactions";
-         case "/profile":
-            return "Profile";
-         case "/terms-and-conditions":
-            return "Terms and conditions";
-         case "/faq":
-            return "FAQ";
          case "/help-and-support":
-            return "Help and support";
-         case "/privacy-policy":
-            return "Privacy policy";
          case "/upload-document":
             return "Upload document";
+         case "/settings/profile":
+            return "Account settings";
+         case "/settings/faq":
+            return "Account settings";
+         case "/settings/help-and-support":
+            return "Account settings";
+         case "/settings/privacy-policy":
+            return "Account settings";
+         case "/settings/my-requests":
+            return "Account settings";
+         case "/settings/my-documents":
+            return "Account settings";
+         case "/settings/integrated-banks":
+            return "Account settings";
+         case "/settings/terms-and-conditions":
+            return "Account settings";
          default:
             return "";
       }
@@ -46,16 +53,21 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
 
    const title = getTitle(location.pathname);
 
+   // Check if current route starts with /settings/
+   const isSettings = location.pathname.startsWith("/settings");
+
    return (
-      <div
+      <main
          className={`content-layout h-fit ${!isOpen && "w-full"} w-full flex flex-col overflow-hidden dark:text-white`}
       >
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div className="content relative py-10 px-6 overflow-scroll sm:px-8 md:px-16">
+         <div
+            className={`content relative px-5 ${isSettings ? "py-5 overflow-hidden sm:px-7 md:px-12 md:py-8" : "py-9 overflow-scroll sm:px-8 md:px-16"}`}
+         >
             {children}
          </div>
-      </div>
+      </main>
    );
 };
 
