@@ -1,8 +1,6 @@
 import { useState } from "react";
 import SearchAndFilter from "../../components/common/SearchAndFilter";
 import { Accordion } from "../../components/common/Accordion";
-import TextArea from "../../components/form-components/TextArea";
-import CustomButton from "../../components/form-components/CustomButton";
 import { QuestionsPropsType } from "../../types/AllTypes";
 import { help } from "../../mocks/AllMockData";
 
@@ -38,8 +36,6 @@ const Help = () => {
         )
       : [];
 
-   const handleSubmitQuestion = () => {};
-
    return (
       <div className="">
          <div className="h-[600px] flex flex-col gap-7 mt-4 px-2 py-3 overflow-scroll">
@@ -63,18 +59,9 @@ const Help = () => {
                      />
                   ))
                ) : (
-                  <div className="flex flex-col gap-4">
-                     <TextArea
-                        label="Have a question?"
-                        placeholder="Type question here"
-                     />
-                     <CustomButton
-                        type="button"
-                        handleClick={handleSubmitQuestion}
-                     >
-                        Submit question
-                     </CustomButton>
-                  </div>
+                  <p className="pending-text w-full text-center">
+                     No results found.
+                  </p>
                )}
             </div>
          </div>

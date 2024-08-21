@@ -37,12 +37,12 @@ const CardForm: React.FC = () => {
             fontSize: "15px",
             fontSmoothing: "antialiased",
             "::placeholder": {
-               color: isDarkMode ? "#A0AEC0" : "#CFD7E0",
+               color: "#A0AEC0",
             },
          },
          invalid: {
-            color: "#E25950",
-            iconColor: "#E25950",
+            color: isDarkMode ? "#ef4444" : "#c30000",
+            iconColor: "#ef4444",
          },
       },
    };
