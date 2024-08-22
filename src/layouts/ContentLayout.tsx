@@ -23,10 +23,12 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Documents";
          case "/receipts":
             return "Receipts";
-         case "/knowledge-base":
-            return "Knowledge base";
          case "/transactions":
             return "Transactions";
+         case "/credit-cards":
+            return "Credit cards";
+         case "/knowledge-base":
+            return "Knowledge base";
          case "/help-and-support":
          case "/upload-document":
             return "Upload document";
@@ -63,7 +65,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
          <Header title={title} isHome={location.pathname === "/"} />
 
          <div
-            className={`content relative px-5 ${isSettings ? "py-5 overflow-hidden sm:px-7 md:px-12 md:py-8" : "py-9 overflow-scroll sm:px-8 md:px-16"}`}
+            className={`content relative px-5 ${isSettings ? "py-5 overflow-hidden sm:px-7 md:px-12 md:py-8" : "py-8 overflow-scroll sm:px-8 md:px-16 md:py-10"}`}
          >
             {children}
          </div>

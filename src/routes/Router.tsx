@@ -12,6 +12,7 @@ import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "../pages/auth/SignUp";
 import SettingsLayout from "../layouts/SettingsLayout";
+import CreditCards from "../pages/payment/CreditCards";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -126,6 +127,22 @@ const router = createBrowserRouter(
                }
             />
             <Route
+               path="transactions"
+               element={
+                  <ProtectedRoute>
+                     <Transactions />
+                  </ProtectedRoute>
+               }
+            />
+            <Route
+               path="credit-cards"
+               element={
+                  <ProtectedRoute>
+                     <CreditCards />
+                  </ProtectedRoute>
+               }
+            />
+            <Route
                path="knowledge-base/"
                element={
                   <ProtectedRoute>
@@ -135,14 +152,7 @@ const router = createBrowserRouter(
             >
                <Route path="video/:videoId" element={<Video />}></Route>
             </Route>
-            <Route
-               path="transactions"
-               element={
-                  <ProtectedRoute>
-                     <Transactions />
-                  </ProtectedRoute>
-               }
-            />
+
             <Route
                path="settings/"
                element={

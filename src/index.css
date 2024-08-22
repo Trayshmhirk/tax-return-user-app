@@ -15,6 +15,10 @@
 }
 
 @layer base {
+   body {
+      @apply text-eerieBlack dark:text-white;
+   }
+
    a {
       @apply text-richElectricBlue underline;
    }
