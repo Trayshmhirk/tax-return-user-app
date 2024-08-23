@@ -16,7 +16,7 @@ type DebitCardPropTypes = {
 const DebitCard = ({ card }: DebitCardPropTypes) => {
    return (
       <div
-         className="relative w-full h-[200px] rounded-xl shadow-lg overflow-hidden"
+         className="relative w-full rounded-xl shadow-lg overflow-hidden"
          style={{
             backgroundImage: `url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right, #007DA8, #00A2C9, #00D1E1)`, // Adding a texture with a gradient
             backgroundBlendMode: "overlay", // Ensuring the image blends with the gradient
@@ -64,7 +64,7 @@ const DebitCard = ({ card }: DebitCardPropTypes) => {
                <div className="text-lg font-semibold">
                   {card.cardholderName}
                </div>
-               <div className="text-lg font-light">{card.exp}</div>
+               <div className="text-lg font-light">Exp: {card.exp}</div>
             </div>
          </div>
       </div>

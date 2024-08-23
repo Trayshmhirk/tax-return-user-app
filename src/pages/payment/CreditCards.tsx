@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import DebitChart from "../../charts/DebitChart";
 import DebitCard from "../../components/payment/DebitCard";
+import RecentTransactions from "../../components/payment/RecentTransactions";
 
 type InitialCardsProps = {
    id: string;
@@ -35,9 +36,9 @@ const cards: InitialCardsProps[] = [
 
 const CreditCards = () => {
    return (
-      <div className="w-full h-full">
+      <div className="w-full">
          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            <div className="w-full max-w-[800px]">
+            <div className="w-full">
                <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl p-5 shadow-md dark:shadow-md-dark">
                   <div className="flex justify-between items-center gap-3">
                      <div className="text-xl font-semibold">Your cards</div>
@@ -56,7 +57,7 @@ const CreditCards = () => {
                            <DebitCard key={card.id} card={card} />
                         ))}
                      </div>
-                     <button className="self-end text-richElectricBlue font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded hover-shadow-body">
+                     <button className="self-start text-richElectricBlue font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded hover-shadow-body">
                         Manage cards
                      </button>
                   </div>
@@ -64,6 +65,11 @@ const CreditCards = () => {
             </div>
 
             <DebitChart />
+
+            {/* Recent Transactions Section */}
+            <div className="lg:col-span-2">
+               <RecentTransactions />
+            </div>
          </div>
       </div>
    );

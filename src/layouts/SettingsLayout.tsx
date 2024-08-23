@@ -9,8 +9,8 @@ const SettingsLayout = () => {
             <div className="w-[1px] h-full bg-eerieBlack dark:bg-white opacity-10" />
          </div>
 
-         <main className="settings-content-layout px-1 sm:px-2">
-            <div className="h-[600px] flex flex-col gap-7 px-1 py-2 overflow-scroll sm:px-2 lg:mt-4">
+         <main className="settings-content-layout flex-1 px-1 overflow-hidden sm:px-2 lg:my-4">
+            <div className="flex-1 flex flex-col gap-7 px-1 py-2 overflow-auto sm:px-2 mb-4 h-full">
                <Outlet />
             </div>
          </main>
