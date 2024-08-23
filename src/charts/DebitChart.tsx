@@ -8,18 +8,18 @@ import { CustomTooltip } from "../components/custom/CustomTooltip";
 
 // Sample data
 const data = [
-   { name: "Jan", debit: 2400 },
-   { name: "Feb", debit: 1398 },
-   { name: "Mar", debit: 6800 },
-   { name: "Apr", debit: 3908 },
-   { name: "May", debit: 4800 },
-   { name: "Jun", debit: 3800 },
-   { name: "Jul", debit: 4300 },
-   { name: "Aug", debit: 4300 },
-   { name: "Sep", debit: 4300 },
-   { name: "Oct", debit: 4300 },
-   { name: "Nov", debit: 4300 },
-   { name: "Dec", debit: 4300 },
+   { name: "Jan", debit: 2400, credit: 5000 },
+   { name: "Feb", debit: 1398, credit: 3000 },
+   { name: "Mar", debit: 6800, credit: 3000 },
+   { name: "Apr", debit: 3908, credit: 3000 },
+   { name: "May", debit: 4800, credit: 3000 },
+   { name: "Jun", debit: 3800, credit: 3000 },
+   { name: "Jul", debit: 4300, credit: 3000 },
+   { name: "Aug", debit: 5300, credit: 3000 },
+   { name: "Sep", debit: 4300, credit: 3000 },
+   { name: "Oct", debit: 4000, credit: 3000 },
+   { name: "Nov", debit: 2000, credit: 3000 },
+   { name: "Dec", debit: 4300, credit: 3000 },
 ];
 
 // Function to get the current month index (0-based)
@@ -36,18 +36,20 @@ export default class DebitChart extends PureComponent {
       const currentMonthName = currentMonthData ? currentMonthData.name : 0;
 
       return (
-         <div className="w-full max-w-[600px]">
+         <div className="w-full">
             <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl p-5 shadow-md dark:shadow-md-dark">
-               {/* Debit analytics title with current month debit */}
-               <div className="flex flex-col gap-1">
+               <div className="flex flex-col gap-2">
                   <div className="text-xs font-medium">Debit analytics</div>
                   <div className="text-xl font-semibold">
-                     {currentMonthName}: ${currentMonthDebit}
+                     {currentMonthName}:{" "}
+                     <span className="bg-richElectricBlue text-lg font-medium text-white px-2 rounded">
+                        {" "}
+                        ${currentMonthDebit}
+                     </span>
                   </div>
                </div>
 
-               {/* Line chart */}
-               <ResponsiveContainer width="100%" height={200}>
+               <ResponsiveContainer width="100%" height={170}>
                   <LineChart
                      width={500}
                      height={300}
@@ -65,12 +67,23 @@ export default class DebitChart extends PureComponent {
                         axisLine={false}
                         tickLine={false}
                      />
-                     <Tooltip content={<CustomTooltip />} />
+                     <Tooltip
+                        content={<CustomTooltip />}
+                        cursor={{ stroke: "#00A2C9" }}
+                     />
                      <Line
                         type="monotone"
                         dataKey="debit"
                         stroke="#00A2C9"
                         activeDot={{ r: 6 }}
+                        strokeWidth={2}
+                        dot={false}
+                     />
+                     <Line
+                        type="monotone"
+                        dataKey="credit"
+                        stroke="#B8B8B8"
+                        activeDot={{ r: 4 }}
                         dot={false}
                      />
                   </LineChart>
