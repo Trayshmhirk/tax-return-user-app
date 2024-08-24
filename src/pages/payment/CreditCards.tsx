@@ -32,9 +32,21 @@ const cards: InitialCardsProps[] = [
       cardholderName: "Jane Smith",
       isDefault: true,
    },
+   {
+      id: "ab987hg",
+      name: "Work card",
+      last4: "3456",
+      exp: "10/24",
+      brand: "Visa",
+      cardholderName: "John Doe",
+      isDefault: false,
+   },
 ];
 
 const CreditCards = () => {
+   // Only display the first two cards
+   const displayedCards = cards.slice(0, 2);
+
    return (
       <div className="w-full">
          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -53,7 +65,7 @@ const CreditCards = () => {
 
                   <div className="flex flex-col gap-4">
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {cards.map((card) => (
+                        {displayedCards.map((card) => (
                            <DebitCard key={card.id} card={card} />
                         ))}
                      </div>

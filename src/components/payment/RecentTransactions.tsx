@@ -1,4 +1,3 @@
-import React from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 // Mock Data for Transactions
@@ -30,34 +29,6 @@ const transactions: Transaction[] = [
       date: "2024-08-10",
       description: "Restaurant",
       amount: -80.15,
-      currency: "USD",
-   },
-   {
-      id: "txn_04",
-      date: "2024-08-15",
-      description: "Refund - Online Purchase",
-      amount: 100.0,
-      currency: "USD",
-   },
-   {
-      id: "txn_04",
-      date: "2024-08-15",
-      description: "Refund - Online Purchase",
-      amount: 100.0,
-      currency: "USD",
-   },
-   {
-      id: "txn_04",
-      date: "2024-08-15",
-      description: "Refund - Online Purchase",
-      amount: 100.0,
-      currency: "USD",
-   },
-   {
-      id: "txn_04",
-      date: "2024-08-15",
-      description: "Refund - Online Purchase",
-      amount: 100.0,
       currency: "USD",
    },
    {
