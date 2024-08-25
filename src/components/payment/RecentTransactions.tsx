@@ -1,148 +1,78 @@
 // import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { Payment, columns } from "./columns";
+import { Transaction, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 
-// Mock Data for Transactions
-// type Transaction = {
-//    id: string;
-//    date: string;
-//    description: string;
-//    amount: number;
-//    currency: string;
-// };
-
 // const transactions: Transaction[] = [
-//    {
-//       id: "txn_01",
-//       date: "2024-08-01",
-//       description: "Grocery Store",
-//       amount: -50.25,
-//       currency: "USD",
-//    },
-//    {
-//       id: "txn_02",
-//       date: "2024-08-05",
-//       description: "Flight Ticket",
-//       amount: -250.0,
-//       currency: "USD",
-//    },
-//    {
-//       id: "txn_03",
-//       date: "2024-08-10",
-//       description: "Restaurant",
-//       amount: -80.15,
-//       currency: "USD",
-//    },
-//    {
-//       id: "txn_04",
-//       date: "2024-08-15",
-//       description: "Refund - Online Purchase",
-//       amount: 100.0,
-//       currency: "USD",
-//    },
+
 // ];
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<Transaction[]> {
    // Simulate an API call to fetch payments data
    return [
       {
-         id: "728ed52f",
-         amount: 100,
-         status: "pending",
-         email: "m@example.com",
-      },
-      {
-         id: "8734fb8d",
-         amount: 200,
+         id: "txn_01",
+         date: "2024-08-01",
+         description: "Grocery Store",
+         amount: 50.25,
+         currency: "USD",
          status: "success",
-         email: "j@example.com",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
+         id: "txn_02",
+         date: "2024-08-05",
+         description: "Flight Ticket",
+         amount: 250.0,
+         currency: "USD",
          status: "failed",
-         email: "l@example.com",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
+         id: "txn_03",
+         date: "2024-08-10",
+         description: "Restaurant",
+         amount: 80.15,
+         currency: "USD",
+         status: "pending",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
+         id: "txn_04",
+         date: "2024-08-15",
+         description: "Refund - Online Purchase",
+         amount: 100.0,
+         currency: "USD",
+         status: "processing",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
+         id: "txn_05",
+         date: "2024-08-25",
+         description: "Refund - Online Purchase",
+         amount: 100.0,
+         currency: "USD",
+         status: "processing",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
+         id: "txn_06",
+         date: "2024-07-25",
+         description: "Refund - Online Purchase",
+         amount: 100.0,
+         currency: "USD",
+         status: "processing",
       },
       {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
-      },
-      {
-         id: "bc3829f1",
-         amount: 150,
-         status: "failed",
-         email: "l@example.com",
+         id: "txn_07",
+         date: "2024-06-25",
+         description: "Online Purchase",
+         amount: 100.0,
+         currency: "USD",
+         status: "success",
       },
    ];
 }
 
 // Recent Transactions UI Component
 const RecentTransactions = () => {
-   const [data, setData] = useState<Payment[]>([]); // State for data
+   const [data, setData] = useState<Transaction[]>([]); // State for data
    const [loading, setLoading] = useState(true); // State for loading status
 
    useEffect(() => {

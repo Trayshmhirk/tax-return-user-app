@@ -43,7 +43,9 @@ export function DataTable<TData, TValue>({
    columns,
    data,
 }: DataTableProps<TData, TValue>) {
-   const [sorting, setSorting] = React.useState<SortingState>([]);
+   const [sorting, setSorting] = React.useState<SortingState>([
+      { id: "date", desc: true }, // This sets the default sorting by date in descending order
+   ]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []
    );
@@ -74,12 +76,16 @@ export function DataTable<TData, TValue>({
       <div className="flex flex-col gap-4">
          <div className="flex items-center justify-between gap-2">
             <Input
-               placeholder="Filter emails..."
+               placeholder="Filter description..."
                value={
-                  (table.getColumn("email")?.getFilterValue() as string) ?? ""
+                  (table
+                     .getColumn("description")
+                     ?.getFilterValue() as string) ?? ""
                }
                onChange={(event) =>
-                  table.getColumn("email")?.setFilterValue(event.target.value)
+                  table
+                     .getColumn("description")
+                     ?.setFilterValue(event.target.value)
                }
                className="max-w-xs px-4 dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 dark:border-chineseWhite dark:border-opacity-50"
             />
@@ -87,7 +93,7 @@ export function DataTable<TData, TValue>({
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="outline"
-                     className="dark:bg-gray dark:border-chineseWhite dark:border-opacity-50 gap-2"
+                     className="dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 dark:border-chineseWhite dark:border-opacity-50 gap-2"
                   >
                      <Settings2 className="w-4 h-4" />
                      View
@@ -105,7 +111,7 @@ export function DataTable<TData, TValue>({
                         return (
                            <DropdownMenuCheckboxItem
                               key={column.id}
-                              className="capitalize dark:focus:bg-gray"
+                              className="capitalize"
                               checked={column.getIsVisible()}
                               onCheckedChange={(value) =>
                                  column.toggleVisibility(!!value)
