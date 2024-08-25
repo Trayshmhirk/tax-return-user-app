@@ -51,7 +51,7 @@ const CreditCards = () => {
       <div className="w-full">
          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <div className="w-full">
-               <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl p-5 shadow-md dark:shadow-md-dark">
+               <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                   <div className="flex justify-between items-center gap-3">
                      <div className="text-xl font-semibold">Your cards</div>
 

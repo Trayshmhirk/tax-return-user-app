@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Payment, columns } from "./columns";
 import { DataTable } from "./data-table";
+import { ClipLoader } from "react-spinners";
 
 // Mock Data for Transactions
 // type Transaction = {
@@ -64,6 +65,78 @@ async function getData(): Promise<Payment[]> {
          status: "failed",
          email: "l@example.com",
       },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
+      {
+         id: "bc3829f1",
+         amount: 150,
+         status: "failed",
+         email: "l@example.com",
+      },
    ];
 }
 
@@ -76,64 +149,24 @@ const RecentTransactions = () => {
       async function fetchData() {
          const payments = await getData(); // Fetch the data
          setData(payments); // Set the fetched data to state
-         setLoading(false); // Stop loading once data is fetched
+
+         setTimeout(() => {
+            setLoading(false);
+         }, 1500);
       }
 
       fetchData(); // Call the fetch function on component mount
    }, []);
 
    return (
-      <div className="bg-white dark:bg-gray p-6 rounded-xl shadow-md dark:shadow-md-dark w-full">
-         <h2 className="text-2xl font-semibold">Recent Transactions</h2>
-         {/* <table className="w-full text-left border-collapse">
-            <thead>
-               <tr className="border-b border-gray-300 dark:border-gray-600">
-                  <th className="pb-2 font-medium text-gray-700 dark:text-gray-300">
-                     Date
-                  </th>
-                  <th className="pb-2 font-medium text-gray-700 dark:text-gray-300">
-                     Description
-                  </th>
-                  <th className="pb-2 font-medium text-gray-700 dark:text-gray-300 text-right">
-                     Amount
-                  </th>
-               </tr>
-            </thead>
-            <tbody>
-               {transactions.map((txn) => (
-                  <tr
-                     key={txn.id}
-                     className="border-b border-gray-300 dark:border-gray-600"
-                  >
-                     <td className="py-2 text-gray-600 dark:text-gray-300">
-                        {txn.date}
-                     </td>
-                     <td className="py-2 text-gray-600 dark:text-gray-300">
-                        {txn.description}
-                     </td>
-                     <td
-                        className={`py-2 text-right ${txn.amount < 0 ? "text-red-500" : "text-green-500"} font-semibold`}
-                     >
-                        {txn.amount < 0 ? (
-                           <div className="flex items-center justify-end gap-1">
-                              <FaArrowDown className="text-red-500" />
-                              -${Math.abs(txn.amount).toFixed(2)} {txn.currency}
-                           </div>
-                        ) : (
-                           <div className="flex items-center justify-end gap-1">
-                              <FaArrowUp className="text-green-500" />
-                              +${Math.abs(txn.amount).toFixed(2)} {txn.currency}
-                           </div>
-                        )}
-                     </td>
-                  </tr>
-               ))}
-            </tbody>
-         </table> */}
+      <div className="flex flex-col gap-5 bg-white dark:bg-gray px-5 py-4 rounded-xl shadow-md dark:shadow-md-dark w-full">
+         <h2 className="text-xl font-semibold">Recent Transactions</h2>
 
-         <div className="container mx-auto py-10">
+         <div className="md:px-5">
             {loading ? (
-               <p>Loading...</p> // Display loading message while data is being fetched
+               <div className="w-full h-20 flex justify-center items-center">
+                  <ClipLoader color="#00A2C9" />
+               </div>
             ) : (
                <DataTable columns={columns} data={data} /> // Render the DataTable with the fetched data
             )}

@@ -37,7 +37,7 @@ export default class DebitChart extends PureComponent {
 
       return (
          <div className="w-full">
-            <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl p-5 shadow-md dark:shadow-md-dark">
+            <div className="h-full flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                <div className="flex flex-col gap-2">
                   <div className="text-xs font-medium">Debit analytics</div>
                   <div className="text-xl font-semibold">
@@ -49,7 +49,7 @@ export default class DebitChart extends PureComponent {
                   </div>
                </div>
 
-               <ResponsiveContainer width="100%" height={170}>
+               <ResponsiveContainer width="100%" height={215}>
                   <LineChart
                      width={500}
                      height={300}

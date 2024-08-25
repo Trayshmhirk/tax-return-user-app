@@ -30,6 +30,7 @@ import {
    DropdownMenuContent,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -68,8 +69,8 @@ export function DataTable<TData, TValue>({
    });
 
    return (
-      <div>
-         <div className="flex items-center py-4">
+      <div className="flex flex-col gap-4">
+         <div className="flex items-center justify-between gap-2">
             <Input
                placeholder="Filter emails..."
                value={
@@ -78,15 +79,19 @@ export function DataTable<TData, TValue>({
                onChange={(event) =>
                   table.getColumn("email")?.setFilterValue(event.target.value)
                }
-               className="max-w-sm"
+               className="max-w-xs px-4 dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 dark:border-chineseWhite dark:border-opacity-50"
             />
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="ml-auto">
-                     Columns
+                  <Button
+                     variant="outline"
+                     className="dark:bg-gray dark:border-chineseWhite dark:border-opacity-50 gap-2"
+                  >
+                     <Settings2 className="w-4 h-4" />
+                     View
                   </Button>
                </DropdownMenuTrigger>
-               <DropdownMenuContent align="end">
+               <DropdownMenuContent align="end" className="dark:bg-gray">
                   {table
                      .getAllColumns()
                      .filter((column) => column.getCanHide())
@@ -94,7 +99,7 @@ export function DataTable<TData, TValue>({
                         return (
                            <DropdownMenuCheckboxItem
                               key={column.id}
-                              className="capitalize"
+                              className="capitalize dark:focus:bg-gray"
                               checked={column.getIsVisible()}
                               onCheckedChange={(value) =>
                                  column.toggleVisibility(!!value)
@@ -107,14 +112,20 @@ export function DataTable<TData, TValue>({
                </DropdownMenuContent>
             </DropdownMenu>
          </div>
-         <div className="rounded border">
+         <div className="rounded border border-chineseWhite dark:border-opacity-50">
             <Table>
                <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
-                     <TableRow key={headerGroup.id}>
+                     <TableRow
+                        key={headerGroup.id}
+                        className="border-chineseWhite dark:border-opacity-50"
+                     >
                         {headerGroup.headers.map((header) => {
                            return (
-                              <TableHead key={header.id}>
+                              <TableHead
+                                 key={header.id}
+                                 className="text-eerieBlack dark:text-white"
+                              >
                                  {header.isPlaceholder
                                     ? null
                                     : flexRender(
@@ -133,9 +144,10 @@ export function DataTable<TData, TValue>({
                         <TableRow
                            key={row.id}
                            data-state={row.getIsSelected() && "selected"}
+                           className="border-chineseWhite dark:border-opacity-50"
                         >
                            {row.getVisibleCells().map((cell) => (
-                              <TableCell key={cell.id}>
+                              <TableCell key={cell.id} className="px-4 py-3">
                                  {flexRender(
                                     cell.column.columnDef.cell,
                                     cell.getContext()
@@ -158,28 +170,32 @@ export function DataTable<TData, TValue>({
             </Table>
          </div>
 
-         <div className="flex items-center justify-end space-x-2 py-4">
+         <div className="flex items-center justify-end">
             <div className="flex-1 text-sm text-muted-foreground">
                {table.getFilteredSelectedRowModel().rows.length} of{" "}
                {table.getFilteredRowModel().rows.length} row(s) selected.
             </div>
 
-            <Button
-               variant="outline"
-               size="sm"
-               onClick={() => table.previousPage()}
-               disabled={!table.getCanPreviousPage()}
-            >
-               Previous
-            </Button>
-            <Button
-               variant="outline"
-               size="sm"
-               onClick={() => table.nextPage()}
-               disabled={!table.getCanNextPage()}
-            >
-               Next
-            </Button>
+            <div className="flex gap-2">
+               <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+               >
+                  <ChevronLeft className="w-5 h-5" />
+               </Button>
+               <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+               >
+                  <ChevronRight className="w-5 h-5" />
+               </Button>
+            </div>
          </div>
       </div>
    );

@@ -9,7 +9,6 @@ import {
    DropdownMenu,
    DropdownMenuContent,
    DropdownMenuItem,
-   DropdownMenuLabel,
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -36,6 +35,7 @@ export const columns: ColumnDef<Payment>[] = [
                table.toggleAllPageRowsSelected(!!value)
             }
             aria-label="Select all"
+            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0 "
          />
       ),
       cell: ({ row }) => (
@@ -43,6 +43,7 @@ export const columns: ColumnDef<Payment>[] = [
             checked={row.getIsSelected()}
             onCheckedChange={(value) => row.toggleSelected(!!value)}
             aria-label="Select row"
+            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0 "
          />
       ),
       enableSorting: false,
@@ -87,25 +88,36 @@ export const columns: ColumnDef<Payment>[] = [
          const payment = row.original;
 
          return (
-            <DropdownMenu>
-               <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                     <span className="sr-only">Open menu</span>
-                     <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-               </DropdownMenuTrigger>
-               <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem
-                     onClick={() => navigator.clipboard.writeText(payment.id)}
+            <div className="flex justify-end">
+               <DropdownMenu>
+                  <DropdownMenuTrigger asChild className="w-full">
+                     <Button variant="ghost" className="h-8 w-8 p-0 self-end">
+                        <span className="sr-only">Open menu</span>
+                        <MoreHorizontal className="h-4 w-4" />
+                     </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                     align="end"
+                     className="dark:bg-mutedGray"
                   >
-                     Copy payment ID
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>View customer</DropdownMenuItem>
-                  <DropdownMenuItem>View payment details</DropdownMenuItem>
-               </DropdownMenuContent>
-            </DropdownMenu>
+                     <DropdownMenuItem
+                        onClick={() =>
+                           navigator.clipboard.writeText(payment.id)
+                        }
+                        className="dark:focus:bg-gray"
+                     >
+                        Copy payment ID
+                     </DropdownMenuItem>
+                     <DropdownMenuSeparator />
+                     <DropdownMenuItem className="dark:focus:bg-gray">
+                        View customer
+                     </DropdownMenuItem>
+                     <DropdownMenuItem className="dark:focus:bg-gray">
+                        View payment details
+                     </DropdownMenuItem>
+                  </DropdownMenuContent>
+               </DropdownMenu>
+            </div>
          );
       },
    },
