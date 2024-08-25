@@ -11,17 +11,20 @@ type DebitCardPropTypes = {
       brand: string;
       cardholderName: string;
    };
+   onClick?: () => void;
+   isDialog?: boolean;
 };
 
-const DebitCard = ({ card }: DebitCardPropTypes) => {
+const DebitCard = ({ card, onClick, isDialog }: DebitCardPropTypes) => {
    return (
       <div
-         className="relative w-full rounded-xl shadow-lg overflow-hidden"
+         className={`relative w-full ${isDialog ? "min-w-[300px] cursor-pointer" : ""} rounded-xl shadow-lg overflow-hidden`}
          style={{
             backgroundImage: `url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right, #007DA8, #00A2C9, #00D1E1)`, // Adding a texture with a gradient
             backgroundBlendMode: "overlay", // Ensuring the image blends with the gradient
             color: "white",
          }}
+         onClick={onClick}
       >
          {/* Card Brand Icon */}
          <div className="absolute top-2 right-4 text-3xl">

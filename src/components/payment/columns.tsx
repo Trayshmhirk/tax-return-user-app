@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
+import { MoreHorizontal, ArrowUpDown, Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -211,8 +211,11 @@ export const columns: ColumnDef<Transaction>[] = [
                         Copy payment ID
                      </DropdownMenuItem>
                      <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
-                     <DropdownMenuItem>View customer</DropdownMenuItem>
                      <DropdownMenuItem>View payment details</DropdownMenuItem>
+                     <DropdownMenuItem className="flex items-center gap-2">
+                        <Download className="w-4 h-4" />
+                        Download
+                     </DropdownMenuItem>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import DebitChart from "../../charts/DebitChart";
 import DebitCard from "../../components/payment/DebitCard";
 import RecentTransactions from "../../components/payment/RecentTransactions";
+import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 
 type InitialCardsProps = {
    id: string;
@@ -69,9 +70,7 @@ const Bank = () => {
                            <DebitCard key={card.id} card={card} />
                         ))}
                      </div>
-                     <button className="self-start text-richElectricBlue font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded hover-shadow-body">
-                        Manage cards
-                     </button>
+                     <ManageCardsDialog cards={cards} />
                   </div>
                </div>
             </div>

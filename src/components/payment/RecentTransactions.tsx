@@ -4,10 +4,6 @@ import { Transaction, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 
-// const transactions: Transaction[] = [
-
-// ];
-
 async function getData(): Promise<Transaction[]> {
    // Simulate an API call to fetch payments data
    return [
