@@ -43,7 +43,7 @@ const cards: InitialCardsProps[] = [
    },
 ];
 
-const CreditCards = () => {
+const Bank = () => {
    // Only display the first two cards
    const displayedCards = cards.slice(0, 2);
 
@@ -87,4 +87,4 @@ const CreditCards = () => {
    );
 };
 
-export default CreditCards;
+export default Bank;

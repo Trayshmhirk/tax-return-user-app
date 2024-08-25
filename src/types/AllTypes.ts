@@ -108,15 +108,6 @@ export type ReceiptCardPropTypes = {
    date: string;
 };
 
-// transaction invoices
-export type InvoicePropTypes = {
-   id: string;
-   transaction_id: string;
-   title: string;
-   date: string;
-   total: string;
-};
-
 // videos
 export type VideoDataTypes = {
    title: string;

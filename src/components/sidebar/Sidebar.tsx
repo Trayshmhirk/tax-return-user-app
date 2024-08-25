@@ -123,6 +123,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                   <NavLink
                      className={`
                         flex items-center p-[10px] gap-4 rounded-lg no-underline
+                        ${isOpen ? "" : "justify-center"}
                         ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}
                         ${isSettingsActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : " hover-bg-shadow"}
                      `}

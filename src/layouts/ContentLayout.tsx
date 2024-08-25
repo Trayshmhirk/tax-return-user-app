@@ -25,8 +25,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Receipts";
          case "/transactions":
             return "Transactions";
-         case "/credit-cards":
-            return "Credit cards";
+         case "/bank":
+            return "Bank";
          case "/knowledge-base":
             return "Knowledge base";
          case "/help-and-support":
