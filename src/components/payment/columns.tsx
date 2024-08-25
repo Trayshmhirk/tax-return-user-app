@@ -35,7 +35,7 @@ export const columns: ColumnDef<Payment>[] = [
                table.toggleAllPageRowsSelected(!!value)
             }
             aria-label="Select all"
-            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0 "
+            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white border-white"
          />
       ),
       cell: ({ row }) => (
@@ -120,5 +120,7 @@ export const columns: ColumnDef<Payment>[] = [
             </div>
          );
       },
+      enableSorting: false,
+      enableHiding: false,
    },
 ];

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { PureComponent } from "react";
-import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from "recharts";
 
 import { CustomTick } from "../components/custom/CustomTick";
 import { CustomTooltip } from "../components/custom/CustomTooltip";
 
 // Sample data
 const data = [
-   { name: "Jan", debit: 2400, credit: 5000 },
+   { name: "Jan", debit: 0, credit: 500 },
    { name: "Feb", debit: 1398, credit: 3000 },
    { name: "Mar", debit: 6800, credit: 3000 },
    { name: "Apr", debit: 3908, credit: 3000 },
@@ -19,7 +19,7 @@ const data = [
    { name: "Sep", debit: 4300, credit: 3000 },
    { name: "Oct", debit: 4000, credit: 3000 },
    { name: "Nov", debit: 2000, credit: 3000 },
-   { name: "Dec", debit: 4300, credit: 3000 },
+   { name: "Dec", debit: 0, credit: 3000 },
 ];
 
 // Function to get the current month index (0-based)
@@ -50,7 +50,7 @@ export default class DebitChart extends PureComponent {
                </div>
 
                <ResponsiveContainer width="100%" height={215}>
-                  <LineChart
+                  <AreaChart
                      width={500}
                      height={300}
                      data={data}
@@ -61,6 +61,44 @@ export default class DebitChart extends PureComponent {
                         bottom: 5,
                      }}
                   >
+                     <defs>
+                        <linearGradient
+                           id="colorDebit"
+                           x1="0"
+                           y1="0"
+                           x2="0"
+                           y2="1"
+                        >
+                           <stop
+                              offset="5%"
+                              stopColor="#00A2C9"
+                              stopOpacity={0.8}
+                           />
+                           <stop
+                              offset="95%"
+                              stopColor="#00A2C9"
+                              stopOpacity={0}
+                           />
+                        </linearGradient>
+                        <linearGradient
+                           id="colorCredit"
+                           x1="0"
+                           y1="0"
+                           x2="0"
+                           y2="1"
+                        >
+                           <stop
+                              offset="5%"
+                              stopColor="#B8B8B8"
+                              stopOpacity={0.8}
+                           />
+                           <stop
+                              offset="95%"
+                              stopColor="#B8B8B8"
+                              stopOpacity={0}
+                           />
+                        </linearGradient>
+                     </defs>
                      <XAxis
                         dataKey="name"
                         tick={<CustomTick />}
@@ -71,22 +109,27 @@ export default class DebitChart extends PureComponent {
                         content={<CustomTooltip />}
                         cursor={{ stroke: "#00A2C9" }}
                      />
-                     <Line
+                     <Area
                         type="monotone"
                         dataKey="debit"
                         stroke="#00A2C9"
                         activeDot={{ r: 6 }}
+                        fillOpacity={1}
                         strokeWidth={2}
+                        fill="url(#colorDebit)"
                         dot={false}
                      />
-                     <Line
+                     <Area
                         type="monotone"
                         dataKey="credit"
                         stroke="#B8B8B8"
+                        fillOpacity={1}
+                        strokeWidth={2}
                         activeDot={{ r: 4 }}
+                        fill="url(#colorCredit)"
                         dot={false}
                      />
-                  </LineChart>
+                  </AreaChart>
                </ResponsiveContainer>
             </div>
          </div>

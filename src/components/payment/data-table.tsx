@@ -28,6 +28,8 @@ import {
    DropdownMenu,
    DropdownMenuCheckboxItem,
    DropdownMenuContent,
+   DropdownMenuLabel,
+   DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
@@ -92,6 +94,10 @@ export function DataTable<TData, TValue>({
                   </Button>
                </DropdownMenuTrigger>
                <DropdownMenuContent align="end" className="dark:bg-gray">
+                  <DropdownMenuLabel className="text-sm dark:text-white">
+                     Toggle column
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
                   {table
                      .getAllColumns()
                      .filter((column) => column.getCanHide())
@@ -112,19 +118,19 @@ export function DataTable<TData, TValue>({
                </DropdownMenuContent>
             </DropdownMenu>
          </div>
-         <div className="rounded border border-chineseWhite dark:border-opacity-50">
+         <div className="rounded-md border border-chineseWhite dark:border-opacity-50 overflow-hidden">
             <Table>
                <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
                      <TableRow
                         key={headerGroup.id}
-                        className="border-chineseWhite dark:border-opacity-50"
+                        className="bg-richElectricBlue dark:bg-richElectricBlue border-chineseWhite dark:border-opacity-50 hover:bg-richElectricBlue hover:bg-opacity-90 dark:hover:bg-richElectricBlue  dark:hover:bg-opacity-90"
                      >
                         {headerGroup.headers.map((header) => {
                            return (
                               <TableHead
                                  key={header.id}
-                                 className="text-eerieBlack dark:text-white"
+                                 className="text-white dark:text-white"
                               >
                                  {header.isPlaceholder
                                     ? null
@@ -170,31 +176,39 @@ export function DataTable<TData, TValue>({
             </Table>
          </div>
 
-         <div className="flex items-center justify-end">
+         <div className="flex flex-col xs:flex-row items-center justify-end gap-4 mb-2">
             <div className="flex-1 text-sm text-muted-foreground">
                {table.getFilteredSelectedRowModel().rows.length} of{" "}
                {table.getFilteredRowModel().rows.length} row(s) selected.
             </div>
 
-            <div className="flex gap-2">
-               <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
-                  onClick={() => table.previousPage()}
-                  disabled={!table.getCanPreviousPage()}
-               >
-                  <ChevronLeft className="w-5 h-5" />
-               </Button>
-               <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
-                  onClick={() => table.nextPage()}
-                  disabled={!table.getCanNextPage()}
-               >
-                  <ChevronRight className="w-5 h-5" />
-               </Button>
+            <div className="flex items-center gap-4 sm:gap-10">
+               {/* Display current page number and total pages */}
+               <div className="text-sm text-muted-foreground">
+                  Page {table.getState().pagination.pageIndex + 1} of{" "}
+                  {table.getPageCount()}
+               </div>
+
+               <div className="flex gap-2">
+                  <Button
+                     variant="outline"
+                     size="sm"
+                     className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
+                     onClick={() => table.previousPage()}
+                     disabled={!table.getCanPreviousPage()}
+                  >
+                     <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Button
+                     variant="outline"
+                     size="sm"
+                     className="h-fit bg-transparent dark:bg-transparent text-eerieBlack dark:text-white border border-chineseWhite dark:border-chineseWhite dark:border-opacity-50 p-1 rounded"
+                     onClick={() => table.nextPage()}
+                     disabled={!table.getCanNextPage()}
+                  >
+                     <ChevronRight className="w-5 h-5" />
+                  </Button>
+               </div>
             </div>
          </div>
       </div>
