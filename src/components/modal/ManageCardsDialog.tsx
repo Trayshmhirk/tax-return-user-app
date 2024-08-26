@@ -39,9 +39,13 @@ export type Card = {
 
 type ManageCardsDialogProps = {
    cards: Card[];
+   onUpdate: (updatedCards: Card[]) => void;
 };
 
-export const ManageCardsDialog = ({ cards }: ManageCardsDialogProps) => {
+export const ManageCardsDialog = ({
+   cards,
+   onUpdate,
+}: ManageCardsDialogProps) => {
    const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
    const handleCardClick = (card: Card) => {
@@ -51,6 +55,18 @@ export const ManageCardsDialog = ({ cards }: ManageCardsDialogProps) => {
    const handleDeleteCard = (id: string) => {
       alert(`Card ${id} has been deleted.`);
       setSelectedCard(null);
+   };
+
+   const handleSetDefault = () => {
+      if (selectedCard) {
+         // Set new default card
+         const updatedCards = cards.map((card) => ({
+            ...card,
+            isDefault: card.id === selectedCard.id,
+         }));
+         onUpdate(updatedCards); // Notify parent to update state
+         setSelectedCard(null);
+      }
    };
 
    return (
@@ -63,7 +79,7 @@ export const ManageCardsDialog = ({ cards }: ManageCardsDialogProps) => {
                Manage cards
             </Button>
          </DialogTrigger>
-         <DialogContent className="max-w-xl gap-5 w-11/12 rounded-lg md:w-full dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0">
+         <DialogContent className="max-w-xl gap-5 w-11/12 rounded-lg md:w-full dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 border-0">
             <DialogHeader>
                <DialogTitle>Manage Your Cards</DialogTitle>
             </DialogHeader>
@@ -82,7 +98,7 @@ export const ManageCardsDialog = ({ cards }: ManageCardsDialogProps) => {
 
             {/* Card Details */}
             {selectedCard ? (
-               <div className="flex flex-col gap-4">
+               <div className="flex flex-col gap-5">
                   <div className="flex flex-col gap-1">
                      <h3 className="font-bold text-xl">Card Details</h3>
                      <p>
@@ -109,13 +125,21 @@ export const ManageCardsDialog = ({ cards }: ManageCardsDialogProps) => {
                      </p>
                   </div>
 
-                  <DialogFooter>
+                  <DialogFooter className="gap-2">
                      <Button
                         variant="destructive"
                         className="dark:bg-red-500 text-white dark:text-white focus-visible:ring-offset-0 focus-visible:ring-0"
                         onClick={() => handleDeleteCard(selectedCard.id)}
                      >
                         Delete Card
+                     </Button>
+
+                     <Button
+                        variant="default"
+                        className="bg-gray dark:bg-ghostWhite"
+                        onClick={handleSetDefault}
+                     >
+                        Set Default
                      </Button>
                   </DialogFooter>
                </div>

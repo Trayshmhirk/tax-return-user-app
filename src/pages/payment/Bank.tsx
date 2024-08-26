@@ -3,8 +3,9 @@ import DebitChart from "../../charts/DebitChart";
 import DebitCard from "../../components/payment/DebitCard";
 import RecentTransactions from "../../components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
+import { useState } from "react";
 
-type InitialCardsProps = {
+type CardsProps = {
    id: string;
    name: string;
    last4: string;
@@ -14,7 +15,7 @@ type InitialCardsProps = {
    isDefault: boolean;
 };
 
-const cards: InitialCardsProps[] = [
+const initialCards: CardsProps[] = [
    {
       id: "er634e7",
       name: "Debit card",
@@ -22,7 +23,7 @@ const cards: InitialCardsProps[] = [
       exp: "12/22",
       brand: "Visa",
       cardholderName: "John Doe",
-      isDefault: false,
+      isDefault: true,
    },
    {
       id: "hd2376y",
@@ -31,7 +32,7 @@ const cards: InitialCardsProps[] = [
       exp: "09/23",
       brand: "Mastercard",
       cardholderName: "Jane Smith",
-      isDefault: true,
+      isDefault: false,
    },
    {
       id: "ab987hg",
@@ -45,8 +46,22 @@ const cards: InitialCardsProps[] = [
 ];
 
 const Bank = () => {
-   // Only display the first two cards
-   const displayedCards = cards.slice(0, 2);
+   const [bankCards, setbankCards] = useState<CardsProps[]>(initialCards);
+   const defaultCard = bankCards.find((card) => card.isDefault) || bankCards[0];
+   const [selectedCardId, setSelectedCardId] = useState<string>(defaultCard.id);
+
+   // Update displayed cards to prioritize the default card
+   const displayedCards = [
+      defaultCard,
+      ...bankCards.filter((card) => card.id !== defaultCard.id),
+   ].slice(0, 2);
+
+   const handleCardUpdate = (updatedCards: CardsProps[]) => {
+      setbankCards(updatedCards);
+      const newDefaultCard =
+         updatedCards.find((card) => card.isDefault) || updatedCards[0];
+      setSelectedCardId(newDefaultCard.id);
+   };
 
    return (
       <div className="w-full">
@@ -67,10 +82,17 @@ const Bank = () => {
                   <div className="flex flex-col gap-4">
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {displayedCards.map((card) => (
-                           <DebitCard key={card.id} card={card} />
+                           <DebitCard
+                              key={card.id}
+                              card={card}
+                              onClick={() => setSelectedCardId(card.id)}
+                           />
                         ))}
                      </div>
-                     <ManageCardsDialog cards={cards} />
+                     <ManageCardsDialog
+                        cards={bankCards}
+                        onUpdate={handleCardUpdate}
+                     />
                   </div>
                </div>
             </div>
@@ -79,7 +101,7 @@ const Bank = () => {
 
             {/* Recent Transactions Section */}
             <div className="lg:col-span-2">
-               <RecentTransactions />
+               <RecentTransactions selectedCardId={selectedCardId} />
             </div>
          </div>
       </div>

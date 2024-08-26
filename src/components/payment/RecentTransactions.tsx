@@ -4,85 +4,142 @@ import { Transaction, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 
-async function getData(): Promise<Transaction[]> {
-   // Simulate an API call to fetch payments data
-   return [
-      {
-         id: "txn_01",
-         date: "2024-08-01",
-         description: "Grocery Store",
-         amount: 50.25,
-         currency: "USD",
-         status: "success",
-      },
-      {
-         id: "txn_02",
-         date: "2024-08-05",
-         description: "Flight Ticket",
-         amount: 250.0,
-         currency: "USD",
-         status: "failed",
-      },
-      {
-         id: "txn_03",
-         date: "2024-08-10",
-         description: "Restaurant",
-         amount: 80.15,
-         currency: "USD",
-         status: "pending",
-      },
-      {
-         id: "txn_04",
-         date: "2024-08-15",
-         description: "Refund - Online Purchase",
-         amount: 100.0,
-         currency: "USD",
-         status: "processing",
-      },
-      {
-         id: "txn_05",
-         date: "2024-08-25",
-         description: "Refund - Online Purchase",
-         amount: 100.0,
-         currency: "USD",
-         status: "processing",
-      },
-      {
-         id: "txn_06",
-         date: "2024-07-25",
-         description: "Refund - Online Purchase",
-         amount: 100.0,
-         currency: "USD",
-         status: "processing",
-      },
-      {
-         id: "txn_07",
-         date: "2024-06-25",
-         description: "Online Purchase",
-         amount: 100.0,
-         currency: "USD",
-         status: "success",
-      },
-   ];
+// Mock API call for transactions
+async function fetchTransactionsForCard(
+   cardId: string | null
+): Promise<Transaction[]> {
+   // Simulate different transactions for different cards
+   if (cardId === "er634e7") {
+      return [
+         {
+            id: "txn_01",
+            date: "2024-08-01",
+            description: "Grocery Store",
+            amount: 50.25,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_02",
+            date: "2024-08-05",
+            description: "Flight Ticket",
+            amount: 250.0,
+            currency: "USD",
+            status: "failed",
+         },
+         {
+            id: "txn_03",
+            date: "2024-08-10",
+            description: "Restaurant",
+            amount: 80.15,
+            currency: "USD",
+            status: "pending",
+         },
+         {
+            id: "txn_04",
+            date: "2024-08-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+         {
+            id: "txn_05",
+            date: "2024-07-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+         {
+            id: "txn_06",
+            date: "2024-08-25",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_07",
+            date: "2024-08-26",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+      ];
+   } else if (cardId === "hd2376y") {
+      return [
+         {
+            id: "txn_01",
+            date: "2024-08-01",
+            description: "Grocery Store",
+            amount: 50.25,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_02",
+            date: "2024-08-05",
+            description: "Flight Ticket",
+            amount: 250.0,
+            currency: "USD",
+            status: "failed",
+         },
+         {
+            id: "txn_03",
+            date: "2024-08-10",
+            description: "Restaurant",
+            amount: 80.15,
+            currency: "USD",
+            status: "pending",
+         },
+         {
+            id: "txn_04",
+            date: "2024-08-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+      ];
+   } else if (cardId === "ab987hg") {
+      return [
+         {
+            id: "txn_05",
+            date: "2024-08-25",
+            description: "Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "success",
+         },
+      ];
+   }
+   return [];
 }
 
 // Recent Transactions UI Component
-const RecentTransactions = () => {
+const RecentTransactions = ({
+   selectedCardId,
+}: {
+   selectedCardId: string | null;
+}) => {
    const [data, setData] = useState<Transaction[]>([]); // State for data
-   const [loading, setLoading] = useState(true); // State for loading status
+   const [loading, setLoading] = useState(false); // State for loading status
 
    useEffect(() => {
       async function fetchData() {
-         const payments = await getData(); // Fetch the data
-         setData(payments); // Set the fetched data to state
+         setLoading(true);
 
-         setTimeout(() => {
+         setTimeout(async () => {
+            const transactions = await fetchTransactionsForCard(selectedCardId); // Fetch the data
+            setData(transactions);
             setLoading(false);
-         }, 1500);
+         }, 1000);
       }
 
       fetchData(); // Call the fetch function on component mount
-   }, []);
+   }, [selectedCardId]);
 
    return (
       <div className="flex flex-col gap-5 bg-white dark:bg-gray px-5 py-4 rounded-xl shadow-md dark:shadow-md-dark w-full">
