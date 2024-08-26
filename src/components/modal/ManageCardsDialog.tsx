@@ -79,7 +79,7 @@ export const ManageCardsDialog = ({
                Manage cards
             </Button>
          </DialogTrigger>
-         <DialogContent className="max-w-xl gap-5 w-11/12 rounded-lg md:w-full dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 border-0">
+         <DialogContent className="max-w-xl gap-5">
             <DialogHeader>
                <DialogTitle>Manage Your Cards</DialogTitle>
             </DialogHeader>
@@ -128,7 +128,7 @@ export const ManageCardsDialog = ({
                   <DialogFooter className="gap-2">
                      <Button
                         variant="destructive"
-                        className="dark:bg-red-500 text-white dark:text-white focus-visible:ring-offset-0 focus-visible:ring-0"
+                        className="dark:bg-red-500 text-white dark:text-white"
                         onClick={() => handleDeleteCard(selectedCard.id)}
                      >
                         Delete Card

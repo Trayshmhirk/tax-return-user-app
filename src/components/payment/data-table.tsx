@@ -87,13 +87,13 @@ export function DataTable<TData, TValue>({
                      .getColumn("description")
                      ?.setFilterValue(event.target.value)
                }
-               className="max-w-xs px-4 dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 dark:border-chineseWhite dark:border-opacity-50"
+               className="max-w-xs px-4 dark:bg-gray dark:border-chineseWhite dark:border-opacity-50"
             />
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="outline"
-                     className="dark:bg-gray focus-visible:ring-offset-0 focus-visible:ring-0 dark:border-chineseWhite dark:border-opacity-50 gap-2"
+                     className="dark:bg-gray dark:border-chineseWhite dark:border-opacity-50 gap-2"
                   >
                      <Settings2 className="w-4 h-4" />
                      View
@@ -130,7 +130,7 @@ export function DataTable<TData, TValue>({
                   {table.getHeaderGroups().map((headerGroup) => (
                      <TableRow
                         key={headerGroup.id}
-                        className="bg-richElectricBlue dark:bg-richElectricBlue border-chineseWhite dark:border-opacity-50 hover:bg-richElectricBlue hover:bg-opacity-90 dark:hover:bg-richElectricBlue  dark:hover:bg-opacity-90"
+                        className="bg-richElectricBlue dark:bg-richElectricBlue border-chineseWhite dark:border-opacity-50 hover:bg-richElectricBlue hover:bg-opacity-90 dark:hover:bg-richElectricBlue dark:hover:bg-opacity-90"
                      >
                         {headerGroup.headers.map((header) => {
                            return (

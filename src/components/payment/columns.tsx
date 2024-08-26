@@ -67,7 +67,7 @@ export const columns: ColumnDef<Transaction>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="focus-visible:ring-offset-0 focus-visible:ring-0 hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
                   >
                      Date
                      <ArrowUpDown className="h-4 w-4" />
@@ -213,10 +213,7 @@ export const columns: ColumnDef<Transaction>[] = [
             <div className="flex justify-end">
                <DropdownMenu>
                   <DropdownMenuTrigger asChild className="w-full">
-                     <Button
-                        variant="ghost"
-                        className="h-8 w-8 p-0 self-end focus-visible:ring-offset-0 focus-visible:ring-0"
-                     >
+                     <Button variant="ghost" className="h-8 w-8 p-0 self-end">
                         <MoreHorizontal className="h-4 w-4" />
                      </Button>
                   </DropdownMenuTrigger>
