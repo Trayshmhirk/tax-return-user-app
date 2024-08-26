@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown, Download } from "lucide-react";
+import { MoreHorizontal, ArrowUpDown, Download, Copy, Eye } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,8 +21,8 @@ import {
    isBefore,
 } from "date-fns";
 import { Badge } from "../ui/badge";
+import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
 
-// This type is used to define the shape of the transaction data.
 export type Transaction = {
    id: string;
    date: string;
@@ -63,7 +63,6 @@ export const columns: ColumnDef<Transaction>[] = [
       accessorKey: "date",
       header: ({ table }) => (
          <div className="flex items-center gap-2">
-            {/* Dropdown for filtering by date */}
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
                   <Button
@@ -208,28 +207,42 @@ export const columns: ColumnDef<Transaction>[] = [
    {
       id: "actions",
       cell: ({ row }) => {
-         const payment = row.original;
+         const transaction = row.original;
 
          return (
             <div className="flex justify-end">
                <DropdownMenu>
                   <DropdownMenuTrigger asChild className="w-full">
-                     <Button variant="ghost" className="h-8 w-8 p-0 self-end">
-                        <span className="sr-only">Open menu</span>
+                     <Button
+                        variant="ghost"
+                        className="h-8 w-8 p-0 self-end focus-visible:ring-offset-0 focus-visible:ring-0"
+                     >
                         <MoreHorizontal className="h-4 w-4" />
                      </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="dark:bg-gray">
                      <DropdownMenuItem
                         onClick={() =>
-                           navigator.clipboard.writeText(payment.id)
+                           navigator.clipboard.writeText(transaction.id)
                         }
+                        className="flex items-center gap-2 cursor-pointer"
                      >
-                        Copy payment ID
+                        <Copy className="w-4 h-4" />
+                        Copy ID
                      </DropdownMenuItem>
                      <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
-                     <DropdownMenuItem>View payment details</DropdownMenuItem>
-                     <DropdownMenuItem className="flex items-center gap-2">
+
+                     <TransactionReceiptDialog transaction={transaction}>
+                        <DropdownMenuItem
+                           onSelect={(e) => e.preventDefault()}
+                           className="flex items-center gap-2 cursor-pointer"
+                        >
+                           <Eye className="w-4 h-4" />
+                           View Transaction
+                        </DropdownMenuItem>
+                     </TransactionReceiptDialog>
+
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>

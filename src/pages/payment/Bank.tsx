@@ -50,7 +50,6 @@ const Bank = () => {
    const defaultCard = bankCards.find((card) => card.isDefault) || bankCards[0];
    const [selectedCardId, setSelectedCardId] = useState<string>(defaultCard.id);
 
-   // Update displayed cards to prioritize the default card
    const displayedCards = [
       defaultCard,
       ...bankCards.filter((card) => card.id !== defaultCard.id),
@@ -99,7 +98,6 @@ const Bank = () => {
 
             <DebitChart />
 
-            {/* Recent Transactions Section */}
             <div className="lg:col-span-2">
                <RecentTransactions selectedCardId={selectedCardId} />
             </div>

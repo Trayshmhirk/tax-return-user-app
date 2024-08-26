@@ -1,14 +1,11 @@
-// import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Transaction, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 
-// Mock API call for transactions
 async function fetchTransactionsForCard(
    cardId: string | null
 ): Promise<Transaction[]> {
-   // Simulate different transactions for different cards
    if (cardId === "er634e7") {
       return [
          {
@@ -118,27 +115,26 @@ async function fetchTransactionsForCard(
    return [];
 }
 
-// Recent Transactions UI Component
 const RecentTransactions = ({
    selectedCardId,
 }: {
    selectedCardId: string | null;
 }) => {
-   const [data, setData] = useState<Transaction[]>([]); // State for data
-   const [loading, setLoading] = useState(false); // State for loading status
+   const [data, setData] = useState<Transaction[]>([]);
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       async function fetchData() {
-         setLoading(true);
+         // setLoading(true);
 
          setTimeout(async () => {
             const transactions = await fetchTransactionsForCard(selectedCardId); // Fetch the data
             setData(transactions);
             setLoading(false);
-         }, 1000);
+         }, 300);
       }
 
-      fetchData(); // Call the fetch function on component mount
+      fetchData();
    }, [selectedCardId]);
 
    return (
@@ -151,7 +147,7 @@ const RecentTransactions = ({
                   <ClipLoader color="#00A2C9" />
                </div>
             ) : (
-               <DataTable columns={columns} data={data} /> // Render the DataTable with the fetched data
+               <DataTable columns={columns} data={data} />
             )}
          </div>
       </div>
