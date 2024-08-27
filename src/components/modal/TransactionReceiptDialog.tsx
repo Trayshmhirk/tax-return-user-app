@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
    Dialog,
    DialogContent,
@@ -9,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Transaction } from "../payment/columns";
-import { useState } from "react";
+import { exportToPDF } from "@/helpers/exportToPDF";
 
 type TransactionReceiptDialogProps = {
    transaction: Transaction;
@@ -69,6 +70,7 @@ export const TransactionReceiptDialog: React.FC<
                <Button
                   type="button"
                   className="bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-85 dark:bg-richElectricBlue dark:hover:bg-richElectricBlue dark:hover:bg-opacity-80 text-white dark:text-white"
+                  onClick={() => exportToPDF(transaction)}
                >
                   Download
                </Button>

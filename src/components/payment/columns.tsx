@@ -22,6 +22,7 @@ import {
 } from "date-fns";
 import { Badge } from "../ui/badge";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
+import { exportToPDF } from "@/helpers/exportToPDF";
 
 export type Transaction = {
    id: string;
@@ -239,7 +240,10 @@ export const columns: ColumnDef<Transaction>[] = [
                         </DropdownMenuItem>
                      </TransactionReceiptDialog>
 
-                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                     <DropdownMenuItem
+                        className="flex items-center gap-2 cursor-pointer"
+                        onClick={() => exportToPDF(transaction)}
+                     >
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
