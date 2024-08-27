@@ -110,23 +110,13 @@ const SettingsAside = () => {
                      </NavLink>
 
                      <NavLink
-                        to="integrated-banks"
-                        className={`
-                           flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/integrated-banks" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
-                        `}
-                     >
-                        <span className="text-sm">Integrated banks</span>
-                     </NavLink>
-
-                     <NavLink
-                        to="my-documents"
+                        to="my-files"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
                            ${location.pathname === "/settings/my-documents" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
                         `}
                      >
-                        <span className="text-sm">My documents</span>
+                        <span className="text-sm">My Files</span>
                      </NavLink>
                   </nav>
                </div>

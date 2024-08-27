@@ -10,11 +10,11 @@ import FormLayout from "../layouts/FormLayout";
 import { ErrorPage } from "../pages/ErrorPage";
 import PageLoader from "../components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
-import SignUp from "../pages/auth/SignUp";
 import SettingsLayout from "../layouts/SettingsLayout";
 
 // Lazy-loaded pages
 const Login = lazy(() => import("../pages/auth/Login"));
+const SignUp = lazy(() => import("../pages/auth/SignUp"));
 const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
 const AddCard = lazy(() => import("../pages/payment/AddCard"));
@@ -22,17 +22,16 @@ const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
 const Documents = lazy(() => import("../pages/Documents"));
 const Receipts = lazy(() => import("../pages/Receipts"));
 const LiveChat = lazy(() => import("../pages/LiveChat"));
+const Bank = lazy(() => import("../pages/payment/Bank"));
 const KnowledgeBase = lazy(() => import("../pages/KnowledgeBase"));
 const Video = lazy(() => import("../pages/Video"));
-const Transactions = lazy(() => import("../pages/Transactions"));
 const Profile = lazy(() => import("../pages/settings/Profile"));
 const Terms = lazy(() => import("../pages/settings/Terms"));
 const Help = lazy(() => import("../pages/settings/Help"));
 const Privacy = lazy(() => import("../pages/settings/Privacy"));
 const Faq = lazy(() => import("../pages/settings/Faq"));
 const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
-const IntegratedBanks = lazy(() => import("../pages/settings/IntegratedBanks"));
-const MyDocuments = lazy(() => import("../pages/settings/MyDocuments"));
+const MyFiles = lazy(() => import("../pages/settings/MyFiles"));
 const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 
 const router = createBrowserRouter(
@@ -126,6 +125,14 @@ const router = createBrowserRouter(
                }
             />
             <Route
+               path="bank"
+               element={
+                  <ProtectedRoute>
+                     <Bank />
+                  </ProtectedRoute>
+               }
+            />
+            <Route
                path="knowledge-base/"
                element={
                   <ProtectedRoute>
@@ -135,14 +142,7 @@ const router = createBrowserRouter(
             >
                <Route path="video/:videoId" element={<Video />}></Route>
             </Route>
-            <Route
-               path="transactions"
-               element={
-                  <ProtectedRoute>
-                     <Transactions />
-                  </ProtectedRoute>
-               }
-            />
+
             <Route
                path="settings/"
                element={
@@ -173,18 +173,10 @@ const router = createBrowserRouter(
                <Route path="privacy-policy" element={<Privacy />} />
                <Route path="faq" element={<Faq />} />
                <Route
-                  path="integrated-banks"
+                  path="my-files"
                   element={
                      <ProtectedRoute>
-                        <IntegratedBanks />
-                     </ProtectedRoute>
-                  }
-               />
-               <Route
-                  path="my-documents"
-                  element={
-                     <ProtectedRoute>
-                        <MyDocuments />
+                        <MyFiles />
                      </ProtectedRoute>
                   }
                />

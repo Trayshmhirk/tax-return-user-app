@@ -2,9 +2,8 @@ import { GoHome } from "react-icons/go";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineReceiptLong } from "react-icons/md";
 import { BsChat } from "react-icons/bs";
-import { MdOutlineCreditCard } from "react-icons/md";
+import { LuLandmark } from "react-icons/lu";
 import { MdOutlineNewspaper } from "react-icons/md";
-import { GrBarChart } from "react-icons/gr";
 
 export const navItemsData = [
    {
@@ -37,17 +36,10 @@ export const navItemsData = [
       tourContent: "Chat with and agent to get assistance ",
    },
    {
-      title: "Transactions",
-      navIcon: GrBarChart,
-      route: "transactions",
-      id: "transactionsNavItem",
-      tourContent: "See all transactions related to Okeh CPA",
-   },
-   {
-      title: "Credit cards",
-      navIcon: MdOutlineCreditCard,
-      route: "credit-cards",
-      id: "cardsNavItem",
+      title: "Bank",
+      navIcon: LuLandmark,
+      route: "bank",
+      id: "bankNavItem",
       tourContent: "See annum based tax filing for previous years",
    },
    {

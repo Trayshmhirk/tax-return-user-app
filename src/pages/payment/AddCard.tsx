@@ -7,30 +7,6 @@ const stripePromise = loadStripe(
 );
 
 const AddCard = () => {
-   // const [clientSecret, setClientSecret] = useState("");
-
-   // useEffect(() => {
-   //    // Fetch the client secret from your backend server
-   //    fetch("/api/payment-intent", {
-   //       method: "POST",
-   //       headers: {
-   //          "Content-Type": "application/json",
-   //       },
-   //       body: JSON.stringify({
-   //          /* any necessary data */
-   //       }),
-   //    })
-   //       .then((response) => response.json())
-   //       .then((data) => {
-   //          setClientSecret(data.clientSecret);
-   //       });
-   // }, []);
-
-   // const options = {
-   //    // passing the client secret obtained from the server
-   //    clientSecret,
-   // };
-
    return (
       <div className="w-full h-full flex flex-col gap-4 bg-white dark:bg-gray px-6 py-5 md:px-10 md:py-7 rounded-2xl">
          <h1 className="text-base font-semibold md:text-xl">Add new card</h1>
@@ -40,12 +16,6 @@ const AddCard = () => {
          <Elements stripe={stripePromise}>
             <CardForm />
          </Elements>
-
-         {/* {clientSecret && (
-            <Elements stripe={stripePromise} options={options}>
-               <CheckOutForm />
-            </Elements>
-         )} */}
       </div>
    );
 };

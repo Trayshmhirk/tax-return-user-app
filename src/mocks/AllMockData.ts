@@ -1,7 +1,6 @@
 import {
    DocumentsPropTypes,
    ReceiptsPropTypes,
-   InvoicePropTypes,
    VideoDataTypes,
    ServicesListTypes,
    CategoryListTypes,
@@ -121,45 +120,6 @@ export const receipts: ReceiptsPropTypes[] = [
          fullname: "Micheal",
       },
       date: "12/02/1999",
-   },
-];
-
-// invoices
-export const invoices: InvoicePropTypes[] = [
-   {
-      id: "345",
-      transaction_id: "3adfb84tbdvber78",
-      title: "Transact",
-      date: "4th aug, 2024",
-      total: "300",
-   },
-   {
-      id: "234",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "456",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "940",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
-   },
-   {
-      id: "257",
-      transaction_id: "adf367dvber78fjadb",
-      title: "Transaction",
-      date: "9th aug, 2024",
-      total: "500",
    },
 ];
 
