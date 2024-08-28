@@ -6,7 +6,6 @@ import { requests } from "../../mocks/AllMockData";
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
    const filterTitleList = ["All", "Pending", "Completed", "Paid"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +44,6 @@ const MyRequests = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 

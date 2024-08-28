@@ -173,7 +173,7 @@ const router = createBrowserRouter(
                <Route path="privacy-policy" element={<Privacy />} />
                <Route path="faq" element={<Faq />} />
                <Route
-                  path="my-files"
+                  path="files"
                   element={
                      <ProtectedRoute>
                         <MyFiles />

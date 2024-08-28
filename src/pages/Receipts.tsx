@@ -12,7 +12,6 @@ const Receipts = () => {
 
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const [activeFilter, setActiveFilter] = useState<string>("All");
    const filterTitleList = ["All", "Today", "This week", "This month"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,8 +131,6 @@ const Receipts = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 

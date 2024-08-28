@@ -211,13 +211,13 @@ const SettingsAside = () => {
                      </NavLink>
 
                      <NavLink
-                        to="my-files"
+                        to="files"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/my-documents" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
+                           ${location.pathname === "/settings/files" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
-                        <span className="text-sm">My Files</span>
+                        <span className="text-sm">Files</span>
                      </NavLink>
                   </nav>
                </div>
