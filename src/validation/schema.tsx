@@ -30,3 +30,16 @@ export const logInSchema = yup.object().shape({
       .max(20, "Password should not be more than 20 characters")
       .required("Please input your password"),
 });
+
+export const changePasswordSchema = yup.object().shape({
+   oldPassword: yup
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .max(20, "Password should not be more than 20 characters")
+      .required("Please input your password"),
+   newPassword: yup
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .max(20, "Password should not be more than 20 characters")
+      .required("Please input your password"),
+});

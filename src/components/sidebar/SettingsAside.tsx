@@ -1,6 +1,32 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { PiNavigationArrowDuotone } from "react-icons/pi";
+import {
+   Dialog,
+   DialogContent,
+   DialogHeader,
+   DialogTitle,
+   DialogTrigger,
+   DialogFooter,
+} from "@/components/ui/dialog";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "../ui/button";
+import FormInput from "../form-components/FormInput";
+import { IChangePasswordForm } from "@/types/AllTypes";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { changePasswordSchema } from "@/validation/schema";
+import { ClipLoader } from "react-spinners";
 
 const route = [
    { name: "Profile", route: "profile" },
@@ -18,6 +44,16 @@ const SettingsAside = () => {
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [selectedDropdownTitle, setSelectedDropdownTitle] =
       useState("Profile");
+   const [isLoading, setIsLoading] = useState(false);
+   const [loginError] = useState<string | null>(null);
+
+   const {
+      register,
+      handleSubmit,
+      formState: { errors },
+   } = useForm<IChangePasswordForm>({
+      resolver: yupResolver(changePasswordSchema),
+   });
 
    useEffect(() => {
       // Find the matching route based on location.pathname and update the title
@@ -32,6 +68,20 @@ const SettingsAside = () => {
    const handleDropdownSelect = (route: string) => {
       setSelectedDropdownTitle(route);
       setIsDropdownOpen(false);
+   };
+
+   const onSubmit = async (data: IChangePasswordForm) => {
+      console.log(data);
+      setIsLoading(true);
+
+      // Simulate API call with setTimeout
+      setTimeout(() => {
+         setIsLoading(false);
+
+         setTimeout(() => {
+            // Next after mock success
+         }, 700);
+      }, 2000); // Mock API call delay of 2 seconds}
    };
 
    return (
@@ -70,24 +120,75 @@ const SettingsAside = () => {
                         to="profile"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/profile" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/profile" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">Profile</span>
                      </NavLink>
 
-                     <div
-                        // onClick={handleShowFormModal}
-                        className="flex items-center justify-between bg-white dark:bg-gray text-mutedGray dark:text-white py-1 px-3 rounded-md no-underline cursor-pointer hover-bg-shadow"
-                     >
-                        <span className="text-sm">Change password</span>
-                     </div>
+                     <Dialog>
+                        <DialogTrigger asChild>
+                           <div className="flex items-center justify-between bg-white dark:bg-gray text-mutedGray dark:text-white py-1 px-3 rounded-md no-underline cursor-pointer hover-shadow">
+                              <span className="text-sm">Change password</span>
+                           </div>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-md gap-5">
+                           <DialogHeader>
+                              <DialogTitle className="text-xl">
+                                 Change Password
+                              </DialogTitle>
+                           </DialogHeader>
+                           <form
+                              onSubmit={handleSubmit(onSubmit)}
+                              className="flex flex-col gap-6"
+                           >
+                              <div className="flex flex-col gap-3 mb-auto">
+                                 <FormInput<IChangePasswordForm>
+                                    label="Old Password"
+                                    type="password"
+                                    register={register}
+                                    name="oldPassword"
+                                    placeholder="Enter old Password"
+                                    error={errors}
+                                 />
+                                 <FormInput<IChangePasswordForm>
+                                    label="New Password"
+                                    type="password"
+                                    register={register}
+                                    name="newPassword"
+                                    placeholder="Enter new password"
+                                    error={errors}
+                                 />
+                              </div>
+
+                              {loginError && (
+                                 <p className="text-red-500 text-center">
+                                    {loginError}
+                                 </p>
+                              )}
+
+                              <DialogFooter>
+                                 <Button
+                                    type="submit"
+                                    className="w-full bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-85 dark:bg-richElectricBlue dark:hover:bg-richElectricBlue dark:hover:bg-opacity-80 text-white dark:text-white"
+                                    // onClick={() => exportToPDF(transaction)}
+                                 >
+                                    {isLoading ? (
+                                       <ClipLoader color="#ffffff" size={20} />
+                                    ) : (
+                                       "Save password"
+                                    )}
+                                 </Button>
+                              </DialogFooter>
+                           </form>
+                        </DialogContent>
+                     </Dialog>
 
                      <NavLink
                         to="privacy-policy"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/privacy-policy" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/privacy-policy" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">Privacy policy</span>
@@ -103,7 +204,7 @@ const SettingsAside = () => {
                         to="my-requests"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/my-requests" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/my-requests" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">My requests</span>
@@ -113,7 +214,7 @@ const SettingsAside = () => {
                         to="my-files"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/my-documents" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/my-documents" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">My Files</span>
@@ -129,7 +230,7 @@ const SettingsAside = () => {
                         to="faq"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/faq" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/faq" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">FAQ</span>
@@ -138,7 +239,7 @@ const SettingsAside = () => {
                         to="help-and-support"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/help-and-support" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/help-and-support" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">Help and support</span>
@@ -154,7 +255,7 @@ const SettingsAside = () => {
                         to="terms-and-conditions"
                         className={`
                            flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/terms-and-conditions" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-bg-shadow"}
+                           ${location.pathname === "/settings/terms-and-conditions" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
                         `}
                      >
                         <span className="text-sm">Terms and conditions</span>
@@ -165,14 +266,33 @@ const SettingsAside = () => {
                <div className="flex flex-col gap-2">
                   <h2 className="font-medium">Danger zone</h2>
 
-                  <div
-                     // onClick={handleShowFormModal}
-                     className="flex items-center justify-between bg-white dark:bg-gray text-mutedGray dark:text-white py-1 px-3 rounded-md no-underline cursor-pointer hover-bg-shadow"
-                  >
-                     <span className="text-sm text-bostonRed dark:text-red-500">
-                        Delete account
-                     </span>
-                  </div>
+                  <AlertDialog>
+                     <AlertDialogTrigger asChild>
+                        <div className="flex items-center justify-between bg-white dark:bg-gray text-mutedGray dark:text-white py-1 px-3 rounded-md no-underline cursor-pointer hover-shadow">
+                           <span className="text-sm text-bostonRed dark:text-red-500">
+                              Delete account
+                           </span>
+                        </div>
+                     </AlertDialogTrigger>
+                     <AlertDialogContent>
+                        <AlertDialogHeader>
+                           <AlertDialogTitle>
+                              Are you absolutely sure?
+                           </AlertDialogTitle>
+                           <AlertDialogDescription>
+                              This action cannot be undone. This will
+                              permanently delete your account and remove your
+                              data from our servers.
+                           </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                           <AlertDialogCancel>Cancel</AlertDialogCancel>
+                           <AlertDialogAction className="bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white">
+                              Delete
+                           </AlertDialogAction>
+                        </AlertDialogFooter>
+                     </AlertDialogContent>
+                  </AlertDialog>
                </div>
             </div>
          </aside>

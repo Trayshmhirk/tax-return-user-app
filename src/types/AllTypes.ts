@@ -146,3 +146,8 @@ export type ISignUpForm = {
    password: string;
    confirmPassword: string;
 };
+
+export type IChangePasswordForm = {
+   oldPassword: string;
+   newPassword: string;
+};
