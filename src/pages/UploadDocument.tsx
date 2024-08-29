@@ -203,19 +203,13 @@ const UploadDocument = () => {
                title={docTypeFilterList}
             />
 
-            <div className="w-full flex flex-wrap gap-5">
+            <div className="w-full">
                {filteredFiles.length ? (
-                  <>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                      {filteredFiles.map((doc) => (
-                        <DocumentCard
-                           key={doc.id}
-                           docId={doc.id}
-                           documentName={doc.document_name}
-                           documentSize={doc.document_size}
-                           documentType={doc.document_type}
-                        />
+                        <DocumentCard key={doc.id} document={doc} />
                      ))}
-                  </>
+                  </div>
                ) : (
                   <p className="pending-text w-100 text-center">
                      Nothing to show here.

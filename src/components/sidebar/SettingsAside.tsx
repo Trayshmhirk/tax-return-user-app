@@ -89,13 +89,13 @@ const SettingsAside = () => {
          <div className="relative mt-3 ml-2 lg:hidden">
             <button
                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-               className="bg-white dark:bg-mutedGray w-56 h-11 py-3 px-6 text-center rounded-lg shadow-md dark:shadow-md-dark text-[15px] font-medium flex items-center gap-3"
+               className="bg-white dark:bg-gray w-56 h-11 py-3 px-6 text-center rounded-lg shadow-md dark:shadow-md-dark text-[15px] font-medium flex items-center gap-3"
             >
                <PiNavigationArrowDuotone className="text-lg text-gray dark:text-white" />
                {selectedDropdownTitle}
             </button>
             {isDropdownOpen && (
-               <div className="absolute left-0 right-0 bg-white dark:bg-mutedGray mt-2 w-56 rounded-lg shadow-md dark:shadow-md-dark z-10 overflow-hidden">
+               <div className="absolute left-0 right-0 bg-white dark:bg-gray mt-2 w-56 rounded-lg shadow-md dark:shadow-md-dark z-10 overflow-hidden">
                   {route.map((route, index) => (
                      <NavLink
                         key={index}

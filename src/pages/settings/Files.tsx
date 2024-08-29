@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DocumentsPropTypes } from "@/types/AllTypes";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
@@ -13,7 +13,7 @@ async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    return [
       {
          id: "id1",
-         document_name: "Document 1adfuubadfdajhjahdf",
+         document_name: "Document pdf",
          document_size: "10",
          document_type: "application/pdf",
          date_modified: "2024-08-01",
@@ -57,8 +57,8 @@ async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
 const Files = () => {
    const [data, setData] = useState<DocumentsPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
-   const [isList, setIsList] = useState(true);
-   const [isGrid, setIsGrid] = useState(false);
+   const [isList, setIsList] = useState(false);
+   const [isGrid, setIsGrid] = useState(true);
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
@@ -128,7 +128,8 @@ const Files = () => {
                </button>
                <button
                   onClick={handleToggleList}
-                  className="w-9 h-9 flex items-center justify-center bg-richElectricBlue text-white rounded-full hover-shadow"
+                  className="w-9 h-9 flex items-center justify-center bg-richElectricBlue text-white rounded-full disabled:bg-spanishGray disabled:opacity-70 hover-shadow"
+                  disabled={window.innerWidth < 768}
                >
                   <RiListCheck3 size={18} />
                </button>
@@ -161,21 +162,13 @@ const Files = () => {
                            title={docTypeFilterList}
                         />
 
-                        <div className="w-full flex flex-wrap gap-5">
+                        <div className="w-full">
                            {filteredDocs.length ? (
-                              <>
+                              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                                  {filteredDocs.map((doc) => (
-                                    <React.Fragment key={doc.id}>
-                                       <DocumentCard
-                                          docId={doc.id}
-                                          documentName={doc.document_name}
-                                          documentSize={doc.document_size}
-                                          documentType={doc.document_type}
-                                          // document={doc}
-                                       />
-                                    </React.Fragment>
+                                    <DocumentCard key={doc.id} document={doc} />
                                  ))}
-                              </>
+                              </div>
                            ) : (
                               <p className="pending-text w-full text-center">
                                  No results found.

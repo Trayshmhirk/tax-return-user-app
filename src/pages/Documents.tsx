@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import UploadPdfImage from "../components/common/UploadPdfImage";
 import SearchAndFilter from "../components/common/SearchAndFilter";
-import React, { useState } from "react";
+import { useState } from "react";
 import { DocumentCard } from "../components/cards/DocumentCard";
 import { DocumentsPropTypes } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
@@ -69,21 +69,13 @@ const Documents = () => {
                title={docTypeFilterList}
             />
 
-            <div className="w-full flex flex-wrap gap-5">
+            <div className="w-full">
                {filteredDocs.length ? (
-                  <>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                      {filteredDocs.map((doc) => (
-                        <React.Fragment key={doc.id}>
-                           <DocumentCard
-                              docId={doc.id}
-                              documentName={doc.document_name}
-                              documentSize={doc.document_size}
-                              documentType={doc.document_type}
-                              // document={doc}
-                           />
-                        </React.Fragment>
+                        <DocumentCard key={doc.id} document={doc} />
                      ))}
-                  </>
+                  </div>
                ) : (
                   <p className="pending-text w-full text-center">
                      No results found.

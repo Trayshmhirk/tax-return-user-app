@@ -1,7 +1,14 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ChevronDown, Download, Copy, Eye } from "lucide-react";
+import {
+   MoreHorizontal,
+   ChevronDown,
+   Download,
+   Eye,
+   Trash2,
+   Share,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +18,7 @@ import {
    DropdownMenuCheckboxItem,
    DropdownMenuSeparator,
    DropdownMenuTrigger,
+   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DocumentsPropTypes } from "@/types/AllTypes";
@@ -53,7 +61,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
                   >
                      NAME
                      <ChevronDown className="h-4 w-4" />
@@ -115,7 +123,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
                   >
                      SIZE
                      <ChevronDown className="h-4 w-4" />
@@ -157,7 +165,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
       ),
       cell: ({ row }) => {
          const size = row.original.document_size;
-         return <div className="px-4">{size} MB</div>;
+         return <div className="lg:px-2">{size} MB</div>;
       },
    },
    {
@@ -180,7 +188,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                   <DropdownMenuTrigger asChild>
                      <Button
                         variant="ghost"
-                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
                      >
                         TYPE
                         <ChevronDown className="h-4 w-4" />
@@ -227,7 +235,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
          const fileType = row.original.document_type;
          const MappedFile = mapFileTypeToDocumentType(fileType);
 
-         return <div className="px-4">{MappedFile}</div>;
+         return <div className="lg:px-2">{MappedFile}</div>;
       },
    },
    {
@@ -238,7 +246,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
                   >
                      MODIFIED
                      <ChevronDown className="h-4 w-4" />
@@ -282,7 +290,9 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
          const dateModified = row.original.date_modified;
 
          return (
-            <div className="px-4">{formatDate(dateModified, "dd.MM.yyyy")}</div>
+            <div className="lg:px-2">
+               {formatDate(dateModified, "dd.MM.yyyy")}
+            </div>
          );
       },
    },
@@ -290,6 +300,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
       id: "actions",
       cell: ({ row }) => {
          const document = row.original;
+         document;
 
          return (
             <div className="flex justify-end">
@@ -303,15 +314,9 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                      align="end"
                      className="bg-ghostWhite dark:bg-gray"
                   >
-                     <DropdownMenuItem
-                        onClick={() =>
-                           navigator.clipboard.writeText(document.id)
-                        }
-                        className="flex items-center gap-2 cursor-pointer"
-                     >
-                        <Copy className="w-4 h-4" />
-                        Copy ID
-                     </DropdownMenuItem>
+                     <DropdownMenuLabel className="text-sm dark:text-white">
+                        Actions
+                     </DropdownMenuLabel>
                      <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
 
                      <DropdownMenuItem
@@ -321,6 +326,13 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                         <Eye className="w-4 h-4" />
                         View Document
                      </DropdownMenuItem>
+                     <DropdownMenuItem
+                        // onClick={handleSendToChat ?? (() => {})}
+                        className="flex items-center gap-2 cursor-pointer"
+                     >
+                        <Share className="w-4 h-4" />
+                        Share document
+                     </DropdownMenuItem>
 
                      <DropdownMenuItem
                         className="flex items-center gap-2 cursor-pointer"
@@ -328,6 +340,13 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                      >
                         <Download className="w-4 h-4" />
                         Download
+                     </DropdownMenuItem>
+                     <DropdownMenuItem
+                        className="flex items-center gap-2 cursor-pointer"
+                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
+                     >
+                        <Trash2 className="w-4 h-4" />
+                        Delete
                      </DropdownMenuItem>
                   </DropdownMenuContent>
                </DropdownMenu>

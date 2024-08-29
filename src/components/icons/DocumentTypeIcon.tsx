@@ -2,13 +2,14 @@ import { FaFile } from "react-icons/fa6";
 
 type DocumentTypeIconProps = {
    docType: string;
+   isGridView?: boolean;
 };
 
-const DocumentTypeIcon = ({ docType }: DocumentTypeIconProps) => {
+const DocumentTypeIcon = ({ docType, isGridView }: DocumentTypeIconProps) => {
    return (
       <div className="relative">
          <FaFile
-            className="w-5 h-6"
+            className={`${isGridView ? "w-7 h-8" : "w-5 h-6 text-base"}`}
             style={{
                color: `
                   ${docType === "PDF" ? "#DB6262" : ""}
@@ -19,7 +20,9 @@ const DocumentTypeIcon = ({ docType }: DocumentTypeIconProps) => {
                `,
             }}
          />
-         <div className="absolute bottom-[5px] w-full text-[7px] text-center font-medium text-white">
+         <div
+            className={`absolute bottom-[5px] w-full ${isGridView ? "text-[9px]" : "text-[7px] leading-[8px]"} text-center font-medium text-white `}
+         >
             {docType}
          </div>
       </div>

@@ -132,7 +132,7 @@ export function DataTable<TData, TValue>({
                {table.getHeaderGroups().map((headerGroup) => (
                   <div
                      key={headerGroup.id}
-                     className="grid grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-5 py-1 shadow-md dark:shadow-md-dark rounded-lg"
+                     className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-5 py-1 shadow-md dark:shadow-md-dark rounded-lg"
                   >
                      {headerGroup.headers.map((header) => (
                         <div key={header.id} className="dark:text-white">
@@ -153,10 +153,10 @@ export function DataTable<TData, TValue>({
                   table.getRowModel().rows.map((row) => (
                      <div
                         key={row.id}
-                        className="grid grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-ghostWhite dark:bg-darkGray px-5 py-2 shadow-md dark:shadow-md-dark rounded-lg"
+                        className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-ghostWhite dark:bg-darkGray px-5 py-2 shadow-md dark:shadow-md-dark rounded-lg"
                      >
                         {row.getVisibleCells().map((cell) => (
-                           <div key={cell.id}>
+                           <div key={cell.id} className="text-sm">
                               {flexRender(
                                  cell.column.columnDef.cell,
                                  cell.getContext()
