@@ -11,8 +11,7 @@ import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 const UploadDocument = () => {
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const [activeFilter, setActiveFilter] = useState<string>("All");
-   const filterTitleList = ["All", "PDF", "PNG", "DOC", "XLS"];
+   const docTypeFilterList = ["All", "PDF", "PNG", "DOC", "XLS"];
    const [ongoingUploads, setOngoingUploads] = useState<number>(0);
    const [uploadProgress, setUploadProgress] = useState<number>(0);
    const [currentFileSize, setCurrentFileSize] = useState<number>(0);
@@ -24,7 +23,7 @@ const UploadDocument = () => {
    };
 
    const searchDocs = (doc: DocumentsPropTypes) => {
-      const docName = doc.title;
+      const docName = doc.document_name;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
@@ -201,9 +200,7 @@ const UploadDocument = () => {
             <SearchAndFilter
                handleSearch={handleSearch}
                handleFilter={handleFilter}
-               activeFilter={activeFilter}
-               setActiveFilter={setActiveFilter}
-               title={filterTitleList}
+               title={docTypeFilterList}
             />
 
             <div className="w-full flex flex-wrap gap-5">
@@ -213,7 +210,7 @@ const UploadDocument = () => {
                         <DocumentCard
                            key={doc.id}
                            docId={doc.id}
-                           documentName={doc.title}
+                           documentName={doc.document_name}
                            documentSize={doc.document_size}
                            documentType={doc.document_type}
                         />

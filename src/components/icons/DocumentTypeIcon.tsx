@@ -1,4 +1,4 @@
-import { FaFile } from "react-icons/fa6";
+import { FaFile } from "react-icons/fa";
 
 type DocumentTypeIconProps = {
    docType: string;
@@ -7,21 +7,19 @@ type DocumentTypeIconProps = {
 const DocumentTypeIcon = ({ docType }: DocumentTypeIconProps) => {
    return (
       <div className="relative">
-         <FaFile className="text-spanishGray w-4 h-5" />
-         <div
+         <FaFile
+            className="w-5 h-6"
             style={{
-               background: `
-                     ${docType === "PDF" ? "#DB6262" : ""}
-                     ${docType === "PNG" ? "#B255D3" : ""}
-                     ${docType === "JPEG" ? "#B255D3" : ""}
-                     ${docType === "XLS" ? "#29CE9C" : ""}
-                     ${docType === "DOC" ? "#29B0CE" : ""}
-                  `,
-               height: "10px",
-               color: "white",
+               color: `
+                  ${docType === "PDF" ? "#DB6262" : ""}
+                  ${docType === "PNG" ? "#B255D3" : ""}
+                  ${docType === "JPEG" ? "#B255D3" : ""}
+                  ${docType === "XLS" ? "#29CE9C" : ""}
+                  ${docType === "DOC" ? "#29B0CE" : ""}
+               `,
             }}
-            className="absolute bottom-[3px] w-full text-[7px] text-center rounded-sm"
-         >
+         />
+         <div className="absolute bottom-[5px] w-full text-[7px] text-center font-medium text-white">
             {docType}
          </div>
       </div>

@@ -12,14 +12,14 @@ const Documents = () => {
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const filterTitleList = ["All", "PDF", "PNG", "DOC", "XLS"];
+   const docTypeFilterList = ["All", "PDF", "PNG", "DOC", "XLS"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
    };
 
    const searchDocs = (doc: DocumentsPropTypes) => {
-      const docName = doc.title;
+      const docName = doc.document_name;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
@@ -66,7 +66,7 @@ const Documents = () => {
             <SearchAndFilter
                handleSearch={handleSearch}
                handleFilter={handleFilter}
-               title={filterTitleList}
+               title={docTypeFilterList}
             />
 
             <div className="w-full flex flex-wrap gap-5">
@@ -76,7 +76,7 @@ const Documents = () => {
                         <React.Fragment key={doc.id}>
                            <DocumentCard
                               docId={doc.id}
-                              documentName={doc.title}
+                              documentName={doc.document_name}
                               documentSize={doc.document_size}
                               documentType={doc.document_type}
                               // document={doc}

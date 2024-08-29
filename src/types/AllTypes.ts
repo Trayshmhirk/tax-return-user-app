@@ -47,9 +47,10 @@ export type CategoryListTypes = {
 // documents
 export type DocumentsPropTypes = {
    id: string;
-   title: string;
+   document_name: string;
    document_size: string;
    document_type: FileType;
+   date_modified: string;
 };
 
 export type FileType =

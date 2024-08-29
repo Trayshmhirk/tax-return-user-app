@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoFilter } from "react-icons/io5";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -32,9 +31,9 @@ const SearchAndFilter = ({
 
    return (
       <div className="w-full flex flex-col md:flex-row md:items-center gap-4">
-         <label className="w-full h-10 flex items-center bg-white dark:bg-mutedGray p-3 pr-5 rounded sm:w-[300px] shadow-md dark:shadow-md-dark">
+         <label className="w-full h-10 flex items-center bg-white dark:bg-gray p-3 pr-5 rounded sm:w-[300px] shadow-md dark:shadow-md-dark">
             <button className="px-3 cursor-pointer">
-               <FaMagnifyingGlass className="w-4 h-4 text-gray dark:text-white" />
+               <Search className="w-4 h-4 dark:text-white" />
             </button>
             <input
                type="text"
@@ -50,7 +49,7 @@ const SearchAndFilter = ({
                   variant="outline"
                   role="combobox"
                   aria-expanded={open}
-                  className="w-[200px] h-10 flex items-center bg-white dark:bg-mutedGray px-4 py-3 rounded shadow-md dark:shadow-md-dark justify-between border-0"
+                  className="w-[200px] h-10 flex items-center bg-white dark:bg-gray px-4 py-3 rounded shadow-md dark:shadow-md-dark justify-between border-0"
                >
                   <div className="flex items-center gap-2">
                      <IoFilter className="w-4 h-4" />
@@ -60,7 +59,7 @@ const SearchAndFilter = ({
                </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">
-               <Command>
+               <Command className="bg-white dark:bg-gray shadow-md dark:shadow-md-dark">
                   <CommandList>
                      {title.length === 0 ? (
                         <CommandEmpty>No filter found.</CommandEmpty>
