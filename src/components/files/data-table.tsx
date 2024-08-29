@@ -126,13 +126,13 @@ export function DataTable<TData, TValue>({
             </DropdownMenu>
          </div>
 
-         <div className="flex flex-col">
+         <div className="flex flex-col gap-3">
             {/* Wrapper for the list with gaps between items */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col">
                {table.getHeaderGroups().map((headerGroup) => (
                   <div
                      key={headerGroup.id}
-                     className="grid grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 px-5 py-2"
+                     className="grid grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-5 py-1 shadow-md dark:shadow-md-dark rounded-lg"
                   >
                      {headerGroup.headers.map((header) => (
                         <div key={header.id} className="dark:text-white">

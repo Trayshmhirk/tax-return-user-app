@@ -51,6 +51,7 @@ export type DocumentsPropTypes = {
    document_size: string;
    document_type: FileType;
    date_modified: string;
+   base64: string;
 };
 
 export type FileType =

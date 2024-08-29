@@ -13,10 +13,10 @@ import {
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
-// import { exportToPDF } from "@/helpers/exportToPDF";
 import { DocumentsPropTypes } from "@/types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
+import { formatDate } from "date-fns";
 
 export const columns: ColumnDef<DocumentsPropTypes>[] = [
    {
@@ -31,7 +31,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                table.toggleAllPageRowsSelected(!!value)
             }
             aria-label="Select all"
-            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0"
+            className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white border-white"
          />
       ),
       cell: ({ row }) => (
@@ -55,7 +55,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
                   >
-                     Name
+                     NAME
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -117,7 +117,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
                   >
-                     Size
+                     SIZE
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -174,18 +174,6 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
             )
          );
 
-         const DocumentTypes = Array.from(
-            new Set(
-               table
-                  .getRowModel()
-                  .rows.map((row) =>
-                     mapFileTypeToDocumentType(row.original.document_type)
-                  )
-            )
-         );
-         console.log(uniqueDocumentTypes);
-         console.log(DocumentTypes);
-
          return (
             <div className="flex items-center gap-2">
                <DropdownMenu>
@@ -194,7 +182,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                         variant="ghost"
                         className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
                      >
-                        Type
+                        TYPE
                         <ChevronDown className="h-4 w-4" />
                      </Button>
                   </DropdownMenuTrigger>
@@ -252,7 +240,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
                   >
-                     Modified
+                     MODIFIED
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -292,10 +280,9 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
       ),
       cell: ({ row }) => {
          const dateModified = row.original.date_modified;
+
          return (
-            <div className="px-4">
-               {new Date(dateModified).toLocaleDateString()}
-            </div>
+            <div className="px-4">{formatDate(dateModified, "dd.MM.yyyy")}</div>
          );
       },
    },
@@ -337,7 +324,7 @@ export const columns: ColumnDef<DocumentsPropTypes>[] = [
 
                      <DropdownMenuItem
                         className="flex items-center gap-2 cursor-pointer"
-                        // onClick={() => exportToPDF(document)}
+                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
                      >
                         <Download className="w-4 h-4" />
                         Download

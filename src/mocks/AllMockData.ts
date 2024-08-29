@@ -67,6 +67,7 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       document_size: "20",
       document_type: "application/pdf",
       date_modified: "",
+      base64: "",
    },
    {
       id: "id2",
@@ -74,6 +75,7 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       document_size: "20",
       document_type: "image/png",
       date_modified: "",
+      base64: "",
    },
    {
       id: "id3",
@@ -81,6 +83,7 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       document_size: "20",
       document_type: "application/vnd.ms-excel",
       date_modified: "",
+      base64: "",
    },
    {
       id: "id4",
@@ -88,6 +91,7 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       document_size: "20",
       document_type: "application/msword",
       date_modified: "",
+      base64: "",
    },
 ];
 
