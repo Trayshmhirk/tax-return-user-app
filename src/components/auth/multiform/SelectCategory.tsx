@@ -121,7 +121,8 @@ const SelectCategory = ({
                   <CustomButton
                      type="button"
                      handleClick={handlePrevForm}
-                     isPrevBtn
+                     className="bg-transparent text-richElectricBlue border border-richElectricBlue"
+                     isNoBorder
                   >
                      Previous
                   </CustomButton>

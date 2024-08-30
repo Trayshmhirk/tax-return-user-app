@@ -5,7 +5,7 @@ type CustomButton = {
    className?: string;
    isDisabled?: boolean;
    isLoading?: boolean;
-   isPrevBtn?: boolean;
+   isNoBorder?: boolean;
 };
 
 const CustomButton = ({
@@ -14,14 +14,14 @@ const CustomButton = ({
    type,
    className,
    isDisabled,
-   isPrevBtn,
+   isNoBorder,
    isLoading,
 }: CustomButton) => {
    return (
       <button
          className={`
-            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark
-            ${isPrevBtn ? "bg-transparent text-richElectricBlue border border-richElectricBlue" : "text-white border-0"}
+            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark 
+            ${isNoBorder ? "" : "text-white border-0"}
             ${isDisabled ? (isLoading ? "" : "bg-spanishGray") : "hover-shadow-body"}
             ${className}
          `}

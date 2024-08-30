@@ -57,7 +57,7 @@ const UserForm = ({
          isCurrentForm={currentForm}
          isFormSuccess={formSuccess}
       >
-         <div className="flex flex-col gap-3 mb-auto">
+         <div className="flex flex-col gap-3 mb-auto overflow-y-auto">
             <div className="flex flex-col gap-4 sm:flex-row">
                <FormInput<ISignUpForm>
                   label="First name"

@@ -195,9 +195,18 @@ const UploadForm = ({
             </label>
          </div>
 
-         {error && <div className="text-bostonRed text-center">{error}</div>}
+         {error && (
+            <div className="text-bostonRed dark:text-red-500 text-center">
+               {error}
+            </div>
+         )}
          <div className="w-full flex gap-4 text-center">
-            <CustomButton type="button" handleClick={handlePrevForm} isPrevBtn>
+            <CustomButton
+               type="button"
+               handleClick={handlePrevForm}
+               className="bg-transparent text-richElectricBlue border border-richElectricBlue"
+               isNoBorder
+            >
                Previous
             </CustomButton>
             <CustomButton

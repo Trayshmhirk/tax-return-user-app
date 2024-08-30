@@ -48,7 +48,9 @@ const FormInput = <T extends FieldValues>({
 
          <div
             className={`h-12 flex justify-between py-3 px-5 border ${
-               errorMessage ? "border-[#dc3545]" : "border-spanishGray"
+               errorMessage
+                  ? "border-[#dc3545] dark:border-red-500"
+                  : "border-spanishGray"
             } rounded`}
          >
             <input
@@ -74,7 +76,9 @@ const FormInput = <T extends FieldValues>({
             )}
          </div>
          {errorMessage && (
-            <p className="text-[#dc3545] text-xs">{errorMessage}</p>
+            <p className="text-[#dc3545] dark:text-red-500 text-xs">
+               {errorMessage}
+            </p>
          )}
       </div>
    );
