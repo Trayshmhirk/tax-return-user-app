@@ -31,7 +31,7 @@ const Otp = ({
    const [otp, setOtp] = useState("");
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState<string | null>(null);
-   const [loginMessage, setLoginMessage] = useState<string | null>(null);
+   const [otpSuccess, setOtpSuccess] = useState<string | null>(null);
    const {
       handleSubmit,
       // register,
@@ -57,10 +57,10 @@ const Otp = ({
          // Replace with your actual OTP validation logic
          if (otp === "123456") {
             setError("");
-            setLoginMessage("OTP verification successful!");
+            setOtpSuccess("OTP verification successful!");
             setFormSuccess(true);
             setTimeout(() => {
-               setLoginMessage("");
+               setOtpSuccess("");
                onNext();
             }, 700);
          } else {
@@ -96,22 +96,25 @@ const Otp = ({
                {error}
             </div>
          )}
-         {loginMessage && <p className="text-center">{loginMessage}</p>}
+         {otpSuccess && (
+            <p className=" text-center text-green-600 dark:text-green-400 font-medium">
+               {otpSuccess}
+               <span role="img" aria-label="party">
+                  🎉
+               </span>
+            </p>
+         )}
 
          <div className="w-full flex gap-4 text-center">
             <CustomButton
                type="button"
                handleClick={handlePrevForm}
-               className="bg-transparent text-richElectricBlue border border-richElectricBlue"
-               isNoBorder
+               className="bg-transparent text-richElectricBlue border-richElectricBlue"
+               isBorder
             >
                Previous
             </CustomButton>
-            <CustomButton
-               type="submit"
-               isDisabled={isLoading}
-               isLoading={isLoading}
-            >
+            <CustomButton type="submit" isDisabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
             </CustomButton>
          </div>

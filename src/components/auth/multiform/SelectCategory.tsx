@@ -69,7 +69,7 @@ const SelectCategory = ({
    return (
       <>
          {isRequestService ? (
-            <div className="h-full flex flex-col justify-between">
+            <div className="h-full flex flex-col gap-7">
                <div className="flex flex-col gap-7">
                   <h2 className="font-medium text-xl">
                      Select the category you fall under
@@ -91,8 +91,7 @@ const SelectCategory = ({
                <CustomButton
                   handleClick={onSubmit}
                   type="submit"
-                  isDisabled={isButtonDisabled}
-                  isLoading={isLoading}
+                  isDisabled={isButtonDisabled || isLoading}
                >
                   Proceed
                </CustomButton>
@@ -122,11 +121,14 @@ const SelectCategory = ({
                      type="button"
                      handleClick={handlePrevForm}
                      className="bg-transparent text-richElectricBlue border border-richElectricBlue"
-                     isNoBorder
+                     isBorder
                   >
                      Previous
                   </CustomButton>
-                  <CustomButton type="submit" isDisabled={isButtonDisabled}>
+                  <CustomButton
+                     type="submit"
+                     isDisabled={isButtonDisabled || isLoading}
+                  >
                      {isLoading ? (
                         <ClipLoader color="#ffffff" size={20} />
                      ) : (

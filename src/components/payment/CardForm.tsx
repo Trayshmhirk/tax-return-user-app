@@ -154,11 +154,7 @@ const CardForm: React.FC = () => {
                </p>
             )}
 
-            <CustomButton
-               type="submit"
-               isDisabled={!stripe || loading}
-               isLoading={loading}
-            >
+            <CustomButton type="submit" isDisabled={!stripe || loading}>
                {loading ? (
                   <ClipLoader color="#ffffff" size={20} />
                ) : (

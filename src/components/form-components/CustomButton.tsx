@@ -4,8 +4,7 @@ type CustomButton = {
    type: "submit" | "reset" | "button";
    className?: string;
    isDisabled?: boolean;
-   isLoading?: boolean;
-   isNoBorder?: boolean;
+   isBorder?: boolean;
 };
 
 const CustomButton = ({
@@ -14,15 +13,13 @@ const CustomButton = ({
    type,
    className,
    isDisabled,
-   isNoBorder,
-   isLoading,
+   isBorder,
 }: CustomButton) => {
    return (
       <button
          className={`
-            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark 
-            ${isNoBorder ? "" : "text-white border-0"}
-            ${isDisabled ? (isLoading ? "" : "bg-spanishGray") : "hover-shadow-body"}
+            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark disabled:hover-shadow-body disabled:bg-spanishGray dark:disabled:bg-mutedGray 
+            ${isBorder ? "border" : "text-white border-0"}
             ${className}
          `}
          onClick={handleClick}

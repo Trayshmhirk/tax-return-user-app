@@ -205,15 +205,11 @@ const UploadForm = ({
                type="button"
                handleClick={handlePrevForm}
                className="bg-transparent text-richElectricBlue border border-richElectricBlue"
-               isNoBorder
+               isBorder
             >
                Previous
             </CustomButton>
-            <CustomButton
-               type="submit"
-               isDisabled={isLoading}
-               isLoading={isLoading}
-            >
+            <CustomButton type="submit" isDisabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Submit"}
             </CustomButton>
          </div>

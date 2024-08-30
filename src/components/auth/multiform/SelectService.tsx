@@ -86,7 +86,6 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
                      serviceId={service.service_id}
                      value={service.title}
                      isRadio
-                     // isUploaded={}
                      handleClick={() => handleSelectService(service.title)}
                      isChecked={checkedRadio === `${service.title}`}
                      onRadioAndCheckChange={handleRadioChange}
@@ -110,21 +109,6 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
                ? "Request tax notice"
                : "Chat with an agent"}
          </CustomButton>
-
-         {/* <UploadModal
-            show={modalData.show}
-            title={modalData.title}
-            onClose={modalData.onClose}
-            onSelectedFile={modalData.onSelectedFile}
-            isSelectService
-         />
-         <SelectorModal
-            isConfirmationModal
-            show={confirmationModal.show}
-            title={confirmationModal.title}
-            content={confirmationModal.content}
-            onCancel={handleCloseConfirmationModal}
-         /> */}
       </div>
    );
 };
