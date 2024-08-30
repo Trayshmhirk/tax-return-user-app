@@ -22,18 +22,6 @@ const SelectCategory = ({
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
    const [category, setCategory] = useState("");
-   // const [selectedCheckBox, setSelectedCheckBox] = useState([]);
-
-   // const handleCheckBoxChange = (value) => {
-   //    setSelectedCheckBox((prevSelected) =>
-   //       prevSelected.includes(value)
-   //          ? prevSelected.filter((item) => item !== value)
-   //          : [...prevSelected, value]
-   //    );
-   //    setIsButtonDisabled(
-   //       selectedCheckBox.length === 1 && selectedCheckBox[0] === value
-   //    );
-   // };
 
    const handleRadioChange = (value: string) => {
       setCheckedRadio(value);

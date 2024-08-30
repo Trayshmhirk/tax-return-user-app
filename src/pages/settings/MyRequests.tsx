@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchAndFilter from "../../components/common/SearchAndFilter";
 import { RequestsPropTypes } from "../../types/AllTypes";
 import { requests } from "../../mocks/AllMockData";
+import { formatDate } from "date-fns";
 
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -49,7 +50,7 @@ const MyRequests = () => {
 
          <div className="w-full">
             {filteredRequests.length ? (
-               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                   {filteredRequests.map((request, index) => (
                      <div
                         key={index}
@@ -58,7 +59,7 @@ const MyRequests = () => {
                      >
                         <div
                            className={`
-                              absolute right-4 top-4 py-1 px-2 text-xs rounded
+                              absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
                               ${request.status.toLowerCase() === "pending" ? "pending" : ""}
                               ${request.status.toLowerCase() === "paid" ? "paid" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
@@ -67,20 +68,18 @@ const MyRequests = () => {
                            {request.status}
                         </div>
 
-                        <div className="text">
-                           Request ID: {request.service_id}
-                        </div>
+                        <div className="text-sm">{request.service_id}</div>
 
-                        <div className="text-sm flex gap-3">
-                           <p>Request: </p>
+                        <div className="text-sm">
                            <span className="text-richElectricBlue">
                               {request.service_title}
                            </span>
                         </div>
 
-                        <div className="text-sm flex gap-3">
-                           <p>Request date: </p>
-                           <span className="">{request.requestDate}</span>
+                        <div className="text-xs">
+                           <span className="">
+                              {formatDate(request.requestDate, "dd.MM.yyyy")}
+                           </span>
                         </div>
                      </div>
                   ))}

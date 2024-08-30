@@ -40,7 +40,7 @@ export const ErrorPage = ({
    return (
       <div
          id="error-page"
-         className="w-full flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6"
+         className="w-full h-full flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6"
       >
          {isError(error) ? (
             <div className="flex flex-col items-center gap-4 text-center">
@@ -48,10 +48,12 @@ export const ErrorPage = ({
                   {error.status || "Error"}!
                </h1>
                <p className="text-lg md:text-2xl text-mutedGray dark:text-chineseWhite font-bold tracking-wider">
-                  {error.statusText}
+                  {error.statusText || "Looks like something went wrong.."}
                </p>
                {error.message ? (
-                  <p className="text-xs md:text-sm">{error.message}</p>
+                  <p className="text-sm md:text-lg font-medium">
+                     {error.message}
+                  </p>
                ) : (
                   <p className="text-xs md:text-sm">
                      The page you're looking for doesn't exist or has been
@@ -62,11 +64,13 @@ export const ErrorPage = ({
                   <p className="text-xs md:text-sm">{error.data}</p>
                )}
                <CustomButton
-                  handleClick={() => navigate(-1)}
+                  handleClick={() =>
+                     error.message ? window.location.reload() : navigate(-1)
+                  }
                   type="button"
                   className="w-36 mt-4 md:w-40 md:mt-6"
                >
-                  Go back
+                  {error.message ? "Reload page" : "Go back"}
                </CustomButton>
             </div>
          ) : (

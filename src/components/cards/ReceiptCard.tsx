@@ -16,10 +16,6 @@ const ReceiptCard = ({
       return str.slice(0, num) + " ...";
    };
 
-   // const formattedDate = new Date(date);
-   // const displayDate = `${formattedDate.getDate()}/${formattedDate.getMonth() + 1}/${formattedDate.getFullYear()}`;
-   // console.log(displayDate);
-
    return (
       <div
          className="w-full flex flex-col text-center gap-2 p-4 rounded-lg cursor-pointer bg-white dark:bg-gray font-medium shadow-md dark:shadow-md-dark hover-shadow-body"
