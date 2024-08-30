@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { PiNavigationArrowDuotone } from "react-icons/pi";
 import {
    Dialog,
@@ -27,13 +27,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { changePasswordSchema } from "@/validation/schema";
 import { ClipLoader } from "react-spinners";
+import {
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const route = [
    { name: "Profile", route: "profile" },
    { name: "Privacy policy", route: "privacy-policy" },
    { name: "My requests", route: "my-requests" },
-   { name: "Integrated banks", route: "integrated-banks" },
-   { name: "My documents", route: "my-documents" },
+   { name: "Files", route: "files" },
    { name: "FAQ", route: "faq" },
    { name: "Help and support", route: "help-and-support" },
    { name: "Terms and conditions", route: "terms-and-conditions" },
@@ -41,9 +46,8 @@ const route = [
 
 const SettingsAside = () => {
    const location = useLocation();
-   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   const [selectedDropdownTitle, setSelectedDropdownTitle] =
-      useState("Profile");
+   const navigate = useNavigate();
+
    const [isLoading, setIsLoading] = useState(false);
    const [loginError] = useState<string | null>(null);
 
@@ -55,19 +59,8 @@ const SettingsAside = () => {
       resolver: yupResolver(changePasswordSchema),
    });
 
-   useEffect(() => {
-      // Find the matching route based on location.pathname and update the title
-      const currentRoute = route.find((r) =>
-         location.pathname.includes(r.route)
-      );
-      if (currentRoute) {
-         setSelectedDropdownTitle(currentRoute.name);
-      }
-   }, [location.pathname]);
-
-   const handleDropdownSelect = (route: string) => {
-      setSelectedDropdownTitle(route);
-      setIsDropdownOpen(false);
+   const handleNavigate = (routeName: string) => {
+      navigate(`/settings/${routeName}`);
    };
 
    const onSubmit = async (data: IChangePasswordForm) => {
@@ -86,28 +79,34 @@ const SettingsAside = () => {
 
    return (
       <>
-         <div className="relative mt-3 ml-2 lg:hidden">
-            <button
-               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-               className="bg-white dark:bg-gray w-56 h-11 py-3 px-6 text-center rounded-lg shadow-md dark:shadow-md-dark text-[15px] font-medium flex items-center gap-3"
-            >
-               <PiNavigationArrowDuotone className="text-lg text-gray dark:text-white" />
-               {selectedDropdownTitle}
-            </button>
-            {isDropdownOpen && (
-               <div className="absolute left-0 right-0 bg-white dark:bg-gray mt-2 w-56 rounded-lg shadow-md dark:shadow-md-dark z-10 overflow-hidden">
+         <div className="w-full flex justify-end px-1 lg:mt-3 lg:mx-2 lg:hidden">
+            <DropdownMenu>
+               <DropdownMenuTrigger asChild className="w-full">
+                  <Button
+                     variant="ghost"
+                     className="bg-white dark:bg-gray w-[157px] h-11 py-3 px-5 shadow-md dark:shadow-md-dark rounded-md text-[15px] font-medium justify-start gap-3"
+                  >
+                     <PiNavigationArrowDuotone className="text-lg text-gray dark:text-white" />
+                     Navigate
+                  </Button>
+               </DropdownMenuTrigger>
+               <DropdownMenuContent
+                  align="end"
+                  className="bg-ghostWhite dark:bg-gray"
+               >
                   {route.map((route, index) => (
-                     <NavLink
+                     <DropdownMenuItem
                         key={index}
-                        className="block py-2 px-5 text-sm font-medium hover:bg-brightGray dark:hover:bg-spanishGray text-eerieBlack dark:text-white no-underline"
-                        onClick={() => handleDropdownSelect(route.name)}
-                        to={route.route}
+                        className=""
+                        onClick={() => {
+                           handleNavigate(route.route);
+                        }}
                      >
                         {route.name}
-                     </NavLink>
+                     </DropdownMenuItem>
                   ))}
-               </div>
-            )}
+               </DropdownMenuContent>
+            </DropdownMenu>
          </div>
 
          <aside className="w-[185px] h-full hidden lg:block">

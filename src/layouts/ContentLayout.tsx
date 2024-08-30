@@ -42,7 +42,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Account settings";
          case "/settings/my-requests":
             return "Account settings";
-         case "/settings/my-documents":
+         case "/settings/files":
             return "Account settings";
          case "/settings/integrated-banks":
             return "Account settings";

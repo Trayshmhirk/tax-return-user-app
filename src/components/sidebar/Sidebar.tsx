@@ -121,13 +121,14 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                   </div>
 
                   <NavLink
+                     to={"/settings/profile"}
+                     onClick={() => handleToggleSidebar()}
                      className={`
                         flex items-center p-[10px] gap-4 rounded-lg no-underline
                         ${isOpen ? "" : "justify-center"}
                         ${isNotApproved ? "cursor-not-allowed" : "cursor-pointer"}
                         ${isSettingsActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : " hover-bg-shadow"}
                      `}
-                     to={"/settings/profile"}
                   >
                      <IoSettingsOutline
                         className={`w-5 h-5 ${isSettingsActive ? "text-white" : "text-eerieBlack dark:text-white"} `}
