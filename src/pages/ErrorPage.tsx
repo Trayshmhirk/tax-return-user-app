@@ -1,9 +1,11 @@
-import { useRouteError } from "react-router-dom";
+import CustomButton from "@/components/form-components/CustomButton";
+import { useRouteError, useNavigate } from "react-router-dom";
 
 type Error = {
-   data: string;
-   status: string;
-   statusText: string;
+   data?: string;
+   status?: string;
+   statusText?: string;
+   message?: string; // For JavaScript errors
 };
 
 type ErrorPageProps = {
@@ -17,9 +19,11 @@ export const ErrorPage = ({
 }: ErrorPageProps) => {
    // Hook to capture route-specific errors
    const routeError = useRouteError();
+   const navigate = useNavigate();
 
-   // Combining the errors from ErrorBoundary and RouteError
-   const error = boundaryError || routeError;
+   // Use boundaryError or routeError; fallback to custom 404 error
+   const error = boundaryError ||
+      routeError || { status: 404, statusText: "Looks like you got lost" };
 
    // Type guard to check if the error is of type 'Error'
    const isError = (error: unknown): error is Error => {
@@ -36,27 +40,45 @@ export const ErrorPage = ({
    return (
       <div
          id="error-page"
-         className="w-full flex flex-col gap-6 justify-center items-center"
+         className="w-full flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6"
       >
-         <h1 className="text-4xl font-bold">Oops!</h1>
-         <p>Sorry, an unexpected error has occurred.</p>
          {isError(error) ? (
-            <>
-               <p className="text-bostonRed">{error.data}</p>
-               <p className="">
-                  <i>{`${error.status} ${error.statusText}`}</i>
+            <div className="flex flex-col items-center gap-4 text-center">
+               <h1 className="text-7xl md:text-9xl font-extrabold text-richElectricBlue">
+                  {error.status || "Error"}!
+               </h1>
+               <p className="text-lg md:text-2xl text-mutedGray dark:text-chineseWhite font-bold tracking-wider">
+                  {error.statusText}
                </p>
-            </>
+               {error.message ? (
+                  <p className="text-xs md:text-sm">{error.message}</p>
+               ) : (
+                  <p className="text-xs md:text-sm">
+                     The page you're looking for doesn't exist or has been
+                     moved.
+                  </p>
+               )}
+               {error.data && (
+                  <p className="text-xs md:text-sm">{error.data}</p>
+               )}
+               <CustomButton
+                  handleClick={() => navigate(-1)}
+                  type="button"
+                  className="w-36 mt-4 md:w-40 md:mt-6"
+               >
+                  Go back
+               </CustomButton>
+            </div>
          ) : (
-            <p className="text-bostonRed">Unknown error occurred.</p>
-         )}
-         {resetErrorBoundary && (
-            <button
-               onClick={resetErrorBoundary}
-               className="px-4 py-2 bg-blue-500 text-white rounded-md"
-            >
-               Try Again
-            </button>
+            <>
+               <h1 className="text-7xl md:text-9xl font-extrabold text-richElectricBlue">
+                  Oops!
+               </h1>
+               <p className="text-lg md:text-2xl text-mutedGray dark:text-chineseWhite font-bold tracking-wider">
+                  Sorry, an unexpected error has occurred.
+               </p>
+               <p className="text-xs md:text-sm">Unknown error occurred.</p>
+            </>
          )}
          {resetErrorBoundary && (
             <button
