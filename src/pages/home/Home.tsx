@@ -17,7 +17,7 @@ const Home = () => {
                <span className="font-medium md:text-xl">
                   What would you like to do?
                </span>
-               <div className="flex flex-wrap gap-3">
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                   <TodoCard
                      todoIcon={BsCardChecklist}
                      text="Request service"

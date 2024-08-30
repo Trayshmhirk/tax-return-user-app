@@ -116,7 +116,7 @@ const Files = () => {
 
    return (
       <>
-         <div className="flex justify-between items-center gap-4">
+         <div className="flex justify-between items-center gap-4 mt-[2px]">
             <h1 className="text-lg font-semibold">Files ({data.length})</h1>
 
             <div className="flex items-center gap-3">
@@ -164,7 +164,7 @@ const Files = () => {
 
                         <div className="w-full">
                            {filteredDocs.length ? (
-                              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                                  {filteredDocs.map((doc) => (
                                     <DocumentCard key={doc.id} document={doc} />
                                  ))}

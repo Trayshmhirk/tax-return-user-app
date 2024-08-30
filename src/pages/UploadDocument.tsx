@@ -205,7 +205,7 @@ const UploadDocument = () => {
 
             <div className="w-full">
                {filteredFiles.length ? (
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                      {filteredFiles.map((doc) => (
                         <DocumentCard key={doc.id} document={doc} />
                      ))}

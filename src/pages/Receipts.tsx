@@ -134,9 +134,9 @@ const Receipts = () => {
             title={filterTitleList}
          />
 
-         <div className="w-full flex flex-wrap gap-5">
+         <div className="w-full">
             {filteredReceipts.length ? (
-               <>
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                   {filteredReceipts.map((receipt, index) => (
                      <ReceiptCard
                         key={index}
@@ -147,7 +147,7 @@ const Receipts = () => {
                         date={receipt.date}
                      />
                   ))}
-               </>
+               </div>
             ) : (
                <p className="pending-text w-full text-center">
                   No results found.

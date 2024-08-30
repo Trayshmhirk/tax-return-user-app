@@ -19,6 +19,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Please wait...";
          case "/add-card":
             return "Add card";
+         case "/request-service":
+            return "Request a service";
          case "/documents":
             return "Documents";
          case "/receipts":

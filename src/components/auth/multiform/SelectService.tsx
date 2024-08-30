@@ -4,8 +4,10 @@ import TextArea from "../../form-components/TextArea";
 import RadioCheckInput from "../../form-components/RadioCheckInput";
 import { SelectServicePropType } from "../../../types/AllTypes";
 import { servicesList } from "../../../mocks/AllMockData";
+import { ClipLoader } from "react-spinners";
 
 const SelectService = ({ selectedCategory }: SelectServicePropType) => {
+   const [isLoading, setIsLoading] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
    const [toggleTextArea, setToggleTextArea] = useState(false);
@@ -31,9 +33,19 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    };
 
    const onSubmit = async () => {
-      console.log(selectedServiceId);
-      console.log(selectedCategory);
+      setIsLoading(true);
+      // Simulate API call with setTimeout
+      setTimeout(() => {
+         setIsLoading(false);
+         selectedServiceId;
+         selectedCategory;
+         // setTimeout(() => {
+         //    // after mock success
+         //    navigate("/");
+         // }, 700);
+      }, 2000); // Mock API call delay of 2 seconds
 
+      // api call
       // const { email, token } = userProfile;
       // try {
       //    const res = await api.post(
@@ -73,9 +85,9 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    };
 
    return (
-      <div className="h-full flex flex-col gap-7">
-         <div className="flex flex-col gap-7">
-            <h2 className="font-medium text-xl">
+      <>
+         <div className="flex flex-col gap-7 mb-auto">
+            <h2 className="font-medium text-lg md:text-xl">
                Select the services you require
             </h2>
 
@@ -103,13 +115,15 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
          <CustomButton
             type="button"
             handleClick={onSubmit}
-            isDisabled={isButtonDisabled}
+            isDisabled={isButtonDisabled || isLoading}
          >
-            {checkedRadio === "Tax notice"
-               ? "Request tax notice"
-               : "Chat with an agent"}
+            {isLoading ? (
+               <ClipLoader color="#ffffff" size={20} />
+            ) : (
+               "Chat with an agent"
+            )}
          </CustomButton>
-      </div>
+      </>
    );
 };
 

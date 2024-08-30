@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { PiNavigationArrowDuotone } from "react-icons/pi";
 import {
    Dialog,
    DialogContent,
@@ -33,6 +32,7 @@ import {
    DropdownMenuItem,
    DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Navigation2 } from "lucide-react";
 
 const route = [
    { name: "Profile", route: "profile" },
@@ -84,15 +84,16 @@ const SettingsAside = () => {
                <DropdownMenuTrigger asChild className="w-full">
                   <Button
                      variant="ghost"
-                     className="bg-white dark:bg-gray w-[157px] h-11 py-3 px-5 shadow-md dark:shadow-md-dark rounded-md text-[15px] font-medium justify-start gap-3"
+                     className="bg-white dark:bg-gray w-[157px] h-11 py-3 px-5 shadow-md dark:shadow-md-dark rounded-md text-[15px] font-medium gap-1"
                   >
-                     <PiNavigationArrowDuotone className="text-lg text-gray dark:text-white" />
+                     <Navigation2 className="w-4 text-gray dark:text-white" />
+                     {/* <Navigation2 /> */}
                      Navigate
                   </Button>
                </DropdownMenuTrigger>
                <DropdownMenuContent
                   align="end"
-                  className="bg-ghostWhite dark:bg-gray"
+                  className="bg-white dark:bg-gray mt-1"
                >
                   {route.map((route, index) => (
                      <DropdownMenuItem

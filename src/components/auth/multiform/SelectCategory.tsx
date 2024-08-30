@@ -69,9 +69,9 @@ const SelectCategory = ({
    return (
       <>
          {isRequestService ? (
-            <div className="h-full flex flex-col gap-7">
-               <div className="flex flex-col gap-7">
-                  <h2 className="font-medium text-xl">
+            <>
+               <div className="flex flex-col gap-7 mb-auto">
+                  <h2 className="font-medium text-lg md:text-xl">
                      Select the category you fall under
                   </h2>
 
@@ -95,7 +95,7 @@ const SelectCategory = ({
                >
                   Proceed
                </CustomButton>
-            </div>
+            </>
          ) : (
             <Forms
                handleSubmit={handleSubmit(onSubmit)}

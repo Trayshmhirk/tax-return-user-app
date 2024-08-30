@@ -95,7 +95,7 @@ export const DocumentCard = ({
                </DropdownMenuTrigger>
                <DropdownMenuContent
                   align="end"
-                  className="bg-ghostWhite dark:bg-gray"
+                  className="bg-white dark:bg-gray"
                >
                   <DropdownMenuLabel className="text-sm dark:text-white">
                      Actions

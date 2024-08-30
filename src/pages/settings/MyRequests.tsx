@@ -47,14 +47,14 @@ const MyRequests = () => {
             title={filterTitleList}
          />
 
-         <div className="w-full flex flex-wrap gap-5">
+         <div className="w-full">
             {filteredRequests.length ? (
-               <>
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {filteredRequests.map((request, index) => (
                      <div
                         key={index}
                         onClick={handleRequestCardClick}
-                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
+                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body"
                      >
                         <div
                            className={`
@@ -84,7 +84,7 @@ const MyRequests = () => {
                         </div>
                      </div>
                   ))}
-               </>
+               </div>
             ) : (
                <p className="pending-text w-full text-center">
                   Nothing to show here.
