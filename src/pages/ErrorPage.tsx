@@ -40,9 +40,9 @@ export const ErrorPage = ({
    return (
       <div
          id="error-page"
-         className="w-full h-full flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6"
+         className={`w-full ${isError(error) && error.message && "h-full"} flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6`}
       >
-         {isError(error) ? (
+         {isError(error) && (
             <div className="flex flex-col items-center gap-4 text-center">
                <h1 className="text-7xl md:text-9xl font-extrabold text-richElectricBlue">
                   {error.status || "Error"}!
@@ -73,16 +73,6 @@ export const ErrorPage = ({
                   {error.message ? "Reload page" : "Go back"}
                </CustomButton>
             </div>
-         ) : (
-            <>
-               <h1 className="text-7xl md:text-9xl font-extrabold text-richElectricBlue">
-                  Oops!
-               </h1>
-               <p className="text-lg md:text-2xl text-mutedGray dark:text-chineseWhite font-bold tracking-wider">
-                  Sorry, an unexpected error has occurred.
-               </p>
-               <p className="text-xs md:text-sm">Unknown error occurred.</p>
-            </>
          )}
          {resetErrorBoundary && (
             <button
