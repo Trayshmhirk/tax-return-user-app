@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
 import DebitChart from "../../charts/DebitChart";
 import DebitCard from "../../components/payment/DebitCard";
 import RecentTransactions from "../../components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useState } from "react";
+import AddCardDialog from "@/components/modal/AddCardDialog";
 
 type CardsProps = {
    id: string;
@@ -63,19 +63,18 @@ const Bank = () => {
    };
 
    return (
-      <div className="w-full">
+      <div className="w-full pb-2">
          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <div className="w-full">
                <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                   <div className="flex justify-between items-center gap-3">
                      <div className="text-xl font-semibold">Your cards</div>
 
-                     <NavLink
-                        to="/add-card"
-                        className="bg-richElectricBlue px-3 py-2 rounded-lg text-white font-medium no-underline shadow-md dark:shadow-md-dark hover-shadow-body"
-                     >
-                        Add card <span className="font-bold">+</span>
-                     </NavLink>
+                     <AddCardDialog>
+                        <button className="bg-richElectricBlue px-3 py-2 rounded-lg text-white font-medium no-underline shadow-md dark:shadow-md-dark hover-shadow-body">
+                           Add card <span className="font-bold">+</span>
+                        </button>
+                     </AddCardDialog>
                   </div>
 
                   <div className="flex flex-col gap-4">

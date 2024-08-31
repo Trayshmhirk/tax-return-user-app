@@ -2,7 +2,6 @@ import Hero from "../../components/home/Hero";
 import { BsCardChecklist } from "react-icons/bs";
 import TodoCard from "../../components/cards/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineAddCard } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -27,11 +26,6 @@ const Home = () => {
                      todoIcon={IoCloudUploadOutline}
                      text="Upload pdf or image"
                      handleClick={() => navigate("upload-document")}
-                  />
-                  <TodoCard
-                     todoIcon={MdOutlineAddCard}
-                     text="Add credit card"
-                     handleClick={() => navigate("add-card")}
                   />
                </div>
             </div>
