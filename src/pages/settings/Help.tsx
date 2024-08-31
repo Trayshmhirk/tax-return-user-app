@@ -7,7 +7,6 @@ import { help } from "../../mocks/AllMockData";
 const Help = () => {
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
    const filterTitleList = ["All", "Ask a question"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +42,6 @@ const Help = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 

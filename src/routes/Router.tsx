@@ -31,7 +31,7 @@ const Help = lazy(() => import("../pages/settings/Help"));
 const Privacy = lazy(() => import("../pages/settings/Privacy"));
 const Faq = lazy(() => import("../pages/settings/Faq"));
 const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
-const MyFiles = lazy(() => import("../pages/settings/MyFiles"));
+const Files = lazy(() => import("../pages/settings/Files"));
 const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 
 const router = createBrowserRouter(
@@ -173,10 +173,10 @@ const router = createBrowserRouter(
                <Route path="privacy-policy" element={<Privacy />} />
                <Route path="faq" element={<Faq />} />
                <Route
-                  path="my-files"
+                  path="files"
                   element={
                      <ProtectedRoute>
-                        <MyFiles />
+                        <Files />
                      </ProtectedRoute>
                   }
                />

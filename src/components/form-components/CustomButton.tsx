@@ -2,25 +2,25 @@ type CustomButton = {
    children: React.ReactNode;
    handleClick?: () => void;
    type: "submit" | "reset" | "button";
+   className?: string;
    isDisabled?: boolean;
-   isLoading?: boolean;
-   isPrevBtn?: boolean;
+   isBorder?: boolean;
 };
 
 const CustomButton = ({
    children,
    handleClick,
    type,
+   className,
    isDisabled,
-   isPrevBtn,
-   isLoading,
+   isBorder,
 }: CustomButton) => {
    return (
       <button
          className={`
-            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark
-            ${isPrevBtn ? "bg-transparent text-richElectricBlue border border-richElectricBlue" : "text-white border-0"}
-            ${isDisabled ? (isLoading ? "" : "bg-spanishGray") : "hover-shadow-body"}
+            w-full px-4 py-3 bg-richElectricBlue font-medium rounded shadow-md dark:shadow-md-dark disabled:hover-shadow-body disabled:bg-spanishGray dark:disabled:bg-mutedGray 
+            ${isBorder ? "border" : "text-white border-0"}
+            ${className}
          `}
          onClick={handleClick}
          type={type && type}

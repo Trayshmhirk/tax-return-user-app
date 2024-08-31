@@ -19,6 +19,7 @@ import {
    isSameDay,
    isAfter,
    isBefore,
+   formatDate,
 } from "date-fns";
 import { Badge } from "../ui/badge";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
@@ -148,7 +149,10 @@ export const columns: ColumnDef<Transaction>[] = [
             </DropdownMenu>
          </div>
       ),
-      cell: ({ row }) => row.getValue("date"),
+      cell: ({ row }) => {
+         const date = row.original.date;
+         return <div className="px-4">{formatDate(date, "dd.MM.yyyy")}</div>;
+      },
       filterFn: (row, columnId, filterValue) => {
          const rowDate = new Date(row.getValue(columnId));
          const today = new Date();

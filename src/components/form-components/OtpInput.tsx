@@ -45,7 +45,7 @@ const OtpInput = ({ handleOtpChange }: OtpInputPropType) => {
             <React.Fragment key={index}>
                <input
                   id={`otpInput${index}`}
-                  className="w-11 h-11 sm:w-16 sm:h-14 p-3 sm:py-[15px] sm:px-4 border border-spanishGray text-center font-bold rounded shadow-md outline-none placeholder:text-eerieBlack focus:border-eerieBlack"
+                  className="w-11 h-11 sm:w-16 sm:h-14 p-3 sm:py-[15px] sm:px-4 border border-spanishGray dark:bg-mutedGray dark:text-white text-center font-bold rounded shadow-md outline-none placeholder:text-eerieBlack focus:border-eerieBlack"
                   type="text"
                   maxLength={1}
                   value={digit}

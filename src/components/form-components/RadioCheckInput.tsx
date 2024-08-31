@@ -1,11 +1,9 @@
 import { FaSquareCheck } from "react-icons/fa6";
-import FormPreviewImg from "../../assets/preview-form image.jpg";
 import { IoRadioButtonOnSharp } from "react-icons/io5";
 
 type RadioCheckInputPropTypes = {
    value: string;
    formDesc?: string;
-   // register;
    isChecked: boolean;
    onRadioAndCheckChange: (
       value: string,
@@ -20,8 +18,6 @@ type RadioCheckInputPropTypes = {
 
 const RadioCheckInput = ({
    value,
-   formDesc,
-   // register,
    isChecked,
    onRadioAndCheckChange,
    isRadio,
@@ -49,10 +45,6 @@ const RadioCheckInput = ({
                   className="checked:hidden"
                   type="radio"
                   value={value}
-                  // {...register("radio", {
-                  //    required: `This field is required`,
-                  //    // Add other validation rules as needed
-                  // })}
                   onChange={handleRadioAndCheckChange}
                   checked={isChecked}
                />
@@ -60,24 +52,6 @@ const RadioCheckInput = ({
                   className={`w-4 h-4 text-richElectricBlue ${isChecked ? "block" : "hidden"}`}
                />
                <span className="text-sm md:text-xl">{value}</span>
-            </>
-         )}
-
-         {isPreviewForm && (
-            <>
-               <input
-                  className="hidden"
-                  type="radio"
-                  value={value}
-                  // {...register("radio", {
-                  //    required: `This field is required`,
-                  //    // Add other validation rules as needed
-                  // })}
-                  onChange={handleRadioAndCheckChange}
-                  checked={isChecked}
-               />
-               <img src={FormPreviewImg} className="w-full" />
-               <span className="text-sm md:text-xl">{formDesc}</span>
             </>
          )}
 

@@ -34,7 +34,7 @@ const Forms = ({
                   className={`flex items-center justify-center w-9 h-9 font-medium rounded-full border-[3px] ${
                      isCurrentForm && i <= isCurrentForm
                         ? "bg-richElectricBlue text-white border-richElectricBlue"
-                        : "bg-white text-mutedGray border-spanishGray"
+                        : "bg-white dark:bg-mutedGray text-mutedGray dark:text-white border-spanishGray"
                   }`}
                >
                   {isFormSuccess && isFormSuccess[i - 1].completed ? (

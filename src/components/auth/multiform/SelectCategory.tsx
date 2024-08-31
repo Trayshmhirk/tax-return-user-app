@@ -22,18 +22,6 @@ const SelectCategory = ({
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
    const [category, setCategory] = useState("");
-   // const [selectedCheckBox, setSelectedCheckBox] = useState([]);
-
-   // const handleCheckBoxChange = (value) => {
-   //    setSelectedCheckBox((prevSelected) =>
-   //       prevSelected.includes(value)
-   //          ? prevSelected.filter((item) => item !== value)
-   //          : [...prevSelected, value]
-   //    );
-   //    setIsButtonDisabled(
-   //       selectedCheckBox.length === 1 && selectedCheckBox[0] === value
-   //    );
-   // };
 
    const handleRadioChange = (value: string) => {
       setCheckedRadio(value);
@@ -69,9 +57,9 @@ const SelectCategory = ({
    return (
       <>
          {isRequestService ? (
-            <div className="h-full flex flex-col justify-between">
-               <div className="flex flex-col gap-7">
-                  <h2 className="font-medium text-xl">
+            <>
+               <div className="flex flex-col gap-7 mb-auto">
+                  <h2 className="font-medium text-lg md:text-xl">
                      Select the category you fall under
                   </h2>
 
@@ -91,12 +79,11 @@ const SelectCategory = ({
                <CustomButton
                   handleClick={onSubmit}
                   type="submit"
-                  isDisabled={isButtonDisabled}
-                  isLoading={isLoading}
+                  isDisabled={isButtonDisabled || isLoading}
                >
                   Proceed
                </CustomButton>
-            </div>
+            </>
          ) : (
             <Forms
                handleSubmit={handleSubmit(onSubmit)}
@@ -121,11 +108,15 @@ const SelectCategory = ({
                   <CustomButton
                      type="button"
                      handleClick={handlePrevForm}
-                     isPrevBtn
+                     className="bg-transparent text-richElectricBlue border border-richElectricBlue"
+                     isBorder
                   >
                      Previous
                   </CustomButton>
-                  <CustomButton type="submit" isDisabled={isButtonDisabled}>
+                  <CustomButton
+                     type="submit"
+                     isDisabled={isButtonDisabled || isLoading}
+                  >
                      {isLoading ? (
                         <ClipLoader color="#ffffff" size={20} />
                      ) : (

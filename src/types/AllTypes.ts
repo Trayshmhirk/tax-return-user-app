@@ -47,9 +47,11 @@ export type CategoryListTypes = {
 // documents
 export type DocumentsPropTypes = {
    id: string;
-   title: string;
+   document_name: string;
    document_size: string;
    document_type: FileType;
+   date_modified: string;
+   base64: string;
 };
 
 export type FileType =
@@ -60,16 +62,8 @@ export type FileType =
    | "application/vnd.ms-excel";
 
 export type DocumentCardPropsTypes = {
-   docId: string;
-   documentName: string;
-   documentSize: string;
-   documentType: FileType;
-   onSelect?: (doc: {
-      docId: string;
-      documentName: string;
-      documentSize: string;
-      documentType: FileType;
-   }) => void;
+   document: DocumentsPropTypes;
+   onSelect?: (doc: DocumentsPropTypes) => void;
    isSelectClicked?: boolean;
    handleSendToChat?: () => void;
 };
@@ -145,4 +139,9 @@ export type ISignUpForm = {
    email: string;
    password: string;
    confirmPassword: string;
+};
+
+export type IChangePasswordForm = {
+   oldPassword: string;
+   newPassword: string;
 };

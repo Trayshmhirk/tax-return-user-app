@@ -11,7 +11,6 @@ const KnowledgeBase = () => {
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
    const filterTitleList = [
       "All",
       "Tax",
@@ -66,8 +65,6 @@ const KnowledgeBase = () => {
                <SearchAndFilter
                   handleSearch={handleSearch}
                   handleFilter={handleFilter}
-                  activeFilter={activeFilter}
-                  setActiveFilter={setActiveFilter}
                   title={filterTitleList}
                />
 

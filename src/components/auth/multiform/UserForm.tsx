@@ -57,7 +57,7 @@ const UserForm = ({
          isCurrentForm={currentForm}
          isFormSuccess={formSuccess}
       >
-         <div className="flex flex-col gap-3 mb-auto">
+         <div className="flex flex-col gap-3 mb-auto overflow-y-auto">
             <div className="flex flex-col gap-4 sm:flex-row">
                <FormInput<ISignUpForm>
                   label="First name"
@@ -119,11 +119,7 @@ const UserForm = ({
          )}
 
          <div className="w-full text-center flex flex-col gap-3">
-            <CustomButton
-               type="submit"
-               isDisabled={isLoading}
-               isLoading={isLoading}
-            >
+            <CustomButton type="submit" isDisabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
             </CustomButton>
             <span className="self-center text-sm">

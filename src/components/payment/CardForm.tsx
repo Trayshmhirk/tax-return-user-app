@@ -69,7 +69,7 @@ const CardForm: React.FC = () => {
          setError(error.message || "An error occurred");
          setLoading(false);
          setSuccess(false);
-         setTimeout(() => setError(null), 5000);
+         setTimeout(() => setError(null), 2000);
       } else {
          console.log("Token created:", token);
          setError(null);
@@ -78,7 +78,7 @@ const CardForm: React.FC = () => {
          setCardholderName("");
          // Trigger form reset
          setResetForm((prev) => !prev);
-         setTimeout(() => setSuccess(false), 5000);
+         setTimeout(() => setSuccess(false), 2000);
       }
    };
 
@@ -154,11 +154,7 @@ const CardForm: React.FC = () => {
                </p>
             )}
 
-            <CustomButton
-               type="submit"
-               isDisabled={!stripe || loading}
-               isLoading={loading}
-            >
+            <CustomButton type="submit" isDisabled={!stripe || loading}>
                {loading ? (
                   <ClipLoader color="#ffffff" size={20} />
                ) : (

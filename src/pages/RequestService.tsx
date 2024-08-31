@@ -11,18 +11,20 @@ const RequestService = () => {
    };
 
    return (
-      <div className="h-full flex flex-col self-center">
-         {currentForm === 1 && (
-            <SelectCategory
-               isRequestService
-               onNext={handleNextForm}
-               setSelectedCategory={setSelectedCategory}
-            />
-         )}
+      <div className="w-full h-full flex justify-center overflow-hidden bg-white dark:bg-gray p-5 md:p-8 rounded-3xl">
+         <div className="w-full max-w-7xl h-full flex flex-col gap-7 overflow-auto px-1 pb-2">
+            {currentForm === 1 && (
+               <SelectCategory
+                  isRequestService
+                  onNext={handleNextForm}
+                  setSelectedCategory={setSelectedCategory}
+               />
+            )}
 
-         {currentForm === 2 && (
-            <SelectService selectedCategory={selectedCategory} />
-         )}
+            {currentForm === 2 && (
+               <SelectService selectedCategory={selectedCategory} />
+            )}
+         </div>
       </div>
    );
 };

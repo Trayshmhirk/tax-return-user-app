@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import UploadPdfImage from "../components/common/UploadPdfImage";
 import SearchAndFilter from "../components/common/SearchAndFilter";
-import React, { useState } from "react";
+import { useState } from "react";
 import { DocumentCard } from "../components/cards/DocumentCard";
 import { DocumentsPropTypes } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
@@ -12,15 +12,14 @@ const Documents = () => {
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
-   const filterTitleList = ["All", "PDF", "PNG", "DOC", "XLS"];
+   const docTypeFilterList = ["All", "PDF", "PNG", "DOC", "XLS"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
    };
 
    const searchDocs = (doc: DocumentsPropTypes) => {
-      const docName = doc.title;
+      const docName = doc.document_name;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
@@ -67,26 +66,16 @@ const Documents = () => {
             <SearchAndFilter
                handleSearch={handleSearch}
                handleFilter={handleFilter}
-               activeFilter={activeFilter}
-               setActiveFilter={setActiveFilter}
-               title={filterTitleList}
+               title={docTypeFilterList}
             />
 
-            <div className="w-full flex flex-wrap gap-5">
+            <div className="w-full">
                {filteredDocs.length ? (
-                  <>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                      {filteredDocs.map((doc) => (
-                        <React.Fragment key={doc.id}>
-                           <DocumentCard
-                              docId={doc.id}
-                              documentName={doc.title}
-                              documentSize={doc.document_size}
-                              documentType={doc.document_type}
-                              // document={doc}
-                           />
-                        </React.Fragment>
+                        <DocumentCard key={doc.id} document={doc} />
                      ))}
-                  </>
+                  </div>
                ) : (
                   <p className="pending-text w-full text-center">
                      No results found.

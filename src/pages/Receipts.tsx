@@ -12,7 +12,6 @@ const Receipts = () => {
 
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const [activeFilter, setActiveFilter] = useState<string>("All");
    const filterTitleList = ["All", "Today", "This week", "This month"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,14 +131,12 @@ const Receipts = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 
-         <div className="w-full flex flex-wrap gap-5">
+         <div className="w-full">
             {filteredReceipts.length ? (
-               <>
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                   {filteredReceipts.map((receipt, index) => (
                      <ReceiptCard
                         key={index}
@@ -150,7 +147,7 @@ const Receipts = () => {
                         date={receipt.date}
                      />
                   ))}
-               </>
+               </div>
             ) : (
                <p className="pending-text w-full text-center">
                   No results found.

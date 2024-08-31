@@ -9,7 +9,6 @@ import { QuestionsPropsType } from "../../types/AllTypes";
 const Faq = () => {
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
    const filterTitleList = [
       "All",
       "Services",
@@ -58,8 +57,6 @@ const Faq = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 

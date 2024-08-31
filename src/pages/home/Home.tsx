@@ -2,7 +2,6 @@ import Hero from "../../components/home/Hero";
 import { BsCardChecklist } from "react-icons/bs";
 import TodoCard from "../../components/cards/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineAddCard } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -17,7 +16,7 @@ const Home = () => {
                <span className="font-medium md:text-xl">
                   What would you like to do?
                </span>
-               <div className="flex flex-wrap gap-3">
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                   <TodoCard
                      todoIcon={BsCardChecklist}
                      text="Request service"
@@ -27,11 +26,6 @@ const Home = () => {
                      todoIcon={IoCloudUploadOutline}
                      text="Upload pdf or image"
                      handleClick={() => navigate("upload-document")}
-                  />
-                  <TodoCard
-                     todoIcon={MdOutlineAddCard}
-                     text="Add credit card"
-                     handleClick={() => navigate("add-card")}
                   />
                </div>
             </div>

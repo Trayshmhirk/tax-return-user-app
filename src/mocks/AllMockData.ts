@@ -63,27 +63,35 @@ export const categoryList: CategoryListTypes[] = [
 export const uploadedDocuments: DocumentsPropTypes[] = [
    {
       id: "id1",
-      title: "Document 1adfuubadfdajhjahdf",
+      document_name: "Document 1adfuubadfdajhjahdf",
       document_size: "20",
       document_type: "application/pdf",
+      date_modified: "2024-08-25",
+      base64: "",
    },
    {
       id: "id2",
-      title: "document",
+      document_name: "document",
       document_size: "20",
       document_type: "image/png",
+      date_modified: "2024-08-25",
+      base64: "",
    },
    {
       id: "id3",
-      title: "Excel file",
+      document_name: "Excel file",
       document_size: "20",
       document_type: "application/vnd.ms-excel",
+      date_modified: "2024-08-25",
+      base64: "",
    },
    {
       id: "id4",
-      title: "Word file",
+      document_name: "Word file",
       document_size: "20",
       document_type: "application/msword",
+      date_modified: "2024-08-25",
+      base64: "",
    },
 ];
 
@@ -318,21 +326,21 @@ export const help: QuestionsPropsType[] = [
 // requests
 export const requests: RequestsPropTypes[] = [
    {
-      service_id: "string",
+      service_id: "5tdfG8rnfP",
       status: "Pending",
-      requestDate: "string",
-      service_title: "string",
+      requestDate: "2024-08-30",
+      service_title: "tax",
    },
    {
-      service_id: "string",
+      service_id: "Iu83Hnd8Oi",
       status: "Completed",
-      requestDate: "string",
-      service_title: "string",
+      requestDate: "2024-08-25",
+      service_title: "attestation",
    },
    {
-      service_id: "string",
+      service_id: "Ko9fJk32hN",
       status: "Paid",
-      requestDate: "string",
-      service_title: "string",
+      requestDate: "2024-06-25",
+      service_title: "payment",
    },
 ];

@@ -2,11 +2,11 @@ import { useState } from "react";
 import SearchAndFilter from "../../components/common/SearchAndFilter";
 import { RequestsPropTypes } from "../../types/AllTypes";
 import { requests } from "../../mocks/AllMockData";
+import { formatDate } from "date-fns";
 
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFilter, setActiveFilter] = useState("All");
    const filterTitleList = ["All", "Pending", "Completed", "Paid"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,23 +45,21 @@ const MyRequests = () => {
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
             title={filterTitleList}
          />
 
-         <div className="w-full flex flex-wrap gap-5">
+         <div className="w-full">
             {filteredRequests.length ? (
-               <>
+               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                   {filteredRequests.map((request, index) => (
                      <div
                         key={index}
                         onClick={handleRequestCardClick}
-                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body lg:calc-width-three"
+                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body"
                      >
                         <div
                            className={`
-                              absolute right-4 top-4 py-1 px-2 text-xs rounded
+                              absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
                               ${request.status.toLowerCase() === "pending" ? "pending" : ""}
                               ${request.status.toLowerCase() === "paid" ? "paid" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
@@ -70,24 +68,22 @@ const MyRequests = () => {
                            {request.status}
                         </div>
 
-                        <div className="text">
-                           Request ID: {request.service_id}
-                        </div>
+                        <div className="text-sm">{request.service_id}</div>
 
-                        <div className="text-sm flex gap-3">
-                           <p>Request: </p>
+                        <div className="text-sm">
                            <span className="text-richElectricBlue">
                               {request.service_title}
                            </span>
                         </div>
 
-                        <div className="text-sm flex gap-3">
-                           <p>Request date: </p>
-                           <span className="">{request.requestDate}</span>
+                        <div className="text-xs">
+                           <span className="">
+                              {formatDate(request.requestDate, "dd.MM.yyyy")}
+                           </span>
                         </div>
                      </div>
                   ))}
-               </>
+               </div>
             ) : (
                <p className="pending-text w-full text-center">
                   Nothing to show here.
