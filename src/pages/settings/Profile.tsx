@@ -22,8 +22,8 @@ const Profile = () => {
       <>
          <h1 className="text-lg font-semibold">My Profile</h1>
 
-         <div className="grid grid-cols-1 md:grid-cols-[2fr-2fr] xl:grid-cols-[1fr_2fr_2fr] xl:grid-rows-[2fr-2fr] gap-5">
-            <div className="xl:row-span-2 h-fit flex flex-col xl:items-center gap-6 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl sm:items-center">
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_2fr_2fr] xl:grid-rows-[2fr-2fr] gap-5">
+            <div className="md:col-span-1 lg:col-span-1 xl:row-span-2 h-fit flex flex-col items-center gap-6 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
                <div className="flex flex-col gap-4 items-center text-center">
                   <div
                      className={`w-40 h-40 flex items-center justify-center ${!isProfilePicture && "bg-brightGray dark:bg-spanishGray text-eerieBlack font-semibold"} rounded-full overflow-hidden shadow-md dark:shadow-md-dark`}
@@ -47,7 +47,7 @@ const Profile = () => {
                   </div>
                </div>
 
-               <div className="flex flex-col gap-3">
+               <div className="flex flex-col gap-3 w-full lg:w-fit">
                   <p className="flex items-center gap-2 text-xs font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
                      <MapPinned className="w-4 h-4" />
                      Akure, Ondo
@@ -63,7 +63,7 @@ const Profile = () => {
             </div>
 
             {/*  */}
-            <div className="xl:row-span-1 xl:col-start-2 xl:col-end-3 flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
+            <div className="lg:row-start-2 lg:row-end-3 lg:col-span-3 xl:row-span-1 xl:col-start-2 xl:col-end-3 md:h-fit lg:h-full flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
                <div className="flex justify-between gap-4">
                   <h2 className="font-bold">My Profile</h2>
 
@@ -103,7 +103,7 @@ const Profile = () => {
                </div>
             </div>
 
-            <div className="xl:row-span-2 xl:col-start-2 xl:col-end-3 flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
+            <div className="lg:row-start-4 lg:row-end-5 lg:col-span-3 xl:row-span-2 xl:col-start-2 xl:col-end-3 md:h-fit lg:h-full flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
                <div className="flex flex-row justify-between gap-4">
                   <h2 className="font-bold">Address</h2>
 
@@ -143,7 +143,7 @@ const Profile = () => {
                </div>
             </div>
 
-            <div className="xl:row-start-1 xl:row-end-4 xl:col-start-3 xl:col-end-4 flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
+            <div className="lg:row-start-5 lg:row-end-6 lg:col-span-2 xl:row-start-1 xl:row-end-4 xl:col-start-3 xl:col-end-4 flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
                <h2 className="font-bold">Preferred Payment method</h2>
 
                {/* Cards list */}
