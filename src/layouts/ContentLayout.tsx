@@ -17,14 +17,14 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Welcome";
          case "/not-approved":
             return "Please wait...";
-         case "/add-card":
-            return "Add card";
          case "/request-service":
             return "Request a service";
          case "/documents":
             return "Documents";
          case "/receipts":
             return "Receipts";
+         case "/live-chat":
+            return "Live Chat";
          case "/transactions":
             return "Transactions";
          case "/bank":

@@ -17,7 +17,6 @@ const Login = lazy(() => import("../pages/auth/Login"));
 const SignUp = lazy(() => import("../pages/auth/SignUp"));
 const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
-const AddCard = lazy(() => import("../pages/payment/AddCard"));
 const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
 const Documents = lazy(() => import("../pages/Documents"));
 const Receipts = lazy(() => import("../pages/Receipts"));
@@ -89,14 +88,6 @@ const router = createBrowserRouter(
                element={
                   <ProtectedRoute>
                      <RequestService />
-                  </ProtectedRoute>
-               }
-            />
-            <Route
-               path="add-card"
-               element={
-                  <ProtectedRoute>
-                     <AddCard />
                   </ProtectedRoute>
                }
             />
