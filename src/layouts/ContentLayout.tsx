@@ -67,10 +67,12 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
          <Header title={title} isHome={location.pathname === "/"} />
 
          <div
-            className={`content px-5 ${isSettings ? "py-5 sm:px-7 md:px-12 md:py-8" : "py-5 overflow-scroll sm:px-8 md:px-10 md:py-10 md:pb-4"}`}
+            className={`content px-5 ${isSettings ? "py-5 sm:px-7 md:px-12 md:py-8" : "py-5 overflow-hidden sm:px-8 md:px-10 md:py-10 md:pb-7"}`}
          >
             {!isSettings ? (
-               <div className="h-full lg:px-1">{children}</div>
+               <div className="h-full overflow-auto px-1 py-1 pb-2 md:px-2">
+                  {children}
+               </div>
             ) : (
                <>{children}</>
             )}
