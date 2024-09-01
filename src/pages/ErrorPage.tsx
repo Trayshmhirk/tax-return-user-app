@@ -1,4 +1,3 @@
-import CustomButton from "@/components/form-components/CustomButton";
 import { Button } from "@/components/ui/button";
 import { useRouteError, useNavigate } from "react-router-dom";
 
@@ -79,13 +78,13 @@ export const ErrorPage = ({
             </div>
          )}
          {resetErrorBoundary && (
-            <CustomButton
-               handleClick={resetErrorBoundary}
+            <Button
+               onClick={resetErrorBoundary}
                type="button"
                className="px-4 py-2 bg-blue-500 text-white rounded-md z-50"
             >
                Try Again
-            </CustomButton>
+            </Button>
          )}
       </div>
    );

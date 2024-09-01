@@ -11,9 +11,9 @@ import { useContext, useState } from "react";
 import { FaCalendarWeek } from "react-icons/fa";
 import { TiInfoLarge } from "react-icons/ti";
 import { FaCreditCard } from "react-icons/fa6";
-import CustomButton from "../form-components/CustomButton";
 import { ClipLoader } from "react-spinners";
 import { ThemeContext } from "../../context/ThemeContext";
+import { Button } from "../ui/button";
 
 const CardForm: React.FC = () => {
    const stripe = useStripe();
@@ -140,7 +140,7 @@ const CardForm: React.FC = () => {
 
          <div className="flex flex-col gap-5 mb-2">
             {error && (
-               <p className="text-bostonRed dark:text-red-500 text-center">
+               <p className="text-bostonRed dark:text-red-500 font-medium text-center">
                   {error}
                </p>
             )}
@@ -154,13 +154,13 @@ const CardForm: React.FC = () => {
                </p>
             )}
 
-            <CustomButton type="submit" isDisabled={!stripe || loading}>
+            <Button type="submit" disabled={!stripe || loading}>
                {loading ? (
                   <ClipLoader color="#ffffff" size={20} />
                ) : (
                   "Add new card"
                )}
-            </CustomButton>
+            </Button>
          </div>
       </form>
    );

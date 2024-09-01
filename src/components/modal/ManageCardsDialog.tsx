@@ -66,7 +66,7 @@ export const ManageCardsDialog = ({
          <DialogTrigger asChild>
             <Button
                variant="ghost"
-               className="text-richElectricBlue font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded hover:text-richElectricBlue dark:hover:text-richElectricBlue hover-shadow-body"
+               className="text-richElectricBlue font-medium shadow-md dark:shadow-md-dark rounded hover:text-richElectricBlue dark:hover:text-richElectricBlue hover-shadow-body"
             >
                Manage cards
             </Button>

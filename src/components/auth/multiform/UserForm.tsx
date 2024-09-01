@@ -5,9 +5,9 @@ import { ISignUpForm } from "../../../types/AllTypes";
 import { SetStateAction, useState } from "react";
 import Forms from "../Forms";
 import FormInput from "../../form-components/FormInput";
-import CustomButton from "../../form-components/CustomButton";
 import { ClipLoader } from "react-spinners";
 import { NavLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 type UserFormPropTypes = {
    onNext: () => void;
@@ -119,9 +119,9 @@ const UserForm = ({
          )}
 
          <div className="w-full text-center flex flex-col gap-3">
-            <CustomButton type="submit" isDisabled={isLoading}>
+            <Button type="submit" disabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
-            </CustomButton>
+            </Button>
             <span className="self-center text-sm">
                {`Already have an account? `}
                <NavLink className="font-semibold" to={"/login"}>

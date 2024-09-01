@@ -170,7 +170,7 @@ const SettingsAside = () => {
                               <DialogFooter>
                                  <Button
                                     type="submit"
-                                    className="w-full bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-85 dark:bg-richElectricBlue dark:hover:bg-richElectricBlue dark:hover:bg-opacity-80 text-white dark:text-white"
+                                    className="w-full text-white dark:text-white"
                                     // onClick={() => exportToPDF(transaction)}
                                  >
                                     {isLoading ? (

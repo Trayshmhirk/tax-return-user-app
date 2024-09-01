@@ -5,9 +5,9 @@ import { logInSchema } from "../../validation/schema";
 import FormInput from "../../components/form-components/FormInput";
 import { ILoginForm } from "../../types/AllTypes";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomButton from "../../components/form-components/CustomButton";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import { Button } from "@/components/ui/button";
 
 const Login = () => {
    const navigate = useNavigate();
@@ -108,9 +108,9 @@ const Login = () => {
          )}
 
          <div className="w-full text-center flex flex-col gap-3">
-            <CustomButton type="submit" isDisabled={isLoading}>
+            <Button type="submit" disabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Log in"}
-            </CustomButton>
+            </Button>
             <span className="self-center text-sm">
                {`Don't have an account? `}
                <NavLink className="font-semibold" to={"/sign-up"}>

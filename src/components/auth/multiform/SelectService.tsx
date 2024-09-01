@@ -1,10 +1,10 @@
 import { useState } from "react";
-import CustomButton from "../../form-components/CustomButton";
 import TextArea from "../../form-components/TextArea";
 import RadioCheckInput from "../../form-components/RadioCheckInput";
 import { SelectServicePropType } from "../../../types/AllTypes";
 import { servicesList } from "../../../mocks/AllMockData";
 import { ClipLoader } from "react-spinners";
+import { Button } from "@/components/ui/button";
 
 const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    const [isLoading, setIsLoading] = useState(false);
@@ -112,17 +112,17 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
             )}
          </div>
 
-         <CustomButton
+         <Button
             type="button"
-            handleClick={onSubmit}
-            isDisabled={isButtonDisabled || isLoading}
+            onClick={onSubmit}
+            disabled={isButtonDisabled || isLoading}
          >
             {isLoading ? (
                <ClipLoader color="#ffffff" size={20} />
             ) : (
                "Chat with an agent"
             )}
-         </CustomButton>
+         </Button>
       </>
    );
 };

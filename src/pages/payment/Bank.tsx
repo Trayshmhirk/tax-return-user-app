@@ -6,6 +6,7 @@ import { useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
 import { CardsProps } from "@/types/AllTypes";
 import { initialCards } from "@/mocks/AllMockData";
+import { Button } from "@/components/ui/button";
 
 const Bank = () => {
    const [bankCards, setbankCards] = useState<CardsProps[]>(initialCards);
@@ -33,9 +34,9 @@ const Bank = () => {
                      <div className="text-xl font-semibold">Your cards</div>
 
                      <AddCardDialog>
-                        <button className="bg-richElectricBlue px-3 py-2 rounded-lg text-white font-medium no-underline shadow-md dark:shadow-md-dark hover-shadow-body">
+                        <Button className="px-3 py-2">
                            Add card <span className="font-bold">+</span>
-                        </button>
+                        </Button>
                      </AddCardDialog>
                   </div>
 
