@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import Forms from "../Forms";
-import CustomButton from "../../form-components/CustomButton";
 import OtpInput from "../../form-components/OtpInput";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type OtpPropTypes = {
    title: string;
@@ -65,6 +65,7 @@ const Otp = ({
             }, 700);
          } else {
             setError("Invalid OTP: Please try again.");
+            setTimeout(() => setError(null), 1500);
          }
       }, 2000);
    };
@@ -92,7 +93,7 @@ const Otp = ({
          </div>
 
          {error && (
-            <div className="text-bostonRed dark:text-red-500 text-center">
+            <div className="text-bostonRed dark:text-red-500 font-medium text-center">
                {error}
             </div>
          )}
@@ -106,17 +107,16 @@ const Otp = ({
          )}
 
          <div className="w-full flex gap-4 text-center">
-            <CustomButton
+            <Button
                type="button"
-               handleClick={handlePrevForm}
-               className="bg-transparent text-richElectricBlue border-richElectricBlue"
-               isBorder
+               onClick={handlePrevForm}
+               className="w-full bg-transparent text-richElectricBlue border border-richElectricBlue"
             >
                Previous
-            </CustomButton>
-            <CustomButton type="submit" isDisabled={isLoading}>
+            </Button>
+            <Button type="submit" className="w-full" disabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Next"}
-            </CustomButton>
+            </Button>
          </div>
       </Forms>
    );

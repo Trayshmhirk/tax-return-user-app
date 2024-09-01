@@ -6,11 +6,13 @@ import {
    DialogTitle,
    DialogTrigger,
    DialogFooter,
+   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import DebitCard from "../payment/DebitCard";
 
 import { differenceInMonths, isPast } from "date-fns";
+import { CardsProps } from "@/types/AllTypes";
 
 // Function to check if a card is expired
 const isExpired = (exp: string): boolean => {
@@ -27,28 +29,18 @@ const isExpiringSoon = (exp: string): boolean => {
    return differenceInMonths(expDate, currentDate) <= 3 && !isPast(expDate);
 };
 
-export type Card = {
-   id: string;
-   name: string;
-   last4: string;
-   exp: string;
-   brand: string;
-   cardholderName: string;
-   isDefault: boolean;
-};
-
 type ManageCardsDialogProps = {
-   cards: Card[];
-   onUpdate: (updatedCards: Card[]) => void;
+   cards: CardsProps[];
+   onUpdate: (updatedCards: CardsProps[]) => void;
 };
 
 export const ManageCardsDialog = ({
    cards,
    onUpdate,
 }: ManageCardsDialogProps) => {
-   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+   const [selectedCard, setSelectedCard] = useState<CardsProps | null>(null);
 
-   const handleCardClick = (card: Card) => {
+   const handleCardClick = (card: CardsProps) => {
       setSelectedCard(card);
    };
 
@@ -74,14 +66,18 @@ export const ManageCardsDialog = ({
          <DialogTrigger asChild>
             <Button
                variant="ghost"
-               className="text-richElectricBlue font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded hover:text-richElectricBlue dark:hover:text-richElectricBlue hover-shadow-body"
+               className="text-richElectricBlue font-medium shadow-md dark:shadow-md-dark rounded hover:text-richElectricBlue dark:hover:text-richElectricBlue hover-shadow-body"
             >
                Manage cards
             </Button>
          </DialogTrigger>
-         <DialogContent className="max-w-xl gap-5">
+         <DialogContent
+            className="max-w-xl gap-5"
+            aria-description="manage cards dialog"
+         >
             <DialogHeader>
                <DialogTitle>Manage Your Cards</DialogTitle>
+               <DialogDescription />
             </DialogHeader>
 
             {/* Cards list */}
@@ -100,16 +96,22 @@ export const ManageCardsDialog = ({
             {selectedCard ? (
                <div className="flex flex-col gap-5">
                   <div className="flex flex-col gap-1">
-                     <h3 className="font-bold text-xl">Card Details</h3>
+                     <h3 className="font-semibold text-xl">Card Details</h3>
                      <p>
-                        <strong>Cardholder:</strong>{" "}
-                        {selectedCard.cardholderName}
+                        Cardholder:{" "}
+                        <span className="font-medium">
+                           {selectedCard.cardholderName}
+                        </span>
                      </p>
                      <p>
-                        <strong>Brand:</strong> {selectedCard.brand}
+                        Brand:{" "}
+                        <span className="font-medium">
+                           {selectedCard.brand}
+                        </span>
                      </p>
                      <p>
-                        <strong>Expiry:</strong> {selectedCard.exp}{" "}
+                        Expiry:{" "}
+                        <span className="font-medium">{selectedCard.exp}</span>{" "}
                         {isExpired(selectedCard.exp) ? (
                            <span className="text-bostonRed dark:text-red-500">
                               (Expired!)
@@ -121,7 +123,10 @@ export const ManageCardsDialog = ({
                         ) : null}
                      </p>
                      <p>
-                        <strong>Last 4 Digits:</strong> {selectedCard.last4}
+                        Last 4 Digits:{" "}
+                        <span className="font-medium">
+                           **** **** **** {selectedCard.last4}
+                        </span>
                      </p>
                   </div>
 
@@ -144,7 +149,7 @@ export const ManageCardsDialog = ({
                   </DialogFooter>
                </div>
             ) : (
-               <p className="">Click on a card to see details.</p>
+               <p className="font-medium">Click on a card to see details.</p>
             )}
          </DialogContent>
       </Dialog>

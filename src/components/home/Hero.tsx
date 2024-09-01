@@ -2,6 +2,7 @@ import HeroTopLeftImage from "../../assets/hero-top-left-image.png";
 import HeroBottomRightImage from "../../assets/hero-bottom-right-image.png";
 import GooglePlayImg from "../../assets/google-play.png";
 import AppStoreImg from "../../assets/apple.png";
+import { Button } from "../ui/button";
 
 type HeroProps = {
    isNotApprovedHome?: boolean;
@@ -67,7 +68,7 @@ const Hero = ({
                <p className="md:text-xl">Download the IRS app</p>
 
                <div className="flex gap-3">
-                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded cursor-pointer hover-shadow-body">
+                  <Button className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded cursor-pointer shadow-none dark:shadow-none hover-shadow-body">
                      <img src={GooglePlayImg} />
 
                      <div className="flex flex-col">
@@ -78,8 +79,8 @@ const Hero = ({
                            Google Play
                         </p>
                      </div>
-                  </div>
-                  <div className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded cursor-pointer hover-shadow-body">
+                  </Button>
+                  <Button className="flex items-center gap-2 bg-eerieBlack py-[6px] px-3 rounded cursor-pointer shadow-none dark:shadow-none hover-shadow-body">
                      <img src={AppStoreImg} />
 
                      <div className="flex flex-col">
@@ -90,7 +91,7 @@ const Hero = ({
                            App Store
                         </p>
                      </div>
-                  </div>
+                  </Button>
                </div>
             </div>
          )}

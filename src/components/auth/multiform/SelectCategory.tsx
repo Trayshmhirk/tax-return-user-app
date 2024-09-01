@@ -1,11 +1,11 @@
 import { useState } from "react";
-import CustomButton from "../../form-components/CustomButton";
 import RadioCheckInput from "../../form-components/RadioCheckInput";
 import { SelectCategoryPropTypes } from "../../../types/AllTypes";
 import { categoryList } from "../../../mocks/AllMockData";
 import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
+import { Button } from "@/components/ui/button";
 
 const SelectCategory = ({
    isRequestService,
@@ -76,13 +76,13 @@ const SelectCategory = ({
                   </div>
                </div>
 
-               <CustomButton
-                  handleClick={onSubmit}
+               <Button
+                  onClick={onSubmit}
                   type="submit"
-                  isDisabled={isButtonDisabled || isLoading}
+                  disabled={isButtonDisabled || isLoading}
                >
                   Proceed
-               </CustomButton>
+               </Button>
             </>
          ) : (
             <Forms
@@ -105,24 +105,24 @@ const SelectCategory = ({
                </div>
 
                <div className="w-full flex gap-4 text-center">
-                  <CustomButton
+                  <Button
                      type="button"
-                     handleClick={handlePrevForm}
-                     className="bg-transparent text-richElectricBlue border border-richElectricBlue"
-                     isBorder
+                     onClick={handlePrevForm}
+                     className="w-full bg-transparent text-richElectricBlue border border-richElectricBlue"
                   >
                      Previous
-                  </CustomButton>
-                  <CustomButton
+                  </Button>
+                  <Button
                      type="submit"
-                     isDisabled={isButtonDisabled || isLoading}
+                     className="w-full"
+                     disabled={isButtonDisabled || isLoading}
                   >
                      {isLoading ? (
                         <ClipLoader color="#ffffff" size={20} />
                      ) : (
                         "Next"
                      )}
-                  </CustomButton>
+                  </Button>
                </div>
             </Forms>
          )}

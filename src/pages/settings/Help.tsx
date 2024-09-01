@@ -3,6 +3,8 @@ import SearchAndFilter from "../../components/common/SearchAndFilter";
 import { Accordion } from "../../components/common/Accordion";
 import { QuestionsPropsType } from "../../types/AllTypes";
 import { help } from "../../mocks/AllMockData";
+import TextArea from "@/components/form-components/TextArea";
+import { Button } from "@/components/ui/button";
 
 const Help = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -35,6 +37,8 @@ const Help = () => {
         )
       : [];
 
+   const handleSubmitQuestion = () => {};
+
    return (
       <>
          <h1 className="text-lg font-semibold">Help and support</h1>
@@ -55,9 +59,15 @@ const Help = () => {
                   />
                ))
             ) : (
-               <p className="pending-text w-full text-center">
-                  No results found.
-               </p>
+               <div className="flex flex-col gap-4">
+                  <TextArea
+                     label="Have a question?"
+                     placeholder="Type question here"
+                  />
+                  <Button type="button" onClick={handleSubmitQuestion}>
+                     Submit question
+                  </Button>
+               </div>
             )}
          </div>
       </>

@@ -1,4 +1,4 @@
-import CustomButton from "@/components/form-components/CustomButton";
+import { Button } from "@/components/ui/button";
 import { useRouteError, useNavigate } from "react-router-dom";
 
 type Error = {
@@ -40,10 +40,13 @@ export const ErrorPage = ({
    return (
       <div
          id="error-page"
-         className={`w-full ${isError(error) && error.message && "h-full"} flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6`}
+         className={`relative w-full ${isError(error) && error.message && "h-full"} flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6 overflow-hidden`}
       >
+         <div className="centered-circle w-[399px] h-[399px] md:w-[599px] md:h-[599px] bg-richElectricBlue bg-opacity-[0.03] rounded-full -z-0"></div>
+         <div className="centered-circle w-[599px] h-[599px] md:w-[799px] md:h-[799px] bg-richElectricBlue bg-opacity-[0.03] rounded-full -z-0"></div>
+         <div className="centered-circle w-[799px] h-[799px] md:w-[999px] md:h-[999px] bg-richElectricBlue bg-opacity-[0.03] rounded-full -z-0"></div>
          {isError(error) && (
-            <div className="flex flex-col items-center gap-4 text-center">
+            <div className="flex flex-col items-center gap-4 text-center z-50">
                <h1 className="text-7xl md:text-9xl font-extrabold text-richElectricBlue">
                   {error.status || "Error"}!
                </h1>
@@ -63,24 +66,25 @@ export const ErrorPage = ({
                {error.data && (
                   <p className="text-xs md:text-sm">{error.data}</p>
                )}
-               <CustomButton
-                  handleClick={() =>
+               <Button
+                  onClick={() =>
                      error.message ? window.location.reload() : navigate(-1)
                   }
-                  type="button"
-                  className="w-36 mt-4 md:w-40 md:mt-6"
+                  variant="default"
+                  className="mt-4 md:w-40 md:mt-6 w-40"
                >
                   {error.message ? "Reload page" : "Go back"}
-               </CustomButton>
+               </Button>
             </div>
          )}
          {resetErrorBoundary && (
-            <button
+            <Button
                onClick={resetErrorBoundary}
-               className="px-4 py-2 bg-blue-500 text-white rounded-md"
+               type="button"
+               className="px-4 py-2 bg-blue-500 text-white rounded-md z-50"
             >
                Try Again
-            </button>
+            </Button>
          )}
       </div>
    );

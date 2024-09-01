@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import Forms from "../Forms";
-import CustomButton from "../../form-components/CustomButton";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import { getBase64 } from "../../../helpers/getBase64";
 import { FileUploadProgress } from "../../common/FIleUploadProgress";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 type UploadFormPropTypes = {
    onPrev: () => void;
@@ -201,17 +201,16 @@ const UploadForm = ({
             </div>
          )}
          <div className="w-full flex gap-4 text-center">
-            <CustomButton
+            <Button
                type="button"
-               handleClick={handlePrevForm}
-               className="bg-transparent text-richElectricBlue border border-richElectricBlue"
-               isBorder
+               onClick={handlePrevForm}
+               className="w-full bg-transparent text-richElectricBlue border border-richElectricBlue"
             >
                Previous
-            </CustomButton>
-            <CustomButton type="submit" isDisabled={isLoading}>
+            </Button>
+            <Button type="submit" className="w-full" disabled={isLoading}>
                {isLoading ? <ClipLoader color="#ffffff" size={20} /> : "Submit"}
-            </CustomButton>
+            </Button>
          </div>
       </Forms>
    );
