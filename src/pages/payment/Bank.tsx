@@ -4,46 +4,8 @@ import RecentTransactions from "../../components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
-
-type CardsProps = {
-   id: string;
-   name: string;
-   last4: string;
-   exp: string;
-   brand: string;
-   cardholderName: string;
-   isDefault: boolean;
-};
-
-const initialCards: CardsProps[] = [
-   {
-      id: "er634e7",
-      name: "Debit card",
-      last4: "4364",
-      exp: "12/22",
-      brand: "Visa",
-      cardholderName: "John Doe",
-      isDefault: true,
-   },
-   {
-      id: "hd2376y",
-      name: "Travel card",
-      last4: "1234",
-      exp: "09/23",
-      brand: "Mastercard",
-      cardholderName: "Jane Smith",
-      isDefault: false,
-   },
-   {
-      id: "ab987hg",
-      name: "Work card",
-      last4: "3456",
-      exp: "10/24",
-      brand: "Visa",
-      cardholderName: "John Doe",
-      isDefault: false,
-   },
-];
+import { CardsProps } from "@/types/AllTypes";
+import { initialCards } from "@/mocks/AllMockData";
 
 const Bank = () => {
    const [bankCards, setbankCards] = useState<CardsProps[]>(initialCards);

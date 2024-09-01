@@ -145,3 +145,13 @@ export type IChangePasswordForm = {
    oldPassword: string;
    newPassword: string;
 };
+
+export type CardsProps = {
+   id: string;
+   name: string;
+   last4: string;
+   exp: string;
+   brand: string;
+   cardholderName: string;
+   isDefault: boolean;
+};

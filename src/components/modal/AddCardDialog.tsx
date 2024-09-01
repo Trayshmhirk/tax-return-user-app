@@ -4,6 +4,7 @@ import CardForm from "../../components/payment/CardForm";
 import {
    Dialog,
    DialogContent,
+   DialogDescription,
    DialogHeader,
    DialogTitle,
    DialogTrigger,
@@ -26,6 +27,7 @@ const AddCardDialog = ({ children }: addCardDialogProps) => {
                <DialogTitle className="font-semibold md:text-xl">
                   Add new card
                </DialogTitle>
+               <DialogDescription />
             </DialogHeader>
             <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-20" />
 

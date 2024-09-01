@@ -6,6 +6,7 @@ import {
    CategoryListTypes,
    QuestionsPropsType,
    RequestsPropTypes,
+   CardsProps,
 } from "../types/AllTypes";
 
 // request service
@@ -342,5 +343,35 @@ export const requests: RequestsPropTypes[] = [
       status: "Paid",
       requestDate: "2024-06-25",
       service_title: "payment",
+   },
+];
+
+export const initialCards: CardsProps[] = [
+   {
+      id: "er634e7",
+      name: "Debit card",
+      last4: "4364",
+      exp: "12/22",
+      brand: "Visa",
+      cardholderName: "John Doe",
+      isDefault: true,
+   },
+   {
+      id: "hd2376y",
+      name: "Travel card",
+      last4: "1234",
+      exp: "09/23",
+      brand: "Mastercard",
+      cardholderName: "Jane Smith",
+      isDefault: false,
+   },
+   {
+      id: "ab987hg",
+      name: "Work card",
+      last4: "3456",
+      exp: "10/24",
+      brand: "Visa",
+      cardholderName: "John Doe",
+      isDefault: false,
    },
 ];
