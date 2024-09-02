@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { DocumentsPropTypes } from "@/types/AllTypes";
+import { DocumentsPropTypes, ReceiptsPropTypes } from "@/types/AllTypes";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
+import { IoFolderOpenSharp } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 import { columns } from "../../components/files/columns";
 import { DataTable } from "@/components/files/data-table";
@@ -54,6 +55,43 @@ async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    ];
 }
 
+async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
+   return [
+      {
+         id: "retdb2137",
+         title: "receipt",
+         owner_info: {
+            fullname: "Micheal",
+         },
+         date: "08/07/2024",
+      },
+      {
+         id: "retug7457",
+         title: "receipt",
+         owner_info: {
+            fullname: "Micheal",
+         },
+         date: "06/07/2024",
+      },
+      {
+         id: "rettg4567",
+         title: "receipt",
+         owner_info: {
+            fullname: "Micheal",
+         },
+         date: "12/02/1999",
+      },
+      {
+         id: "rettg4567",
+         title: "receipt",
+         owner_info: {
+            fullname: "Micheal",
+         },
+         date: "12/02/1999",
+      },
+   ];
+}
+
 const Files = () => {
    const [data, setData] = useState<DocumentsPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
@@ -69,6 +107,8 @@ const Files = () => {
 
          setTimeout(async () => {
             const documents = await fetchDocumentsForCard(); // Fetch the data
+            const receipts = await fetchReceipts();
+            receipts;
             setData(documents);
             setLoading(false);
          }, 300);
@@ -133,6 +173,21 @@ const Files = () => {
                >
                   <RiListCheck3 size={18} />
                </button>
+            </div>
+         </div>
+
+         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 pb-2">
+            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
+               <div className="flex flex-col items-center text-center gap-3">
+                  <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
+                  <h6 className="font-medium text-sm">Documents</h6>
+               </div>
+            </div>
+            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
+               <div className="flex flex-col items-center text-center gap-3">
+                  <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
+                  <h6 className="font-medium text-sm">Receipts</h6>
+               </div>
             </div>
          </div>
 

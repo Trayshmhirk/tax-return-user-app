@@ -16,6 +16,7 @@ import {
    PopoverContent,
    PopoverTrigger,
 } from "@/components/ui/popover";
+import { Input } from "../ui/input";
 
 const SearchAndFilter = ({
    title,
@@ -31,14 +32,16 @@ const SearchAndFilter = ({
 
    return (
       <div className="w-full flex flex-col md:flex-row md:items-center gap-4">
-         <label className="w-full h-10 flex items-center bg-white dark:bg-gray p-3 pr-5 rounded sm:w-[300px] shadow-md dark:shadow-md-dark">
-            <button className="px-3 cursor-pointer">
-               <Search className="w-4 h-4 dark:text-white" />
-            </button>
-            <input
+         <label
+            htmlFor="search"
+            className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
+         >
+            <Search className="w-4 h-4 dark:text-white" />
+            <Input
+               id="search"
                type="text"
                placeholder="Search"
-               className="flex-grow bg-transparent border-none placeholder:text-gray dark:placeholder:text-white placeholder:text-opacity-70 dark:placeholder:text-opacity-70 outline-none"
+               className="bg-transparent dark:bg-transparent border-none outline-none"
                onChange={handleSearch}
             />
          </label>

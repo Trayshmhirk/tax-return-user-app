@@ -32,7 +32,7 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, Settings2 } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -75,25 +75,34 @@ export function DataTable<TData, TValue>({
    return (
       <div className="flex flex-col gap-4">
          <div className="flex items-center justify-between gap-2">
-            <Input
-               placeholder="Filter description..."
-               value={
-                  (table
-                     .getColumn("description")
-                     ?.getFilterValue() as string) ?? ""
-               }
-               onChange={(event) =>
-                  table
-                     .getColumn("description")
-                     ?.setFilterValue(event.target.value)
-               }
-               className="max-w-xs px-4 dark:bg-gray dark:border-chineseWhite dark:border-opacity-50"
-            />
+            <label
+               htmlFor="searchFiles"
+               className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
+            >
+               <button className="cursor-pointer">
+                  <Search className="w-4 h-4 dark:text-white" />
+               </button>
+
+               <Input
+                  placeholder="Search description..."
+                  value={
+                     (table
+                        .getColumn("description")
+                        ?.getFilterValue() as string) ?? ""
+                  }
+                  onChange={(event) =>
+                     table
+                        .getColumn("description")
+                        ?.setFilterValue(event.target.value)
+                  }
+                  className="bg-transparent dark:bg-transparent border-none outline-none"
+               />
+            </label>
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
                   <Button
-                     variant="outline"
-                     className="dark:bg-gray dark:border-chineseWhite dark:border-opacity-50 gap-2"
+                     variant="ghost"
+                     className="shadow-md dark:shadow-md-dark gap-2"
                   >
                      <Settings2 className="w-4 h-4" />
                      View
