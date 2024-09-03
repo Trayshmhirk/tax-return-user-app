@@ -8,10 +8,10 @@ import { documentColumns } from "@/components/files/documentColumns";
 import { receiptColumns } from "@/components/files/receiptColumns";
 import { DataTable } from "@/components/files/data-table";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
-import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { DocumentCard } from "@/components/cards/DocumentCard";
 import ReceiptCard from "@/components/cards/ReceiptCard";
 import { filterByDate } from "@/helpers/filterByDate";
+import { filterByDoctype } from "@/helpers/filterByDoctype";
 
 async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    return [
@@ -96,7 +96,6 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
 }
 
 const Files = () => {
-   // const [data, setData] = useState<DocumentsPropTypes[]>([]);
    const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
    const [receipts, setReceipts] = useState<ReceiptsPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
@@ -155,16 +154,10 @@ const Files = () => {
       setSelectedFilter(title);
    };
 
-   const filterByDoctype = (doc: DocumentsPropTypes) => {
-      if (selectedFilter === "" || selectedFilter === "All") {
-         // if no filter is selected, all users should be included
-         return true;
-      }
-      return mapFileTypeToDocumentType(doc.document_type) === selectedFilter;
-   };
-
    const filteredDocs = documents
-      ? documents.filter((doc) => searchDocs(doc) && filterByDoctype(doc))
+      ? documents.filter(
+           (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
+        )
       : [];
 
    const searchReceipts = (receipt: ReceiptsPropTypes) => {
