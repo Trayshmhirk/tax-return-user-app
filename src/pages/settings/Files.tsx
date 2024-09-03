@@ -11,7 +11,7 @@ import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { DocumentCard } from "@/components/cards/DocumentCard";
 import ReceiptCard from "@/components/cards/ReceiptCard";
-import { getTimelyValue } from "@/helpers/getTimelyValue";
+import { filterByDate } from "@/helpers/filterByDate";
 
 async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    return [
@@ -107,7 +107,13 @@ const Files = () => {
       "documents"
    );
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
-   const filterTitleList = ["All", "Today", "This week", "This month"];
+   const filterTitleList = [
+      "All",
+      "Today",
+      "This week",
+      "This month",
+      "Earlier",
+   ];
 
    useEffect(() => {
       async function fetchData() {
@@ -119,7 +125,7 @@ const Files = () => {
             setDocuments(fetchedDocuments);
             setReceipts(fetchedReceipts);
             setLoading(false);
-         }, 300);
+         }, 700);
       }
       fetchData();
    }, []);
@@ -166,20 +172,10 @@ const Files = () => {
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
-   const filterByDate = (receipt: ReceiptsPropTypes) => {
-      if (selectedFilter === "" || selectedFilter === "All") {
-         // if no filter is selected, all users should be included
-         return true;
-      }
-      return (
-         getTimelyValue(receipt.date).toLowerCase() ===
-         selectedFilter.toLowerCase()
-      );
-   };
-
    const filteredReceipts = receipts
       ? receipts.filter(
-           (receipt) => searchReceipts(receipt) && filterByDate(receipt)
+           (receipt) =>
+              searchReceipts(receipt) && filterByDate(receipt, selectedFilter)
         )
       : [];
 

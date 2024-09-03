@@ -5,7 +5,7 @@ import ReceiptCard from "../components/cards/ReceiptCard";
 import { ReceiptsPropTypes } from "../types/AllTypes";
 import { receipts } from "../mocks/AllMockData";
 import { getBase64 } from "../helpers/getBase64";
-import { getTimelyValue } from "@/helpers/getTimelyValue";
+import { filterByDate } from "@/helpers/filterByDate";
 
 const Receipts = () => {
    const [searchInput, setSearchInput] = useState<string>("");
@@ -31,20 +31,10 @@ const Receipts = () => {
       setSelectedFilter(title);
    };
 
-   const filterByDate = (receipt: ReceiptsPropTypes) => {
-      if (selectedFilter === "" || selectedFilter === "All") {
-         // if no filter is selected, all users should be included
-         return true;
-      }
-      return (
-         getTimelyValue(receipt.date).toLowerCase() ===
-         selectedFilter.toLowerCase()
-      );
-   };
-
    const filteredReceipts = receipts
       ? receipts.filter(
-           (receipt) => searchReceipts(receipt) && filterByDate(receipt)
+           (receipt) =>
+              searchReceipts(receipt) && filterByDate(receipt, selectedFilter)
         )
       : [];
 
