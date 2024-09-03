@@ -26,7 +26,7 @@ import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";
 
-export const columns: ColumnDef<DocumentsPropTypes>[] = [
+export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
    {
       id: "select",
       header: ({ table }) => (

@@ -88,18 +88,8 @@ export type ReceiptsPropTypes = {
 };
 
 export type ReceiptCardPropTypes = {
-   receiptId: string;
-   handleClick: (receipt: {
-      receiptId: string;
-      title: string;
-      fullname: string;
-      date: string;
-   }) => void;
-   title: string;
-   owner_info: {
-      fullname: string;
-   };
-   date: string;
+   receipt: ReceiptsPropTypes;
+   handleClick?: () => void;
 };
 
 // videos
