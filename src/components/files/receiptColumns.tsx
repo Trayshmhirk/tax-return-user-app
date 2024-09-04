@@ -7,7 +7,6 @@ import {
    Download,
    Eye,
    Trash2,
-   Share,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -59,9 +58,9 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     TITLE
+                     Title
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -97,8 +96,10 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
       ),
    },
    {
-      accessorKey: "fullname",
-      header: "CREATED BY",
+      accessorKey: "owner_info.fullname",
+      header: () => {
+         return <div className="text-xs md:text-sm">Username</div>;
+      },
    },
    {
       accessorKey: "date",
@@ -108,7 +109,7 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
                      DATE
                      <ChevronDown className="h-4 w-4" />
@@ -148,7 +149,7 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
          const dateModified = row.original.date;
 
          return (
-            <div className="lg:px-2">
+            <div className="lg:px-2 text-xs md:text-sm">
                {formatDate(dateModified, "dd.MM.yyyy")}
             </div>
          );
@@ -182,13 +183,8 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                         className="flex items-center gap-2 cursor-pointer"
                      >
                         <Eye className="w-4 h-4" />
-                        View Document
+                        View receipt
                      </DropdownMenuItem>
-                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Share className="w-4 h-4" />
-                        Share document
-                     </DropdownMenuItem>
-
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download

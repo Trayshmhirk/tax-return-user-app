@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useRouteError, useNavigate } from "react-router-dom";
+import { useRouteError, useNavigate, useLocation } from "react-router-dom";
 
 type Error = {
    data?: string;
@@ -20,6 +20,7 @@ export const ErrorPage = ({
    // Hook to capture route-specific errors
    const routeError = useRouteError();
    const navigate = useNavigate();
+   const location = useLocation();
 
    // Use boundaryError or routeError; fallback to custom 404 error
    const error = boundaryError ||
@@ -36,11 +37,12 @@ export const ErrorPage = ({
             "statusText" in error)
       );
    };
+   const isSettings = location.pathname.startsWith("/settings");
 
    return (
       <div
          id="error-page"
-         className={`relative w-full ${isError(error) && error.message && "h-full"} flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6 overflow-hidden`}
+         className={`relative w-full ${isSettings && "h-full"} flex flex-col gap-6 justify-center items-center dark:bg-eerieBlack px-6 overflow-hidden`}
       >
          <div className="centered-circle w-[399px] h-[399px] md:w-[599px] md:h-[599px] bg-richElectricBlue bg-opacity-[0.03] rounded-full -z-0"></div>
          <div className="centered-circle w-[599px] h-[599px] md:w-[799px] md:h-[799px] bg-richElectricBlue bg-opacity-[0.03] rounded-full -z-0"></div>

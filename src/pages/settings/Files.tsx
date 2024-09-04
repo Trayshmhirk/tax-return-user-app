@@ -67,6 +67,8 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
             fullname: "Micheal",
          },
          date: "2024-08-07",
+         base64: "",
+         amount: "",
       },
       {
          id: "retug7457",
@@ -75,6 +77,8 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
             fullname: "Micheal",
          },
          date: "2024-07-07",
+         base64: "",
+         amount: "",
       },
       {
          id: "rettg4567",
@@ -83,6 +87,8 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
             fullname: "Micheal",
          },
          date: "2024-09-02",
+         base64: "",
+         amount: "",
       },
       {
          id: "retad4589",
@@ -91,6 +97,8 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
             fullname: "Micheal",
          },
          date: "2024-09-03",
+         base64: "",
+         amount: "",
       },
    ];
 }
@@ -260,7 +268,11 @@ const Files = () => {
             {activeFolder === "receipts" && (
                <>
                   {isList ? (
-                     <DataTable columns={receiptColumns} data={receipts} />
+                     <DataTable
+                        columns={receiptColumns}
+                        data={receipts}
+                        isReceipt
+                     />
                   ) : (
                      <div className="flex flex-col gap-7">
                         <SearchAndFilter

@@ -29,11 +29,13 @@ import { ChevronLeft, ChevronRight, Settings2, Search } from "lucide-react";
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
    data: TData[];
+   isReceipt?: boolean;
 }
 
 export function DataTable<TData, TValue>({
    columns,
    data,
+   isReceipt,
 }: DataTableProps<TData, TValue>) {
    const [sorting, setSorting] = React.useState<SortingState>([
       { id: "date_modified", desc: true }, // Default sorting by date_modified in descending order
@@ -132,7 +134,15 @@ export function DataTable<TData, TValue>({
                {table.getHeaderGroups().map((headerGroup) => (
                   <div
                      key={headerGroup.id}
-                     className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-5 py-1 shadow-md dark:shadow-md-dark rounded-lg"
+                     className={`
+                        grid 
+                        ${
+                           isReceipt
+                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_3fr_1fr_1fr_1fr]"
+                              : "grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr]"
+                        } 
+                        items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-4 py-1 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
+                     `}
                   >
                      {headerGroup.headers.map((header) => (
                         <div key={header.id} className="dark:text-white">
@@ -153,7 +163,15 @@ export function DataTable<TData, TValue>({
                   table.getRowModel().rows.map((row) => (
                      <div
                         key={row.id}
-                        className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-ghostWhite dark:bg-darkGray px-5 py-2 shadow-md dark:shadow-md-dark rounded-lg"
+                        className={`
+                           grid 
+                           ${
+                              isReceipt
+                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_3fr_1fr_1fr_1fr]"
+                                 : "grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr]"
+                           } 
+                           items-center gap-2 bg-ghostWhite dark:bg-darkGray px-4 py-2 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
+                        `}
                      >
                         {row.getVisibleCells().map((cell) => (
                            <div key={cell.id} className="text-sm">

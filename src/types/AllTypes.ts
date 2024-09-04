@@ -85,6 +85,8 @@ export type ReceiptsPropTypes = {
       fullname: string;
    };
    date: string;
+   amount: string;
+   base64: string;
 };
 
 export type ReceiptCardPropTypes = {

@@ -61,9 +61,9 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     NAME
+                     Name
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -106,7 +106,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          const name = row.original.document_name;
 
          return (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-xs md:text-sm">
                <DocumentTypeIcon
                   docType={mapFileTypeToDocumentType(documentType)}
                />
@@ -123,9 +123,9 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     SIZE
+                     Size
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -165,7 +165,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
       ),
       cell: ({ row }) => {
          const size = row.original.document_size;
-         return <div className="lg:px-2">{size} MB</div>;
+         return <div className="lg:px-2 text-xs md:text-sm">{size} MB</div>;
       },
    },
    {
@@ -188,9 +188,9 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                   <DropdownMenuTrigger asChild>
                      <Button
                         variant="ghost"
-                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                      >
-                        TYPE
+                        Type
                         <ChevronDown className="h-4 w-4" />
                      </Button>
                   </DropdownMenuTrigger>
@@ -235,7 +235,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          const fileType = row.original.document_type;
          const MappedFile = mapFileTypeToDocumentType(fileType);
 
-         return <div className="lg:px-2">{MappedFile}</div>;
+         return <div className="lg:px-2 text-xs md:text-sm">{MappedFile}</div>;
       },
    },
    {
@@ -246,9 +246,9 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     MODIFIED
+                     Modified
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -290,7 +290,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          const dateModified = row.original.date_modified;
 
          return (
-            <div className="lg:px-2">
+            <div className="lg:px-2 text-xs md:text-sm">
                {formatDate(dateModified, "dd.MM.yyyy")}
             </div>
          );

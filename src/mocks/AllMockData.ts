@@ -105,6 +105,8 @@ export const receipts: ReceiptsPropTypes[] = [
          fullname: "Micheal",
       },
       date: "2024-08-07",
+      base64: "",
+      amount: "",
    },
    {
       id: "retug7457",
@@ -113,6 +115,8 @@ export const receipts: ReceiptsPropTypes[] = [
          fullname: "Micheal",
       },
       date: "2024-07-07",
+      base64: "",
+      amount: "",
    },
    {
       id: "rettg4567",
@@ -121,6 +125,8 @@ export const receipts: ReceiptsPropTypes[] = [
          fullname: "Micheal",
       },
       date: "2024-09-02",
+      base64: "",
+      amount: "",
    },
    {
       id: "retad4589",
@@ -129,6 +135,8 @@ export const receipts: ReceiptsPropTypes[] = [
          fullname: "Micheal",
       },
       date: "2024-09-03",
+      base64: "",
+      amount: "",
    },
 ];
 
