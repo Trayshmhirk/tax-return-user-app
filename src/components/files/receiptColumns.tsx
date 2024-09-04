@@ -111,7 +111,7 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     DATE
+                     Date
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>

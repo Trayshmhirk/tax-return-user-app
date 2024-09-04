@@ -12,6 +12,7 @@ import { DocumentCard } from "@/components/cards/DocumentCard";
 import ReceiptCard from "@/components/cards/ReceiptCard";
 import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
+import useWindowWidth from "@/hooks/UseWindowWidth";
 
 async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    return [
@@ -104,6 +105,10 @@ async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
 }
 
 const Files = () => {
+   // Get the window width from the hook
+   const windowWidth = useWindowWidth();
+   const isbelowXs = windowWidth < 375;
+
    const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
    const [receipts, setReceipts] = useState<ReceiptsPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
@@ -197,7 +202,7 @@ const Files = () => {
                <button
                   onClick={handleToggleList}
                   className="w-9 h-9 flex items-center justify-center bg-richElectricBlue text-white rounded-full disabled:bg-spanishGray disabled:opacity-70 hover-shadow"
-                  disabled={window.innerWidth < 768}
+                  disabled={isbelowXs}
                >
                   <RiListCheck3 size={18} />
                </button>

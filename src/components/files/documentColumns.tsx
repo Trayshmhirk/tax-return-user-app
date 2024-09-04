@@ -106,7 +106,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          const name = row.original.document_name;
 
          return (
-            <div className="flex items-center gap-3 text-xs md:text-sm">
+            <div className="flex items-center gap-2 text-xs md:text-sm">
                <DocumentTypeIcon
                   docType={mapFileTypeToDocumentType(documentType)}
                />
@@ -183,7 +183,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          );
 
          return (
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
                <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                      <Button
@@ -235,7 +235,11 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
          const fileType = row.original.document_type;
          const MappedFile = mapFileTypeToDocumentType(fileType);
 
-         return <div className="lg:px-2 text-xs md:text-sm">{MappedFile}</div>;
+         return (
+            <div className="lg:px-2 text-xs md:text-sm hidden sm:block">
+               {MappedFile}
+            </div>
+         );
       },
    },
    {

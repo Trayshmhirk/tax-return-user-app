@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
    ColumnDef,
@@ -25,6 +25,7 @@ import {
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronLeft, ChevronRight, Settings2, Search } from "lucide-react";
+import useWindowWidth from "@/hooks/UseWindowWidth";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -38,7 +39,7 @@ export function DataTable<TData, TValue>({
    isReceipt,
 }: DataTableProps<TData, TValue>) {
    const [sorting, setSorting] = React.useState<SortingState>([
-      { id: "date_modified", desc: true }, // Default sorting by date_modified in descending order
+      { id: `${isReceipt ? "date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
    ]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []
@@ -46,6 +47,10 @@ export function DataTable<TData, TValue>({
    const [columnVisibility, setColumnVisibility] =
       React.useState<VisibilityState>({});
    const [rowSelection, setRowSelection] = React.useState({});
+
+   // Get the window width from the hook
+   const windowWidth = useWindowWidth();
+   const isAboveSm = windowWidth >= 576;
 
    const table = useReactTable({
       data,
@@ -66,6 +71,17 @@ export function DataTable<TData, TValue>({
       },
    });
 
+   useEffect(() => {
+      const documentTypeColumn = table
+         .getAllColumns()
+         .find((column) => column.id === "document_type");
+
+      // Toggle the visibility of the document_type column based on screen width
+      if (documentTypeColumn) {
+         documentTypeColumn.toggleVisibility(isAboveSm);
+      }
+   }, [isAboveSm, table]);
+
    return (
       <div className="flex flex-col gap-5">
          <div className="flex items-center justify-between gap-2">
@@ -82,12 +98,12 @@ export function DataTable<TData, TValue>({
                   className="bg-transparent dark:bg-transparent border-none outline-none"
                   value={
                      (table
-                        .getColumn("document_name")
+                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
                         ?.getFilterValue() as string) ?? ""
                   }
                   onChange={(event) =>
                      table
-                        .getColumn("document_name")
+                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
                         ?.setFilterValue(event.target.value)
                   }
                />
@@ -111,6 +127,10 @@ export function DataTable<TData, TValue>({
                      .getAllColumns()
                      .filter((column) => column.getCanHide())
                      .map((column) => {
+                        // Conditionally render the document_type toggle option
+                        if (column.id === "document_type" && !isAboveSm) {
+                           return null; // Don't render the toggle option on small screens
+                        }
                         return (
                            <DropdownMenuCheckboxItem
                               key={column.id}
@@ -138,8 +158,8 @@ export function DataTable<TData, TValue>({
                         grid 
                         ${
                            isReceipt
-                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_3fr_1fr_1fr_1fr]"
-                              : "grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr]"
+                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                              : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                         } 
                         items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-4 py-1 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
                      `}
@@ -167,8 +187,8 @@ export function DataTable<TData, TValue>({
                            grid 
                            ${
                               isReceipt
-                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_3fr_1fr_1fr_1fr]"
-                                 : "grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr]"
+                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                                 : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                            } 
                            items-center gap-2 bg-ghostWhite dark:bg-darkGray px-4 py-2 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
                         `}
