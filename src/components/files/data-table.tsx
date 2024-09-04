@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
    ColumnDef,
@@ -25,18 +25,21 @@ import {
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronLeft, ChevronRight, Settings2, Search } from "lucide-react";
+import useWindowWidth from "@/hooks/UseWindowWidth";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
    data: TData[];
+   isReceipt?: boolean;
 }
 
 export function DataTable<TData, TValue>({
    columns,
    data,
+   isReceipt,
 }: DataTableProps<TData, TValue>) {
    const [sorting, setSorting] = React.useState<SortingState>([
-      { id: "date_modified", desc: true }, // Default sorting by date_modified in descending order
+      { id: `${isReceipt ? "date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
    ]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []
@@ -44,6 +47,10 @@ export function DataTable<TData, TValue>({
    const [columnVisibility, setColumnVisibility] =
       React.useState<VisibilityState>({});
    const [rowSelection, setRowSelection] = React.useState({});
+
+   // Get the window width from the hook
+   const windowWidth = useWindowWidth();
+   const isAboveSm = windowWidth >= 576;
 
    const table = useReactTable({
       data,
@@ -64,12 +71,23 @@ export function DataTable<TData, TValue>({
       },
    });
 
+   useEffect(() => {
+      const documentTypeColumn = table
+         .getAllColumns()
+         .find((column) => column.id === "document_type");
+
+      // Toggle the visibility of the document_type column based on screen width
+      if (documentTypeColumn) {
+         documentTypeColumn.toggleVisibility(isAboveSm);
+      }
+   }, [isAboveSm, table]);
+
    return (
       <div className="flex flex-col gap-5">
          <div className="flex items-center justify-between gap-2">
             <label
                htmlFor="searchFiles"
-               className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-5 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
+               className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
             >
                <button className="cursor-pointer">
                   <Search className="w-4 h-4 dark:text-white" />
@@ -80,12 +98,12 @@ export function DataTable<TData, TValue>({
                   className="bg-transparent dark:bg-transparent border-none outline-none"
                   value={
                      (table
-                        .getColumn("document_name")
+                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
                         ?.getFilterValue() as string) ?? ""
                   }
                   onChange={(event) =>
                      table
-                        .getColumn("document_name")
+                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
                         ?.setFilterValue(event.target.value)
                   }
                />
@@ -93,8 +111,8 @@ export function DataTable<TData, TValue>({
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
                   <Button
-                     variant="outline"
-                     className="dark:bg-gray dark:border-chineseWhite dark:border-opacity-50 gap-2"
+                     variant="ghost"
+                     className="shadow-md dark:shadow-md-dark gap-2"
                   >
                      <Settings2 className="w-4 h-4" />
                      View
@@ -109,6 +127,10 @@ export function DataTable<TData, TValue>({
                      .getAllColumns()
                      .filter((column) => column.getCanHide())
                      .map((column) => {
+                        // Conditionally render the document_type toggle option
+                        if (column.id === "document_type" && !isAboveSm) {
+                           return null; // Don't render the toggle option on small screens
+                        }
                         return (
                            <DropdownMenuCheckboxItem
                               key={column.id}
@@ -132,7 +154,15 @@ export function DataTable<TData, TValue>({
                {table.getHeaderGroups().map((headerGroup) => (
                   <div
                      key={headerGroup.id}
-                     className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-5 py-1 shadow-md dark:shadow-md-dark rounded-lg"
+                     className={`
+                        grid 
+                        ${
+                           isReceipt
+                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                              : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
+                        } 
+                        items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-4 py-1 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
+                     `}
                   >
                      {headerGroup.headers.map((header) => (
                         <div key={header.id} className="dark:text-white">
@@ -153,7 +183,15 @@ export function DataTable<TData, TValue>({
                   table.getRowModel().rows.map((row) => (
                      <div
                         key={row.id}
-                        className="grid grid-cols-6 xs:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_4fr_1fr_1fr_1fr_1fr] items-center gap-2 bg-ghostWhite dark:bg-darkGray px-5 py-2 shadow-md dark:shadow-md-dark rounded-lg"
+                        className={`
+                           grid 
+                           ${
+                              isReceipt
+                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                                 : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
+                           } 
+                           items-center gap-2 bg-ghostWhite dark:bg-darkGray px-4 py-2 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
+                        `}
                      >
                         {row.getVisibleCells().map((cell) => (
                            <div key={cell.id} className="text-sm">

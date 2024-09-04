@@ -147,7 +147,7 @@ const Profile = () => {
                <h2 className="font-bold">Preferred Payment method</h2>
 
                {/* Cards list */}
-               <div className="">
+               <div className="sm:max-w-[320px] md:max-w-full xl:max-w-[320px]">
                   {displayedCards.map((card) => (
                      <DebitCard key={card.id} card={card} />
                   ))}

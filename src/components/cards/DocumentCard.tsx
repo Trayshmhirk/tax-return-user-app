@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
-import { FaSquareCheck } from "react-icons/fa6";
-import { FileType, DocumentCardPropsTypes } from "../../types/AllTypes";
+import { DocumentCardPropsTypes } from "../../types/AllTypes";
+import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { Checkbox } from "../ui/checkbox";
 import { formatDate } from "date-fns";
 import {
@@ -41,20 +41,6 @@ export const DocumentCard = ({
       return str.slice(0, num) + " ...";
    };
 
-   // Map file types to document types
-   const mapFileTypeToDocumentType = (fileType: FileType) => {
-      const fileTypeMapping: Record<FileType, string> = {
-         "application/pdf": "PDF",
-         "image/png": "PNG",
-         "application/msword": "DOC",
-         "image/jpeg": "JPEG",
-         "application/vnd.ms-excel": "XLS",
-         // Add more mappings as needed
-      };
-      // Default to the original fileType if no mapping is founda
-      return fileTypeMapping[fileType];
-   };
-
    const handleViewDocument = () => {
       navigate("/view-document", {
          state: { data: { document } },
@@ -74,13 +60,6 @@ export const DocumentCard = ({
          <div className="flex justify-between items-center">
             <div className="w-8 h-8 flex items-center justify-center">
                <Checkbox
-                  // checked={
-                  //    table.getIsAllPageRowsSelected() ||
-                  //    (table.getIsSomePageRowsSelected() && "indeterminate")
-                  // }
-                  // onCheckedChange={(value) =>
-                  //    table.toggleAllPageRowsSelected(!!value)
-                  // }
                   aria-label="Select document"
                   id={`selectDoc${document.id}`}
                   className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0 border-spanishGray"
@@ -116,17 +95,11 @@ export const DocumentCard = ({
                      <Share className="w-4 h-4" />
                      Share document
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                     className="flex items-center gap-2 cursor-pointer"
-                     // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                  >
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                      <Download className="w-4 h-4" />
                      Download
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                     className="flex items-center gap-2 cursor-pointer"
-                     // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                  >
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                      <Trash2 className="w-4 h-4" />
                      Delete
                   </DropdownMenuItem>
@@ -134,22 +107,6 @@ export const DocumentCard = ({
             </DropdownMenu>
          </div>
          <div className="flex flex-col items-center text-center gap-3">
-            {isSelectClicked && (
-               <>
-                  <input
-                     type="checkbox"
-                     checked={isSelected}
-                     // onChange={() => {}}
-                     className="hidden"
-                  />
-                  <span
-                     className={`inline-block font-[15px] text-richElectricBlue ${isSelected ? "flex items-center justify-center" : "hidden"}`}
-                  >
-                     <FaSquareCheck className="" />
-                  </span>
-               </>
-            )}
-
             <DocumentTypeIcon
                docType={mapFileTypeToDocumentType(document.document_type)}
                isGridView

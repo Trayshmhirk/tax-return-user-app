@@ -19,8 +19,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Please wait...";
          case "/request-service":
             return "Request a service";
-         case "/documents":
-            return "Documents";
+         case "/upload-documents":
+            return "Upload documents";
          case "/receipts":
             return "Receipts";
          case "/live-chat":
@@ -31,9 +31,6 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Bank";
          case "/knowledge-base":
             return "Knowledge base";
-         case "/help-and-support":
-         case "/upload-document":
-            return "Upload document";
          case "/settings/profile":
             return "Account settings";
          case "/settings/faq":

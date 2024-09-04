@@ -18,7 +18,7 @@ const SignUp = lazy(() => import("../pages/auth/SignUp"));
 const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
 const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
-const Documents = lazy(() => import("../pages/Documents"));
+const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 const Receipts = lazy(() => import("../pages/Receipts"));
 const LiveChat = lazy(() => import("../pages/LiveChat"));
 const Bank = lazy(() => import("../pages/payment/Bank"));
@@ -31,7 +31,6 @@ const Privacy = lazy(() => import("../pages/settings/Privacy"));
 const Faq = lazy(() => import("../pages/settings/Faq"));
 const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
 const Files = lazy(() => import("../pages/settings/Files"));
-const UploadDocument = lazy(() => import("../pages/UploadDocument"));
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -92,10 +91,10 @@ const router = createBrowserRouter(
                }
             />
             <Route
-               path="documents"
+               path="upload-documents"
                element={
                   <ProtectedRoute>
-                     <Documents />
+                     <UploadDocument />
                   </ProtectedRoute>
                }
             />
@@ -172,15 +171,6 @@ const router = createBrowserRouter(
                   }
                />
             </Route>
-
-            <Route
-               path="upload-document"
-               element={
-                  <ProtectedRoute>
-                     <UploadDocument />
-                  </ProtectedRoute>
-               }
-            />
          </Route>
 
          <Route path="*" element={<ErrorPage />} />

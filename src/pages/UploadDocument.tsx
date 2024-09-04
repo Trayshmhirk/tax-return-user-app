@@ -7,16 +7,17 @@ import { DocumentsPropTypes, FileType } from "../types/AllTypes";
 import { uploadedDocuments } from "../mocks/AllMockData";
 import { getBase64 } from "../helpers/getBase64";
 import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
+import { filterByDoctype } from "@/helpers/filterByDoctype";
 
 const UploadDocument = () => {
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const docTypeFilterList = ["All", "PDF", "PNG", "DOC", "XLS"];
    const [ongoingUploads, setOngoingUploads] = useState<number>(0);
    const [uploadProgress, setUploadProgress] = useState<number>(0);
    const [currentFileSize, setCurrentFileSize] = useState<number>(0);
    const [fileSizeInMB, setFileSizeInMB] = useState<number>(0);
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+   const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -31,17 +32,9 @@ const UploadDocument = () => {
       setSelectedFilter(title);
    };
 
-   const filterByDoctype = (doc: DocumentsPropTypes) => {
-      if (selectedFilter === "" || selectedFilter === "All") {
-         // if no filter is selected, all users should be included
-         return true;
-      }
-      return mapFileTypeToDocumentType(doc.document_type) === selectedFilter;
-   };
-
    const filteredFiles = uploadedDocuments
       ? uploadedDocuments.filter(
-           (doc) => searchDocs(doc) && filterByDoctype(doc)
+           (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
         )
       : [];
 
