@@ -12,10 +12,10 @@ type CustomTickProps = {
 
 // Custom XAxis Tick Renderer to highlight the current month
 export const CustomTick = ({ x, y, payload }: CustomTickProps) => {
+   const { theme } = useTheme();
+
    const currentMonth = getCurrentMonth();
    const isHighlighted = payload?.value === currentMonth;
-
-   const { theme } = useTheme();
 
    const isDark = theme === "dark";
 
