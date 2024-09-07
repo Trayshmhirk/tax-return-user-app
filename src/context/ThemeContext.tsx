@@ -1,35 +1,65 @@
-// ThemeContext.tsx
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useEffect, useState } from "react";
 
-interface ThemeContextType {
-   isDarkMode: boolean;
-   toggleTheme: () => void;
-}
+type Theme = "dark" | "light" | "system";
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(
-   undefined
-);
+type ThemeContextProps = {
+   children: React.ReactNode;
+   defaultTheme?: Theme;
+   storageKey?: string;
+};
 
-export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
-   const [isDarkMode, setIsDarkMode] = useState(
-      localStorage.getItem("theme") === "dark"
+type ThemeContextState = {
+   theme: Theme;
+   setTheme: (theme: Theme) => void;
+};
+
+const initialState: ThemeContextState = {
+   theme: "system",
+   setTheme: () => null,
+};
+
+export const ThemeProviderContext =
+   createContext<ThemeContextState>(initialState);
+
+export function ThemeContext({
+   children,
+   defaultTheme = "system",
+   storageKey = "vite-ui-theme",
+   ...props
+}: ThemeContextProps) {
+   const [theme, setTheme] = useState<Theme>(
+      () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
    );
 
    useEffect(() => {
-      if (isDarkMode) {
-         document.documentElement.classList.add("dark");
-         localStorage.setItem("theme", "dark");
-      } else {
-         document.documentElement.classList.remove("dark");
-         localStorage.setItem("theme", "light");
-      }
-   }, [isDarkMode]);
+      const root = window.document.documentElement;
 
-   const toggleTheme = () => setIsDarkMode(!isDarkMode);
+      root.classList.remove("light", "dark");
+
+      if (theme === "system") {
+         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+
+         root.classList.add(systemTheme);
+         return;
+      }
+
+      root.classList.add(theme);
+   }, [theme]);
+
+   const value = {
+      theme,
+      setTheme: (theme: Theme) => {
+         localStorage.setItem(storageKey, theme);
+         setTheme(theme);
+      },
+   };
 
    return (
-      <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      <ThemeProviderContext.Provider {...props} value={value}>
          {children}
-      </ThemeContext.Provider>
+      </ThemeProviderContext.Provider>
    );
-};
+}
