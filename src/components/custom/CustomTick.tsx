@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
 import { getCurrentMonth } from "../../helpers/getCurrentMonth";
+import { useTheme } from "@/hooks/useTheme";
 
 type CustomTickProps = {
    x?: any;
@@ -13,13 +12,12 @@ type CustomTickProps = {
 
 // Custom XAxis Tick Renderer to highlight the current month
 export const CustomTick = ({ x, y, payload }: CustomTickProps) => {
+   const { theme } = useTheme();
+
    const currentMonth = getCurrentMonth();
    const isHighlighted = payload?.value === currentMonth;
 
-   const themeContext = useContext(ThemeContext);
-
-   if (!themeContext) return null;
-   const { isDarkMode } = themeContext;
+   const isDark = theme === "dark";
 
    return (
       <g transform={`translate(${x},${y})`}>
@@ -38,7 +36,7 @@ export const CustomTick = ({ x, y, payload }: CustomTickProps) => {
             y={0}
             dy={16}
             textAnchor="middle"
-            fill={isHighlighted ? "#fff" : isDarkMode ? "#fff" : ""}
+            fill={isHighlighted ? "#fff" : isDark ? "#fff" : ""}
             fontWeight={isHighlighted ? "bold" : "500"}
             fontSize={14}
          >

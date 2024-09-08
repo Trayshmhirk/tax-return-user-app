@@ -7,9 +7,8 @@ import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useSidebar } from "../../hooks/UseSidebar";
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
 import Overlay from "../common/Overlay";
+import { useTheme } from "@/hooks/useTheme";
 
 type SidebarProps = {
    isNotApproved?: boolean;
@@ -17,13 +16,13 @@ type SidebarProps = {
 
 const Sidebar = ({ isNotApproved }: SidebarProps) => {
    const location = useLocation();
-
-   const themeContext = useContext(ThemeContext);
-
    const { isOpen, toggleSidebar } = useSidebar();
+   const { theme, setTheme } = useTheme();
 
-   if (!themeContext) return null; // Add a fallback for when context is not available
-   const { isDarkMode, toggleTheme } = themeContext;
+   const isDark = theme === "dark";
+   const toggleTheme = () => {
+      setTheme(isDark ? "light" : "dark");
+   };
 
    // Check if current route starts with /settings/
    const isSettingsActive = location.pathname.startsWith("/settings/");
@@ -104,7 +103,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      className={`flex items-center ${isOpen ? "" : "justify-center"} p-[10px] gap-4 rounded-lg cursor-pointer hover-bg-shadow`}
                   >
                      <>
-                        {isDarkMode ? (
+                        {isDark ? (
                            <MdOutlineLightMode className="w-5 h-5 text-white" />
                         ) : (
                            <BsMoonStars className="w-5 h-5 text-eerieBlack" />
@@ -114,7 +113,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      {isOpen && (
                         <>
                            <p className="text-sm font-medium text-eerieBlack dark:text-white">
-                              {isDarkMode ? "Light Mode" : "Dark Mode"}
+                              {isDark ? "Light Mode" : "Dark Mode"}
                            </p>
                         </>
                      )}

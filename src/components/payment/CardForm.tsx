@@ -7,18 +7,18 @@ import {
    CardExpiryElement,
    CardCvcElement,
 } from "@stripe/react-stripe-js";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaCalendarWeek } from "react-icons/fa";
 import { TiInfoLarge } from "react-icons/ti";
 import { FaCreditCard } from "react-icons/fa6";
 import { ClipLoader } from "react-spinners";
-import { ThemeContext } from "../../context/ThemeContext";
 import { Button } from "../ui/button";
+import { useTheme } from "@/hooks/useTheme";
 
 const CardForm: React.FC = () => {
    const stripe = useStripe();
    const elements = useElements();
-   const themeContext = useContext(ThemeContext); // Access theme context
+   const { theme } = useTheme();
 
    // const [cardType, setCardType] = useState<string | null>(null);
    const [cardholderName, setCardholderName] = useState<string>("");
@@ -27,13 +27,12 @@ const CardForm: React.FC = () => {
    const [success, setSuccess] = useState<boolean>(false);
    const [resetForm, setResetForm] = useState<boolean>(false);
 
-   if (!themeContext) return null;
-   const { isDarkMode } = themeContext;
+   const isDark = theme === "dark";
 
    const CARD_OPTIONS = {
       style: {
          base: {
-            color: isDarkMode ? "#ffffff" : "#000000",
+            color: isDark ? "#ffffff" : "#000000",
             fontSize: "15px",
             fontSmoothing: "antialiased",
             "::placeholder": {
@@ -41,7 +40,7 @@ const CardForm: React.FC = () => {
             },
          },
          invalid: {
-            color: isDarkMode ? "#ef4444" : "#c30000",
+            color: isDark ? "#ef4444" : "#c30000",
             iconColor: "#ef4444",
          },
       },

@@ -1,5 +1,5 @@
-import { SidebarContextProvider } from "../context/SidebarContext";
-import { ThemeContextProvider } from "../context/ThemeContext";
+import { SidebarContext } from "../context/SidebarContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 type ContextProviderProps = {
    children: React.ReactNode;
@@ -7,9 +7,9 @@ type ContextProviderProps = {
 
 const ContextProvider = ({ children }: ContextProviderProps) => {
    return (
-      <ThemeContextProvider>
-         <SidebarContextProvider>{children}</SidebarContextProvider>
-      </ThemeContextProvider>
+      <ThemeContext defaultTheme="dark" storageKey="vite-ui-theme">
+         <SidebarContext>{children}</SidebarContext>
+      </ThemeContext>
    );
 };
 

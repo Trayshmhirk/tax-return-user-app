@@ -59,18 +59,6 @@
       @apply transition-transform duration-300 ease-in-out hover:-translate-y-[2px] hover:shadow-lg dark:hover:shadow-lg-dark;
    }
 
-   .calc-width-two {
-      width: calc(100% / 2.12);
-   }
-
-   .calc-width-three {
-      width: calc(100% / 3.12);
-   }
-
-   .calc-width-four {
-      width: calc(100% / 4.23);
-   }
-
    .pending-text {
       @apply text-sm text-mutedGray dark:text-chineseWhite italic;
    }

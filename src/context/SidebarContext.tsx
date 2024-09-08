@@ -1,19 +1,19 @@
 import { createContext, useState, ReactNode } from "react";
 
 type SidebarContextProps = {
+   children: ReactNode;
+};
+
+type SidebarContextState = {
    isOpen: boolean;
    toggleSidebar: () => void;
 };
 
-export const SidebarContext = createContext<SidebarContextProps | undefined>(
-   undefined
-);
+export const SidebarProviderContext = createContext<
+   SidebarContextState | undefined
+>(undefined);
 
-type SidebarProviderProps = {
-   children: ReactNode;
-};
-
-export const SidebarContextProvider = ({ children }: SidebarProviderProps) => {
+export const SidebarContext = ({ children }: SidebarContextProps) => {
    const [isOpen, setIsOpen] = useState(false);
 
    const toggleSidebar = () => {
@@ -21,9 +21,9 @@ export const SidebarContextProvider = ({ children }: SidebarProviderProps) => {
    };
 
    return (
-      <SidebarContext.Provider value={{ isOpen, toggleSidebar }}>
+      <SidebarProviderContext.Provider value={{ isOpen, toggleSidebar }}>
          {children}
-      </SidebarContext.Provider>
+      </SidebarProviderContext.Provider>
    );
 };
 
