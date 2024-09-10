@@ -67,11 +67,7 @@ export const TransactionReceiptDialog: React.FC<
                </p>
             </div>
             <DialogFooter>
-               <Button
-                  type="button"
-                  className="bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-85 dark:bg-richElectricBlue dark:hover:bg-richElectricBlue dark:hover:bg-opacity-80 text-white dark:text-white"
-                  onClick={() => exportToPDF(transaction)}
-               >
+               <Button type="button" onClick={() => exportToPDF(transaction)}>
                   Download
                </Button>
             </DialogFooter>

@@ -27,7 +27,7 @@ const AddCardDialog = ({ children }: addCardDialogProps) => {
                <DialogTitle className="font-semibold md:text-xl">
                   Add new card
                </DialogTitle>
-               <DialogDescription />
+               <DialogDescription className="hidden" />
             </DialogHeader>
             <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-20" />
 

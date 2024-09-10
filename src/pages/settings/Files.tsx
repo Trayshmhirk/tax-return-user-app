@@ -13,6 +13,7 @@ import ReceiptCard from "@/components/cards/ReceiptCard";
 import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
+import { Button } from "@/components/ui/button";
 
 async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
    return [
@@ -193,19 +194,19 @@ const Files = () => {
             </h1>
 
             <div className="flex items-center gap-3">
-               <button
+               <Button
                   onClick={handleToggleGrid}
-                  className="w-9 h-9 flex items-center justify-center bg-richElectricBlue text-white rounded-full hover-shadow"
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover-shadow p-0"
                >
                   <BsFillGridFill size={18} />
-               </button>
-               <button
+               </Button>
+               <Button
                   onClick={handleToggleList}
-                  className="w-9 h-9 flex items-center justify-center bg-richElectricBlue text-white rounded-full disabled:bg-spanishGray disabled:opacity-70 hover-shadow"
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover-shadow p-0"
                   disabled={isbelowXs}
                >
                   <RiListCheck3 size={18} />
-               </button>
+               </Button>
             </div>
          </div>
 

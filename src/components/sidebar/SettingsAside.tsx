@@ -87,7 +87,6 @@ const SettingsAside = () => {
                      className="bg-white dark:bg-gray w-[157px] h-11 py-3 px-5 shadow-md dark:shadow-md-dark rounded-md text-[15px] font-medium gap-1"
                   >
                      <Navigation2 className="w-4 text-gray dark:text-white" />
-                     {/* <Navigation2 /> */}
                      Navigate
                   </Button>
                </DropdownMenuTrigger>
@@ -168,11 +167,7 @@ const SettingsAside = () => {
                               )}
 
                               <DialogFooter>
-                                 <Button
-                                    type="submit"
-                                    className="w-full text-white dark:text-white"
-                                    // onClick={() => exportToPDF(transaction)}
-                                 >
+                                 <Button type="submit" className="w-full">
                                     {isLoading ? (
                                        <ClipLoader color="#ffffff" size={20} />
                                     ) : (
