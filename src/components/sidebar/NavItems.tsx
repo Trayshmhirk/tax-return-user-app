@@ -11,6 +11,7 @@ type NavItemsProps = {
    isCollapsed?: boolean;
    navBarAccess?: boolean;
    linkTo?: string;
+   isChat?: boolean;
 };
 
 export const NavItems = ({
@@ -22,10 +23,11 @@ export const NavItems = ({
    isCollapsed,
    navBarAccess,
    linkTo,
+   isChat,
 }: NavItemsProps) => (
    <NavLink
       className={`
-         flex items-center p-[10px] gap-4 rounded-lg text-eerieBlack dark:text-white no-underline
+         relative flex items-center p-[10px] gap-4 rounded-lg text-eerieBlack dark:text-white no-underline
          ${isActive ? "bg-richElectricBlue text-white shadow-custom dark:shadow-md-dark" : "hover-bg-shadow"}
          ${isCollapsed ? "" : "justify-center"}
          ${navBarAccess ? "text-opacity-35 dark:text-opacity-35 cursor-not-allowed" : "cursor-pointer "}
@@ -33,9 +35,15 @@ export const NavItems = ({
       id={id}
       to={linkTo ? linkTo : ""}
       onClick={onClick}
-      data-testid={`joyride-step-${id}`} // Add this data-testid for Joyride
    >
       <NavIcon className={`w-5 h-5 ${isActive ? "text-white" : ""}`} />
+      {isChat && id === "chatNavItem" && (
+         <div
+            className={`absolute right-3 ${isCollapsed && isChat ? "" : "-top-[6px] -right-[10px]"} px-2 py-[2px] rounded-full bg-red-500 dark:bg-red-600 text-[10px] text-white`}
+         >
+            10
+         </div>
+      )}
       {isCollapsed && <p className="text-sm font-medium">{title}</p>}
    </NavLink>
 );

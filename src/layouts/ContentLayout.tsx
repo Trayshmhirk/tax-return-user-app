@@ -23,8 +23,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Upload documents";
          case "/receipts":
             return "Receipts";
-         case "/live-chat":
-            return "Live Chat";
+         case "/chat":
+            return "Chat";
          case "/transactions":
             return "Transactions";
          case "/bank":
@@ -56,7 +56,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
 
    // Check if current route starts with /settings/
    const isSettings = location.pathname.startsWith("/settings");
-   const isLiveChat = location.pathname.startsWith("/live-chat");
+   const isLiveChat = location.pathname.startsWith("/chat");
 
    return (
       <main

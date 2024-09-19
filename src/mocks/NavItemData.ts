@@ -25,10 +25,10 @@ export const navItemsData = [
       id: "receiptsNavItem",
    },
    {
-      title: "Live Chat",
+      title: "Chat",
       navIcon: BsChat,
-      route: "live-chat",
-      id: "liveChatNavItem",
+      route: "chat",
+      id: "chatNavItem",
    },
    {
       title: "Bank",

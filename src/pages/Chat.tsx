@@ -22,7 +22,7 @@ const LiveChat = () => {
    return (
       <div className="w-full h-full flex">
          <div className="w-full h-full flex flex-col gap-7">
-            <div className="h-full flex gap-3">
+            <div className="h-full flex gap-4">
                {/* chats aside */}
                <aside className="max-w-xs w-full flex flex-col gap-2">
                   <label
