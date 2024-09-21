@@ -1,10 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
+import { IoChatbubbles } from "react-icons/io5";
 
 type Chats = {
    title: string;
    content: string;
+   id: string;
 };
 
 const LiveChat = () => {
@@ -16,14 +18,32 @@ const LiveChat = () => {
       {
          title: "John Doe",
          content: "Hello, I need help with my account.",
+         id: "opened",
       },
       {
          title: "John Doe",
          content: "Hello, I need help with my account.",
+         id: "",
       },
       {
          title: "John Doe",
          content: "Hello, I need help with my account.",
+         id: "",
+      },
+      {
+         title: "John Doe",
+         content: "Hello, I need help with my account.",
+         id: "",
+      },
+      {
+         title: "John Doe",
+         content: "Hello, I need help with my account.",
+         id: "",
+      },
+      {
+         title: "John Doe",
+         content: "Hello, I need help with my account.",
+         id: "",
       },
    ];
 
@@ -32,7 +52,7 @@ const LiveChat = () => {
          <div className="w-full h-full flex flex-col gap-7">
             <div className="h-full flex gap-4">
                {/* chats aside */}
-               <aside className="max-w-xs w-full flex flex-col gap-4">
+               <aside className="w-full md:max-w-[270px] lg:max-w-xs flex flex-col gap-4">
                   <label
                      htmlFor="search"
                      className="w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded shadow-md dark:shadow-md-dark"
@@ -52,17 +72,18 @@ const LiveChat = () => {
                         filterSideChats.map((chat, index) => (
                            <div
                               key={index}
-                              className="flex items-center justify-between gap-5 bg-cultured dark:bg-darkGray p-4 border-b border-b-chineseWhite dark:border-b-spanishGray cursor-pointer"
+                              className={`
+                                 flex items-center justify-between gap-3 bg-cultured hover:bg-antiFlashWhite dark:bg-darkGray hover:dark:bg-eerieBlack p-3 border-b border-b-chineseWhite dark:border-b-spanishGray cursor-pointer
+                                 ${chat.id === "opened" && "bg-white dark:bg-mutedGray"} 
+                              `}
                               // onClick={() => handleOpenChat(chat.service_id)}
                            >
                               <div className="flex items-center gap-2">
-                                 <div>
-                                    <div className="flex justify-center items-center font-bold">
-                                       {/* <img src={ChatsIcon} /> */}
-                                    </div>
+                                 <div className="flex justify-center items-center font-bold">
+                                    <IoChatbubbles className="text-lg text-richElectricBlue" />
                                  </div>
 
-                                 <div className="user-message w-full flex flex-col gap-1">
+                                 <div className="w-full flex flex-col gap-[2px]">
                                     <p className="font-medium text-mutedGray dark:text-white">
                                        {truncateString(chat.title, 15)}
                                     </p>
@@ -90,7 +111,7 @@ const LiveChat = () => {
                   </div>
                </aside>
 
-               <div className="w-full h-full flex flex-col items-center justify-center border border-spanishGray rounded-md">
+               <div className="hidden md:flex w-full h-full flex-col items-center justify-center border border-spanishGray rounded-md">
                   <p className="pending-text">
                      Click on a chat to begin conversation
                   </p>
