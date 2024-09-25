@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
-import React, { useState } from "react";
+import { Paperclip, Smile, SendHorizontal } from "lucide-react";
 
 type Chats = {
    title: string;
@@ -21,7 +22,7 @@ type ConversationsPropTypes = {
    date: string;
 };
 
-const LiveChat = () => {
+const Chat = () => {
    const [activeChat] = useState(null);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +74,7 @@ const LiveChat = () => {
       },
    ];
 
-   const isChatAccess = "off";
+   const isChatAccess: string = "on";
 
    // Sort function for dates
    const sortDates = (dateA: string, dateB: string) => {
@@ -155,13 +156,28 @@ const LiveChat = () => {
                   </div>
                </aside>
 
-               <div className="hidden md:flex w-full h-full flex-col items-center justify-center border border-spanishGray rounded-md">
+               <div className="hidden md:flex w-full h-full flex-col border border-chineseWhite dark:border-spanishGray rounded-md overflow-hidden">
                   {chat.length ? (
                      <>
                         {chat.map((chat, index) => (
-                           <React.Fragment>
-                              <div className="px-5 py-2">{chat.title}</div>
-                              <div className="chat-body overflow-scroll w-100 d-flex flex-column pt-4 px-4 gap-4">
+                           <React.Fragment key={index}>
+                              <div className="flex items-center justify-center border-b border-chineseWhite dark:border-spanishGray">
+                                 <div className="w-[95%] p-3">
+                                    <div className="flex items-center gap-3">
+                                       <div className="w-8 h-8 flex items-center justify-center bg-richElectricBlue text-white font-semibold rounded-full">
+                                          <span className="text-sm">JD</span>
+                                          {/* <img src="" alt="" /> */}
+                                       </div>
+
+                                       <p className="text-mutedGray dark:text-white font-semibold">
+                                          {chat.title}
+                                          John Doe
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div className="overflow-scroll w-full h-full flex flex-col gap-4 pt-4 px-4">
                                  {activeChat &&
                                     Object.entries(
                                        conversations[activeChat] ?? {}
@@ -171,22 +187,22 @@ const LiveChat = () => {
                                        )
                                        .map(([date /*messages*/]) => (
                                           <React.Fragment key={date}>
-                                             <div className="d-flex align-items-center gap-3">
+                                             <div className="flex items-center gap-3">
                                                 {/* <Line isChat /> */}
-                                                <p className="w-25 text-center">
+                                                <p className="w-1/4 text-center">
                                                    {date}
                                                 </p>
                                                 {/* <Line isChat /> */}
                                              </div>
 
-                                             <div key={index} className="">
+                                             <div className="">
                                                 {/* <ChatMessages
                                                    messages={messages}
                                                 /> */}
                                              </div>
                                           </React.Fragment>
                                        ))}
-                                 {/* <div className='chat-notifications d-flex align-items-center align-self-center p-3'>
+                                 {/* <div className='chat-notifications flex items-center self-center p-3'>
                                                 <NotificationMessage 
                                                    statusIcon={CheckIcon}
                                                    notificationText='Your payment service task has been completed'
@@ -198,31 +214,38 @@ const LiveChat = () => {
                               </div>
 
                               {isChatAccess === "off" ? (
-                                 <div className="chat-disabled d-flex justify-content-center text-center">
+                                 <div className="chat-disabled flex justify-center text-center">
                                     This chat has been disabled by the admin.
                                     Kindly check back later.
                                  </div>
                               ) : (
-                                 <div className="chat-foot d-flex align-items-center gap-3 rounded-1">
-                                    <img
-                                    // src={AttachFileIcon}
-                                    // onClick={handleInsertFileModal}
-                                    />
+                                 <div className="chat-foot flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
+                                    <div className="flex items-center gap-3 text-gray dark:text-white">
+                                       <Paperclip
+                                          className="w-5 h-5 text-richElectricBlue cursor-pointer"
+                                          // onClick={handleInsertFileModal}
+                                       />
+                                       <div className="w-[37px] h-9 flex items-center justify-center bg-cultured dark:bg-mutedGray text-muted rounded-full cursor-pointer">
+                                          <Smile className="w-5 h-5" />
+                                       </div>
+                                    </div>
 
-                                    <div className="text w-100 d-flex justify-content-between rounded-2">
-                                       <input
-                                          className="w-75"
+                                    <div className="text w-full flex items-center justify-between gap-3">
+                                       <Input
+                                          className="w-full bg-transparent dark:bg-transparent px-5 rounded dark:border-spanishGray dark:border-opacity-50"
                                           type="text"
-                                          // placeholder="Type your message"
+                                          placeholder="Type your message"
                                           // value={inputMessage}
                                           // onChange={handleInputChange}
                                           // onKeyDown={handleKeyPress}
                                        />
 
-                                       <img
-                                       // src={SendIcon}
-                                       // onClick={handleSend}
-                                       />
+                                       <div
+                                          className="w-[37px] h-9 flex items-center justify-center bg-richElectricBlue text-white p-2 rounded-full cursor-pointer hover-shadow-body"
+                                          // onClick={handleSend}
+                                       >
+                                          <SendHorizontal className="w-5 h-5" />
+                                       </div>
                                     </div>
                                  </div>
                               )}
@@ -230,7 +253,7 @@ const LiveChat = () => {
                         ))}
                      </>
                   ) : (
-                     <div className="chat-box w-100 h-100 d-flex align-items-center justify-content-center">
+                     <div className="w-full h-full flex items-center justify-center">
                         <p className="pending-text">
                            Click on a chat to begin conversation
                         </p>
@@ -243,4 +266,4 @@ const LiveChat = () => {
    );
 };
 
-export default LiveChat;
+export default Chat;
