@@ -74,7 +74,7 @@ const Chat = () => {
       },
    ];
 
-   const isChatAccess: string = "on";
+   const isChatAccess: string = "off";
 
    // Sort function for dates
    const sortDates = (dateA: string, dateB: string) => {
@@ -118,7 +118,7 @@ const Chat = () => {
                            <div
                               key={index}
                               className={`
-                                 flex items-center justify-between gap-3 bg-cultured hover:bg-antiFlashWhite dark:bg-darkGray hover:dark:bg-eerieBlack p-3 border-b border-b-chineseWhite dark:border-b-spanishGray cursor-pointer
+                                 flex items-center justify-between gap-3 bg-cultured hover:bg-antiFlashWhite dark:bg-darkGray hover:dark:bg-eerieBlack p-3 border-b border-b-chineseWhite dark:border-b-spanishGray dark:border-opacity-50 cursor-pointer
                                  ${chat.id === "opened" && "bg-white dark:bg-mutedGray"} 
                               `}
                               // onClick={() => handleOpenChat(chat.service_id)}
@@ -161,7 +161,7 @@ const Chat = () => {
                      <>
                         {chat.map((chat, index) => (
                            <React.Fragment key={index}>
-                              <div className="flex items-center justify-center border-b border-chineseWhite dark:border-spanishGray">
+                              <div className="flex items-center justify-center bg-white dark:bg-darkGray border-b border-chineseWhite dark:border-spanishGray">
                                  <div className="w-[95%] p-3">
                                     <div className="flex items-center gap-3">
                                        <div className="w-8 h-8 flex items-center justify-center bg-richElectricBlue text-white font-semibold rounded-full">
@@ -188,67 +188,71 @@ const Chat = () => {
                                        .map(([date /*messages*/]) => (
                                           <React.Fragment key={date}>
                                              <div className="flex items-center gap-3">
-                                                {/* <Line isChat /> */}
+                                                <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
+
                                                 <p className="w-1/4 text-center">
                                                    {date}
+                                                   Today
                                                 </p>
-                                                {/* <Line isChat /> */}
+                                                <div className="w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40" />
                                              </div>
 
                                              <div className="">
                                                 {/* <ChatMessages
-                                                   messages={messages}
-                                                /> */}
+                                                messages={messages}
+                                             /> */}
                                              </div>
                                           </React.Fragment>
                                        ))}
                                  {/* <div className='chat-notifications flex items-center self-center p-3'>
-                                                <NotificationMessage 
-                                                   statusIcon={CheckIcon}
-                                                   notificationText='Your payment service task has been completed'
-                                                   notificationAction='Pay now'
-                                                   isChatNotification
-                                                   handleNotificationAction={handleShowInvoiceModal}
-                                                />
-                                             </div> */}
+                                       <NotificationMessage 
+                                          statusIcon={CheckIcon}
+                                          notificationText='Your payment service task has been completed'
+                                          notificationAction='Pay now'
+                                          isChatNotification
+                                          handleNotificationAction={handleShowInvoiceModal}
+                                       />
+                                    </div> */}
                               </div>
 
-                              {isChatAccess === "off" ? (
-                                 <div className="chat-disabled flex justify-center text-center">
-                                    This chat has been disabled by the admin.
-                                    Kindly check back later.
-                                 </div>
-                              ) : (
-                                 <div className="chat-foot flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
-                                    <div className="flex items-center gap-3 text-gray dark:text-white">
-                                       <Paperclip
-                                          className="w-5 h-5 text-richElectricBlue cursor-pointer"
-                                          // onClick={handleInsertFileModal}
-                                       />
-                                       <div className="w-[37px] h-9 flex items-center justify-center bg-cultured dark:bg-mutedGray text-muted rounded-full cursor-pointer">
-                                          <Smile className="w-5 h-5" />
+                              <div className="flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
+                                 {isChatAccess === "off" ? (
+                                    <p className="w-full p-2 text-mutedGray dark:text-spanishGray text-center">
+                                       This chat has been disabled by the admin.
+                                       Kindly check back later.
+                                    </p>
+                                 ) : (
+                                    <>
+                                       <div className="flex items-center gap-3 text-gray dark:text-white">
+                                          <Paperclip
+                                             className="w-5 h-5 text-richElectricBlue cursor-pointer"
+                                             // onClick={handleInsertFileModal}
+                                          />
+                                          <div className="w-[37px] h-9 flex items-center justify-center bg-cultured dark:bg-mutedGray text-muted rounded-full cursor-pointer">
+                                             <Smile className="w-5 h-5" />
+                                          </div>
                                        </div>
-                                    </div>
 
-                                    <div className="text w-full flex items-center justify-between gap-3">
-                                       <Input
-                                          className="w-full bg-transparent dark:bg-transparent px-5 rounded dark:border-spanishGray dark:border-opacity-50"
-                                          type="text"
-                                          placeholder="Type your message"
-                                          // value={inputMessage}
-                                          // onChange={handleInputChange}
-                                          // onKeyDown={handleKeyPress}
-                                       />
+                                       <div className="text w-full flex items-center justify-between gap-3">
+                                          <Input
+                                             className="w-full bg-transparent dark:bg-transparent px-5 rounded dark:border-spanishGray dark:border-opacity-50"
+                                             type="text"
+                                             placeholder="Type your message"
+                                             // value={inputMessage}
+                                             // onChange={handleInputChange}
+                                             // onKeyDown={handleKeyPress}
+                                          />
 
-                                       <div
-                                          className="w-[37px] h-9 flex items-center justify-center bg-richElectricBlue text-white p-2 rounded-full cursor-pointer hover-shadow-body"
-                                          // onClick={handleSend}
-                                       >
-                                          <SendHorizontal className="w-5 h-5" />
+                                          <div
+                                             className="w-[37px] h-9 flex items-center justify-center bg-richElectricBlue text-white p-2 rounded-full cursor-pointer hover-shadow-body"
+                                             // onClick={handleSend}
+                                          >
+                                             <SendHorizontal className="w-5 h-5" />
+                                          </div>
                                        </div>
-                                    </div>
-                                 </div>
-                              )}
+                                    </>
+                                 )}
+                              </div>
                            </React.Fragment>
                         ))}
                      </>
