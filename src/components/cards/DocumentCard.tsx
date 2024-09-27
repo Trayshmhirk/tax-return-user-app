@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { DocumentCardPropsTypes } from "../../types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
@@ -22,7 +21,6 @@ export const DocumentCard = ({
    isSelectClicked,
    handleSendToChat,
 }: DocumentCardPropsTypes) => {
-   const navigate = useNavigate();
    const [isSelected, setIsSelected] = useState(false);
 
    const handleSelect = () => {
@@ -41,11 +39,7 @@ export const DocumentCard = ({
       return str.slice(0, num) + " ...";
    };
 
-   const handleViewDocument = () => {
-      navigate("/view-document", {
-         state: { data: { document } },
-      });
-   };
+   const handleViewDocument = () => {};
 
    return (
       <label

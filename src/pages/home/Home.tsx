@@ -25,7 +25,7 @@ const Home = () => {
                   <TodoCard
                      todoIcon={IoCloudUploadOutline}
                      text="Upload pdf or image"
-                     handleClick={() => navigate("upload-document")}
+                     handleClick={() => navigate("upload-documents")}
                   />
                </div>
             </div>
