@@ -36,7 +36,7 @@ export const DocumentCard = ({
       if (str.length <= num) {
          return str;
       }
-      return str.slice(0, num) + " ...";
+      return str.slice(0, num) + "...";
    };
 
    const handleViewDocument = () => {};
@@ -106,7 +106,7 @@ export const DocumentCard = ({
                isGridView
             />
             <h6 className="font-medium text-sm">
-               {truncateString(document.document_name, 15)}
+               {truncateString(document.document_name, 20)}
             </h6>
          </div>
 
