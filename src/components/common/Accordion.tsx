@@ -20,7 +20,7 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
                onClick={handleToggle}
             >
                <button
-                  className="font-semibold rounded-md w-full text-left"
+                  className="text-sm font-semibold rounded-md w-full text-left"
                   type="button"
                >
                   {question}
@@ -50,7 +50,7 @@ export const Accordion = ({ question, answer }: AccordionProps) => {
                <div className="w-full h-[1px] bg-eerieBlack dark:bg-white my-3 opacity-30" />
 
                <div className="accordion-body py-1">
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 text-sm">
                      {Array.isArray(answer) ? (
                         answer.map((ans, index) => <p key={index}>{ans}</p>)
                      ) : (

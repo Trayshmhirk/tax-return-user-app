@@ -8,7 +8,7 @@ const Terms = () => {
                <div className="flex flex-col gap-3">
                   <h2 className="font-semibold">Welcome to Tax Returns</h2>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 text-sm">
                      <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Ut explicabo laborum, ex quasi officia, nulla
@@ -58,7 +58,7 @@ const Terms = () => {
                <div className="flex flex-col gap-3">
                   <h2 className="font-semibold">Cookies</h2>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 text-sm">
                      <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Ut explicabo laborum, ex quasi officia, nulla
@@ -77,7 +77,7 @@ const Terms = () => {
                <div className="flex flex-col gap-4">
                   <h2 className="font-semibold">License</h2>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 text-sm">
                      <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Ut explicabo laborum, ex quasi officia, nulla
@@ -178,7 +178,7 @@ const Terms = () => {
                <div className="flex flex-col gap-4">
                   <h2 className="font-semibold">Hyperlinking to our Content</h2>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 text-sm">
                      <div className="flex flex-col gap-1">
                         <span className="">
                            Lorem ipsum dolor sit amet consectetur adipisicing
@@ -284,13 +284,13 @@ const Terms = () => {
                <div className="flex flex-col gap-4">
                   <h2 className="font-semibold">Your privacy</h2>
 
-                  <p>Please read Privacy Policy.</p>
+                  <p className="text-sm">Please read Privacy Policy.</p>
                </div>
 
                <div className="flex flex-col gap-4">
                   <h2 className="font-semibold">Reservation of rights</h2>
 
-                  <p>
+                  <p className="text-sm">
                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                      Delectus maxime distinctio iste recusandae, aut quas
                      voluptatum perspiciatis, temporibus assumenda officiis quo,
@@ -306,7 +306,7 @@ const Terms = () => {
                <div className="flex flex-col gap-4">
                   <h2 className="font-semibold">Disclaimer</h2>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 text-sm">
                      <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iusto voluptas architecto voluptatem maxime ipsam ullam,
