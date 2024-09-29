@@ -41,7 +41,7 @@ const Help = () => {
 
    return (
       <>
-         <h1 className="text-lg font-semibold">Help and support</h1>
+         <h1 className="text-lg font-bold">Help and support</h1>
 
          <SearchAndFilter
             handleSearch={handleSearch}

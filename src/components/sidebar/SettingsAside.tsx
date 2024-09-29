@@ -133,7 +133,7 @@ const SettingsAside = () => {
                         </DialogTrigger>
                         <DialogContent className="max-w-md gap-5">
                            <DialogHeader>
-                              <DialogTitle className="text-xl">
+                              <DialogTitle className="text-lg font-bold text-center">
                                  Change Password
                               </DialogTitle>
                            </DialogHeader>
@@ -271,7 +271,7 @@ const SettingsAside = () => {
                      </AlertDialogTrigger>
                      <AlertDialogContent>
                         <AlertDialogHeader>
-                           <AlertDialogTitle>
+                           <AlertDialogTitle className="font-bold">
                               Are you absolutely sure?
                            </AlertDialogTitle>
                            <AlertDialogDescription>

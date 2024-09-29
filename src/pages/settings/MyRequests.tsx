@@ -40,7 +40,7 @@ const MyRequests = () => {
 
    return (
       <>
-         <h1 className="text-lg font-semibold">My requests</h1>
+         <h1 className="text-lg font-bold">My requests</h1>
 
          <SearchAndFilter
             handleSearch={handleSearch}

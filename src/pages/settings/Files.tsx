@@ -189,9 +189,7 @@ const Files = () => {
    return (
       <>
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h1 className="text-lg font-semibold">
-               Files ({documents.length})
-            </h1>
+            <h1 className="text-lg font-bold">Files ({documents.length})</h1>
 
             <div className="flex items-center gap-3">
                <Button
