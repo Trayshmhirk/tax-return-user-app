@@ -65,7 +65,7 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
          <Header title={title} isHome={location.pathname === "/"} />
 
          <div
-            className={`content px-5 ${isSettings || isLiveChat ? "py-5 sm:px-7 md:px-9 lg:px-12 md:py-8" : "py-5 overflow-hidden sm:px-8 md:px-10 md:py-10 md:pb-7"}`}
+            className={`content px-5 ${isSettings || isLiveChat ? "py-5 sm:px-7 md:px-9 lg:px-12 md:py-8" : "py-5 overflow-hidden sm:px-8 md:px-12 md:py-10 md:pb-7"}`}
          >
             {!isSettings ? (
                <div

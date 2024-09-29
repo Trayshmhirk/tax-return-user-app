@@ -3,7 +3,7 @@ import SettingsAside from "../components/sidebar/SettingsAside";
 
 const SettingsLayout = () => {
    return (
-      <div className="w-full h-full flex flex-col lg:flex-row gap-6 overflow-hidden bg-white dark:bg-gray px-4 py-3 rounded-3xl">
+      <div className="w-full h-full flex flex-col lg:flex-row gap-6 overflow-hidden bg-white dark:bg-gray px-4 py-3 rounded-lg md:rounded-2xl shadow-md dark:shadow-md-dark">
          <SettingsAside />
          <div className="max-h-screen hidden lg:block my-4">
             <div className="w-[1px] h-full bg-eerieBlack dark:bg-white opacity-10" />
