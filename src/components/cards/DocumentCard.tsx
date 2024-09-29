@@ -82,7 +82,7 @@ export const DocumentCard = ({
                      View document
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                     onSelect={(e) => e.preventDefault()}
+                     // onSelect={(e) => e.preventDefault()}
                      onClick={handleSendToChat ?? (() => {})}
                      className="flex items-center gap-2 cursor-pointer"
                   >
