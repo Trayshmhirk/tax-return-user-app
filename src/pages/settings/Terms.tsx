@@ -4,7 +4,7 @@ const Terms = () => {
          <h1 className="text-lg font-bold">Terms and conditions</h1>
 
          <section className="flex flex-col items-center gap-10 md:gap-14">
-            <div className="container flex flex-col gap-6">
+            <div className="flex flex-col gap-6">
                <div className="flex flex-col gap-3">
                   <h2 className="font-semibold">Welcome to Tax Returns</h2>
 
@@ -86,22 +86,12 @@ const Terms = () => {
                      </p>
                      <div className="flex flex-col gap-1">
                         <span className="">Lorem ipsum dolor:</span>
-                        <ul className="px-6">
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
+                        <ul className="list-disc pl-5">
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
                         </ul>
                      </div>
                      <p>
@@ -131,33 +121,33 @@ const Terms = () => {
                      </p>
                      <div className="flex flex-col gap-1">
                         <span className="">Lorem ipsum dolor sit amet:</span>
-                        <ul className="px-6">
-                           <li className="list-disc">
+                        <ul className="list-disc pl-5">
+                           <li>
                               Lorem ipsum dolor, sit amet consectetur
                               adipisicing elit. Blanditiis rem mollitia optio
                               laborum!
                            </li>
-                           <li className="list-disc">
+                           <li>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Molestiae ipsum asperiores quidem possimus,
                               voluptatem commodi laboriosam aliquid maiores
                               deserunt doloribus eligendi distinctio. Magni eum
                               odio inventore?
                            </li>
-                           <li className="list-disc">
+                           <li>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Rem ipsum, exercitationem sapiente ratione
                               officiis natus? Facere repellendus, neque
                               architecto odio magni placeat nobis vitae tenetur
                               rerum quas, inventore est voluptatibus!
                            </li>
-                           <li className="list-disc">
+                           <li>
                               Lorem ipsum dolor, sit amet consectetur
                               adipisicing elit. Minus ad molestias saepe est,
                               nemo temporibus pariatur quibusdam nesciunt
                               minima!
                            </li>
-                           <li className="list-disc">
+                           <li>
                               Lorem ipsum dolor sit, amet consectetur
                               adipisicing elit. Tempora officia possimus quaerat
                               minus delectus atque!
@@ -184,16 +174,16 @@ const Terms = () => {
                            Lorem ipsum dolor sit amet consectetur adipisicing
                            elit. Cupiditate, rem:
                         </span>
-                        <ul className="px-6">
-                           <li className="list-disc">Lorem ipsum amet.</li>
-                           <li className="list-disc">Lorem ipsum.</li>
-                           <li className="list-disc">Lorem ipsum dolor.</li>
-                           <li className="list-disc">
+                        <ul className="list-disc pl-5">
+                           <li>Lorem ipsum amet.</li>
+                           <li>Lorem ipsum.</li>
+                           <li>Lorem ipsum dolor.</li>
+                           <li>
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Temporibus, in eos commodi iusto
                               consectetur culpa accusamus.
                            </li>
-                           <li className="list-disc">
+                           <li>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Omnis quis aut eum rerum tempore quibusdam
                               exercitationem molestiae, asperiores ab id nulla,
@@ -215,20 +205,18 @@ const Terms = () => {
                            Lorem ipsum dolor sit amet consectetur, adipisicing
                            elit. Voluptatum ut animi repudiandae:
                         </span>
-                        <ul className="px-6">
-                           <li className="list-disc">
+                        <ul className="list-disc pl-5">
+                           <li>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Odit!.
                            </li>
-                           <li className="list-disc">Lorem ipsum dolor sit.</li>
-                           <li className="list-disc">Lorem ipsum.</li>
-                           <li className="list-disc">
+                           <li>Lorem ipsum dolor sit.</li>
+                           <li>Lorem ipsum.</li>
+                           <li>
                               Lorem ipsum dolor sit amet consectetur
                               adipisicing.
                            </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet consectetur.
-                           </li>
+                           <li>Lorem ipsum dolor sit amet consectetur.</li>
                         </ul>
                      </div>
                      <p>
@@ -257,20 +245,18 @@ const Terms = () => {
                            elit. Facilis, sint beatae dolor ratione placeat
                            distinctio?
                         </span>
-                        <ul className="px-6">
-                           <li className="list-disc">
+                        <ul className="list-disc pl-5">
+                           <li>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Odit!.
                            </li>
-                           <li className="list-disc">Lorem ipsum dolor sit.</li>
-                           <li className="list-disc">Lorem ipsum.</li>
-                           <li className="list-disc">
+                           <li>Lorem ipsum dolor sit.</li>
+                           <li>Lorem ipsum.</li>
+                           <li>
                               Lorem ipsum dolor sit amet consectetur
                               adipisicing.
                            </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet consectetur.
-                           </li>
+                           <li>Lorem ipsum dolor sit amet consectetur.</li>
                         </ul>
                      </div>
                      <p>
@@ -315,22 +301,12 @@ const Terms = () => {
                      </p>
                      <div className="flex flex-col gap-1">
                         <span className="">Lorem ipsum dolor:</span>
-                        <ul className="px-6">
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
-                           <li className="list-disc">
-                              Lorem ipsum dolor sit amet.
-                           </li>
+                        <ul className="list-disc pl-5">
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
+                           <li>Lorem ipsum dolor sit amet.</li>
                         </ul>
                      </div>
                      <p>
