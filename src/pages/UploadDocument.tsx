@@ -172,8 +172,8 @@ const UploadDocument = () => {
          {/* Ongoing */}
          <div className="flex flex-col gap-5 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
             <div className="flex justify-between items-center">
-               <div className="flex items-center gap-3">
-                  <p className="font-medium">Ongoing upload</p>
+               <div className="flex items-center gap-2">
+                  <p className="font-medium">Ongoing uploads</p>
                   <span>{ongoingUploads ? `(${ongoingUploads})` : "(0)"}</span>
                </div>
             </div>
@@ -221,7 +221,9 @@ const UploadDocument = () => {
                   </span>
                </div>
 
-               <span className="text-richElectricBlue">Select</span>
+               <span className="text-richElectricBlue font-medium cursor-pointer">
+                  Select all
+               </span>
             </div>
 
             <SearchAndFilter

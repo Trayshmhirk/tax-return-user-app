@@ -33,7 +33,7 @@ const Home = () => {
             <div className="flex flex-col gap-3">
                <div className="flex justify-between items-center">
                   <p className="font-medium md:text-xl">Transactions</p>
-                  <NavLink to={"/credit-cards"} className="font-bold">
+                  <NavLink to={"/bank"} className="font-bold">
                      See all
                   </NavLink>
                </div>

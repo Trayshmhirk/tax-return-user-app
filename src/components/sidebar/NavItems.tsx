@@ -37,7 +37,7 @@ export const NavItems = ({
       onClick={onClick}
    >
       <NavIcon className={`w-5 h-5 ${isActive ? "text-white" : ""}`} />
-      {isChat && id === "chatNavItem" && (
+      {id === "chatNavItem" && (
          <div
             className={`absolute ${isCollapsed && isChat ? "right-3" : "-top-[6px] -right-2"} px-2 py-[2px] rounded-full bg-red-500 dark:bg-red-600 text-[10px] text-white font-medium`}
          >
