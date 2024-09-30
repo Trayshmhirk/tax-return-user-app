@@ -70,30 +70,6 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       date_modified: "2024-08-25",
       base64: "",
    },
-   {
-      id: "id2",
-      document_name: "document",
-      document_size: "20",
-      document_type: "image/png",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
-   {
-      id: "id3",
-      document_name: "Excel file",
-      document_size: "20",
-      document_type: "application/vnd.ms-excel",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
-   {
-      id: "id4",
-      document_name: "Word file",
-      document_size: "20",
-      document_type: "application/msword",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
 ];
 
 // receipts

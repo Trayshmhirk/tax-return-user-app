@@ -8,6 +8,7 @@ import { uploadedDocuments as mockUploadedDocuments } from "../mocks/AllMockData
 import { getBase64 } from "../helpers/getBase64";
 import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
+import { v4 as uuidv4 } from "uuid";
 
 const UploadDocument = () => {
    const [searchInput, setSearchInput] = useState<string>("");
@@ -128,7 +129,7 @@ const UploadDocument = () => {
                // Ensure selectedFile.type is a valid FileType
 
                const newDocument: DocumentsPropTypes = {
-                  id: Math.random().toString(), // Temporary ID generation
+                  id: uuidv4(), // Temporary ID generation
                   document_name: selectedFile.name,
                   document_type: selectedFile.type as FileType,
                   document_size: fileSizeInMB.toString(),
@@ -197,8 +198,6 @@ const UploadDocument = () => {
          }
       });
    };
-
-   console.log(selectedDocuments);
 
    return (
       <div className="flex flex-col gap-9">
