@@ -25,7 +25,8 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
    };
 
    // Check if current route starts with /settings/
-   const isSettingsActive = location.pathname.startsWith("/settings/");
+   const isSettingsActive = location.pathname.startsWith("/settings");
+   const isChat = location.pathname.startsWith("/chat");
 
    const handleToggleSidebar = () => {
       // Navigate to the corresponding page
@@ -81,6 +82,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                               id={navItem.id}
                               isCollapsed={isOpen}
                               navBarAccess={isNotApproved}
+                              isChat={isChat}
                            />
                         ))}
                      </nav>

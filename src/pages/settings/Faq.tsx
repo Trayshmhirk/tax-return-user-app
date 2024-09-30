@@ -52,7 +52,7 @@ const Faq = () => {
 
    return (
       <>
-         <h1 className="text-lg font-semibold">FAQs</h1>
+         <h1 className="text-lg font-bold">FAQs</h1>
 
          <SearchAndFilter
             handleSearch={handleSearch}

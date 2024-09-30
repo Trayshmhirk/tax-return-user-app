@@ -18,7 +18,7 @@ type DebitCardPropTypes = {
 const DebitCard = ({ card, onClick, isDialog }: DebitCardPropTypes) => {
    return (
       <div
-         className={`relative w-full xl:max-w-[350px] ${isDialog ? "min-w-[300px] cursor-pointer" : ""} rounded-xl shadow-lg overflow-hidden`}
+         className={`relative w-full xl:max-w-[350px] ${isDialog ? "min-w-[300px]" : ""} rounded-xl shadow-lg cursor-pointer overflow-hidden`}
          style={{
             backgroundImage: `url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right, #007DA8, #00A2C9, #00D1E1)`, // Adding a texture with a gradient
             backgroundBlendMode: "overlay", // Ensuring the image blends with the gradient

@@ -4,7 +4,7 @@ import UploadPdfImage from "../components/common/UploadPdfImage";
 import { DocumentCard } from "../components/cards/DocumentCard";
 import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
-import { uploadedDocuments } from "../mocks/AllMockData";
+import { uploadedDocuments as mockUploadedDocuments } from "../mocks/AllMockData";
 import { getBase64 } from "../helpers/getBase64";
 import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
@@ -17,6 +17,9 @@ const UploadDocument = () => {
    const [currentFileSize, setCurrentFileSize] = useState<number>(0);
    const [fileSizeInMB, setFileSizeInMB] = useState<number>(0);
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+   const [uploadedDocuments, setUploadedDocuments] = useState<
+      DocumentsPropTypes[]
+   >(mockUploadedDocuments); // State to hold uploaded docs
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,22 +35,22 @@ const UploadDocument = () => {
       setSelectedFilter(title);
    };
 
-   const filteredFiles = uploadedDocuments
-      ? uploadedDocuments.filter(
-           (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
-        )
-      : [];
-
    const handleSelectedFile = async (
       e: React.ChangeEvent<HTMLInputElement>
    ) => {
       const selectedFiles = Array.from(e.target.files || []);
-      console.log(selectedFiles);
 
       for (let index = 0; index < selectedFiles.length; index++) {
          const selectedFile = selectedFiles[index];
          const base64File = await getBase64(selectedFile);
-         base64File;
+
+         console.log(selectedFile.type);
+
+         // Check if base64File is a string and handle the null case
+         if (typeof base64File !== "string") {
+            console.error("Failed to convert file to base64");
+            return;
+         }
 
          setSelectedFile(selectedFile);
 
@@ -80,6 +83,9 @@ const UploadDocument = () => {
                );
             }, step * simulationInterval);
          }
+
+         // Convert current date to ISO date string
+         const currentDate = new Date().toISOString();
 
          // Simulate file upload completion and set the file to the state
          setTimeout(
@@ -116,6 +122,22 @@ const UploadDocument = () => {
                //    // Handle error, log it, or display a user-friendly message
                // }
 
+               // Add uploaded document to the state
+               // Map the file's type to your FileType enum or union
+               // Ensure selectedFile.type is a valid FileType
+
+               const newDocument: DocumentsPropTypes = {
+                  id: Math.random().toString(), // Temporary ID generation
+                  document_name: selectedFile.name,
+                  document_type: selectedFile.type as FileType,
+                  document_size: fileSizeInMB.toString(),
+                  date_modified: currentDate,
+                  base64: base64File, // You can store this if needed for later use
+               };
+
+               // Add the new document
+               setUploadedDocuments((prevDocs) => [...prevDocs, newDocument]);
+
                // Reset upload progress after 5 seconds
                setTimeout(() => {
                   setUploadProgress(0);
@@ -124,26 +146,38 @@ const UploadDocument = () => {
                   setOngoingUploads(
                      (prevOngoingUploads) => prevOngoingUploads - 1
                   );
-               }, 7000);
+               }, 3000);
             },
             (totalSimulationSteps + 1) * simulationInterval
          );
       }
    };
 
+   const filteredFiles = uploadedDocuments
+      ? uploadedDocuments
+           .filter(
+              (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
+           )
+           .sort(
+              (a, b) =>
+                 new Date(b.date_modified).getTime() -
+                 new Date(a.date_modified).getTime()
+           ) // Sorting by latest date
+      : [];
+
    return (
       <div className="flex flex-col gap-9">
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
 
          {/* Ongoing */}
-         <div className="flex flex-col gap-4 p-4 rounded shadow-md dark:shadow-md-dark md:p-0 md:rounded-none md:shadow-none md:dark:shadow-none">
+         <div className="flex flex-col gap-5 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
             <div className="flex justify-between items-center">
-               <div className="flex items-center gap-3">
-                  <p className="font-medium">Ongoing upload</p>
+               <div className="flex items-center gap-2">
+                  <p className="font-medium">Ongoing uploads</p>
                   <span>{ongoingUploads ? `(${ongoingUploads})` : "(0)"}</span>
                </div>
             </div>
-            <div className="block w-full h-[1px] bg-eerieBlack dark:bg-white opacity-40 md:hidden" />
+            <div className="block w-full h-[1px] bg-mutedGray dark:bg-white opacity-40" />
             {uploadProgress > 0 ? (
                <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
@@ -176,7 +210,7 @@ const UploadDocument = () => {
          </div>
 
          {/*  */}
-         <div className="flex flex-col gap-4">
+         <div className="flex flex-col gap-7">
             <div className="title flex justify-between items-center">
                <div className="flex items-center gap-2">
                   <p className="font-medium">Recent upload</p>
@@ -187,7 +221,9 @@ const UploadDocument = () => {
                   </span>
                </div>
 
-               <span className="text-richElectricBlue">Select</span>
+               <span className="text-richElectricBlue font-medium cursor-pointer">
+                  Select all
+               </span>
             </div>
 
             <SearchAndFilter

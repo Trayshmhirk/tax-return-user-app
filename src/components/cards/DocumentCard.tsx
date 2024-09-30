@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { DocumentCardPropsTypes } from "../../types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
@@ -22,7 +21,6 @@ export const DocumentCard = ({
    isSelectClicked,
    handleSendToChat,
 }: DocumentCardPropsTypes) => {
-   const navigate = useNavigate();
    const [isSelected, setIsSelected] = useState(false);
 
    const handleSelect = () => {
@@ -38,14 +36,10 @@ export const DocumentCard = ({
       if (str.length <= num) {
          return str;
       }
-      return str.slice(0, num) + " ...";
+      return str.slice(0, num) + "...";
    };
 
-   const handleViewDocument = () => {
-      navigate("/view-document", {
-         state: { data: { document } },
-      });
-   };
+   const handleViewDocument = () => {};
 
    return (
       <label
@@ -88,7 +82,7 @@ export const DocumentCard = ({
                      View document
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                     onSelect={(e) => e.preventDefault()}
+                     // onSelect={(e) => e.preventDefault()}
                      onClick={handleSendToChat ?? (() => {})}
                      className="flex items-center gap-2 cursor-pointer"
                   >
@@ -112,7 +106,7 @@ export const DocumentCard = ({
                isGridView
             />
             <h6 className="font-medium text-sm">
-               {truncateString(document.document_name, 15)}
+               {truncateString(document.document_name, 20)}
             </h6>
          </div>
 

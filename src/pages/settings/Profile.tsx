@@ -20,7 +20,7 @@ const Profile = () => {
 
    return (
       <>
-         <h1 className="text-lg font-semibold">My Profile</h1>
+         <h1 className="text-lg font-bold">My Profile</h1>
 
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_2fr_2fr] xl:grid-rows-[2fr-2fr] gap-5">
             <div className="md:col-span-1 lg:col-span-1 xl:row-span-2 h-fit flex flex-col items-center gap-6 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">

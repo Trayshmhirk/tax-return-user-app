@@ -82,8 +82,7 @@ export const ErrorPage = ({
          {resetErrorBoundary && (
             <Button
                onClick={resetErrorBoundary}
-               type="button"
-               className="px-4 py-2 bg-blue-500 text-white rounded-md z-50"
+               className="mt-4 md:w-40 md:mt-6 w-40"
             >
                Try Again
             </Button>
