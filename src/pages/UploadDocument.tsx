@@ -21,6 +21,9 @@ const UploadDocument = () => {
       DocumentsPropTypes[]
    >(mockUploadedDocuments); // State to hold uploaded docs
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
+   const [selectedDocuments, setSelectedDocuments] = useState<
+      DocumentsPropTypes[]
+   >([]);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -43,8 +46,6 @@ const UploadDocument = () => {
       for (let index = 0; index < selectedFiles.length; index++) {
          const selectedFile = selectedFiles[index];
          const base64File = await getBase64(selectedFile);
-
-         console.log(selectedFile.type);
 
          // Check if base64File is a string and handle the null case
          if (typeof base64File !== "string") {
@@ -165,6 +166,40 @@ const UploadDocument = () => {
            ) // Sorting by latest date
       : [];
 
+   // Check if all filtered documents are selected
+   const allDocumentsSelected =
+      filteredFiles.length > 0 &&
+      filteredFiles.every((doc) =>
+         selectedDocuments.some((selectedDoc) => selectedDoc.id === doc.id)
+      );
+
+   const handleSelectAll = () => {
+      if (allDocumentsSelected) {
+         // Deselect all
+         setSelectedDocuments([]);
+      } else {
+         // Select all documents
+         setSelectedDocuments(filteredFiles); // `filteredFiles` represents the currently filtered documents.
+      }
+   };
+
+   const handleSelectDocument = (doc: DocumentsPropTypes) => {
+      setSelectedDocuments((prevSelected) => {
+         // Check if the document is already selected
+         if (prevSelected.find((selectedDoc) => selectedDoc.id === doc.id)) {
+            // Deselect the document
+            return prevSelected.filter(
+               (selectedDoc) => selectedDoc.id !== doc.id
+            );
+         } else {
+            // Select the document (add it to the list)
+            return [...prevSelected, doc];
+         }
+      });
+   };
+
+   console.log(selectedDocuments);
+
    return (
       <div className="flex flex-col gap-9">
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
@@ -221,9 +256,12 @@ const UploadDocument = () => {
                   </span>
                </div>
 
-               <span className="text-richElectricBlue font-medium cursor-pointer">
-                  Select all
-               </span>
+               <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
+                  <span className="cursor-pointer" onClick={handleSelectAll}>
+                     {allDocumentsSelected ? "Deselect All" : "Select All"}
+                  </span>
+                  <span>{` (${selectedDocuments.length})`}</span>
+               </div>
             </div>
 
             <SearchAndFilter
@@ -236,7 +274,14 @@ const UploadDocument = () => {
                {filteredFiles.length ? (
                   <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                      {filteredFiles.map((doc) => (
-                        <DocumentCard key={doc.id} document={doc} />
+                        <DocumentCard
+                           key={doc.id}
+                           document={doc}
+                           onSelect={handleSelectDocument}
+                           isSelected={selectedDocuments.some(
+                              (selectedDoc) => selectedDoc.id === doc.id
+                           )}
+                        />
                      ))}
                   </div>
                ) : (

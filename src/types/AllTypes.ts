@@ -45,7 +45,7 @@ export type FileType =
 export type DocumentCardPropsTypes = {
    document: DocumentsPropTypes;
    onSelect?: (doc: DocumentsPropTypes) => void;
-   isSelectClicked?: boolean;
+   isSelected?: boolean;
    handleSendToChat?: () => void;
 };
 

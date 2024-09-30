@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { DocumentCardPropsTypes } from "../../types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
@@ -18,20 +17,9 @@ import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
 export const DocumentCard = ({
    document,
    onSelect,
-   isSelectClicked,
+   isSelected,
    handleSendToChat,
 }: DocumentCardPropsTypes) => {
-   const [isSelected, setIsSelected] = useState(false);
-
-   const handleSelect = () => {
-      if (isSelectClicked) {
-         setIsSelected(!isSelected);
-         if (onSelect) {
-            onSelect(document);
-         }
-      }
-   };
-
    const truncateString = (str: string, num: number) => {
       if (str.length <= num) {
          return str;
@@ -44,18 +32,20 @@ export const DocumentCard = ({
    return (
       <label
          htmlFor={`selectDoc${document.id}`}
-         onClick={handleSelect}
-         className={`
-            w-full flex flex-col gap-4 bg-white dark:bg-gray p-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body
-            ${isSelected ? "checked" : ""}
-            ${isSelectClicked ? "select-enabled" : "select-disabled"}
-         `}
+         className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
       >
          <div className="flex justify-between items-center">
             <div className="w-8 h-8 flex items-center justify-center">
                <Checkbox
                   aria-label="Select document"
                   id={`selectDoc${document.id}`}
+                  checked={isSelected} // Bind to isSelected prop
+                  onCheckedChange={() => {
+                     // Call the onSelect function with the document on checkbox change
+                     if (onSelect) {
+                        onSelect(document); // Pass the checked state as well
+                     }
+                  }}
                   className="data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:bg-richElectricBlue dark:data-[state=checked]:text-white data-[state=checked]:border-0 border-spanishGray"
                />
             </div>
