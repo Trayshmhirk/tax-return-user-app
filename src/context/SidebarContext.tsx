@@ -9,9 +9,7 @@ type SidebarContextState = {
    toggleSidebar: () => void;
 };
 
-export const SidebarProviderContext = createContext<
-   SidebarContextState | undefined
->(undefined);
+export const SidebarProviderContext = createContext({} as SidebarContextState);
 
 export const SidebarContext = ({ children }: SidebarContextProps) => {
    const [isOpen, setIsOpen] = useState(false);
