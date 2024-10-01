@@ -9,7 +9,7 @@ import { invoiceColumns } from "@/components/files/invoiceColumns";
 import { DataTable } from "@/components/files/data-table";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { DocumentCard } from "@/components/cards/DocumentCard";
-import ReceiptCard from "@/components/cards/InvoiceCard";
+import InvoiceCard from "@/components/cards/InvoiceCard";
 import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
@@ -208,7 +208,7 @@ const Files = () => {
                               {filteredInvoices.length ? (
                                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                                     {filteredInvoices.map((invoice) => (
-                                       <ReceiptCard
+                                       <InvoiceCard
                                           key={invoice.id}
                                           invoice={invoice}
                                        />

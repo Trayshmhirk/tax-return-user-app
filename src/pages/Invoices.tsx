@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchAndFilter from "../components/common/SearchAndFilter";
-import ReceiptCard from "../components/cards/InvoiceCard";
+import InvoiceCard from "../components/cards/InvoiceCard";
 import { InvoicesPropTypes } from "../types/AllTypes";
 import { filterByDate } from "@/helpers/filterByDate";
 import { fetchInvoices } from "@/api/mockApis";
@@ -46,7 +46,7 @@ const Invoices = () => {
       setSelectedFilter(title);
    };
 
-   const filteredReceipts = invoices
+   const filteredInvoices = invoices
       ? invoices
            .filter(
               (invoice) =>
@@ -72,10 +72,10 @@ const Invoices = () => {
             </div>
          ) : (
             <div className="w-full">
-               {filteredReceipts.length ? (
+               {filteredInvoices.length ? (
                   <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {filteredReceipts.map((receipt, index) => (
-                        <ReceiptCard key={index} invoice={receipt} />
+                     {filteredInvoices.map((invoice, index) => (
+                        <InvoiceCard key={index} invoice={invoice} />
                      ))}
                   </div>
                ) : (
