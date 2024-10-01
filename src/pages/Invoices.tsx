@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import SearchAndFilter from "../components/common/SearchAndFilter";
-import UploadPdfImage from "../components/common/UploadPdfImage";
 import ReceiptCard from "../components/cards/InvoiceCard";
 import { InvoicesPropTypes } from "../types/AllTypes";
-import { getBase64 } from "../helpers/getBase64";
 import { filterByDate } from "@/helpers/filterByDate";
 import { fetchInvoices } from "@/api/mockApis";
 import { ClipLoader } from "react-spinners";
-import { v4 as uuidv4 } from "uuid";
 
 const Invoices = () => {
    const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
@@ -61,77 +58,8 @@ const Invoices = () => {
            )
       : [];
 
-   const handleSelectedFile = async (
-      e: React.ChangeEvent<HTMLInputElement>
-   ) => {
-      const selectedFiles = Array.from(e.target.files || []);
-
-      for (let index = 0; index < selectedFiles.length; index++) {
-         const selectedFile = selectedFiles[index];
-         const base64File = await getBase64(selectedFile); // Convert file to base64
-
-         // Check if base64File is a string and handle the null case
-         if (typeof base64File !== "string") {
-            console.error("Failed to convert file to base64");
-            return;
-         }
-
-         // Convert current date to ISO date string
-         const currentDate = new Date().toISOString();
-
-         // Simulate file upload completion and set the file to the state
-         setTimeout(() => {
-            async () => {
-               // const { email, token } = userProfile;
-               // try {
-               //    const uploadResponse = await api.post(
-               //       "/add-receipt",
-               //       {
-               //          id: index,
-               //          receipt_name: selectedFile.name,
-               //          receipt: base64File, // Pass base64 file here
-               //       },
-               //       {
-               //          headers: {
-               //             useremail: email,
-               //             usertoken: token,
-               //          },
-               //       }
-               //    );
-               //    // If upload is successful, add the new receipt to the Redux state
-               //    if (uploadResponse.status === 200) {
-               //       // Optionally fetch the updated list of documents from the server
-               //       const updatedDocuments = await getReceipts(email, token);
-               //       dispatch(setReceipts(updatedDocuments.data.receipts));
-               //    }
-               // } catch (error) {
-               //    console.error("API Error:", error);
-               //    // Handle error, log it, or display a user-friendly message
-               // }
-            };
-
-            const newInvoice: InvoicesPropTypes = {
-               id: uuidv4(),
-               title: selectedFile.name,
-               owner_info: {
-                  fullname: "Micheal",
-               },
-               date: currentDate,
-               base64: base64File,
-            };
-
-            setInvoices((prevInvoices) => [...prevInvoices, newInvoice]);
-         }, 200);
-      }
-   };
-
    return (
       <div className="flex flex-col gap-9">
-         <UploadPdfImage
-            isUploadReceipt
-            handleFileUpload={handleSelectedFile}
-         />
-
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
