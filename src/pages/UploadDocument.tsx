@@ -140,7 +140,7 @@ const UploadDocument = () => {
                // Add the new document
                setUploadedDocuments((prevDocs) => [...prevDocs, newDocument]);
 
-               // Reset upload progress after 5 seconds
+               // Reset upload progress after 2 seconds
                setTimeout(() => {
                   setUploadProgress(0);
 
@@ -148,7 +148,7 @@ const UploadDocument = () => {
                   setOngoingUploads(
                      (prevOngoingUploads) => prevOngoingUploads - 1
                   );
-               }, 3000);
+               }, 2000);
             },
             (totalSimulationSteps + 1) * simulationInterval
          );
@@ -204,14 +204,14 @@ const UploadDocument = () => {
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
 
          {/* Ongoing */}
-         <div className="flex flex-col gap-5 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
+         <div className="flex flex-col gap-3 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
             <div className="flex justify-between items-center">
                <div className="flex items-center gap-2">
                   <p className="font-medium">Ongoing uploads</p>
                   <span>{ongoingUploads ? `(${ongoingUploads})` : "(0)"}</span>
                </div>
             </div>
-            <div className="block w-full h-[1px] bg-mutedGray dark:bg-white opacity-40" />
+            <div className="block w-full h-[1px] bg-mutedGray dark:bg-white opacity-30" />
             {uploadProgress > 0 ? (
                <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
