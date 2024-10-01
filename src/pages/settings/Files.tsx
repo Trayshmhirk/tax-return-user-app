@@ -14,96 +14,7 @@ import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
 import { Button } from "@/components/ui/button";
-
-async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
-   return [
-      {
-         id: "id1",
-         document_name: "Document pdf",
-         document_size: "10",
-         document_type: "application/pdf",
-         date_modified: "2024-08-01",
-         base64: "",
-      },
-      {
-         id: "id2",
-         document_name: "document",
-         document_size: "25",
-         document_type: "image/png",
-         date_modified: "2024-08-05",
-         base64: "",
-      },
-      {
-         id: "id5",
-         document_name: "document image",
-         document_size: "5",
-         document_type: "image/jpeg",
-         date_modified: "2024-08-29",
-         base64: "",
-      },
-      {
-         id: "id3",
-         document_name: "Excel file",
-         document_size: "20",
-         document_type: "application/vnd.ms-excel",
-         date_modified: "2024-08-10",
-         base64: "",
-      },
-      {
-         id: "id4",
-         document_name: "Word file",
-         document_size: "20",
-         document_type: "application/msword",
-         date_modified: "2024-08-25",
-         base64: "",
-      },
-   ];
-}
-
-async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
-   return [
-      {
-         id: "retdb2137",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-08-07",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "retug7457",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-07-07",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "rettg4567",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-09-02",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "retad4589",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-09-03",
-         base64: "",
-         amount: "",
-      },
-   ];
-}
+import { fetchDocuments, fetchReceipts } from "@/api/mockApis";
 
 const Files = () => {
    // Get the window width from the hook
@@ -133,7 +44,7 @@ const Files = () => {
          setLoading(true);
 
          setTimeout(async () => {
-            const fetchedDocuments = await fetchDocumentsForCard();
+            const fetchedDocuments = await fetchDocuments();
             const fetchedReceipts = await fetchReceipts();
             setDocuments(fetchedDocuments);
             setReceipts(fetchedReceipts);
@@ -189,7 +100,9 @@ const Files = () => {
    return (
       <>
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h1 className="text-lg font-bold">Files ({documents.length})</h1>
+            <h1 className="text-lg font-bold">
+               Files ({documents.length || receipts.length})
+            </h1>
 
             <div className="flex items-center gap-3">
                <Button
@@ -209,11 +122,11 @@ const Files = () => {
          </div>
 
          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 pb-2">
-            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
-               <div
-                  onClick={() => handleFolderClick("documents")}
-                  className="flex flex-col items-center text-center gap-3"
-               >
+            <div
+               onClick={() => handleFolderClick("documents")}
+               className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
+            >
+               <div className="flex flex-col items-center text-center gap-3">
                   <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
                   <h6 className="font-medium text-sm">Documents</h6>
                </div>
@@ -269,6 +182,7 @@ const Files = () => {
                   )}
                </>
             )}
+
             {activeFolder === "receipts" && (
                <>
                   {isList ? (

@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchAndFilter from "../components/common/SearchAndFilter";
 import UploadPdfImage from "../components/common/UploadPdfImage";
 import { DocumentCard } from "../components/cards/DocumentCard";
 import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
-import { uploadedDocuments as mockUploadedDocuments } from "../mocks/AllMockData";
 import { getBase64 } from "../helpers/getBase64";
 import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import { v4 as uuidv4 } from "uuid";
+import { fetchDocuments } from "@/api/mockApis";
+import { ClipLoader } from "react-spinners";
 
 const UploadDocument = () => {
+   const [loading, setLoading] = useState(false);
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
    const [ongoingUploads, setOngoingUploads] = useState<number>(0);
@@ -20,11 +22,25 @@ const UploadDocument = () => {
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
    const [uploadedDocuments, setUploadedDocuments] = useState<
       DocumentsPropTypes[]
-   >(mockUploadedDocuments); // State to hold uploaded docs
-   const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
+   >([]); // State to hold uploaded docs
    const [selectedDocuments, setSelectedDocuments] = useState<
       DocumentsPropTypes[]
    >([]);
+   const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
+
+   useEffect(() => {
+      async function fetchData() {
+         setLoading(true);
+
+         setTimeout(async () => {
+            const fetchedDocuments = await fetchDocuments();
+            // Also set uploadedDocuments to include both fetched and uploaded docs
+            setUploadedDocuments(fetchedDocuments);
+            setLoading(false);
+         }, 700);
+      }
+      fetchData();
+   }, []);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -204,7 +220,7 @@ const UploadDocument = () => {
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
 
          {/* Ongoing */}
-         <div className="flex flex-col gap-3 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
+         <div className="flex flex-col gap-4 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
             <div className="flex justify-between items-center">
                <div className="flex items-center gap-2">
                   <p className="font-medium">Ongoing uploads</p>
@@ -269,26 +285,32 @@ const UploadDocument = () => {
                title={docTypeFilterList}
             />
 
-            <div className="w-full">
-               {filteredFiles.length ? (
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {filteredFiles.map((doc) => (
-                        <DocumentCard
-                           key={doc.id}
-                           document={doc}
-                           onSelect={handleSelectDocument}
-                           isSelected={selectedDocuments.some(
-                              (selectedDoc) => selectedDoc.id === doc.id
-                           )}
-                        />
-                     ))}
-                  </div>
-               ) : (
-                  <p className="pending-text w-100 text-center">
-                     Nothing to show here.
-                  </p>
-               )}
-            </div>
+            {loading ? (
+               <div className="w-full h-20 flex justify-center items-center">
+                  <ClipLoader color="#00A2C9" />
+               </div>
+            ) : (
+               <div className="w-full">
+                  {filteredFiles.length ? (
+                     <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {filteredFiles.map((doc) => (
+                           <DocumentCard
+                              key={doc.id}
+                              document={doc}
+                              onSelect={handleSelectDocument}
+                              isSelected={selectedDocuments.some(
+                                 (selectedDoc) => selectedDoc.id === doc.id
+                              )}
+                           />
+                        ))}
+                     </div>
+                  ) : (
+                     <p className="pending-text w-100 text-center">
+                        Nothing to show here.
+                     </p>
+                  )}
+               </div>
+            )}
          </div>
       </div>
    );

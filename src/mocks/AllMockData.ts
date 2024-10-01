@@ -94,26 +94,6 @@ export const receipts: ReceiptsPropTypes[] = [
       base64: "",
       amount: "",
    },
-   {
-      id: "rettg4567",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-09-02",
-      base64: "",
-      amount: "",
-   },
-   {
-      id: "retad4589",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-09-03",
-      base64: "",
-      amount: "",
-   },
 ];
 
 export const videoData: VideoDataTypes[] = [
