@@ -1,15 +1,15 @@
-import { ReceiptsPropTypes } from "@/types/AllTypes";
+import { InvoicesPropTypes } from "@/types/AllTypes";
 import { getTimelyValue } from "./getTimelyValue";
 
 export const filterByDate = (
-   receipt: ReceiptsPropTypes,
+   invoice: InvoicesPropTypes,
    selectedFilter: string
 ) => {
    if (selectedFilter === "" || selectedFilter === "All") {
       return true;
    }
 
-   const timelyValue = getTimelyValue(receipt.date);
+   const timelyValue = getTimelyValue(invoice.date);
    // Check for "This week" and "Today" when filtering by "This week"
    if (selectedFilter.toLowerCase() === "this week") {
       return (
