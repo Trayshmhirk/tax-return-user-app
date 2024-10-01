@@ -22,7 +22,7 @@ const UploadDocument = () => {
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
    const [uploadedDocuments, setUploadedDocuments] = useState<
       DocumentsPropTypes[]
-   >([]); // State to hold uploaded docs
+   >([]);
    const [selectedDocuments, setSelectedDocuments] = useState<
       DocumentsPropTypes[]
    >([]);
@@ -34,10 +34,9 @@ const UploadDocument = () => {
 
          setTimeout(async () => {
             const fetchedDocuments = await fetchDocuments();
-            // Also set uploadedDocuments to include both fetched and uploaded docs
             setUploadedDocuments(fetchedDocuments);
             setLoading(false);
-         }, 700);
+         }, 500);
       }
       fetchData();
    }, []);

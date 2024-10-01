@@ -49,7 +49,7 @@ const Files = () => {
             setDocuments(fetchedDocuments);
             setReceipts(fetchedReceipts);
             setLoading(false);
-         }, 700);
+         }, 500);
       }
       fetchData();
    }, []);
