@@ -59,19 +59,18 @@ export type CardDropdownPropsTypes = {
 };
 
 // receipts
-export type ReceiptsPropTypes = {
+export type InvoicesPropTypes = {
    id: string;
    title: string;
    owner_info: {
       fullname: string;
    };
    date: string;
-   amount: string;
    base64: string;
 };
 
-export type ReceiptCardPropTypes = {
-   receipt: ReceiptsPropTypes;
+export type InvoiceCardPropTypes = {
+   invoice: InvoicesPropTypes;
    handleClick?: () => void;
 };
 

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { DocumentsPropTypes, ReceiptsPropTypes } from "@/types/AllTypes";
+import { DocumentsPropTypes, InvoicesPropTypes } from "@/types/AllTypes";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
 import { IoFolderOpenSharp } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 import { documentColumns } from "@/components/files/documentColumns";
-import { receiptColumns } from "@/components/files/receiptColumns";
+import { invoiceColumns } from "@/components/files/invoiceColumns";
 import { DataTable } from "@/components/files/data-table";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { DocumentCard } from "@/components/cards/DocumentCard";
-import ReceiptCard from "@/components/cards/ReceiptCard";
+import ReceiptCard from "@/components/cards/InvoiceCard";
 import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
 import { Button } from "@/components/ui/button";
-import { fetchDocuments, fetchReceipts } from "@/api/mockApis";
+import { fetchDocuments, fetchInvoices } from "@/api/mockApis";
 
 const Files = () => {
    // Get the window width from the hook
@@ -22,12 +22,12 @@ const Files = () => {
    const isbelowXs = windowWidth < 375;
 
    const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
-   const [receipts, setReceipts] = useState<ReceiptsPropTypes[]>([]);
+   const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
    const [isList, setIsList] = useState(false);
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFolder, setActiveFolder] = useState<"documents" | "receipts">(
+   const [activeFolder, setActiveFolder] = useState<"documents" | "invoices">(
       "documents"
    );
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
@@ -45,9 +45,9 @@ const Files = () => {
 
          setTimeout(async () => {
             const fetchedDocuments = await fetchDocuments();
-            const fetchedReceipts = await fetchReceipts();
+            const fetchedInvoices = await fetchInvoices();
             setDocuments(fetchedDocuments);
-            setReceipts(fetchedReceipts);
+            setInvoices(fetchedInvoices);
             setLoading(false);
          }, 500);
       }
@@ -62,7 +62,7 @@ const Files = () => {
       setIsList(true);
    };
 
-   const handleFolderClick = (folder: "documents" | "receipts") => {
+   const handleFolderClick = (folder: "documents" | "invoices") => {
       setActiveFolder(folder);
    };
 
@@ -85,15 +85,15 @@ const Files = () => {
         )
       : [];
 
-   const searchReceipts = (receipt: ReceiptsPropTypes) => {
-      const docName = receipt.title;
+   const searchInvoices = (invoice: InvoicesPropTypes) => {
+      const docName = invoice.title;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
-   const filteredReceipts = receipts
-      ? receipts.filter(
-           (receipt) =>
-              searchReceipts(receipt) && filterByDate(receipt, selectedFilter)
+   const filteredInvoices = invoices
+      ? invoices.filter(
+           (invoice) =>
+              searchInvoices(invoice) && filterByDate(invoice, selectedFilter)
         )
       : [];
 
@@ -101,7 +101,7 @@ const Files = () => {
       <>
          <div className="flex justify-between items-center gap-4 mt-[2px]">
             <h1 className="text-lg font-bold">
-               Files ({documents.length || receipts.length})
+               Files ({documents.length || invoices.length})
             </h1>
 
             <div className="flex items-center gap-3">
@@ -133,12 +133,12 @@ const Files = () => {
             </div>
 
             <div
-               onClick={() => handleFolderClick("receipts")}
+               onClick={() => handleFolderClick("invoices")}
                className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
             >
                <div className="flex flex-col items-center text-center gap-3">
                   <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
-                  <h6 className="font-medium text-sm">Receipts</h6>
+                  <h6 className="font-medium text-sm">Invoices</h6>
                </div>
             </div>
          </div>
@@ -183,13 +183,13 @@ const Files = () => {
                </>
             )}
 
-            {activeFolder === "receipts" && (
+            {activeFolder === "invoices" && (
                <>
                   {isList ? (
                      <DataTable
-                        columns={receiptColumns}
-                        data={receipts}
-                        isReceipt
+                        columns={invoiceColumns}
+                        data={invoices}
+                        isInvoice
                      />
                   ) : (
                      <div className="flex flex-col gap-7">
@@ -205,12 +205,12 @@ const Files = () => {
                            </div>
                         ) : (
                            <div className="w-full">
-                              {filteredReceipts.length ? (
+                              {filteredInvoices.length ? (
                                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                                    {filteredReceipts.map((receipt) => (
+                                    {filteredInvoices.map((invoice) => (
                                        <ReceiptCard
-                                          key={receipt.id}
-                                          receipt={receipt}
+                                          key={invoice.id}
+                                          invoice={invoice}
                                        />
                                     ))}
                                  </div>

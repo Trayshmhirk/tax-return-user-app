@@ -30,16 +30,16 @@ import useWindowWidth from "@/hooks/UseWindowWidth";
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
    data: TData[];
-   isReceipt?: boolean;
+   isInvoice?: boolean;
 }
 
 export function DataTable<TData, TValue>({
    columns,
    data,
-   isReceipt,
+   isInvoice,
 }: DataTableProps<TData, TValue>) {
    const [sorting, setSorting] = React.useState<SortingState>([
-      { id: `${isReceipt ? "date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
+      { id: `${isInvoice ? "date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
    ]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []
@@ -98,12 +98,12 @@ export function DataTable<TData, TValue>({
                   className="bg-transparent dark:bg-transparent border-none outline-none"
                   value={
                      (table
-                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
+                        .getColumn(`${isInvoice ? "title" : "document_name"}`)
                         ?.getFilterValue() as string) ?? ""
                   }
                   onChange={(event) =>
                      table
-                        .getColumn(`${isReceipt ? "title" : "document_name"}`)
+                        .getColumn(`${isInvoice ? "title" : "document_name"}`)
                         ?.setFilterValue(event.target.value)
                   }
                />
@@ -157,7 +157,7 @@ export function DataTable<TData, TValue>({
                      className={`
                         grid 
                         ${
-                           isReceipt
+                           isInvoice
                               ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
                               : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                         } 
@@ -186,7 +186,7 @@ export function DataTable<TData, TValue>({
                         className={`
                            grid 
                            ${
-                              isReceipt
+                              isInvoice
                                  ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
                                  : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                            } 

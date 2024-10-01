@@ -19,10 +19,10 @@ export const navItemsData = [
       id: "uploadNavItem",
    },
    {
-      title: "Receipts",
+      title: "Invoices",
       navIcon: MdOutlineReceiptLong,
-      route: "receipts",
-      id: "receiptsNavItem",
+      route: "invoices",
+      id: "invoicesNavItem",
    },
    {
       title: "Chat",

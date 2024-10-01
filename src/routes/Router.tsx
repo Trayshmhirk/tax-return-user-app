@@ -19,7 +19,7 @@ const Home = lazy(() => import("../pages/home/Home"));
 const RequestService = lazy(() => import("../pages/RequestService"));
 const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
 const UploadDocument = lazy(() => import("../pages/UploadDocument"));
-const Receipts = lazy(() => import("../pages/Receipts"));
+const Invoices = lazy(() => import("../pages/Invoices"));
 const Chat = lazy(() => import("../pages/Chat"));
 const Bank = lazy(() => import("../pages/payment/Bank"));
 const KnowledgeBase = lazy(() => import("../pages/KnowledgeBase"));
@@ -99,10 +99,10 @@ const router = createBrowserRouter(
                }
             />
             <Route
-               path="receipts"
+               path="invoices"
                element={
                   <ProtectedRoute>
-                     <Receipts />
+                     <Invoices />
                   </ProtectedRoute>
                }
             />

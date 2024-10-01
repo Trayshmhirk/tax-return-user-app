@@ -20,10 +20,10 @@ import {
    DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ReceiptsPropTypes } from "@/types/AllTypes";
+import { InvoicesPropTypes } from "@/types/AllTypes";
 import { formatDate } from "date-fns";
 
-export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
+export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
    {
       id: "select",
       header: ({ table }) => (

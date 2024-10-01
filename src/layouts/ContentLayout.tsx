@@ -21,8 +21,8 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Request a service";
          case "/upload-documents":
             return "Upload documents";
-         case "/receipts":
-            return "Receipts";
+         case "/invoices":
+            return "Invoices";
          case "/chat":
             return "Chat";
          case "/transactions":

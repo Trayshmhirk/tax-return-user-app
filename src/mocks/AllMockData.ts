@@ -1,6 +1,6 @@
 import {
    DocumentsPropTypes,
-   ReceiptsPropTypes,
+   InvoicesPropTypes,
    VideoDataTypes,
    ServicesListTypes,
    CategoryListTypes,
@@ -72,27 +72,25 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
    },
 ];
 
-// receipts
-export const receipts: ReceiptsPropTypes[] = [
+// invoices
+export const invoices: InvoicesPropTypes[] = [
    {
       id: "retdb2137",
-      title: "receipt",
+      title: "invoice",
       owner_info: {
          fullname: "Micheal",
       },
       date: "2024-08-07",
       base64: "",
-      amount: "",
    },
    {
       id: "retug7457",
-      title: "receipt",
+      title: "invoice",
       owner_info: {
          fullname: "Micheal",
       },
       date: "2024-07-07",
       base64: "",
-      amount: "",
    },
 ];
 
