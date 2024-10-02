@@ -60,6 +60,41 @@ const Invoices = () => {
 
    return (
       <div className="flex flex-col gap-9">
+         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5">
+            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark">
+               <div className="flex items-center gap-4">
+                  <p className="font-lg font-medium">Paid invoices</p>
+
+                  <span></span>
+               </div>
+
+               <div>
+                  <p className="text-2xl font-bold">3562</p>
+               </div>
+            </div>
+            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark">
+               <div className="flex items-center gap-4">
+                  <p className="font-lg font-medium">Pending invoices</p>
+
+                  <span></span>
+               </div>
+
+               <div>
+                  <p className="text-2xl font-bold">3562</p>
+               </div>
+            </div>
+            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark">
+               <div className="flex items-center gap-4">
+                  <p className="font-lg font-medium">Overdue invoice</p>
+
+                  <span></span>
+               </div>
+
+               <div>
+                  <p className="text-2xl font-bold">3562</p>
+               </div>
+            </div>
+         </div>
          <SearchAndFilter
             handleSearch={handleSearch}
             handleFilter={handleFilter}
