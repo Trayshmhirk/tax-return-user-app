@@ -68,22 +68,11 @@ const Invoices = () => {
          </div>
 
          <div className="flex flex-col gap-7">
-            <div className="flex justify-between items-center">
-               <div className="flex items-center gap-2">
-                  <p className="font-medium">Recent invoices</p>
-                  <span>
-                     {invoices && invoices.length
-                        ? `(${invoices.length})`
-                        : "(0)"}
-                  </span>
-               </div>
-
-               {/* <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
-                  <span className="cursor-pointer" onClick={handleSelectAll}>
-                     {allDocumentsSelected ? "Deselect All" : "Select All"}
-                  </span>
-                  <span>{` (${selectedDocuments.length})`}</span>
-               </div> */}
+            <div className="flex items-center gap-2">
+               <p className="font-medium">Recent invoices</p>
+               <span>
+                  {invoices && invoices.length ? `(${invoices.length})` : "(0)"}
+               </span>
             </div>
 
             <SearchAndFilter

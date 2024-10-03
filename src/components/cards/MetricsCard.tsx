@@ -3,7 +3,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 
 const MetricsCard = ({ metric }: MetricCardPropsTypes) => {
    return (
-      <div className="w-full flex flex-col gap-3 bg-bubbles dark:bg-opacity-90 text-eerieBlack p-3 px-5 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark">
+      <div className="w-full flex flex-col gap-3 bg-bubbles dark:bg-opacity-90 text-eerieBlack p-3 px-5 rounded-lg shadow-md dark:shadow-md-dark">
          <p className="text-2xl md:text-4xl text-richElectricBlue font-bold">
             {metric.amount}
          </p>
