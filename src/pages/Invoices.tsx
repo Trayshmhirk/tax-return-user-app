@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import InvoiceCard from "@/components/cards/InvoiceCard";
 import { InvoicesPropTypes } from "@/types/AllTypes";
-import { filterByDate } from "@/helpers/filterByDate";
 import { fetchInvoices } from "@/api/mockApis";
 import { ClipLoader } from "react-spinners";
 import MetricsCard from "@/components/cards/MetricsCard";
@@ -14,13 +13,7 @@ const Invoices = () => {
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
 
-   const filterTitleList = [
-      "All",
-      "Today",
-      "This week",
-      "This month",
-      "Earlier",
-   ];
+   const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {
       async function fetchData() {
@@ -48,12 +41,18 @@ const Invoices = () => {
       setSelectedFilter(title);
    };
 
+   const filterByStatus = (invoice: InvoicesPropTypes) => {
+      if (selectedFilter === "" || selectedFilter === "All") {
+         // if no filter is selected, all users should be included
+         return true;
+      }
+      return invoice.status.toLowerCase() === selectedFilter.toLowerCase();
+   };
+
    const filteredInvoices = invoices
       ? invoices
            .filter(
-              (invoice) =>
-                 searchInvoices(invoice) &&
-                 filterByDate(invoice, selectedFilter)
+              (invoice) => searchInvoices(invoice) && filterByStatus(invoice)
            )
            .sort(
               (a, b) =>
@@ -64,35 +63,56 @@ const Invoices = () => {
    return (
       <div className="flex flex-col gap-9">
          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {invoiceMetrics.map((metric) => (
-               <MetricsCard metric={metric} />
+            {invoiceMetrics.map((metric, index) => (
+               <MetricsCard key={index} metric={metric} />
             ))}
          </div>
-         <SearchAndFilter
-            handleSearch={handleSearch}
-            handleFilter={handleFilter}
-            title={filterTitleList}
-         />
 
-         {loading ? (
-            <div className="w-full h-20 flex justify-center items-center">
-               <ClipLoader color="#00A2C9" />
+         <div className="flex flex-col gap-7">
+            <div className="flex justify-between items-center">
+               <div className="flex items-center gap-2">
+                  <p className="font-medium">Recent invoices</p>
+                  <span>
+                     {invoices && invoices.length
+                        ? `(${invoices.length})`
+                        : "(0)"}
+                  </span>
+               </div>
+
+               {/* <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
+                  <span className="cursor-pointer" onClick={handleSelectAll}>
+                     {allDocumentsSelected ? "Deselect All" : "Select All"}
+                  </span>
+                  <span>{` (${selectedDocuments.length})`}</span>
+               </div> */}
             </div>
-         ) : (
-            <div className="w-full">
-               {filteredInvoices.length ? (
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-                     {filteredInvoices.map((invoice, index) => (
-                        <InvoiceCard key={index} invoice={invoice} />
-                     ))}
-                  </div>
-               ) : (
-                  <p className="pending-text w-full text-center">
-                     No results found.
-                  </p>
-               )}
-            </div>
-         )}
+
+            <SearchAndFilter
+               handleSearch={handleSearch}
+               handleFilter={handleFilter}
+               title={filterTitleList}
+            />
+
+            {loading ? (
+               <div className="w-full h-20 flex justify-center items-center">
+                  <ClipLoader color="#00A2C9" />
+               </div>
+            ) : (
+               <div className="w-full">
+                  {filteredInvoices.length ? (
+                     <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                        {filteredInvoices.map((invoice, index) => (
+                           <InvoiceCard key={index} invoice={invoice} />
+                        ))}
+                     </div>
+                  ) : (
+                     <p className="pending-text w-full text-center">
+                        No results found.
+                     </p>
+                  )}
+               </div>
+            )}
+         </div>
       </div>
    );
 };

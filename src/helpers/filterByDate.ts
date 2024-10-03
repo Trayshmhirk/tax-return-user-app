@@ -9,7 +9,7 @@ export const filterByDate = (
       return true;
    }
 
-   const timelyValue = getTimelyValue(invoice.date);
+   const timelyValue = getTimelyValue(invoice.due_date);
    // Check for "This week" and "Today" when filtering by "This week"
    if (selectedFilter.toLowerCase() === "this week") {
       return (

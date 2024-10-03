@@ -147,9 +147,32 @@ const Files = () => {
             {activeFolder === "documents" && (
                <>
                   {isList ? (
-                     <DataTable columns={documentColumns} data={documents} />
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent documents</p>
+                              <span>
+                                 {documents && documents.length
+                                    ? `(${documents.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+                        <DataTable columns={documentColumns} data={documents} />
+                     </div>
                   ) : (
                      <div className="flex flex-col gap-7">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent documents</p>
+                              <span>
+                                 {documents && documents.length
+                                    ? `(${documents.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+
                         <SearchAndFilter
                            handleSearch={handleSearch}
                            handleFilter={handleFilter}
@@ -186,13 +209,36 @@ const Files = () => {
             {activeFolder === "invoices" && (
                <>
                   {isList ? (
-                     <DataTable
-                        columns={invoiceColumns}
-                        data={invoices}
-                        isInvoice
-                     />
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent invoices</p>
+                              <span>
+                                 {invoices && invoices.length
+                                    ? `(${invoices.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+                        <DataTable
+                           columns={invoiceColumns}
+                           data={invoices}
+                           isInvoice
+                        />
+                     </div>
                   ) : (
                      <div className="flex flex-col gap-7">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent invoices</p>
+                              <span>
+                                 {invoices && invoices.length
+                                    ? `(${invoices.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+
                         <SearchAndFilter
                            handleSearch={handleSearch}
                            handleFilter={handleFilter}
@@ -206,7 +252,7 @@ const Files = () => {
                         ) : (
                            <div className="w-full">
                               {filteredInvoices.length ? (
-                                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+                                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                                     {filteredInvoices.map((invoice) => (
                                        <InvoiceCard
                                           key={invoice.id}

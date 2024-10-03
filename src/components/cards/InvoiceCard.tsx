@@ -13,7 +13,7 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
       <div className="relative w-full flex flex-col gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
          <div
             className={`
-               absolute right-2 top-2 py-[2px] px-2 text-xs rounded
+               absolute right-3 top-3 py-[2px] px-2 text-xs rounded
                ${invoice.status.toLowerCase() === "overdue" ? "danger" : ""}
                ${invoice.status.toLowerCase() === "paid" ? "success" : ""}
                ${invoice.status.toLowerCase() === "pending" ? "warning" : ""}

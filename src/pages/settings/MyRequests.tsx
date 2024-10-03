@@ -86,7 +86,7 @@ const MyRequests = () => {
                </div>
             ) : (
                <p className="pending-text w-full text-center">
-                  Nothing to show here.
+                  No results found.
                </p>
             )}
          </div>

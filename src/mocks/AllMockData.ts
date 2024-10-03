@@ -92,7 +92,7 @@ export const invoices: InvoicesPropTypes[] = [
       status: "overdue",
    },
    {
-      id: "INV63478",
+      id: "INV93788",
       title: "Asset tax",
       issued_by: "superadmin@taxreturns",
       due_date: "2024-10-01",
@@ -363,5 +363,11 @@ export const invoiceMetrics: MetricCardProps[] = [
       percentage: 8,
       invoice_status: "overdue",
       is_percentage_increase: true,
+   },
+   {
+      amount: 10,
+      percentage: 19,
+      invoice_status: "failed",
+      is_percentage_increase: false,
    },
 ];
