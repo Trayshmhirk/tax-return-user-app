@@ -126,3 +126,10 @@ export type CardsProps = {
    cardholderName: string;
    isDefault: boolean;
 };
+
+export type MetricCardProps = {
+   amount: number;
+   percentage: number;
+   is_percentage_increase: boolean;
+   invoice_status: "pending" | "paid" | "overdue" | "failed";
+};

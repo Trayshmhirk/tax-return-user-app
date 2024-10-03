@@ -7,6 +7,7 @@ import {
    QuestionsPropsType,
    RequestsPropTypes,
    CardsProps,
+   MetricCardProps,
 } from "../types/AllTypes";
 
 // request service
@@ -341,5 +342,26 @@ export const initialCards: CardsProps[] = [
       brand: "Visa",
       cardholderName: "John Doe",
       isDefault: false,
+   },
+];
+
+export const invoiceMetrics: MetricCardProps[] = [
+   {
+      amount: 15,
+      percentage: 20,
+      invoice_status: "paid",
+      is_percentage_increase: false,
+   },
+   {
+      amount: 23,
+      percentage: 10,
+      invoice_status: "pending",
+      is_percentage_increase: true,
+   },
+   {
+      amount: 13,
+      percentage: 8,
+      invoice_status: "overdue",
+      is_percentage_increase: true,
    },
 ];
