@@ -60,8 +60,8 @@ const MyRequests = () => {
                         <div
                            className={`
                               absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
-                              ${request.status.toLowerCase() === "pending" ? "pending" : ""}
-                              ${request.status.toLowerCase() === "paid" ? "paid" : ""}
+                              ${request.status.toLowerCase() === "pending" ? "warning" : ""}
+                              ${request.status.toLowerCase() === "paid" ? "success" : ""}
                               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
                            `}
                         >

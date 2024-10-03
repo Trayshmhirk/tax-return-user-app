@@ -75,22 +75,28 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
 // invoices
 export const invoices: InvoicesPropTypes[] = [
    {
-      id: "retdb2137",
-      title: "invoice",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-08-07",
-      base64: "",
+      id: "INV83647",
+      title: "Tax payment",
+      issued_by: "admin@taxreturns",
+      due_date: "2024-10-03",
+      amount: 5900,
+      status: "pending",
    },
    {
-      id: "retug7457",
-      title: "invoice",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-07-07",
-      base64: "",
+      id: "INV63478",
+      title: "Asset tax",
+      issued_by: "superadmin@taxreturns",
+      due_date: "2024-10-01",
+      amount: 4799,
+      status: "overdue",
+   },
+   {
+      id: "INV63478",
+      title: "Asset tax",
+      issued_by: "superadmin@taxreturns",
+      due_date: "2024-10-01",
+      amount: 4799,
+      status: "paid",
    },
 ];
 
@@ -290,19 +296,19 @@ export const help: QuestionsPropsType[] = [
 export const requests: RequestsPropTypes[] = [
    {
       service_id: "5tdfG8rnfP",
-      status: "Pending",
+      status: "pending",
       requestDate: "2024-08-30",
       service_title: "tax",
    },
    {
       service_id: "Iu83Hnd8Oi",
-      status: "Completed",
+      status: "completed",
       requestDate: "2024-08-25",
       service_title: "attestation",
    },
    {
       service_id: "Ko9fJk32hN",
-      status: "Paid",
+      status: "paid",
       requestDate: "2024-06-25",
       service_title: "payment",
    },

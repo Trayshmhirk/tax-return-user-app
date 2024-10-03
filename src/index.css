@@ -63,19 +63,23 @@
       @apply text-sm text-mutedGray dark:text-chineseWhite italic;
    }
 
-   .pending {
+   .danger {
       @apply text-bostonRed border border-bostonRed dark:text-red-500 dark:border-red-500;
       background: rgba(195, 0, 0, 0.05);
    }
 
-   .paid {
+   .warning {
+      @apply text-yellow-500 border border-yellow-400 dark:text-yellow-300 dark:border-yellow-300;
+      background: rgba(195, 179, 0, 0.05);
+   }
+
+   .completed {
       @apply text-richElectricBlue border border-richElectricBlue dark:text-blue-500 dark:border-blue-500;
       background: rgba(0, 0, 195, 0.05);
    }
 
-   .completed {
-      border: 1px solid #29CE9C;
-      color: #29CE9C;
+   .success {
+      @apply text-[#29CE9C] border border-[#29CE9C];
       background: rgba(41, 206, 156, 0.05);
    }
 

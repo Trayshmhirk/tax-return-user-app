@@ -262,7 +262,7 @@ const UploadDocument = () => {
          <div className="flex flex-col gap-7">
             <div className="title flex justify-between items-center">
                <div className="flex items-center gap-2">
-                  <p className="font-medium">Recent upload</p>
+                  <p className="font-medium">Recent uploads</p>
                   <span>
                      {uploadedDocuments && uploadedDocuments.length
                         ? `(${uploadedDocuments.length})`

@@ -39,7 +39,7 @@ export function DataTable<TData, TValue>({
    isInvoice,
 }: DataTableProps<TData, TValue>) {
    const [sorting, setSorting] = React.useState<SortingState>([
-      { id: `${isInvoice ? "date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
+      { id: `${isInvoice ? "due_date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
    ]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []

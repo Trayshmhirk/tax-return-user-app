@@ -96,13 +96,13 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
       ),
    },
    {
-      accessorKey: "owner_info.fullname",
+      accessorKey: "issued_by",
       header: () => {
-         return <div className="text-xs md:text-sm">Username</div>;
+         return <div className="text-xs md:text-sm">Issued By</div>;
       },
    },
    {
-      accessorKey: "date",
+      accessorKey: "due_date",
       header: ({ table }) => (
          <div className="flex items-center gap-2">
             <DropdownMenu>
@@ -111,7 +111,7 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     Date
+                     Due Date
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -146,11 +146,11 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
          </div>
       ),
       cell: ({ row }) => {
-         const dateModified = row.original.date;
+         const dueDate = row.original.due_date;
 
          return (
             <div className="lg:px-2 text-xs md:text-sm">
-               {formatDate(dateModified, "dd.MM.yyyy")}
+               {formatDate(dueDate, "dd.MM.yyyy")}
             </div>
          );
       },
@@ -183,11 +183,15 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                         className="flex items-center gap-2 cursor-pointer"
                      >
                         <Eye className="w-4 h-4" />
-                        View receipt
+                        View invoice
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
+                     </DropdownMenuItem>
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                        <Download className="w-4 h-4" />
+                        Pay
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Trash2 className="w-4 h-4" />

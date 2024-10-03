@@ -62,11 +62,10 @@ export type CardDropdownPropsTypes = {
 export type InvoicesPropTypes = {
    id: string;
    title: string;
-   owner_info: {
-      fullname: string;
-   };
-   date: string;
-   base64: string;
+   issued_by: string;
+   due_date: string;
+   amount: number;
+   status: "pending" | "paid" | "overdue" | "failed";
 };
 
 export type InvoiceCardPropTypes = {
@@ -93,7 +92,7 @@ export type QuestionsPropsType = {
 // requests
 export type RequestsPropTypes = {
    service_id: string;
-   status: string;
+   status: "pending" | "paid" | "completed";
    requestDate: string;
    service_title: string;
 };
