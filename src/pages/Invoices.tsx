@@ -12,7 +12,6 @@ const Invoices = () => {
    const [loading, setLoading] = useState(false);
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
-
    const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {

@@ -66,6 +66,7 @@ export type InvoicesPropTypes = {
    due_date: string;
    amount: number;
    status: "pending" | "paid" | "overdue" | "failed";
+   base64: string;
 };
 
 export type InvoiceCardPropTypes = {

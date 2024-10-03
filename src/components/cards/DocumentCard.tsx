@@ -35,7 +35,7 @@ export const DocumentCard = ({
          className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
       >
          <div className="flex justify-between items-center">
-            <div className="w-8 h-8 flex items-center justify-center">
+            <div className="w-5 h-5 flex justify-center">
                <Checkbox
                   aria-label="Select document"
                   id={`selectDoc${document.id}`}

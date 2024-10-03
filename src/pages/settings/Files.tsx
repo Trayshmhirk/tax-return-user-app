@@ -10,7 +10,6 @@ import { DataTable } from "@/components/files/data-table";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { DocumentCard } from "@/components/cards/DocumentCard";
 import InvoiceCard from "@/components/cards/InvoiceCard";
-import { filterByDate } from "@/helpers/filterByDate";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
 import { Button } from "@/components/ui/button";
@@ -31,13 +30,7 @@ const Files = () => {
       "documents"
    );
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
-   const filterTitleList = [
-      "All",
-      "Today",
-      "This week",
-      "This month",
-      "Earlier",
-   ];
+   const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {
       async function fetchData() {
@@ -90,10 +83,17 @@ const Files = () => {
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
+   const filterByStatus = (invoice: InvoicesPropTypes) => {
+      if (selectedFilter === "" || selectedFilter === "All") {
+         // if no filter is selected, all users should be included
+         return true;
+      }
+      return invoice.status.toLowerCase() === selectedFilter.toLowerCase();
+   };
+
    const filteredInvoices = invoices
       ? invoices.filter(
-           (invoice) =>
-              searchInvoices(invoice) && filterByDate(invoice, selectedFilter)
+           (invoice) => searchInvoices(invoice) && filterByStatus(invoice)
         )
       : [];
 

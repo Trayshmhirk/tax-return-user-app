@@ -82,6 +82,7 @@ export const invoices: InvoicesPropTypes[] = [
       due_date: "2024-10-03",
       amount: 5900,
       status: "pending",
+      base64: "",
    },
    {
       id: "INV63478",
@@ -90,6 +91,7 @@ export const invoices: InvoicesPropTypes[] = [
       due_date: "2024-10-01",
       amount: 4799,
       status: "overdue",
+      base64: "",
    },
    {
       id: "INV93788",
@@ -98,6 +100,7 @@ export const invoices: InvoicesPropTypes[] = [
       due_date: "2024-10-01",
       amount: 4799,
       status: "paid",
+      base64: "",
    },
 ];
 
