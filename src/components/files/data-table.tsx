@@ -158,7 +158,7 @@ export function DataTable<TData, TValue>({
                         grid 
                         ${
                            isInvoice
-                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                              ? "grid-cols-[0.3fr_1fr_1fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.3fr_1fr_2fr_1fr_1fr_1fr_0.4fr]"
                               : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                         } 
                         items-center gap-2 bg-richElectricBlue hover:bg-richElectricBlue hover:bg-opacity-90 text-white px-4 py-1 md:px-5 shadow-md dark:shadow-md-dark rounded-lg
@@ -187,7 +187,7 @@ export function DataTable<TData, TValue>({
                            grid 
                            ${
                               isInvoice
-                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1fr]"
+                                 ? "grid-cols-[0.3fr_1fr_1fr_1fr_1fr_1fr_0.4fr] md:grid-cols-[0.3fr_1fr_2fr_1fr_1fr_1fr_0.4fr]"
                                  : "grid-cols-[0.5fr_2.5fr_1fr_1fr_0.4fr] sm:grid-cols-[0.5fr_2fr_1fr_1fr_1fr_0.4fr] lg:grid-cols-[0.5fr_3fr_1fr_1fr_1fr_1fr]"
                            } 
                            items-center gap-2 bg-ghostWhite dark:bg-darkGray px-4 py-2 md:px-5 shadow-md dark:shadow-md-dark rounded-lg

@@ -9,7 +9,13 @@ import {
    DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { Download, MoreVertical, Share, Trash2 } from "lucide-react";
+import {
+   Download,
+   MoreVertical,
+   Share,
+   Trash2,
+   CreditCard,
+} from "lucide-react";
 
 const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
    const truncateString = (str: string, num: number) => {
@@ -65,6 +71,10 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                   <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                      <Download className="w-4 h-4" />
                      Download
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                     <CreditCard className="w-4 h-4" />
+                     Pay
                   </DropdownMenuItem>
                   <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                      <Trash2 className="w-4 h-4" />

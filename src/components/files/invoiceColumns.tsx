@@ -5,7 +5,8 @@ import {
    MoreHorizontal,
    ChevronDown,
    Download,
-   Eye,
+   CreditCard,
+   Share,
    Trash2,
 } from "lucide-react";
 
@@ -22,6 +23,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { InvoicesPropTypes } from "@/types/AllTypes";
 import { formatDate } from "date-fns";
+import { Badge } from "../ui/badge";
 
 export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
    {
@@ -121,22 +123,22 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                >
                   <DropdownMenuCheckboxItem
                      checked={
-                        table.getState().sorting[0]?.id === "date" &&
+                        table.getState().sorting[0]?.id === "due_date" &&
                         !table.getState().sorting[0]?.desc
                      }
                      onCheckedChange={(checked) =>
-                        table.setSorting([{ id: "date", desc: !checked }])
+                        table.setSorting([{ id: "due_date", desc: !checked }])
                      }
                   >
                      Ascending
                   </DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem
                      checked={
-                        table.getState().sorting[0]?.id === "date" &&
+                        table.getState().sorting[0]?.id === "due_date" &&
                         table.getState().sorting[0]?.desc
                      }
                      onCheckedChange={(checked) =>
-                        table.setSorting([{ id: "date", desc: checked }])
+                        table.setSorting([{ id: "due_date", desc: checked }])
                      }
                   >
                      Descending
@@ -152,6 +154,40 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
             <div className="lg:px-2 text-xs md:text-sm">
                {formatDate(dueDate, "dd.MM.yyyy")}
             </div>
+         );
+      },
+   },
+   {
+      accessorKey: "amount",
+      header: "Amount",
+      cell: ({ row }) => {
+         const amount = parseFloat(row.getValue("amount"));
+         const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+         }).format(amount);
+
+         return <div className="font-medium">{formatted}</div>;
+      },
+   },
+   {
+      accessorKey: "status",
+      header: "Status",
+      cell: ({ row }) => {
+         const status = row.original.status;
+
+         return (
+            <Badge
+               variant="outline"
+               className={`
+                  ${status === "failed" ? "bg-red-300 bg-opacity-20 text-red-500 dark:text-red-300 border-red-500 dark:border-red-400" : ""}
+                  ${status === "pending" ? "bg-yellow-200 bg-opacity-20 text-yellow-500 dark:text-yellow-300 border-yellow-400 dark:border-yellow-300" : ""}
+                  ${status === "overdue" ? "bg-red-300 bg-opacity-20 text-red-500 dark:text-red-300 border-red-500 dark:border-red-400" : ""}
+                  ${status === "paid" ? "bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border-green-600 dark:border-green-400" : ""}   
+               `}
+            >
+               {status.toUpperCase()}
+            </Badge>
          );
       },
    },
@@ -179,18 +215,19 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                      <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
 
                      <DropdownMenuItem
-                        onSelect={(e) => e.preventDefault()}
+                        // onSelect={(e) => e.preventDefault()}
+                        // onClick={handleSendToChat ?? (() => {})}
                         className="flex items-center gap-2 cursor-pointer"
                      >
-                        <Eye className="w-4 h-4" />
-                        View invoice
+                        <Share className="w-4 h-4" />
+                        Share invoice
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Download className="w-4 h-4" />
+                        <CreditCard className="w-4 h-4" />
                         Pay
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
