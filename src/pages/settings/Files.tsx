@@ -21,6 +21,9 @@ const Files = () => {
    const isbelowXs = windowWidth < 375;
 
    const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
+   const [selectedDocuments, setSelectedDocuments] = useState<
+      DocumentsPropTypes[]
+   >([]);
    const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
    const [isList, setIsList] = useState(false);
@@ -73,10 +76,50 @@ const Files = () => {
    };
 
    const filteredDocs = documents
-      ? documents.filter(
-           (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
-        )
+      ? documents
+           .filter(
+              (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
+           )
+           .sort(
+              (a, b) =>
+                 new Date(b.date_modified).getTime() -
+                 new Date(a.date_modified).getTime()
+           ) // Sorting by latest date
       : [];
+
+   // Check if all filtered documents are selected
+   const allDocumentsSelected =
+      filteredDocs.length > 0 &&
+      filteredDocs.every((doc) =>
+         selectedDocuments.some((selectedDoc) => selectedDoc.id === doc.id)
+      );
+
+   const handleSelectAll = () => {
+      if (allDocumentsSelected) {
+         // Deselect all
+         setSelectedDocuments([]);
+      } else {
+         // Select all documents
+         setSelectedDocuments(filteredDocs); // `filteredDocs` represents the currently filtered documents.
+      }
+   };
+
+   const handleSelectDocument = (doc: DocumentsPropTypes) => {
+      setSelectedDocuments((prevSelected) => {
+         // Check if the document is already selected
+         if (prevSelected.find((selectedDoc) => selectedDoc.id === doc.id)) {
+            // Deselect the document
+            return prevSelected.filter(
+               (selectedDoc) => selectedDoc.id !== doc.id
+            );
+         } else {
+            // Select the document (add it to the list)
+            return [...prevSelected, doc];
+         }
+      });
+   };
+
+   // invoice functions
 
    const searchInvoices = (invoice: InvoicesPropTypes) => {
       const docName = invoice.title;
@@ -161,7 +204,7 @@ const Files = () => {
                         <DataTable columns={documentColumns} data={documents} />
                      </div>
                   ) : (
-                     <div className="flex flex-col gap-7">
+                     <div className="flex flex-col gap-6">
                         <div className="flex justify-between items-center">
                            <div className="flex items-center gap-2">
                               <p className="font-medium">Recent documents</p>
@@ -170,6 +213,18 @@ const Files = () => {
                                     ? `(${documents.length})`
                                     : "(0)"}
                               </span>
+                           </div>
+
+                           <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
+                              <span
+                                 className="cursor-pointer"
+                                 onClick={handleSelectAll}
+                              >
+                                 {allDocumentsSelected
+                                    ? "Deselect All"
+                                    : "Select All"}
+                              </span>
+                              <span>{` (${selectedDocuments.length})`}</span>
                            </div>
                         </div>
 
@@ -191,6 +246,11 @@ const Files = () => {
                                        <DocumentCard
                                           key={doc.id}
                                           document={doc}
+                                          onSelect={handleSelectDocument}
+                                          isSelected={selectedDocuments.some(
+                                             (selectedDoc) =>
+                                                selectedDoc.id === doc.id
+                                          )}
                                        />
                                     ))}
                                  </div>

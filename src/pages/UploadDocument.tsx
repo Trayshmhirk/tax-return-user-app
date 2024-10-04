@@ -170,7 +170,7 @@ const UploadDocument = () => {
       }
    };
 
-   const filteredFiles = uploadedDocuments
+   const filteredDocs = uploadedDocuments
       ? uploadedDocuments
            .filter(
               (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
@@ -184,8 +184,8 @@ const UploadDocument = () => {
 
    // Check if all filtered documents are selected
    const allDocumentsSelected =
-      filteredFiles.length > 0 &&
-      filteredFiles.every((doc) =>
+      filteredDocs.length > 0 &&
+      filteredDocs.every((doc) =>
          selectedDocuments.some((selectedDoc) => selectedDoc.id === doc.id)
       );
 
@@ -195,7 +195,7 @@ const UploadDocument = () => {
          setSelectedDocuments([]);
       } else {
          // Select all documents
-         setSelectedDocuments(filteredFiles); // `filteredFiles` represents the currently filtered documents.
+         setSelectedDocuments(filteredDocs); // `filteredDocs` represents the currently filtered documents.
       }
    };
 
@@ -259,7 +259,7 @@ const UploadDocument = () => {
          </div>
 
          {/*  */}
-         <div className="flex flex-col gap-7">
+         <div className="flex flex-col gap-6">
             <div className="flex justify-between items-center">
                <div className="flex items-center gap-2">
                   <p className="font-medium">Recent uploads</p>
@@ -290,9 +290,9 @@ const UploadDocument = () => {
                </div>
             ) : (
                <div className="w-full">
-                  {filteredFiles.length ? (
+                  {filteredDocs.length ? (
                      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                        {filteredFiles.map((doc) => (
+                        {filteredDocs.map((doc) => (
                            <DocumentCard
                               key={doc.id}
                               document={doc}
