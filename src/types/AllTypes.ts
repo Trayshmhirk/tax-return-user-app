@@ -134,3 +134,17 @@ export type MetricCardProps = {
    is_percentage_increase: boolean;
    invoice_status: "pending" | "paid" | "overdue" | "failed";
 };
+
+export type TransactionPropTypes = {
+   id: string;
+   date: string;
+   description: string;
+   amount: number;
+   currency: string;
+   status: "pending" | "processing" | "success" | "failed";
+};
+
+export type TransactionCardPropTypes = {
+   transaction: TransactionPropTypes;
+   handleClick?: () => void;
+};

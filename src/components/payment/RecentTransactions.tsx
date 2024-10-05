@@ -1,135 +1,39 @@
 import { useEffect, useState } from "react";
-import { Transaction, columns } from "./columns";
+import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
-
-async function fetchTransactionsForCard(
-   cardId: string | null
-): Promise<Transaction[]> {
-   if (cardId === "er634e7") {
-      return [
-         {
-            id: "txn_01",
-            date: "2024-08-01",
-            description: "Grocery Store",
-            amount: 50.25,
-            currency: "USD",
-            status: "success",
-         },
-         {
-            id: "txn_02",
-            date: "2024-08-05",
-            description: "Flight Ticket",
-            amount: 250.0,
-            currency: "USD",
-            status: "failed",
-         },
-         {
-            id: "txn_03",
-            date: "2024-08-10",
-            description: "Restaurant",
-            amount: 80.15,
-            currency: "USD",
-            status: "pending",
-         },
-         {
-            id: "txn_04",
-            date: "2024-08-15",
-            description: "Refund - Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "processing",
-         },
-         {
-            id: "txn_05",
-            date: "2024-07-15",
-            description: "Refund - Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "processing",
-         },
-         {
-            id: "txn_06",
-            date: "2024-08-25",
-            description: "Refund - Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "success",
-         },
-         {
-            id: "txn_07",
-            date: "2024-08-26",
-            description: "Refund - Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "processing",
-         },
-      ];
-   } else if (cardId === "hd2376y") {
-      return [
-         {
-            id: "txn_01",
-            date: "2024-08-01",
-            description: "Grocery Store",
-            amount: 50.25,
-            currency: "USD",
-            status: "success",
-         },
-         {
-            id: "txn_02",
-            date: "2024-08-05",
-            description: "Flight Ticket",
-            amount: 250.0,
-            currency: "USD",
-            status: "failed",
-         },
-         {
-            id: "txn_03",
-            date: "2024-08-10",
-            description: "Restaurant",
-            amount: 80.15,
-            currency: "USD",
-            status: "pending",
-         },
-         {
-            id: "txn_04",
-            date: "2024-08-15",
-            description: "Refund - Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "processing",
-         },
-      ];
-   } else if (cardId === "ab987hg") {
-      return [
-         {
-            id: "txn_05",
-            date: "2024-08-25",
-            description: "Online Purchase",
-            amount: 100.0,
-            currency: "USD",
-            status: "success",
-         },
-      ];
-   }
-   return [];
-}
+import { TransactionPropTypes } from "@/types/AllTypes";
+import { fetchTransactions } from "@/api/mockApis";
+import { Button } from "../ui/button";
+import { BsFillGridFill } from "react-icons/bs";
+import { RiListCheck3 } from "react-icons/ri";
+import useWindowWidth from "@/hooks/UseWindowWidth";
+import SearchAndFilter from "../common/SearchAndFilter";
+import TransactionCard from "../cards/TransactionCard";
 
 const RecentTransactions = ({
    selectedCardId,
 }: {
    selectedCardId: string | null;
 }) => {
-   const [data, setData] = useState<Transaction[]>([]);
+   // Get the window width from the hook
+   const windowWidth = useWindowWidth();
+   const isbelowXs = windowWidth < 375;
+
+   const [transactions, setTransactions] = useState<TransactionPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
+   const [isList, setIsList] = useState(true);
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
+   const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {
       async function fetchData() {
-         // setLoading(true);
+         setLoading(true);
 
          setTimeout(async () => {
-            const transactions = await fetchTransactionsForCard(selectedCardId); // Fetch the data
-            setData(transactions);
+            const fetchedTransactions = await fetchTransactions(selectedCardId); // Fetch the data
+            setTransactions(fetchedTransactions);
             setLoading(false);
          }, 300);
       }
@@ -137,17 +41,108 @@ const RecentTransactions = ({
       fetchData();
    }, [selectedCardId]);
 
+   const handleToggleGrid = () => {
+      setIsList(false);
+   };
+
+   const handleToggleList = () => {
+      setIsList(true);
+   };
+
+   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInput(e.target.value);
+   };
+
+   const handleFilter = (title: string) => {
+      setSelectedFilter(title);
+   };
+
+   const searchTransactions = (transaction: TransactionPropTypes) => {
+      const docName = transaction.description;
+      return docName.toLowerCase().includes(searchInput.toLowerCase());
+   };
+
+   const filterByStatus = (transaction: TransactionPropTypes) => {
+      if (selectedFilter === "" || selectedFilter === "All") {
+         // if no filter is selected, all users should be included
+         return true;
+      }
+      return transaction.status.toLowerCase() === selectedFilter.toLowerCase();
+   };
+
+   const filteredTransactions = transactions
+      ? transactions.filter(
+           (transaction) =>
+              searchTransactions(transaction) && filterByStatus(transaction)
+        )
+      : [];
+
    return (
-      <div className="flex flex-col gap-5 bg-white dark:bg-gray px-5 py-4 rounded-xl shadow-md dark:shadow-md-dark w-full">
-         <h2 className="text-xl font-semibold">Recent Transactions</h2>
+      <div className="flex flex-col gap-7 bg-white dark:bg-gray px-5 py-4 rounded-xl shadow-md dark:shadow-md-dark w-full">
+         <div className="flex justify-between items-center gap-4 mt-[2px]">
+            <h2 className="text-xl font-semibold">Recent Transactions</h2>
+
+            <div className="flex items-center gap-3">
+               <Button
+                  onClick={handleToggleGrid}
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover-shadow p-0"
+               >
+                  <BsFillGridFill size={18} />
+               </Button>
+               <Button
+                  onClick={handleToggleList}
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover-shadow p-0"
+                  disabled={isbelowXs}
+               >
+                  <RiListCheck3 size={18} />
+               </Button>
+            </div>
+         </div>
 
          <div className="md:px-5">
-            {loading ? (
-               <div className="w-full h-20 flex justify-center items-center">
-                  <ClipLoader color="#00A2C9" />
-               </div>
+            {isList ? (
+               <>
+                  {loading ? (
+                     <div className="w-full h-20 flex justify-center items-center">
+                        <ClipLoader color="#00A2C9" />
+                     </div>
+                  ) : (
+                     <DataTable columns={columns} data={transactions} />
+                  )}
+               </>
             ) : (
-               <DataTable columns={columns} data={data} />
+               <>
+                  {loading ? (
+                     <div className="w-full h-20 flex justify-center items-center">
+                        <ClipLoader color="#00A2C9" />
+                     </div>
+                  ) : (
+                     <div className="flex flex-col gap-7">
+                        <SearchAndFilter
+                           handleSearch={handleSearch}
+                           handleFilter={handleFilter}
+                           title={filterTitleList}
+                        />
+
+                        <div className="w-full">
+                           {filteredTransactions.length ? (
+                              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                                 {filteredTransactions.map((transaction) => (
+                                    <TransactionCard
+                                       key={transaction.id}
+                                       transaction={transaction}
+                                    />
+                                 ))}
+                              </div>
+                           ) : (
+                              <p className="pending-text w-full text-center">
+                                 No results found.
+                              </p>
+                           )}
+                        </div>
+                     </div>
+                  )}
+               </>
             )}
          </div>
       </div>

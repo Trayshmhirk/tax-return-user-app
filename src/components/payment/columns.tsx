@@ -24,17 +24,9 @@ import {
 import { Badge } from "../ui/badge";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
 import { exportToPDF } from "@/helpers/exportToPDF";
+import { TransactionPropTypes } from "@/types/AllTypes";
 
-export type Transaction = {
-   id: string;
-   date: string;
-   description: string;
-   amount: number;
-   currency: string;
-   status: "pending" | "processing" | "success" | "failed";
-};
-
-export const columns: ColumnDef<Transaction>[] = [
+export const columns: ColumnDef<TransactionPropTypes>[] = [
    {
       id: "select",
       header: ({ table }) => (
