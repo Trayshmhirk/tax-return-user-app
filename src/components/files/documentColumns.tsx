@@ -328,6 +328,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                      <DropdownMenuItem
                         onSelect={(e) => e.preventDefault()}
                         className="flex items-center gap-2 cursor-pointer"
+                        // onClick={() => pdfViewer(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
                      >
                         <Eye className="w-4 h-4" />
                         View Document
@@ -340,17 +341,11 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                         Share document
                      </DropdownMenuItem>
 
-                     <DropdownMenuItem
-                        className="flex items-center gap-2 cursor-pointer"
-                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                     >
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
-                     <DropdownMenuItem
-                        className="flex items-center gap-2 cursor-pointer"
-                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                     >
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Trash2 className="w-4 h-4" />
                         Delete
                      </DropdownMenuItem>

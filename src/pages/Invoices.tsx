@@ -60,7 +60,7 @@ const Invoices = () => {
       : [];
 
    return (
-      <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-7">
          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {invoiceMetrics.map((metric, index) => (
                <MetricsCard key={index} metric={metric} />

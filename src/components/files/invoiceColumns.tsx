@@ -188,7 +188,7 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                   ${status === "paid" ? "bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border-green-600 dark:border-green-400" : ""}   
                `}
             >
-               {status.toUpperCase()}
+               {status.charAt(0).toUpperCase() + status.slice(1)}
             </Badge>
          );
       },

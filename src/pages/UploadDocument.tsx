@@ -215,7 +215,7 @@ const UploadDocument = () => {
    };
 
    return (
-      <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-7">
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
 
          {/* Ongoing */}
