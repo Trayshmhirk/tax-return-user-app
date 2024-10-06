@@ -35,7 +35,8 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                ${transaction.status.toLowerCase() === "processing" ? "processing" : ""}
             `}
             >
-               {transaction.status}
+               {transaction.status.charAt(0).toUpperCase() +
+                  transaction.status.slice(1)}
             </div>
 
             <DropdownMenu>

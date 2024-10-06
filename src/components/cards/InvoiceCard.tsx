@@ -39,7 +39,8 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                ${invoice.status.toLowerCase() === "failed" ? "danger" : ""}
             `}
             >
-               {invoice.status}
+               {invoice.status.charAt(0).toUpperCase() +
+                  invoice.status.slice(1)}
             </div>
 
             <DropdownMenu>
