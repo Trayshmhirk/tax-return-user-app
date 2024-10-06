@@ -1,7 +1,7 @@
-import { Transaction } from "@/components/payment/transactionColumns";
+import { TransactionPropTypes } from "@/types/AllTypes";
 import jsPDF from "jspdf";
 
-export const exportToPDF = (transaction: Transaction) => {
+export const exportToPDF = (transaction: TransactionPropTypes) => {
    const doc = new jsPDF();
 
    const pageWidth = doc.internal.pageSize.getWidth();

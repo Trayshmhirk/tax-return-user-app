@@ -11,6 +11,7 @@ import {
 import { Button } from "../ui/button";
 import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
+import { exportToPDF } from "@/helpers/exportToPDF";
 
 const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
    const truncateString = (str: string, num: number) => {
@@ -71,7 +72,10 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                      <Share className="w-4 h-4" />
                      Share transaction
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                  <DropdownMenuItem
+                     className="flex items-center gap-2 cursor-pointer"
+                     onClick={() => exportToPDF(transaction)}
+                  >
                      <Download className="w-4 h-4" />
                      Download
                   </DropdownMenuItem>
