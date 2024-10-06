@@ -9,7 +9,7 @@ import {
    DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Transaction } from "../payment/columns";
+import { Transaction } from "../payment/transactionColumns";
 import { exportToPDF } from "@/helpers/exportToPDF";
 
 type TransactionReceiptDialogProps = {

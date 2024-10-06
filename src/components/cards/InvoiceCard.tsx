@@ -36,7 +36,7 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                ${invoice.status.toLowerCase() === "overdue" ? "danger" : ""}
                ${invoice.status.toLowerCase() === "paid" ? "success" : ""}
                ${invoice.status.toLowerCase() === "pending" ? "warning" : ""}
-               ${invoice.status.toLowerCase() === "failed" ? "warning" : ""}
+               ${invoice.status.toLowerCase() === "failed" ? "danger" : ""}
             `}
             >
                {invoice.status}

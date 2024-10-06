@@ -1,4 +1,4 @@
-import { Transaction } from "@/components/payment/columns";
+import { Transaction } from "@/components/payment/transactionColumns";
 import jsPDF from "jspdf";
 
 export const exportToPDF = (transaction: Transaction) => {

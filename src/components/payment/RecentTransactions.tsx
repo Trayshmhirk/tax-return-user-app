@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { columns } from "./columns";
+import { columns } from "./transactionColumns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 import { TransactionPropTypes } from "@/types/AllTypes";
@@ -71,14 +71,18 @@ const RecentTransactions = ({
    };
 
    const filteredTransactions = transactions
-      ? transactions.filter(
-           (transaction) =>
-              searchTransactions(transaction) && filterByStatus(transaction)
-        )
+      ? transactions
+           .filter(
+              (transaction) =>
+                 searchTransactions(transaction) && filterByStatus(transaction)
+           )
+           .sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+           )
       : [];
 
    return (
-      <div className="flex flex-col gap-7 bg-white dark:bg-gray px-5 py-4 rounded-xl shadow-md dark:shadow-md-dark w-full">
+      <div className="flex flex-col gap-7 bg-white dark:bg-gray p-5 rounded-xl shadow-md dark:shadow-md-dark w-full">
          <div className="flex justify-between items-center gap-4 mt-[2px]">
             <h2 className="text-xl font-semibold">Recent Transactions</h2>
 
@@ -99,7 +103,7 @@ const RecentTransactions = ({
             </div>
          </div>
 
-         <div className="md:px-5">
+         <div className="md:px-4">
             {isList ? (
                <>
                   {loading ? (
@@ -124,7 +128,7 @@ const RecentTransactions = ({
                            title={filterTitleList}
                         />
 
-                        <div className="w-full">
+                        <div className="w-full pb-3">
                            {filteredTransactions.length ? (
                               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                                  {filteredTransactions.map((transaction) => (

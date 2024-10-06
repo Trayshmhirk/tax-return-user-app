@@ -25,6 +25,8 @@ import { InvoicesPropTypes } from "@/types/AllTypes";
 import { formatDate } from "date-fns";
 import { Badge } from "../ui/badge";
 
+const handleSendToChat = () => {};
+
 export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
    {
       id: "select",
@@ -216,7 +218,7 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
 
                      <DropdownMenuItem
                         // onSelect={(e) => e.preventDefault()}
-                        // onClick={handleSendToChat ?? (() => {})}
+                        onClick={handleSendToChat ?? (() => {})}
                         className="flex items-center gap-2 cursor-pointer"
                      >
                         <Share className="w-4 h-4" />

@@ -9,13 +9,8 @@ import {
    DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import {
-   Download,
-   MoreVertical,
-   Share,
-   Trash2,
-   CreditCard,
-} from "lucide-react";
+import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
+import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
 
 const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
    const truncateString = (str: string, num: number) => {
@@ -28,15 +23,15 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
    const handleSendToChat = () => {};
 
    return (
-      <div className="relative w-full flex flex-col gap-4 bg-white dark:bg-gray px-4 py-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
+      <div className="relative w-full flex flex-col gap-3 bg-white dark:bg-gray px-4 py-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
          <div className="flex items-center justify-between gap-3">
             <div
                className={`
                 w-fit py-[2px] px-2 text-xs rounded
-               ${transaction.status.toLowerCase() === "overdue" ? "danger" : ""}
-               ${transaction.status.toLowerCase() === "paid" ? "success" : ""}
+               ${transaction.status.toLowerCase() === "failed" ? "danger" : ""}
+               ${transaction.status.toLowerCase() === "success" ? "success" : ""}
                ${transaction.status.toLowerCase() === "pending" ? "warning" : ""}
-               ${transaction.status.toLowerCase() === "failed" ? "warning" : ""}
+               ${transaction.status.toLowerCase() === "processing" ? "processing" : ""}
             `}
             >
                {transaction.status}
@@ -59,7 +54,15 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                      Actions
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
-
+                  <TransactionReceiptDialog transaction={transaction}>
+                     <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        className="flex items-center gap-2 cursor-pointer"
+                     >
+                        <Eye className="w-4 h-4" />
+                        View Transaction
+                     </DropdownMenuItem>
+                  </TransactionReceiptDialog>
                   <DropdownMenuItem
                      // onSelect={(e) => e.preventDefault()}
                      onClick={handleSendToChat ?? (() => {})}
@@ -73,10 +76,6 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                      Download
                   </DropdownMenuItem>
                   <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                     <CreditCard className="w-4 h-4" />
-                     Pay
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                      <Trash2 className="w-4 h-4" />
                      Delete
                   </DropdownMenuItem>
@@ -84,7 +83,7 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
             </DropdownMenu>
          </div>
 
-         <div className="flex flex-col gap-[6px]">
+         <div className="flex flex-col gap-[3px]">
             <p className="text-xs">#{transaction.id}</p>
             <p className="text-lg text-richElectricBlue font-bold">
                {truncateString(transaction.description, 15)}

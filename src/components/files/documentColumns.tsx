@@ -26,6 +26,8 @@ import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";
 
+const handleSendToChat = () => {};
+
 export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
    {
       id: "select",
@@ -331,7 +333,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                         View Document
                      </DropdownMenuItem>
                      <DropdownMenuItem
-                        // onClick={handleSendToChat ?? (() => {})}
+                        onClick={handleSendToChat ?? (() => {})}
                         className="flex items-center gap-2 cursor-pointer"
                      >
                         <Share className="w-4 h-4" />

@@ -1,7 +1,15 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown, Download, Copy, Eye } from "lucide-react";
+import {
+   MoreHorizontal,
+   ArrowUpDown,
+   Download,
+   Copy,
+   Eye,
+   Share,
+   Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +33,8 @@ import { Badge } from "../ui/badge";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
 import { exportToPDF } from "@/helpers/exportToPDF";
 import { TransactionPropTypes } from "@/types/AllTypes";
+
+const handleSendToChat = () => {};
 
 export const columns: ColumnDef<TransactionPropTypes>[] = [
    {
@@ -235,13 +245,24 @@ export const columns: ColumnDef<TransactionPropTypes>[] = [
                            View Transaction
                         </DropdownMenuItem>
                      </TransactionReceiptDialog>
-
+                     <DropdownMenuItem
+                        // onSelect={(e) => e.preventDefault()}
+                        onClick={handleSendToChat ?? (() => {})}
+                        className="flex items-center gap-2 cursor-pointer"
+                     >
+                        <Share className="w-4 h-4" />
+                        Share transaction
+                     </DropdownMenuItem>
                      <DropdownMenuItem
                         className="flex items-center gap-2 cursor-pointer"
                         onClick={() => exportToPDF(transaction)}
                      >
                         <Download className="w-4 h-4" />
                         Download
+                     </DropdownMenuItem>
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                        <Trash2 className="w-4 h-4" />
+                        Delete
                      </DropdownMenuItem>
                   </DropdownMenuContent>
                </DropdownMenu>
