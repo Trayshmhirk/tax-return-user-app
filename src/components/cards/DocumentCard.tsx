@@ -13,6 +13,7 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
+import { truncateString } from "@/helpers/truncateString";
 
 export const DocumentCard = ({
    document,
@@ -20,13 +21,6 @@ export const DocumentCard = ({
    isSelected,
    handleSendToChat,
 }: DocumentCardPropsTypes) => {
-   const truncateString = (str: string, num: number) => {
-      if (str.length <= num) {
-         return str;
-      }
-      return str.slice(0, num) + "...";
-   };
-
    const handleViewDocument = () => {};
 
    return (

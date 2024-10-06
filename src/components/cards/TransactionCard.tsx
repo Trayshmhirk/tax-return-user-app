@@ -12,15 +12,10 @@ import { Button } from "../ui/button";
 import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
 import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
 import { exportToPDF } from "@/helpers/exportToPDF";
+import { truncateString } from "@/helpers/truncateString";
+import { formatAmount } from "@/helpers/formatAmount";
 
 const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
-   const truncateString = (str: string, num: number) => {
-      if (str.length <= num) {
-         return str;
-      }
-      return str.slice(0, num) + " ...";
-   };
-
    const handleSendToChat = () => {};
 
    return (
@@ -97,7 +92,9 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                <p className="text-xs font-medium">
                   {formatDate(transaction.date, "dd.MM.yyyy")}
                </p>
-               <p className="text-sm font-bold">${transaction.amount}</p>
+               <p className="text-sm font-bold">
+                  {formatAmount(transaction.amount)}
+               </p>
             </div>
          </div>
       </div>

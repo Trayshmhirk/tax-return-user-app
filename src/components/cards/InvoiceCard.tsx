@@ -16,15 +16,10 @@ import {
    Trash2,
    CreditCard,
 } from "lucide-react";
+import { truncateString } from "@/helpers/truncateString";
+import { formatAmount } from "@/helpers/formatAmount";
 
 const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
-   const truncateString = (str: string, num: number) => {
-      if (str.length <= num) {
-         return str;
-      }
-      return str.slice(0, num) + " ...";
-   };
-
    const handleSendToChat = () => {};
 
    return (
@@ -95,7 +90,9 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                <p className="text-xs font-medium">
                   {formatDate(invoice.due_date, "dd.MM.yyyy")}
                </p>
-               <p className="text-sm font-bold">${invoice.amount}</p>
+               <p className="text-sm font-bold">
+                  {formatAmount(invoice.amount)}
+               </p>
             </div>
          </div>
       </div>
