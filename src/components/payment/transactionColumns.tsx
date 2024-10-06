@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import {
    MoreHorizontal,
-   ArrowUpDown,
+   ChevronDown,
    Download,
    Copy,
    Eye,
@@ -71,10 +71,10 @@ export const columns: ColumnDef<TransactionPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1"
                   >
                      Date
-                     <ArrowUpDown className="h-4 w-4" />
+                     <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
                <DropdownMenuContent

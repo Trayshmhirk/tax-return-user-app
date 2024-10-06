@@ -28,6 +28,8 @@ import { formatDate } from "date-fns";
 
 const handleSendToChat = () => {};
 
+// const docTypeFilterList = ["PDF", "PNG", "JPEG", "DOC", "XLS"];
+
 export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
    {
       id: "select",
@@ -63,7 +65,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1 px-[6px] text-xs md:text-sm"
                   >
                      Name
                      <ChevronDown className="h-4 w-4" />
@@ -119,55 +121,10 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
    },
    {
       accessorKey: "document_size",
-      header: ({ table }) => (
-         <div className="flex items-center gap-2">
-            <DropdownMenu>
-               <DropdownMenuTrigger asChild>
-                  <Button
-                     variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
-                  >
-                     Size
-                     <ChevronDown className="h-4 w-4" />
-                  </Button>
-               </DropdownMenuTrigger>
-               <DropdownMenuContent
-                  align="start"
-                  className="dark:bg-gray dark:border dark:border-spanishGray dark:border-opacity-10"
-               >
-                  <DropdownMenuCheckboxItem
-                     checked={
-                        table.getState().sorting[0]?.id === "document_size" &&
-                        !table.getState().sorting[0]?.desc
-                     }
-                     onCheckedChange={(checked) =>
-                        table.setSorting([
-                           { id: "document_size", desc: !checked },
-                        ])
-                     }
-                  >
-                     Ascending
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                     checked={
-                        table.getState().sorting[0]?.id === "document_size" &&
-                        table.getState().sorting[0]?.desc
-                     }
-                     onCheckedChange={(checked) =>
-                        table.setSorting([
-                           { id: "document_size", desc: checked },
-                        ])
-                     }
-                  >
-                     Descending
-                  </DropdownMenuCheckboxItem>
-               </DropdownMenuContent>
-            </DropdownMenu>
-         </div>
-      ),
+      header: "Size",
       cell: ({ row }) => {
          const size = row.original.document_size;
-         return <div className="lg:px-2 text-xs md:text-sm">{size} MB</div>;
+         return <div className="text-xs md:text-sm">{size} MB</div>;
       },
    },
    {
@@ -190,7 +147,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                   <DropdownMenuTrigger asChild>
                      <Button
                         variant="ghost"
-                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
+                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1 px-[6px] text-xs md:text-sm"
                      >
                         Type
                         <ChevronDown className="h-4 w-4" />
