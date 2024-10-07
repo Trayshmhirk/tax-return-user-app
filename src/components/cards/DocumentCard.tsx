@@ -88,7 +88,7 @@ export const DocumentCard = ({
                         <Share className="w-4 h-4" />
                         Share document
                      </DropdownMenuItem>
-
+                     {/* delete alert */}
                      <AlertDialog>
                         <AlertDialogTrigger asChild>
                            <DropdownMenuItem

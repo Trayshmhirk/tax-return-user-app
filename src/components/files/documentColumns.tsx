@@ -20,10 +20,21 @@ import {
    DropdownMenuTrigger,
    DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DocumentsPropTypes } from "@/types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
-import DocumentTypeIcon from "../icons/DocumentTypeIcon";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";
 
 const handleSendToChat = () => {};
@@ -302,10 +313,38 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
-                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Trash2 className="w-4 h-4" />
-                        Delete
-                     </DropdownMenuItem>
+                     {/* delete alert */}
+                     <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                           >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                           </DropdownMenuItem>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                           <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                 Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                 This action cannot be undone. This will
+                                 permanently delete this document and remove its
+                                 data from our servers.
+                              </AlertDialogDescription>
+                           </AlertDialogHeader>
+                           <AlertDialogFooter>
+                              <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                                 Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                                 Delete
+                              </AlertDialogAction>
+                           </AlertDialogFooter>
+                        </AlertDialogContent>
+                     </AlertDialog>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

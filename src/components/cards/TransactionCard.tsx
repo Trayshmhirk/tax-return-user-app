@@ -86,7 +86,7 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                      <Download className="w-4 h-4" />
                      Download
                   </DropdownMenuItem>
-
+                  {/* delete alert */}
                   <AlertDialog>
                      <AlertDialogTrigger asChild>
                         <DropdownMenuItem

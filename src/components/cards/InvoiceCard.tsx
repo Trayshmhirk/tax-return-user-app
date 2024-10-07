@@ -83,7 +83,7 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                      <CreditCard className="w-4 h-4" />
                      Pay
                   </DropdownMenuItem>
-
+                  {/* delete alert */}
                   <AlertDialog>
                      <AlertDialogTrigger asChild>
                         <DropdownMenuItem
