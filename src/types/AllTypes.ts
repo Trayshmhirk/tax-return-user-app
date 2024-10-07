@@ -47,6 +47,7 @@ export type DocumentCardPropsTypes = {
    onSelect?: (doc: DocumentsPropTypes) => void;
    isSelected?: boolean;
    handleSendToChat?: () => void;
+   handleDeleteDocument?: (docId: string) => void;
 };
 
 export type CardDropdownPropsTypes = {

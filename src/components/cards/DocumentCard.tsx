@@ -31,6 +31,7 @@ export const DocumentCard = ({
    onSelect,
    isSelected,
    handleSendToChat,
+   handleDeleteDocument,
 }: DocumentCardPropsTypes) => {
    const handleViewDocument = () => {};
 
@@ -114,7 +115,13 @@ export const DocumentCard = ({
                               <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                                  Cancel
                               </AlertDialogCancel>
-                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                              <AlertDialogAction
+                                 onClick={() =>
+                                    handleDeleteDocument &&
+                                    handleDeleteDocument(document.id)
+                                 }
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
                                  Delete
                               </AlertDialogAction>
                            </AlertDialogFooter>

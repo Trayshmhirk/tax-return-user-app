@@ -214,6 +214,18 @@ const UploadDocument = () => {
       });
    };
 
+   const handleDeleteDocument = (docId: string) => {
+      // Remove the document with the specified ID from the uploadedDocuments state
+      setUploadedDocuments((prevDocs) =>
+         prevDocs.filter((doc) => doc.id !== docId)
+      );
+
+      // Also remove it from the selectedDocuments state if it's selected
+      setSelectedDocuments((prevSelectedDocs) =>
+         prevSelectedDocs.filter((doc) => doc.id !== docId)
+      );
+   };
+
    return (
       <div className="flex flex-col gap-7">
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
@@ -300,6 +312,7 @@ const UploadDocument = () => {
                               isSelected={selectedDocuments.some(
                                  (selectedDoc) => selectedDoc.id === doc.id
                               )}
+                              handleDeleteDocument={handleDeleteDocument}
                            />
                         ))}
                      </div>
