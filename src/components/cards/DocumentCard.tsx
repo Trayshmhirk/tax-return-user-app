@@ -1,7 +1,7 @@
-import DocumentTypeIcon from "../icons/DocumentTypeIcon";
-import { DocumentCardPropsTypes } from "../../types/AllTypes";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
+import { DocumentCardPropsTypes } from "@/types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 import { formatDate } from "date-fns";
 import {
    DropdownMenu,
@@ -10,9 +10,20 @@ import {
    DropdownMenuLabel,
    DropdownMenuSeparator,
    DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
-import { Download, Eye, MoreVertical, Share, Trash2 } from "lucide-react";
+} from "@/components//ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Eye, MoreVertical, Share, Trash2 } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
 
 export const DocumentCard = ({
@@ -77,14 +88,38 @@ export const DocumentCard = ({
                         <Share className="w-4 h-4" />
                         Share document
                      </DropdownMenuItem>
-                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Download className="w-4 h-4" />
-                        Download
-                     </DropdownMenuItem>
-                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Trash2 className="w-4 h-4" />
-                        Delete
-                     </DropdownMenuItem>
+
+                     <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                           >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                           </DropdownMenuItem>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                           <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                 Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                 This action cannot be undone. This will
+                                 permanently delete this document and remove its
+                                 data from our servers.
+                              </AlertDialogDescription>
+                           </AlertDialogHeader>
+                           <AlertDialogFooter>
+                              <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                                 Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                                 Delete
+                              </AlertDialogAction>
+                           </AlertDialogFooter>
+                        </AlertDialogContent>
+                     </AlertDialog>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

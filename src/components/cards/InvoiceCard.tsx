@@ -1,5 +1,5 @@
 import { formatDate } from "date-fns";
-import { InvoiceCardPropTypes } from "../../types/AllTypes";
+import { InvoiceCardPropTypes } from "@/types/AllTypes";
 import {
    DropdownMenu,
    DropdownMenuContent,
@@ -7,8 +7,19 @@ import {
    DropdownMenuLabel,
    DropdownMenuSeparator,
    DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
+} from "@/components/ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
    Download,
    MoreVertical,
@@ -72,10 +83,38 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                      <CreditCard className="w-4 h-4" />
                      Pay
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                     <Trash2 className="w-4 h-4" />
-                     Delete
-                  </DropdownMenuItem>
+
+                  <AlertDialog>
+                     <AlertDialogTrigger asChild>
+                        <DropdownMenuItem
+                           onSelect={(e) => e.preventDefault()}
+                           className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                        >
+                           <Trash2 className="w-4 h-4" />
+                           Delete
+                        </DropdownMenuItem>
+                     </AlertDialogTrigger>
+                     <AlertDialogContent>
+                        <AlertDialogHeader>
+                           <AlertDialogTitle>
+                              Are you absolutely sure?
+                           </AlertDialogTitle>
+                           <AlertDialogDescription>
+                              This action cannot be undone. This will
+                              permanently delete this invoice and remove its
+                              data from our servers.
+                           </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                           <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                              Cancel
+                           </AlertDialogCancel>
+                           <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                              Delete
+                           </AlertDialogAction>
+                        </AlertDialogFooter>
+                     </AlertDialogContent>
+                  </AlertDialog>
                </DropdownMenuContent>
             </DropdownMenu>
          </div>
