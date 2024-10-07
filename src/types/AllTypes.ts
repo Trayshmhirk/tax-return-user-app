@@ -73,6 +73,7 @@ export type InvoicesPropTypes = {
 export type InvoiceCardPropTypes = {
    invoice: InvoicesPropTypes;
    handleClick?: () => void;
+   handleDeleteInvoice?: (invoiceId: string) => void;
 };
 
 // videos

@@ -59,6 +59,13 @@ const Invoices = () => {
            )
       : [];
 
+   const handleDeleteInvoice = (invoiceId: string) => {
+      // Remove the invoice with the specified ID from the invoices state
+      setInvoices((prevInvoices) =>
+         prevInvoices.filter((invoice) => invoice.id !== invoiceId)
+      );
+   };
+
    return (
       <div className="flex flex-col gap-7">
          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -90,7 +97,11 @@ const Invoices = () => {
                   {filteredInvoices.length ? (
                      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
                         {filteredInvoices.map((invoice, index) => (
-                           <InvoiceCard key={index} invoice={invoice} />
+                           <InvoiceCard
+                              key={index}
+                              invoice={invoice}
+                              handleDeleteInvoice={handleDeleteInvoice}
+                           />
                         ))}
                      </div>
                   ) : (

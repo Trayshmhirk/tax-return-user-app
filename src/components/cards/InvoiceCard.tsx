@@ -30,7 +30,10 @@ import {
 import { truncateString } from "@/helpers/truncateString";
 import { formatAmount } from "@/helpers/formatAmount";
 
-const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
+const InvoiceCard = ({
+   invoice,
+   handleDeleteInvoice,
+}: InvoiceCardPropTypes) => {
    const handleSendToChat = () => {};
 
    return (
@@ -109,7 +112,13 @@ const InvoiceCard = ({ invoice }: InvoiceCardPropTypes) => {
                            <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                               Cancel
                            </AlertDialogCancel>
-                           <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                           <AlertDialogAction
+                              onClick={() =>
+                                 handleDeleteInvoice &&
+                                 handleDeleteInvoice(invoice.id)
+                              }
+                              className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                           >
                               Delete
                            </AlertDialogAction>
                         </AlertDialogFooter>
