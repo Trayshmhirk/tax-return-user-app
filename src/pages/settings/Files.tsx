@@ -119,6 +119,16 @@ const Files = () => {
       });
    };
 
+   const handleDeleteDocument = (docId: string) => {
+      // Remove the document with the specified ID from the uploadedDocuments state
+      setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== docId));
+
+      // Also remove it from the selectedDocuments state if it's selected
+      setSelectedDocuments((prevSelectedDocs) =>
+         prevSelectedDocs.filter((doc) => doc.id !== docId)
+      );
+   };
+
    // invoice functions
 
    const searchInvoices = (invoice: InvoicesPropTypes) => {
@@ -139,6 +149,13 @@ const Files = () => {
            (invoice) => searchInvoices(invoice) && filterByStatus(invoice)
         )
       : [];
+
+   const handleDeleteInvoice = (invoiceId: string) => {
+      // Remove the invoice with the specified ID from the invoices state
+      setInvoices((prevInvoices) =>
+         prevInvoices.filter((invoice) => invoice.id !== invoiceId)
+      );
+   };
 
    return (
       <>
@@ -201,7 +218,10 @@ const Files = () => {
                               </span>
                            </div>
                         </div>
-                        <DataTable columns={documentColumns} data={documents} />
+                        <DataTable
+                           columns={documentColumns(handleDeleteDocument)}
+                           data={documents}
+                        />
                      </div>
                   ) : (
                      <div className="flex flex-col gap-6">
@@ -251,6 +271,9 @@ const Files = () => {
                                              (selectedDoc) =>
                                                 selectedDoc.id === doc.id
                                           )}
+                                          handleDeleteDocument={
+                                             handleDeleteDocument
+                                          }
                                        />
                                     ))}
                                  </div>
@@ -281,13 +304,13 @@ const Files = () => {
                            </div>
                         </div>
                         <DataTable
-                           columns={invoiceColumns}
+                           columns={invoiceColumns(handleDeleteInvoice)}
                            data={invoices}
                            isInvoice
                         />
                      </div>
                   ) : (
-                     <div className="flex flex-col gap-7">
+                     <div className="flex flex-col gap-6">
                         <div className="flex justify-between items-center">
                            <div className="flex items-center gap-2">
                               <p className="font-medium">Recent invoices</p>
@@ -317,6 +340,9 @@ const Files = () => {
                                        <InvoiceCard
                                           key={invoice.id}
                                           invoice={invoice}
+                                          handleDeleteInvoice={
+                                             handleDeleteInvoice
+                                          }
                                        />
                                     ))}
                                  </div>

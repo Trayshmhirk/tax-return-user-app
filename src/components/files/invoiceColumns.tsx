@@ -38,7 +38,9 @@ import { Badge } from "@/components/ui/badge";
 
 const handleSendToChat = () => {};
 
-export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
+export const invoiceColumns = (
+   handleDeleteInvoice: (invoiceId: string) => void
+): ColumnDef<InvoicesPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -207,8 +209,7 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
    {
       id: "actions",
       cell: ({ row }) => {
-         const document = row.original;
-         document;
+         const invoice = row.original;
 
          return (
             <div className="flex justify-end">
@@ -269,7 +270,10 @@ export const invoiceColumns: ColumnDef<InvoicesPropTypes>[] = [
                               <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                                  Cancel
                               </AlertDialogCancel>
-                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                              <AlertDialogAction
+                                 onClick={() => handleDeleteInvoice(invoice.id)}
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
                                  Delete
                               </AlertDialogAction>
                            </AlertDialogFooter>

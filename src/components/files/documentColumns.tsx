@@ -41,7 +41,9 @@ const handleSendToChat = () => {};
 
 // const docTypeFilterList = ["PDF", "PNG", "JPEG", "DOC", "XLS"];
 
-export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
+export const documentColumns = (
+   handleDeleteDoc: (documentId: string) => void
+): ColumnDef<DocumentsPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -339,7 +341,10 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                               <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                                  Cancel
                               </AlertDialogCancel>
-                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                              <AlertDialogAction
+                                 onClick={() => handleDeleteDoc(document.id)}
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
                                  Delete
                               </AlertDialogAction>
                            </AlertDialogFooter>
