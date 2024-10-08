@@ -47,7 +47,9 @@ import { TransactionPropTypes } from "@/types/AllTypes";
 
 const handleSendToChat = () => {};
 
-export const columns: ColumnDef<TransactionPropTypes>[] = [
+export const transactionColumns = (
+   handleDeleteTransaction: (invoiceId: string) => void
+): ColumnDef<TransactionPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -297,7 +299,12 @@ export const columns: ColumnDef<TransactionPropTypes>[] = [
                               <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                                  Cancel
                               </AlertDialogCancel>
-                              <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                              <AlertDialogAction
+                                 onClick={() =>
+                                    handleDeleteTransaction(transaction.id)
+                                 }
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
                                  Delete
                               </AlertDialogAction>
                            </AlertDialogFooter>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { columns } from "./transactionColumns";
+import { transactionColumns } from "./transactionColumns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
 import { TransactionPropTypes } from "@/types/AllTypes";
@@ -120,7 +120,10 @@ const RecentTransactions = ({
                         <ClipLoader color="#00A2C9" />
                      </div>
                   ) : (
-                     <DataTable columns={columns} data={transactions} />
+                     <DataTable
+                        columns={transactionColumns(handleDeleteTransaction)}
+                        data={transactions}
+                     />
                   )}
                </>
             ) : (
