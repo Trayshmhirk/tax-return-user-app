@@ -26,7 +26,10 @@ import { exportToPDF } from "@/helpers/exportToPDF";
 import { truncateString } from "@/helpers/truncateString";
 import { formatAmount } from "@/helpers/formatAmount";
 
-const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
+const TransactionCard = ({
+   transaction,
+   handleDeleteTransaction,
+}: TransactionCardPropTypes) => {
    const handleSendToChat = () => {};
 
    return (
@@ -112,7 +115,13 @@ const TransactionCard = ({ transaction }: TransactionCardPropTypes) => {
                            <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
                               Cancel
                            </AlertDialogCancel>
-                           <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
+                           <AlertDialogAction
+                              onClick={() =>
+                                 handleDeleteTransaction &&
+                                 handleDeleteTransaction(transaction.id)
+                              }
+                              className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                           >
                               Delete
                            </AlertDialogAction>
                         </AlertDialogFooter>

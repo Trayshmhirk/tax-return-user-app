@@ -149,4 +149,5 @@ export type TransactionPropTypes = {
 export type TransactionCardPropTypes = {
    transaction: TransactionPropTypes;
    handleClick?: () => void;
+   handleDeleteTransaction?: (transactionId: string) => void;
 };

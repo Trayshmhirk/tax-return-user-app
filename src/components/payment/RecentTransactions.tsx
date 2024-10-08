@@ -81,6 +81,15 @@ const RecentTransactions = ({
            )
       : [];
 
+   const handleDeleteTransaction = (transactionId: string) => {
+      // Remove the invoice with the specified ID from the invoices state
+      setTransactions((prevTransaction) =>
+         prevTransaction.filter(
+            (transaction) => transaction.id !== transactionId
+         )
+      );
+   };
+
    return (
       <div className="flex flex-col gap-7 bg-white dark:bg-gray p-5 rounded-xl shadow-md dark:shadow-md-dark w-full">
          <div className="flex justify-between items-center gap-4 mt-[2px]">
@@ -135,6 +144,9 @@ const RecentTransactions = ({
                                     <TransactionCard
                                        key={transaction.id}
                                        transaction={transaction}
+                                       handleDeleteTransaction={
+                                          handleDeleteTransaction
+                                       }
                                     />
                                  ))}
                               </div>
