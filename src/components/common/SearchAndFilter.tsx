@@ -56,7 +56,7 @@ const SearchAndFilter = ({
                >
                   <div className="flex items-center gap-2">
                      <IoFilter className="w-4 h-4" />
-                     {value ? title.find((t) => t === value) : "Filter"}
+                     {value ? title.find((t) => t === value) : "Filters"}
                   </div>
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                </Button>

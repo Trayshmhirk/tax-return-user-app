@@ -1,12 +1,13 @@
 import {
    DocumentsPropTypes,
-   ReceiptsPropTypes,
+   InvoicesPropTypes,
    VideoDataTypes,
    ServicesListTypes,
    CategoryListTypes,
    QuestionsPropsType,
    RequestsPropTypes,
    CardsProps,
+   MetricCardProps,
 } from "../types/AllTypes";
 
 // request service
@@ -70,73 +71,36 @@ export const uploadedDocuments: DocumentsPropTypes[] = [
       date_modified: "2024-08-25",
       base64: "",
    },
-   {
-      id: "id2",
-      document_name: "document",
-      document_size: "20",
-      document_type: "image/png",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
-   {
-      id: "id3",
-      document_name: "Excel file",
-      document_size: "20",
-      document_type: "application/vnd.ms-excel",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
-   {
-      id: "id4",
-      document_name: "Word file",
-      document_size: "20",
-      document_type: "application/msword",
-      date_modified: "2024-08-25",
-      base64: "",
-   },
 ];
 
-// receipts
-export const receipts: ReceiptsPropTypes[] = [
+// invoices
+export const invoices: InvoicesPropTypes[] = [
    {
-      id: "retdb2137",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-08-07",
+      id: "INV83647",
+      title: "Tax payment",
+      issued_by: "admin@taxreturns",
+      due_date: "2024-10-03",
+      amount: 5900,
+      status: "pending",
       base64: "",
-      amount: "",
    },
    {
-      id: "retug7457",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-07-07",
+      id: "INV63478",
+      title: "Asset tax",
+      issued_by: "superadmin@taxreturns",
+      due_date: "2024-10-01",
+      amount: 4799,
+      status: "overdue",
       base64: "",
-      amount: "",
    },
    {
-      id: "rettg4567",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-09-02",
+      id: "INV93788",
+      title: "Asset tax",
+      issued_by: "superadmin@taxreturns",
+      due_date: "2024-10-01",
+      amount: 4799,
+      status: "paid",
       base64: "",
-      amount: "",
-   },
-   {
-      id: "retad4589",
-      title: "receipt",
-      owner_info: {
-         fullname: "Micheal",
-      },
-      date: "2024-09-03",
-      base64: "",
-      amount: "",
    },
 ];
 
@@ -336,19 +300,19 @@ export const help: QuestionsPropsType[] = [
 export const requests: RequestsPropTypes[] = [
    {
       service_id: "5tdfG8rnfP",
-      status: "Pending",
+      status: "pending",
       requestDate: "2024-08-30",
       service_title: "tax",
    },
    {
       service_id: "Iu83Hnd8Oi",
-      status: "Completed",
+      status: "completed",
       requestDate: "2024-08-25",
       service_title: "attestation",
    },
    {
       service_id: "Ko9fJk32hN",
-      status: "Paid",
+      status: "paid",
       requestDate: "2024-06-25",
       service_title: "payment",
    },
@@ -381,5 +345,32 @@ export const initialCards: CardsProps[] = [
       brand: "Visa",
       cardholderName: "John Doe",
       isDefault: false,
+   },
+];
+
+export const invoiceMetrics: MetricCardProps[] = [
+   {
+      amount: 15,
+      percentage: 20,
+      invoice_status: "paid",
+      is_percentage_increase: false,
+   },
+   {
+      amount: 23,
+      percentage: 10,
+      invoice_status: "pending",
+      is_percentage_increase: true,
+   },
+   {
+      amount: 13,
+      percentage: 8,
+      invoice_status: "overdue",
+      is_percentage_increase: true,
+   },
+   {
+      amount: 10,
+      percentage: 19,
+      invoice_status: "failed",
+      is_percentage_increase: false,
    },
 ];

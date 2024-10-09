@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchAndFilter from "../components/common/SearchAndFilter";
 import UploadPdfImage from "../components/common/UploadPdfImage";
 import { DocumentCard } from "../components/cards/DocumentCard";
 import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
 import { DocumentsPropTypes, FileType } from "../types/AllTypes";
-import { uploadedDocuments as mockUploadedDocuments } from "../mocks/AllMockData";
 import { getBase64 } from "../helpers/getBase64";
 import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
+import { v4 as uuidv4 } from "uuid";
+import { fetchDocuments } from "@/api/mockApis";
+import { ClipLoader } from "react-spinners";
 
 const UploadDocument = () => {
+   const [loading, setLoading] = useState(false);
    const [searchInput, setSearchInput] = useState<string>("");
    const [selectedFilter, setSelectedFilter] = useState<string>("");
    const [ongoingUploads, setOngoingUploads] = useState<number>(0);
@@ -19,8 +22,24 @@ const UploadDocument = () => {
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
    const [uploadedDocuments, setUploadedDocuments] = useState<
       DocumentsPropTypes[]
-   >(mockUploadedDocuments); // State to hold uploaded docs
+   >([]);
+   const [selectedDocuments, setSelectedDocuments] = useState<
+      DocumentsPropTypes[]
+   >([]);
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
+
+   useEffect(() => {
+      async function fetchData() {
+         setLoading(true);
+
+         setTimeout(async () => {
+            const fetchedDocuments = await fetchDocuments();
+            setUploadedDocuments(fetchedDocuments);
+            setLoading(false);
+         }, 500);
+      }
+      fetchData();
+   }, []);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -43,8 +62,6 @@ const UploadDocument = () => {
       for (let index = 0; index < selectedFiles.length; index++) {
          const selectedFile = selectedFiles[index];
          const base64File = await getBase64(selectedFile);
-
-         console.log(selectedFile.type);
 
          // Check if base64File is a string and handle the null case
          if (typeof base64File !== "string") {
@@ -127,7 +144,7 @@ const UploadDocument = () => {
                // Ensure selectedFile.type is a valid FileType
 
                const newDocument: DocumentsPropTypes = {
-                  id: Math.random().toString(), // Temporary ID generation
+                  id: uuidv4(), // Temporary ID generation
                   document_name: selectedFile.name,
                   document_type: selectedFile.type as FileType,
                   document_size: fileSizeInMB.toString(),
@@ -138,7 +155,7 @@ const UploadDocument = () => {
                // Add the new document
                setUploadedDocuments((prevDocs) => [...prevDocs, newDocument]);
 
-               // Reset upload progress after 5 seconds
+               // Reset upload progress after 2 seconds
                setTimeout(() => {
                   setUploadProgress(0);
 
@@ -146,14 +163,14 @@ const UploadDocument = () => {
                   setOngoingUploads(
                      (prevOngoingUploads) => prevOngoingUploads - 1
                   );
-               }, 3000);
+               }, 2000);
             },
             (totalSimulationSteps + 1) * simulationInterval
          );
       }
    };
 
-   const filteredFiles = uploadedDocuments
+   const filteredDocs = uploadedDocuments
       ? uploadedDocuments
            .filter(
               (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
@@ -165,19 +182,63 @@ const UploadDocument = () => {
            ) // Sorting by latest date
       : [];
 
+   // Check if all filtered documents are selected
+   const allDocumentsSelected =
+      filteredDocs.length > 0 &&
+      filteredDocs.every((doc) =>
+         selectedDocuments.some((selectedDoc) => selectedDoc.id === doc.id)
+      );
+
+   const handleSelectAll = () => {
+      if (allDocumentsSelected) {
+         // Deselect all
+         setSelectedDocuments([]);
+      } else {
+         // Select all documents
+         setSelectedDocuments(filteredDocs); // `filteredDocs` represents the currently filtered documents.
+      }
+   };
+
+   const handleSelectDocument = (doc: DocumentsPropTypes) => {
+      setSelectedDocuments((prevSelected) => {
+         // Check if the document is already selected
+         if (prevSelected.find((selectedDoc) => selectedDoc.id === doc.id)) {
+            // Deselect the document
+            return prevSelected.filter(
+               (selectedDoc) => selectedDoc.id !== doc.id
+            );
+         } else {
+            // Select the document (add it to the list)
+            return [...prevSelected, doc];
+         }
+      });
+   };
+
+   const handleDeleteDocument = (docId: string) => {
+      // Remove the document with the specified ID from the uploadedDocuments state
+      setUploadedDocuments((prevDocs) =>
+         prevDocs.filter((doc) => doc.id !== docId)
+      );
+
+      // Also remove it from the selectedDocuments state if it's selected
+      setSelectedDocuments((prevSelectedDocs) =>
+         prevSelectedDocs.filter((doc) => doc.id !== docId)
+      );
+   };
+
    return (
-      <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-7">
          <UploadPdfImage handleFileUpload={handleSelectedFile} />
 
          {/* Ongoing */}
-         <div className="flex flex-col gap-5 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
+         <div className="flex flex-col gap-4 bg-white dark:bg-gray p-4 rounded shadow-md dark:shadow-md-dark ">
             <div className="flex justify-between items-center">
                <div className="flex items-center gap-2">
                   <p className="font-medium">Ongoing uploads</p>
                   <span>{ongoingUploads ? `(${ongoingUploads})` : "(0)"}</span>
                </div>
             </div>
-            <div className="block w-full h-[1px] bg-mutedGray dark:bg-white opacity-40" />
+            <div className="block w-full h-[1px] bg-mutedGray dark:bg-white opacity-30" />
             {uploadProgress > 0 ? (
                <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
@@ -210,10 +271,10 @@ const UploadDocument = () => {
          </div>
 
          {/*  */}
-         <div className="flex flex-col gap-7">
-            <div className="title flex justify-between items-center">
+         <div className="flex flex-col gap-6">
+            <div className="flex justify-between items-center">
                <div className="flex items-center gap-2">
-                  <p className="font-medium">Recent upload</p>
+                  <p className="font-medium">Recent uploads</p>
                   <span>
                      {uploadedDocuments && uploadedDocuments.length
                         ? `(${uploadedDocuments.length})`
@@ -221,9 +282,12 @@ const UploadDocument = () => {
                   </span>
                </div>
 
-               <span className="text-richElectricBlue font-medium cursor-pointer">
-                  Select all
-               </span>
+               <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
+                  <span className="cursor-pointer" onClick={handleSelectAll}>
+                     {allDocumentsSelected ? "Deselect All" : "Select All"}
+                  </span>
+                  <span>{` (${selectedDocuments.length})`}</span>
+               </div>
             </div>
 
             <SearchAndFilter
@@ -232,19 +296,33 @@ const UploadDocument = () => {
                title={docTypeFilterList}
             />
 
-            <div className="w-full">
-               {filteredFiles.length ? (
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {filteredFiles.map((doc) => (
-                        <DocumentCard key={doc.id} document={doc} />
-                     ))}
-                  </div>
-               ) : (
-                  <p className="pending-text w-100 text-center">
-                     Nothing to show here.
-                  </p>
-               )}
-            </div>
+            {loading ? (
+               <div className="w-full h-20 flex justify-center items-center">
+                  <ClipLoader color="#00A2C9" />
+               </div>
+            ) : (
+               <div className="w-full">
+                  {filteredDocs.length ? (
+                     <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {filteredDocs.map((doc) => (
+                           <DocumentCard
+                              key={doc.id}
+                              document={doc}
+                              onSelect={handleSelectDocument}
+                              isSelected={selectedDocuments.some(
+                                 (selectedDoc) => selectedDoc.id === doc.id
+                              )}
+                              handleDeleteDocument={handleDeleteDocument}
+                           />
+                        ))}
+                     </div>
+                  ) : (
+                     <p className="pending-text w-100 text-center">
+                        No results found.
+                     </p>
+                  )}
+               </div>
+            )}
          </div>
       </div>
    );

@@ -45,8 +45,9 @@ export type FileType =
 export type DocumentCardPropsTypes = {
    document: DocumentsPropTypes;
    onSelect?: (doc: DocumentsPropTypes) => void;
-   isSelectClicked?: boolean;
+   isSelected?: boolean;
    handleSendToChat?: () => void;
+   handleDeleteDocument?: (docId: string) => void;
 };
 
 export type CardDropdownPropsTypes = {
@@ -59,20 +60,20 @@ export type CardDropdownPropsTypes = {
 };
 
 // receipts
-export type ReceiptsPropTypes = {
+export type InvoicesPropTypes = {
    id: string;
    title: string;
-   owner_info: {
-      fullname: string;
-   };
-   date: string;
-   amount: string;
+   issued_by: string;
+   due_date: string;
+   amount: number;
+   status: "pending" | "paid" | "overdue" | "failed";
    base64: string;
 };
 
-export type ReceiptCardPropTypes = {
-   receipt: ReceiptsPropTypes;
+export type InvoiceCardPropTypes = {
+   invoice: InvoicesPropTypes;
    handleClick?: () => void;
+   handleDeleteInvoice?: (invoiceId: string) => void;
 };
 
 // videos
@@ -94,7 +95,7 @@ export type QuestionsPropsType = {
 // requests
 export type RequestsPropTypes = {
    service_id: string;
-   status: string;
+   status: "pending" | "paid" | "completed";
    requestDate: string;
    service_title: string;
 };
@@ -127,4 +128,26 @@ export type CardsProps = {
    brand: string;
    cardholderName: string;
    isDefault: boolean;
+};
+
+export type MetricCardProps = {
+   amount: number;
+   percentage: number;
+   is_percentage_increase: boolean;
+   invoice_status: "pending" | "paid" | "overdue" | "failed";
+};
+
+export type TransactionPropTypes = {
+   id: string;
+   date: string;
+   description: string;
+   amount: number;
+   currency: string;
+   status: "pending" | "processing" | "success" | "failed";
+};
+
+export type TransactionCardPropTypes = {
+   transaction: TransactionPropTypes;
+   handleClick?: () => void;
+   handleDeleteTransaction?: (transactionId: string) => void;
 };

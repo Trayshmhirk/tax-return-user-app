@@ -1,7 +1,15 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown, Download, Copy, Eye } from "lucide-react";
+import {
+   MoreHorizontal,
+   ChevronDown,
+   Download,
+   Copy,
+   Eye,
+   Share,
+   Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +20,17 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
    startOfWeek,
@@ -21,20 +40,16 @@ import {
    isBefore,
    formatDate,
 } from "date-fns";
-import { Badge } from "../ui/badge";
-import { TransactionReceiptDialog } from "../modal/TransactionReceiptDialog";
+import { Badge } from "@/components/ui/badge";
+import { TransactionReceiptDialog } from "@/components/modal/TransactionReceiptDialog";
 import { exportToPDF } from "@/helpers/exportToPDF";
+import { TransactionPropTypes } from "@/types/AllTypes";
 
-export type Transaction = {
-   id: string;
-   date: string;
-   description: string;
-   amount: number;
-   currency: string;
-   status: "pending" | "processing" | "success" | "failed";
-};
+const handleSendToChat = () => {};
 
-export const columns: ColumnDef<Transaction>[] = [
+export const transactionColumns = (
+   handleDeleteTransaction: (invoiceId: string) => void
+): ColumnDef<TransactionPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -69,10 +84,10 @@ export const columns: ColumnDef<Transaction>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1"
                   >
                      Date
-                     <ArrowUpDown className="h-4 w-4" />
+                     <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
                <DropdownMenuContent
@@ -204,7 +219,7 @@ export const columns: ColumnDef<Transaction>[] = [
                   ${status === "success" ? "bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border-green-600 dark:border-green-400" : ""}   
                `}
             >
-               {status.toUpperCase()}
+               {status.charAt(0).toUpperCase() + status.slice(1)}
             </Badge>
          );
       },
@@ -243,7 +258,14 @@ export const columns: ColumnDef<Transaction>[] = [
                            View Transaction
                         </DropdownMenuItem>
                      </TransactionReceiptDialog>
-
+                     <DropdownMenuItem
+                        // onSelect={(e) => e.preventDefault()}
+                        onClick={handleSendToChat ?? (() => {})}
+                        className="flex items-center gap-2 cursor-pointer"
+                     >
+                        <Share className="w-4 h-4" />
+                        Share transaction
+                     </DropdownMenuItem>
                      <DropdownMenuItem
                         className="flex items-center gap-2 cursor-pointer"
                         onClick={() => exportToPDF(transaction)}
@@ -251,6 +273,43 @@ export const columns: ColumnDef<Transaction>[] = [
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
+                     {/* delete alert */}
+                     <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                           >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                           </DropdownMenuItem>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                           <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                 Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                 This action cannot be undone. This will
+                                 permanently delete this transaction receipt and
+                                 remove its data from our servers.
+                              </AlertDialogDescription>
+                           </AlertDialogHeader>
+                           <AlertDialogFooter>
+                              <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                                 Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                 onClick={() =>
+                                    handleDeleteTransaction(transaction.id)
+                                 }
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
+                                 Delete
+                              </AlertDialogAction>
+                           </AlertDialogFooter>
+                        </AlertDialogContent>
+                     </AlertDialog>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

@@ -5,7 +5,8 @@ import {
    MoreHorizontal,
    ChevronDown,
    Download,
-   Eye,
+   CreditCard,
+   Share,
    Trash2,
 } from "lucide-react";
 
@@ -19,11 +20,27 @@ import {
    DropdownMenuTrigger,
    DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ReceiptsPropTypes } from "@/types/AllTypes";
+import { InvoicesPropTypes } from "@/types/AllTypes";
 import { formatDate } from "date-fns";
+import { Badge } from "@/components/ui/badge";
 
-export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
+const handleSendToChat = () => {};
+
+export const invoiceColumns = (
+   handleDeleteInvoice: (invoiceId: string) => void
+): ColumnDef<InvoicesPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -96,13 +113,13 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
       ),
    },
    {
-      accessorKey: "owner_info.fullname",
+      accessorKey: "issued_by",
       header: () => {
-         return <div className="text-xs md:text-sm">Username</div>;
+         return <div className="text-xs md:text-sm">Issued By</div>;
       },
    },
    {
-      accessorKey: "date",
+      accessorKey: "due_date",
       header: ({ table }) => (
          <div className="flex items-center gap-2">
             <DropdownMenu>
@@ -111,7 +128,7 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                      variant="ghost"
                      className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
                   >
-                     Date
+                     Due Date
                      <ChevronDown className="h-4 w-4" />
                   </Button>
                </DropdownMenuTrigger>
@@ -121,22 +138,22 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                >
                   <DropdownMenuCheckboxItem
                      checked={
-                        table.getState().sorting[0]?.id === "date" &&
+                        table.getState().sorting[0]?.id === "due_date" &&
                         !table.getState().sorting[0]?.desc
                      }
                      onCheckedChange={(checked) =>
-                        table.setSorting([{ id: "date", desc: !checked }])
+                        table.setSorting([{ id: "due_date", desc: !checked }])
                      }
                   >
                      Ascending
                   </DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem
                      checked={
-                        table.getState().sorting[0]?.id === "date" &&
+                        table.getState().sorting[0]?.id === "due_date" &&
                         table.getState().sorting[0]?.desc
                      }
                      onCheckedChange={(checked) =>
-                        table.setSorting([{ id: "date", desc: checked }])
+                        table.setSorting([{ id: "due_date", desc: checked }])
                      }
                   >
                      Descending
@@ -146,20 +163,53 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
          </div>
       ),
       cell: ({ row }) => {
-         const dateModified = row.original.date;
+         const dueDate = row.original.due_date;
 
          return (
             <div className="lg:px-2 text-xs md:text-sm">
-               {formatDate(dateModified, "dd.MM.yyyy")}
+               {formatDate(dueDate, "dd.MM.yyyy")}
             </div>
+         );
+      },
+   },
+   {
+      accessorKey: "amount",
+      header: "Amount",
+      cell: ({ row }) => {
+         const amount = parseFloat(row.getValue("amount"));
+         const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+         }).format(amount);
+
+         return <div className="font-medium">{formatted}</div>;
+      },
+   },
+   {
+      accessorKey: "status",
+      header: "Status",
+      cell: ({ row }) => {
+         const status = row.original.status;
+
+         return (
+            <Badge
+               variant="outline"
+               className={`
+                  ${status === "failed" ? "bg-red-300 bg-opacity-20 text-red-500 dark:text-red-300 border-red-500 dark:border-red-400" : ""}
+                  ${status === "pending" ? "bg-yellow-200 bg-opacity-20 text-yellow-500 dark:text-yellow-300 border-yellow-400 dark:border-yellow-300" : ""}
+                  ${status === "overdue" ? "bg-red-300 bg-opacity-20 text-red-500 dark:text-red-300 border-red-500 dark:border-red-400" : ""}
+                  ${status === "paid" ? "bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border-green-600 dark:border-green-400" : ""}   
+               `}
+            >
+               {status.charAt(0).toUpperCase() + status.slice(1)}
+            </Badge>
          );
       },
    },
    {
       id: "actions",
       cell: ({ row }) => {
-         const document = row.original;
-         document;
+         const invoice = row.original;
 
          return (
             <div className="flex justify-end">
@@ -179,20 +229,56 @@ export const receiptColumns: ColumnDef<ReceiptsPropTypes>[] = [
                      <DropdownMenuSeparator className="bg-chineseWhite dark:bg-chineseWhite dark:bg-opacity-50" />
 
                      <DropdownMenuItem
-                        onSelect={(e) => e.preventDefault()}
+                        // onSelect={(e) => e.preventDefault()}
+                        onClick={handleSendToChat ?? (() => {})}
                         className="flex items-center gap-2 cursor-pointer"
                      >
-                        <Eye className="w-4 h-4" />
-                        View receipt
+                        <Share className="w-4 h-4" />
+                        Share invoice
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
                      <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                        <Trash2 className="w-4 h-4" />
-                        Delete
+                        <CreditCard className="w-4 h-4" />
+                        Pay
                      </DropdownMenuItem>
+                     {/* delete alert */}
+                     <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                           >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                           </DropdownMenuItem>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                           <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                 Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                 This action cannot be undone. This will
+                                 permanently delete this invoice and remove its
+                                 data from our servers.
+                              </AlertDialogDescription>
+                           </AlertDialogHeader>
+                           <AlertDialogFooter>
+                              <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                                 Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                 onClick={() => handleDeleteInvoice(invoice.id)}
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
+                                 Delete
+                              </AlertDialogAction>
+                           </AlertDialogFooter>
+                        </AlertDialogContent>
+                     </AlertDialog>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

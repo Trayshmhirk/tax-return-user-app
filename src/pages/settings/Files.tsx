@@ -1,109 +1,19 @@
 import { useEffect, useState } from "react";
-import { DocumentsPropTypes, ReceiptsPropTypes } from "@/types/AllTypes";
+import { DocumentsPropTypes, InvoicesPropTypes } from "@/types/AllTypes";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
 import { IoFolderOpenSharp } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 import { documentColumns } from "@/components/files/documentColumns";
-import { receiptColumns } from "@/components/files/receiptColumns";
+import { invoiceColumns } from "@/components/files/invoiceColumns";
 import { DataTable } from "@/components/files/data-table";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { DocumentCard } from "@/components/cards/DocumentCard";
-import ReceiptCard from "@/components/cards/ReceiptCard";
-import { filterByDate } from "@/helpers/filterByDate";
+import InvoiceCard from "@/components/cards/InvoiceCard";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/UseWindowWidth";
 import { Button } from "@/components/ui/button";
-
-async function fetchDocumentsForCard(): Promise<DocumentsPropTypes[]> {
-   return [
-      {
-         id: "id1",
-         document_name: "Document pdf",
-         document_size: "10",
-         document_type: "application/pdf",
-         date_modified: "2024-08-01",
-         base64: "",
-      },
-      {
-         id: "id2",
-         document_name: "document",
-         document_size: "25",
-         document_type: "image/png",
-         date_modified: "2024-08-05",
-         base64: "",
-      },
-      {
-         id: "id5",
-         document_name: "document image",
-         document_size: "5",
-         document_type: "image/jpeg",
-         date_modified: "2024-08-29",
-         base64: "",
-      },
-      {
-         id: "id3",
-         document_name: "Excel file",
-         document_size: "20",
-         document_type: "application/vnd.ms-excel",
-         date_modified: "2024-08-10",
-         base64: "",
-      },
-      {
-         id: "id4",
-         document_name: "Word file",
-         document_size: "20",
-         document_type: "application/msword",
-         date_modified: "2024-08-25",
-         base64: "",
-      },
-   ];
-}
-
-async function fetchReceipts(): Promise<ReceiptsPropTypes[]> {
-   return [
-      {
-         id: "retdb2137",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-08-07",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "retug7457",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-07-07",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "rettg4567",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-09-02",
-         base64: "",
-         amount: "",
-      },
-      {
-         id: "retad4589",
-         title: "receipt",
-         owner_info: {
-            fullname: "Micheal",
-         },
-         date: "2024-09-03",
-         base64: "",
-         amount: "",
-      },
-   ];
-}
+import { fetchDocuments, fetchInvoices } from "@/api/mockApis";
 
 const Files = () => {
    // Get the window width from the hook
@@ -111,34 +21,31 @@ const Files = () => {
    const isbelowXs = windowWidth < 375;
 
    const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
-   const [receipts, setReceipts] = useState<ReceiptsPropTypes[]>([]);
+   const [selectedDocuments, setSelectedDocuments] = useState<
+      DocumentsPropTypes[]
+   >([]);
+   const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
    const [isList, setIsList] = useState(false);
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const [activeFolder, setActiveFolder] = useState<"documents" | "receipts">(
+   const [activeFolder, setActiveFolder] = useState<"documents" | "invoices">(
       "documents"
    );
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
-   const filterTitleList = [
-      "All",
-      "Today",
-      "This week",
-      "This month",
-      "Earlier",
-   ];
+   const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {
       async function fetchData() {
          setLoading(true);
 
          setTimeout(async () => {
-            const fetchedDocuments = await fetchDocumentsForCard();
-            const fetchedReceipts = await fetchReceipts();
+            const fetchedDocuments = await fetchDocuments();
+            const fetchedInvoices = await fetchInvoices();
             setDocuments(fetchedDocuments);
-            setReceipts(fetchedReceipts);
+            setInvoices(fetchedInvoices);
             setLoading(false);
-         }, 700);
+         }, 500);
       }
       fetchData();
    }, []);
@@ -151,7 +58,7 @@ const Files = () => {
       setIsList(true);
    };
 
-   const handleFolderClick = (folder: "documents" | "receipts") => {
+   const handleFolderClick = (folder: "documents" | "invoices") => {
       setActiveFolder(folder);
    };
 
@@ -169,27 +76,93 @@ const Files = () => {
    };
 
    const filteredDocs = documents
-      ? documents.filter(
-           (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
-        )
+      ? documents
+           .filter(
+              (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
+           )
+           .sort(
+              (a, b) =>
+                 new Date(b.date_modified).getTime() -
+                 new Date(a.date_modified).getTime()
+           ) // Sorting by latest date
       : [];
 
-   const searchReceipts = (receipt: ReceiptsPropTypes) => {
-      const docName = receipt.title;
+   // Check if all filtered documents are selected
+   const allDocumentsSelected =
+      filteredDocs.length > 0 &&
+      filteredDocs.every((doc) =>
+         selectedDocuments.some((selectedDoc) => selectedDoc.id === doc.id)
+      );
+
+   const handleSelectAll = () => {
+      if (allDocumentsSelected) {
+         // Deselect all
+         setSelectedDocuments([]);
+      } else {
+         // Select all documents
+         setSelectedDocuments(filteredDocs); // `filteredDocs` represents the currently filtered documents.
+      }
+   };
+
+   const handleSelectDocument = (doc: DocumentsPropTypes) => {
+      setSelectedDocuments((prevSelected) => {
+         // Check if the document is already selected
+         if (prevSelected.find((selectedDoc) => selectedDoc.id === doc.id)) {
+            // Deselect the document
+            return prevSelected.filter(
+               (selectedDoc) => selectedDoc.id !== doc.id
+            );
+         } else {
+            // Select the document (add it to the list)
+            return [...prevSelected, doc];
+         }
+      });
+   };
+
+   const handleDeleteDocument = (docId: string) => {
+      // Remove the document with the specified ID from the uploadedDocuments state
+      setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== docId));
+
+      // Also remove it from the selectedDocuments state if it's selected
+      setSelectedDocuments((prevSelectedDocs) =>
+         prevSelectedDocs.filter((doc) => doc.id !== docId)
+      );
+   };
+
+   // invoice functions
+
+   const searchInvoices = (invoice: InvoicesPropTypes) => {
+      const docName = invoice.title;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
    };
 
-   const filteredReceipts = receipts
-      ? receipts.filter(
-           (receipt) =>
-              searchReceipts(receipt) && filterByDate(receipt, selectedFilter)
+   const filterByStatus = (invoice: InvoicesPropTypes) => {
+      if (selectedFilter === "" || selectedFilter === "All") {
+         // if no filter is selected, all users should be included
+         return true;
+      }
+      return invoice.status.toLowerCase() === selectedFilter.toLowerCase();
+   };
+
+   const filteredInvoices = invoices
+      ? invoices.filter(
+           (invoice) => searchInvoices(invoice) && filterByStatus(invoice)
         )
       : [];
+
+   const handleDeleteInvoice = (invoiceId: string) => {
+      // Remove the invoice with the specified ID from the invoices state
+      setInvoices((prevInvoices) =>
+         prevInvoices.filter((invoice) => invoice.id !== invoiceId)
+      );
+   };
 
    return (
       <>
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h1 className="text-lg font-bold">Files ({documents.length})</h1>
+            <h1 className="text-lg font-bold">
+               Files ({documents.length || invoices.length})
+            </h1>
 
             <div className="flex items-center gap-3">
                <Button
@@ -209,23 +182,23 @@ const Files = () => {
          </div>
 
          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 pb-2">
-            <div className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body">
-               <div
-                  onClick={() => handleFolderClick("documents")}
-                  className="flex flex-col items-center text-center gap-3"
-               >
+            <div
+               onClick={() => handleFolderClick("documents")}
+               className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
+            >
+               <div className="flex flex-col items-center text-center gap-3">
                   <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
                   <h6 className="font-medium text-sm">Documents</h6>
                </div>
             </div>
 
             <div
-               onClick={() => handleFolderClick("receipts")}
+               onClick={() => handleFolderClick("invoices")}
                className="w-full flex flex-col gap-4 bg-white dark:bg-gray p-6 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
             >
                <div className="flex flex-col items-center text-center gap-3">
                   <IoFolderOpenSharp className="w-8 h-8 text-[#FDBF5E]" />
-                  <h6 className="font-medium text-sm">Receipts</h6>
+                  <h6 className="font-medium text-sm">Invoices</h6>
                </div>
             </div>
          </div>
@@ -234,9 +207,47 @@ const Files = () => {
             {activeFolder === "documents" && (
                <>
                   {isList ? (
-                     <DataTable columns={documentColumns} data={documents} />
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent documents</p>
+                              <span>
+                                 {documents && documents.length
+                                    ? `(${documents.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+                        <DataTable
+                           columns={documentColumns(handleDeleteDocument)}
+                           data={documents}
+                        />
+                     </div>
                   ) : (
-                     <div className="flex flex-col gap-7">
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent documents</p>
+                              <span>
+                                 {documents && documents.length
+                                    ? `(${documents.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+
+                           <div className="flex justify-between items-center gap-1 text-richElectricBlue font-medium">
+                              <span
+                                 className="cursor-pointer"
+                                 onClick={handleSelectAll}
+                              >
+                                 {allDocumentsSelected
+                                    ? "Deselect All"
+                                    : "Select All"}
+                              </span>
+                              <span>{` (${selectedDocuments.length})`}</span>
+                           </div>
+                        </div>
+
                         <SearchAndFilter
                            handleSearch={handleSearch}
                            handleFilter={handleFilter}
@@ -255,6 +266,14 @@ const Files = () => {
                                        <DocumentCard
                                           key={doc.id}
                                           document={doc}
+                                          onSelect={handleSelectDocument}
+                                          isSelected={selectedDocuments.some(
+                                             (selectedDoc) =>
+                                                selectedDoc.id === doc.id
+                                          )}
+                                          handleDeleteDocument={
+                                             handleDeleteDocument
+                                          }
                                        />
                                     ))}
                                  </div>
@@ -269,16 +288,40 @@ const Files = () => {
                   )}
                </>
             )}
-            {activeFolder === "receipts" && (
+
+            {activeFolder === "invoices" && (
                <>
                   {isList ? (
-                     <DataTable
-                        columns={receiptColumns}
-                        data={receipts}
-                        isReceipt
-                     />
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent invoices</p>
+                              <span>
+                                 {invoices && invoices.length
+                                    ? `(${invoices.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+                        <DataTable
+                           columns={invoiceColumns(handleDeleteInvoice)}
+                           data={invoices}
+                           isInvoice
+                        />
+                     </div>
                   ) : (
-                     <div className="flex flex-col gap-7">
+                     <div className="flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                           <div className="flex items-center gap-2">
+                              <p className="font-medium">Recent invoices</p>
+                              <span>
+                                 {invoices && invoices.length
+                                    ? `(${invoices.length})`
+                                    : "(0)"}
+                              </span>
+                           </div>
+                        </div>
+
                         <SearchAndFilter
                            handleSearch={handleSearch}
                            handleFilter={handleFilter}
@@ -291,12 +334,15 @@ const Files = () => {
                            </div>
                         ) : (
                            <div className="w-full">
-                              {filteredReceipts.length ? (
-                                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                                    {filteredReceipts.map((receipt) => (
-                                       <ReceiptCard
-                                          key={receipt.id}
-                                          receipt={receipt}
+                              {filteredInvoices.length ? (
+                                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                                    {filteredInvoices.map((invoice) => (
+                                       <InvoiceCard
+                                          key={invoice.id}
+                                          invoice={invoice}
+                                          handleDeleteInvoice={
+                                             handleDeleteInvoice
+                                          }
                                        />
                                     ))}
                                  </div>

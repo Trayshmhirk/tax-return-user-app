@@ -20,13 +20,30 @@ import {
    DropdownMenuTrigger,
    DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import {
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
+   AlertDialogContent,
+   AlertDialogDescription,
+   AlertDialogFooter,
+   AlertDialogHeader,
+   AlertDialogTitle,
+   AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DocumentsPropTypes } from "@/types/AllTypes";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
-import DocumentTypeIcon from "../icons/DocumentTypeIcon";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";
 
-export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
+const handleSendToChat = () => {};
+
+// const docTypeFilterList = ["PDF", "PNG", "JPEG", "DOC", "XLS"];
+
+export const documentColumns = (
+   handleDeleteDoc: (documentId: string) => void
+): ColumnDef<DocumentsPropTypes>[] => [
    {
       id: "select",
       header: ({ table }) => (
@@ -61,7 +78,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                <DropdownMenuTrigger asChild>
                   <Button
                      variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
+                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1 px-[6px] text-xs md:text-sm"
                   >
                      Name
                      <ChevronDown className="h-4 w-4" />
@@ -117,55 +134,10 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
    },
    {
       accessorKey: "document_size",
-      header: ({ table }) => (
-         <div className="flex items-center gap-2">
-            <DropdownMenu>
-               <DropdownMenuTrigger asChild>
-                  <Button
-                     variant="ghost"
-                     className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
-                  >
-                     Size
-                     <ChevronDown className="h-4 w-4" />
-                  </Button>
-               </DropdownMenuTrigger>
-               <DropdownMenuContent
-                  align="start"
-                  className="dark:bg-gray dark:border dark:border-spanishGray dark:border-opacity-10"
-               >
-                  <DropdownMenuCheckboxItem
-                     checked={
-                        table.getState().sorting[0]?.id === "document_size" &&
-                        !table.getState().sorting[0]?.desc
-                     }
-                     onCheckedChange={(checked) =>
-                        table.setSorting([
-                           { id: "document_size", desc: !checked },
-                        ])
-                     }
-                  >
-                     Ascending
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                     checked={
-                        table.getState().sorting[0]?.id === "document_size" &&
-                        table.getState().sorting[0]?.desc
-                     }
-                     onCheckedChange={(checked) =>
-                        table.setSorting([
-                           { id: "document_size", desc: checked },
-                        ])
-                     }
-                  >
-                     Descending
-                  </DropdownMenuCheckboxItem>
-               </DropdownMenuContent>
-            </DropdownMenu>
-         </div>
-      ),
+      header: "Size",
       cell: ({ row }) => {
          const size = row.original.document_size;
-         return <div className="lg:px-2 text-xs md:text-sm">{size} MB</div>;
+         return <div className="text-xs md:text-sm">{size} MB</div>;
       },
    },
    {
@@ -188,7 +160,7 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                   <DropdownMenuTrigger asChild>
                      <Button
                         variant="ghost"
-                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-2 px-[6px] text-xs md:text-sm"
+                        className="hover:bg-opacity-70 dark:hover:bg-opacity-70 gap-1 px-[6px] text-xs md:text-sm"
                      >
                         Type
                         <ChevronDown className="h-4 w-4" />
@@ -326,32 +298,58 @@ export const documentColumns: ColumnDef<DocumentsPropTypes>[] = [
                      <DropdownMenuItem
                         onSelect={(e) => e.preventDefault()}
                         className="flex items-center gap-2 cursor-pointer"
+                        // onClick={() => pdfViewer(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
                      >
                         <Eye className="w-4 h-4" />
                         View Document
                      </DropdownMenuItem>
                      <DropdownMenuItem
-                        // onClick={handleSendToChat ?? (() => {})}
+                        onClick={handleSendToChat ?? (() => {})}
                         className="flex items-center gap-2 cursor-pointer"
                      >
                         <Share className="w-4 h-4" />
                         Share document
                      </DropdownMenuItem>
 
-                     <DropdownMenuItem
-                        className="flex items-center gap-2 cursor-pointer"
-                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                     >
+                     <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
                         <Download className="w-4 h-4" />
                         Download
                      </DropdownMenuItem>
-                     <DropdownMenuItem
-                        className="flex items-center gap-2 cursor-pointer"
-                        // onClick={() => exportToPDF(document)} // onclick would take the base64 code of the document and render it in a react pdf viewer
-                     >
-                        <Trash2 className="w-4 h-4" />
-                        Delete
-                     </DropdownMenuItem>
+                     {/* delete alert */}
+                     <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="flex items-center gap-2 cursor-pointer text-bostonRed dark:text-red-500 focus:text-bostonRed dark:focus:text-red-500"
+                           >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                           </DropdownMenuItem>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                           <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                 Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                 This action cannot be undone. This will
+                                 permanently delete this document and remove its
+                                 data from our servers.
+                              </AlertDialogDescription>
+                           </AlertDialogHeader>
+                           <AlertDialogFooter>
+                              <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                                 Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                 onClick={() => handleDeleteDoc(document.id)}
+                                 className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded"
+                              >
+                                 Delete
+                              </AlertDialogAction>
+                           </AlertDialogFooter>
+                        </AlertDialogContent>
+                     </AlertDialog>
                   </DropdownMenuContent>
                </DropdownMenu>
             </div>

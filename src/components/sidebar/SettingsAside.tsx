@@ -19,8 +19,8 @@ import {
    AlertDialogTitle,
    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "../ui/button";
-import FormInput from "../form-components/FormInput";
+import { Button } from "@/components/ui/button";
+import FormInput from "@/components/form-components/FormInput";
 import { IChangePasswordForm } from "@/types/AllTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -31,7 +31,7 @@ import {
    DropdownMenuContent,
    DropdownMenuItem,
    DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { Navigation2 } from "lucide-react";
 
 const route = [
@@ -271,7 +271,7 @@ const SettingsAside = () => {
                      </AlertDialogTrigger>
                      <AlertDialogContent>
                         <AlertDialogHeader>
-                           <AlertDialogTitle className="font-bold">
+                           <AlertDialogTitle>
                               Are you absolutely sure?
                            </AlertDialogTitle>
                            <AlertDialogDescription>
@@ -281,8 +281,10 @@ const SettingsAside = () => {
                            </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                           <AlertDialogAction className="bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white">
+                           <AlertDialogCancel className="w-full dark:bg-neutral-600 dark:hover:bg-neutral-700 rounded">
+                              Cancel
+                           </AlertDialogCancel>
+                           <AlertDialogAction className="w-full bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white rounded">
                               Delete
                            </AlertDialogAction>
                         </AlertDialogFooter>

@@ -8,7 +8,7 @@ const Overlay = ({ isOpen }: OverlayProps) => {
    const { toggleSidebar } = useSidebar();
    return (
       <div
-         className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-30 ${
+         className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-30 ${
             isOpen ? "block sm:hidden" : "hidden"
          }`}
          onClick={toggleSidebar}

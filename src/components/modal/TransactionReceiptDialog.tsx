@@ -9,11 +9,11 @@ import {
    DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Transaction } from "../payment/columns";
+import { TransactionPropTypes } from "@/types/AllTypes";
 import { exportToPDF } from "@/helpers/exportToPDF";
 
 type TransactionReceiptDialogProps = {
-   transaction: Transaction;
+   transaction: TransactionPropTypes;
    children: React.ReactNode;
 };
 
