@@ -1,4 +1,4 @@
-import { useSidebar } from "../../hooks/UseSidebar";
+import { useSidebar } from "@/hooks/UseSidebar";
 
 type OverlayProps = {
    isOpen: boolean;

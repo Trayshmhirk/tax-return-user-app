@@ -1,12 +1,12 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { navItemsData } from "../../mocks/NavItemData";
+import { navItemsData } from "@/mocks/NavItemData";
 import { NavItems } from "./NavItems";
 import { HamburgerIcon } from "../icons/HamburgerIcon";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useSidebar } from "../../hooks/UseSidebar";
+import { useSidebar } from "@/hooks/UseSidebar";
 import Overlay from "../common/Overlay";
 import { useTheme } from "@/hooks/useTheme";
 
