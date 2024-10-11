@@ -9,13 +9,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 type FormInputPropTypes<T extends FieldValues> = {
    label: string;
-   type: string;
    register: UseFormRegister<T>;
    name: Path<T>; // Use ValidInputNames here
    error?: FieldErrors<T>;
-   placeholder: string;
    isReadOnly?: boolean;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const FormInput = <T extends FieldValues>({
    label,
@@ -23,8 +21,7 @@ const FormInput = <T extends FieldValues>({
    register,
    name,
    error,
-   placeholder,
-   isReadOnly,
+   ...rest
 }: FormInputPropTypes<T>) => {
    const [showPassword, setShowPassword] = useState(false);
 
@@ -56,10 +53,9 @@ const FormInput = <T extends FieldValues>({
             <input
                id={name}
                className="w-full outline-none dark:bg-transparent"
-               placeholder={placeholder}
                type={type === "password" && showPassword ? "text" : type}
                {...register(name as Path<T>)}
-               readOnly={isReadOnly}
+               {...rest}
             />
             {type === "password" && (
                <button
