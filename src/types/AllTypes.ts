@@ -50,15 +50,6 @@ export type DocumentCardPropsTypes = {
    handleDeleteDocument?: (docId: string) => void;
 };
 
-export type CardDropdownPropsTypes = {
-   handleShare: () => void;
-   handleViewDoc: () => void;
-   isSelectBank?: boolean;
-   handleDeleteDoc: () => void;
-   isDropdownOpen: boolean;
-   handleDropdownToggle: () => void;
-};
-
 // receipts
 export type InvoicesPropTypes = {
    id: string;
