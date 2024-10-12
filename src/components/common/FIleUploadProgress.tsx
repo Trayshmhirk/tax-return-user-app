@@ -1,6 +1,6 @@
 import DocumentTypeIcon from "../icons/DocumentTypeIcon";
-import { FileType } from "../../types/AllTypes";
-import { mapFileTypeToDocumentType } from "../../helpers/mapFileType";
+import { FileType } from "@/types/AllTypes";
+import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 
 // Reusable component to show file upload progress
 export const FileUploadProgress = ({

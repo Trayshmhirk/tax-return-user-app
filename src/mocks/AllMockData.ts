@@ -8,7 +8,7 @@ import {
    RequestsPropTypes,
    CardsProps,
    MetricCardProps,
-} from "../types/AllTypes";
+} from "@/types/AllTypes";
 
 // request service
 export const servicesList: ServicesListTypes[] = [

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getCurrentMonth } from "../../helpers/getCurrentMonth";
+import { getCurrentMonth } from "@/helpers/getCurrentMonth";
 import { useTheme } from "@/hooks/useTheme";
 
 type CustomTickProps = {

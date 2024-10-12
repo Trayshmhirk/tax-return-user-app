@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Forms from "../../components/auth/Forms";
-import { logInSchema } from "../../validation/schema";
-import FormInput from "../../components/form-components/FormInput";
-import { ILoginForm } from "../../types/AllTypes";
+import Forms from "@/components/auth/Forms";
+import { logInSchema } from "@/validation/schema";
+import FormInput from "@/components/form-components/FormInput";
+import { ILoginForm } from "@/types/AllTypes";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";

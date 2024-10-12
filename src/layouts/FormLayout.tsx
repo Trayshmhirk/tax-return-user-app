@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import FormImage from "../assets/forms-images.png";
+import FormImage from "@/assets/forms-images.png";
 
 const FormLayout = () => {
    const location = useLocation();

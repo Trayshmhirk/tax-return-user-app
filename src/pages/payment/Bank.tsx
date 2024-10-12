@@ -1,6 +1,6 @@
-import DebitChart from "../../charts/DebitChart";
-import DebitCard from "../../components/payment/DebitCard";
-import RecentTransactions from "../../components/payment/RecentTransactions";
+import DebitChart from "@/charts/DebitChart";
+import DebitCard from "@/components/payment/DebitCard";
+import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";

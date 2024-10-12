@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import UploadPdfImage from "../components/common/UploadPdfImage";
-import { DocumentCard } from "../components/cards/DocumentCard";
-import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
-import { DocumentsPropTypes, FileType } from "../types/AllTypes";
-import { getBase64 } from "../helpers/getBase64";
-import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import UploadPdfImage from "@/components/common/UploadPdfImage";
+import { DocumentCard } from "@/components/cards/DocumentCard";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
+import { DocumentsPropTypes, FileType } from "@/types/AllTypes";
+import { getBase64 } from "@/helpers/getBase64";
+import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import { v4 as uuidv4 } from "uuid";
 import { fetchDocuments } from "@/api/mockApis";

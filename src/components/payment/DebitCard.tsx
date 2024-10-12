@@ -1,6 +1,6 @@
-import CreditCardChip from "../../assets/credit-card_chip.png";
-import VisaIcon from "../../assets/visa.png";
-import MastercardIcon from "../../assets/mastercard.png";
+import CreditCardChip from "@/assets/credit-card_chip.png";
+import VisaIcon from "@/assets/visa.png";
+import MastercardIcon from "@/assets/mastercard.png";
 
 type DebitCardPropTypes = {
    card: {

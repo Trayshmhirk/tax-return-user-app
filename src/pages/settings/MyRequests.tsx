@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SearchAndFilter from "../../components/common/SearchAndFilter";
-import { RequestsPropTypes } from "../../types/AllTypes";
-import { requests } from "../../mocks/AllMockData";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import { RequestsPropTypes } from "@/types/AllTypes";
+import { requests } from "@/mocks/AllMockData";
 import { formatDate } from "date-fns";
 
 const MyRequests = () => {

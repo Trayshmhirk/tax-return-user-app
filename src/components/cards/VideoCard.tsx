@@ -1,5 +1,5 @@
 import { MdOutlinePlayCircle } from "react-icons/md";
-import WatchImg from "../../assets/watch-small.png";
+import WatchImg from "@/assets/watch-small.png";
 
 type VideoCardPropTypes = {
    title: string;
