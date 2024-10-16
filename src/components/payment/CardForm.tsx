@@ -21,11 +21,11 @@ const CardForm: React.FC = () => {
    const { theme } = useTheme();
 
    // const [cardType, setCardType] = useState<string | null>(null);
-   const [cardholderName, setCardholderName] = useState<string>("");
+   const [cardholderName, setCardholderName] = useState("");
    const [error, setError] = useState<string | null>(null);
    const [loading, setLoading] = useState(false);
-   const [success, setSuccess] = useState<boolean>(false);
-   const [resetForm, setResetForm] = useState<boolean>(false);
+   const [success, setSuccess] = useState(false);
+   const [resetForm, setResetForm] = useState(false);
 
    const isDark = theme === "dark";
 

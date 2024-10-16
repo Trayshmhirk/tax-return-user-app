@@ -13,12 +13,12 @@ import { ClipLoader } from "react-spinners";
 
 const UploadDocument = () => {
    const [loading, setLoading] = useState(false);
-   const [searchInput, setSearchInput] = useState<string>("");
-   const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const [ongoingUploads, setOngoingUploads] = useState<number>(0);
-   const [uploadProgress, setUploadProgress] = useState<number>(0);
-   const [currentFileSize, setCurrentFileSize] = useState<number>(0);
-   const [fileSizeInMB, setFileSizeInMB] = useState<number>(0);
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
+   const [ongoingUploads, setOngoingUploads] = useState(0);
+   const [uploadProgress, setUploadProgress] = useState(0);
+   const [currentFileSize, setCurrentFileSize] = useState(0);
+   const [fileSizeInMB, setFileSizeInMB] = useState(0);
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
    const [uploadedDocuments, setUploadedDocuments] = useState<
       DocumentsPropTypes[]

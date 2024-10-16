@@ -10,8 +10,8 @@ import { invoiceMetrics } from "@/mocks/MockData";
 const Invoices = () => {
    const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
-   const [searchInput, setSearchInput] = useState<string>("");
-   const [selectedFilter, setSelectedFilter] = useState<string>("");
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
    const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {
