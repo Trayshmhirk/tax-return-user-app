@@ -1,4 +1,4 @@
-import DebitChart from "@/charts/DebitChart";
+import DebitChart from "@/components/charts/DebitChart";
 import DebitCard from "@/components/payment/DebitCard";
 import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
