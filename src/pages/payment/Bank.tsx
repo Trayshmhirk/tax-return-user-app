@@ -4,8 +4,8 @@ import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
-import { CardsProps } from "@/types/AllTypes";
-import { initialCards } from "@/mocks/AllMockData";
+import { CardsProps } from "@/types/Types";
+import { initialCards } from "@/mocks/MockData";
 import { Button } from "@/components/ui/button";
 
 const Bank = () => {

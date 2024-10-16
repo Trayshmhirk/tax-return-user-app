@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DocumentsPropTypes, InvoicesPropTypes } from "@/types/AllTypes";
+import { DocumentsPropTypes, InvoicesPropTypes } from "@/types/Types";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
 import { IoFolderOpenSharp } from "react-icons/io5";

@@ -2,8 +2,8 @@ import {
    DocumentsPropTypes,
    InvoicesPropTypes,
    TransactionPropTypes,
-} from "@/types/AllTypes";
-import { uploadedDocuments, invoices } from "@/mocks/AllMockData";
+} from "@/types/Types";
+import { uploadedDocuments, invoices } from "@/mocks/MockData";
 
 export async function fetchDocuments(): Promise<DocumentsPropTypes[]> {
    return uploadedDocuments;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { transactionColumns } from "./transactionColumns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
-import { TransactionPropTypes } from "@/types/AllTypes";
+import { TransactionPropTypes } from "@/types/Types";
 import { fetchTransactions } from "@/api/mockApis";
 import { Button } from "../ui/button";
 import { BsFillGridFill } from "react-icons/bs";

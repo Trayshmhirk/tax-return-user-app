@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RadioCheckInput from "../../form-components/RadioCheckInput";
-import { SelectCategoryPropTypes } from "../../../types/AllTypes";
-import { categoryList } from "../../../mocks/AllMockData";
+import { SelectCategoryPropTypes } from "../../../types/Types";
+import { categoryList } from "../../../mocks/MockData";
 import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";

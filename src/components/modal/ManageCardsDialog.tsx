@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import DebitCard from "../payment/DebitCard";
 
 import { differenceInMonths, isPast } from "date-fns";
-import { CardsProps } from "@/types/AllTypes";
+import { CardsProps } from "@/types/Types";
 
 // Function to check if a card is expired
 const isExpired = (exp: string): boolean => {
