@@ -1,5 +1,5 @@
-import { SidebarContext } from "@/context/SidebarContext";
-import { ThemeContext } from "@/context/ThemeContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 type ContextProviderProps = {
    children: React.ReactNode;
