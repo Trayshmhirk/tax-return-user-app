@@ -11,7 +11,7 @@ const MessageOut = ({ text, timeStamp, borderRadius }: MessageOutPropTypes) => {
             style={{ borderRadius: borderRadius }}
             className={`min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-bubbles dark:bg-richElectricBlue text-eerieBlack dark:text-white ${borderRadius ? "" : "rounded-lg"}`}
          >
-            <span className="text">{text}</span>
+            <span className="text text-sm">{text}</span>
 
             {/* {selectedDocuments && (
                <div className="flex items-center gap-2">
@@ -25,7 +25,7 @@ const MessageOut = ({ text, timeStamp, borderRadius }: MessageOutPropTypes) => {
                   </div>
                </div>
             )} */}
-            <div className="text-xs self-end">{timeStamp}</div>
+            <div className="text-[10px] self-end">{timeStamp}</div>
          </div>
       </div>
    );

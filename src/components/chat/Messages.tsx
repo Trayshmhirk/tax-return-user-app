@@ -81,7 +81,7 @@ const Messages = ({ messages }: MessagesPropTypes) => {
             <div className="flex flex-col gap-2">
                {group.map((message, index) => (
                   <MessageIn
-                     key={message.id}
+                     key={index}
                      text={message.text}
                      timeStamp={formatTime(message.timestamp)}
                      borderRadius={
@@ -98,7 +98,7 @@ const Messages = ({ messages }: MessagesPropTypes) => {
                {group.map((message, index) => (
                   <MessageOut
                      key={index}
-                     text={message?.text}
+                     text={message.text}
                      timeStamp={formatTime(message.timestamp)}
                      borderRadius={
                         index === group.length - 1 ? borderRadiusStyle : ""
@@ -112,7 +112,10 @@ const Messages = ({ messages }: MessagesPropTypes) => {
    };
 
    return (
-      <div ref={messagesEndRef} className="flex flex-col gap-4 px-8 py-1">
+      <div
+         ref={messagesEndRef}
+         className="flex flex-col gap-4 px-1 lg:px-8 py-1"
+      >
          {renderMessages()}
       </div>
    );

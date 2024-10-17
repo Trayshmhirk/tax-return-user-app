@@ -69,7 +69,7 @@ const Chat = () => {
                id: "5",
                text: "Sure, I can help.",
                timestamp: "2024-10-16T10:01:00",
-               type: "outgoing",
+               type: "incoming",
             },
             {
                id: "6",
@@ -287,7 +287,7 @@ const Chat = () => {
                                        <div className="flex items-center gap-3">
                                           <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
 
-                                          <p className="w-1/4 text-center text-xs text-mutedGray dark:text-antiFlashWhite">
+                                          <p className="w-full lg:w-1/4 text-center text-xs text-mutedGray dark:text-antiFlashWhite">
                                              {date === new Date().toDateString()
                                                 ? "Today"
                                                 : date}
@@ -297,9 +297,9 @@ const Chat = () => {
 
                                        {/* Display messages for that date */}
 
-                                       {messages.map((message) => (
+                                       {messages.map((message, index) => (
                                           <Messages
-                                             key={message.id}
+                                             key={index}
                                              messages={[message]}
                                           />
                                        ))}

@@ -33,7 +33,7 @@ const MessageIn = ({ text, timeStamp, borderRadius }: MessageInPropTypes) => {
                   </div>
                </div>
             )} */}
-            <div className="text-xs self-end">{timeStamp}</div>
+            <div className="text-[10px] self-end">{timeStamp}</div>
          </div>
       </div>
    );
