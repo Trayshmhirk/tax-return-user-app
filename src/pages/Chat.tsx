@@ -33,10 +33,7 @@ type Chats = {
 
 const Chat = () => {
    const [activeChat, setActiveChat] = useState<Chats | null>(null);
-
-   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-      e;
-   };
+   const [searchInput, setSearchInput] = useState("");
 
    const chats: Chats[] = [
       {
@@ -164,6 +161,19 @@ const Chat = () => {
       setActiveChat(selectedChat || null);
    };
 
+   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInput(e.target.value);
+   };
+
+   const searchSideChats = (user: Chats) => {
+      const userName = user.title;
+      return userName.toLowerCase().includes(searchInput.toLowerCase());
+   };
+
+   const filteredSideChats = chats
+      ? chats.filter((chat) => searchSideChats(chat))
+      : [];
+
    return (
       <div className="w-full h-full flex">
          <div className="w-full h-full flex flex-col gap-7">
@@ -185,8 +195,8 @@ const Chat = () => {
                   </label>
 
                   <div className="overflow-scroll h-full flex flex-col bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark">
-                     {chats.length ? (
-                        chats.map((chat, index) => (
+                     {filteredSideChats.length ? (
+                        filteredSideChats.map((chat, index) => (
                            <div
                               key={index}
                               className={`
@@ -221,9 +231,11 @@ const Chat = () => {
                            </div>
                         ))
                      ) : (
-                        <p className="pending-text text-center">
-                           Request a service to begin a chat
-                        </p>
+                        <div className="py-8 px-6">
+                           <p className="pending-text text-center">
+                              Request a service to begin a chat
+                           </p>
+                        </div>
                      )}
                   </div>
                </aside>
