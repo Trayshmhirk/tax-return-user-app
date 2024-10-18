@@ -382,7 +382,7 @@ export const chats: ChatsPropType[] = [
    {
       title: "John Doe",
       content: "Hello, I need help with my account.",
-      id: "yadfibadf",
+      id: uuidv4(),
       messages: [
          {
             id: uuidv4(),
@@ -455,7 +455,7 @@ export const chats: ChatsPropType[] = [
    {
       title: "Jane Smith",
       content: "Can you assist me with this?",
-      id: "adfuayr8ef",
+      id: uuidv4(),
       messages: [
          {
             id: uuidv4(),
@@ -468,7 +468,7 @@ export const chats: ChatsPropType[] = [
    {
       title: "Jane Doe",
       content: "I need help with this service?",
-      id: "padfnacvh832",
+      id: uuidv4(),
       messages: [
          {
             id: uuidv4(),
@@ -481,7 +481,7 @@ export const chats: ChatsPropType[] = [
    {
       title: "John Doe",
       content: "Hello, I need help with my account.",
-      id: "823nfdadfu",
+      id: uuidv4(),
       messages: [
          {
             id: uuidv4(),
