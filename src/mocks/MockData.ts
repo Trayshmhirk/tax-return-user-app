@@ -9,6 +9,7 @@ import {
    CardsProps,
    MetricCardProps,
    ChatsPropType,
+   ChatAccessStatus,
 } from "@/types/Types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -383,6 +384,7 @@ export const chats: ChatsPropType[] = [
       title: "John Doe",
       content: "Hello, I need help with my account.",
       id: uuidv4(),
+      chat_access: ChatAccessStatus.ON,
       messages: [
          {
             id: uuidv4(),
@@ -421,7 +423,7 @@ export const chats: ChatsPropType[] = [
             type: "incoming",
          },
          {
-            id: "5",
+            id: uuidv4(),
             text: "I'll send in the list of documents that would be required of you",
             timestamp: "2024-10-17T10:01:00",
             type: "incoming",
@@ -456,6 +458,7 @@ export const chats: ChatsPropType[] = [
       title: "Jane Smith",
       content: "Can you assist me with this?",
       id: uuidv4(),
+      chat_access: ChatAccessStatus.OFF,
       messages: [
          {
             id: uuidv4(),
@@ -469,6 +472,7 @@ export const chats: ChatsPropType[] = [
       title: "Jane Doe",
       content: "I need help with this service?",
       id: uuidv4(),
+      chat_access: ChatAccessStatus.OFF,
       messages: [
          {
             id: uuidv4(),
@@ -482,6 +486,7 @@ export const chats: ChatsPropType[] = [
       title: "John Doe",
       content: "Hello, I need help with my account.",
       id: uuidv4(),
+      chat_access: ChatAccessStatus.OFF,
       messages: [
          {
             id: uuidv4(),

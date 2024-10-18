@@ -151,9 +151,15 @@ export type MessageType = {
    type: "incoming" | "outgoing";
 };
 
+export enum ChatAccessStatus {
+   ON = "on", // Chat is accessible
+   OFF = "off", // Chat is restricted or disabled
+}
+
 export type ChatsPropType = {
    title: string;
    content: string; // Preview of the last message
    id: string; // Unique identifier for each chat
    messages: MessageType[]; // Array of messages for each chat
+   chat_access: ChatAccessStatus;
 };

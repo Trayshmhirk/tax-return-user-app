@@ -7,7 +7,7 @@ import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
 import { format, isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import { MessageType, ChatsPropType } from "@/types/Types";
+import { MessageType, ChatsPropType, ChatAccessStatus } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { groupMessagesByType } from "@/helpers/groupMessagesByType";
@@ -37,8 +37,6 @@ const Chat = () => {
       fetchData();
    }, []);
 
-   const isChatAccess: string = "on";
-
    const handleOpenChat = (chatId: string) => {
       /*
          call api to get the selected chat by the "service id",
@@ -65,6 +63,8 @@ const Chat = () => {
    const filteredSideChats = chats
       ? chats.filter((chat) => searchSideChats(chat))
       : [];
+
+   console.log(activeChat);
 
    return (
       <div className="w-full h-full flex">
@@ -219,7 +219,7 @@ const Chat = () => {
                         </div>
 
                         <div className="flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
-                           {isChatAccess === "off" ? (
+                           {activeChat.chat_access === ChatAccessStatus.OFF ? (
                               <p className="w-full p-2 text-mutedGray dark:text-spanishGray text-center">
                                  This chat has been disabled by the admin.
                                  Kindly check back later.
