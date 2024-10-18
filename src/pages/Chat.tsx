@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
-import { Paperclip, Smile, SendHorizontal } from "lucide-react";
+import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
+import useWindowWidth from "@/hooks/UseWindowWidth";
 
 type MessageType = {
    id: string;
@@ -31,9 +32,25 @@ type Chats = {
 //    date: string;
 // };
 
+// const chat: ChatPropType[] = [
+//    {
+//       title: "",
+//       conversations: [],
+//    },
+// ];
+// const conversations: ConversationsPropTypes[] = [
+//    {
+//       date: "",
+//    },
+// ];
+
 const Chat = () => {
+   const windowWidth = useWindowWidth();
+   const mobileView = windowWidth <= 768;
+
    const [activeChat, setActiveChat] = useState<Chats | null>(null);
    const [searchInput, setSearchInput] = useState("");
+   const [toggleMobileChat, setToggleMobileChat] = useState(false);
 
    const chats: Chats[] = [
       {
@@ -126,18 +143,6 @@ const Chat = () => {
       },
    ];
 
-   // const chat: ChatPropType[] = [
-   //    {
-   //       title: "",
-   //       conversations: [],
-   //    },
-   // ];
-   // const conversations: ConversationsPropTypes[] = [
-   //    {
-   //       date: "",
-   //    },
-   // ];
-
    const isChatAccess: string = "on";
 
    // Sort function for dates
@@ -159,6 +164,15 @@ const Chat = () => {
    const handleOpenChat = (chatId: string) => {
       const selectedChat = chats.find((chat) => chat.id === chatId);
       setActiveChat(selectedChat || null);
+
+      // toggle the mobile chat view
+      if (mobileView) {
+         setToggleMobileChat(!toggleMobileChat);
+      }
+   };
+
+   const handleToggleMobileChat = () => {
+      setToggleMobileChat(!toggleMobileChat);
    };
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,7 +193,9 @@ const Chat = () => {
          <div className="w-full h-full flex flex-col gap-7">
             <div className="h-full flex gap-4">
                {/* chats aside */}
-               <aside className="w-full md:max-w-[270px] lg:max-w-xs flex flex-col gap-4">
+               <aside
+                  className={`w-full md:max-w-[270px] lg:max-w-xs ${toggleMobileChat ? "hidden" : "flex"} flex-col gap-4`}
+               >
                   <label
                      htmlFor="search"
                      className="w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded shadow-md dark:shadow-md-dark"
@@ -240,25 +256,36 @@ const Chat = () => {
                   </div>
                </aside>
 
-               <div className="hidden md:flex w-full h-full flex-col border border-chineseWhite dark:border-spanishGray rounded-md overflow-hidden">
+               <div
+                  className={`${toggleMobileChat ? "" : "hidden md:flex"} w-full h-full flex flex-col border border-chineseWhite dark:border-spanishGray rounded-md overflow-hidden`}
+               >
                   {activeChat ? (
                      <>
                         <div className="flex items-center justify-center bg-white dark:bg-darkGray border-b border-chineseWhite dark:border-spanishGray">
-                           <div className="w-[95%] p-3">
-                              <div className="flex items-center gap-3">
-                                 <div className="w-8 h-8 flex items-center justify-center bg-richElectricBlue text-white font-semibold rounded-full">
-                                    <span className="text-sm">JD</span>
-                                    {/* <img src="" alt="" /> */}
+                           <div className="w-full md:w-[95%] p-3">
+                              <div className="flex items-center gap-4">
+                                 <div
+                                    className={`${!toggleMobileChat && "hidden"}`}
+                                    onClick={handleToggleMobileChat}
+                                 >
+                                    <ChevronLeft />
                                  </div>
 
-                                 <p className="text-mutedGray dark:text-white font-semibold">
-                                    {activeChat.title}
-                                 </p>
+                                 <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 flex items-center justify-center bg-richElectricBlue text-white font-semibold rounded-full">
+                                       <span className="text-sm">JD</span>
+                                       {/* <img src="" alt="" /> */}
+                                    </div>
+
+                                    <p className="text-mutedGray dark:text-white font-semibold">
+                                       {activeChat.title}
+                                    </p>
+                                 </div>
                               </div>
                            </div>
                         </div>
 
-                        <div className="overflow-scroll w-full h-full flex flex-col gap-3 py-4 px-5">
+                        <div className="overflow-scroll w-full h-full flex flex-col gap-3 py-4 pt-5 px-5">
                            {activeChat &&
                               Object.entries(
                                  activeChat.messages.reduce(
