@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
@@ -10,150 +10,38 @@ import Messages from "@/components/chat/Messages";
 import useWindowWidth from "@/hooks/UseWindowWidth";
 import { format, isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-
-type MessageType = {
-   id: string;
-   text: string;
-   timestamp: string;
-   type: "incoming" | "outgoing";
-};
-
-type Chats = {
-   title: string;
-   content: string; // Preview of the last message
-   id: string; // Unique identifier for each chat
-   messages: MessageType[]; // Array of messages for each chat
-};
-
-// type ChatPropType = {
-//    title: string;
-//    conversations: [];
-// };
-
-// type ConversationsPropTypes = {
-//    date: string;
-// };
-
-// const chat: ChatPropType[] = [
-//    {
-//       title: "",
-//       conversations: [],
-//    },
-// ];
-// const conversations: ConversationsPropTypes[] = [
-//    {
-//       date: "",
-//    },
-// ];
+import { MessageType, ChatsPropType } from "@/types/Types";
+import { fetchChats } from "@/api/mockApis";
 
 const Chat = () => {
    const windowWidth = useWindowWidth();
    const mobileView = windowWidth <= 768;
 
-   const [activeChat, setActiveChat] = useState<Chats | null>(null);
+   const [chats, setChats] = useState<ChatsPropType[]>([]);
+   const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
    const [toggleMobileChat, setToggleMobileChat] = useState(false);
 
-   const chats: Chats[] = [
-      {
-         title: "John Doe",
-         content: "Hello, I need help with my account.",
-         id: "yadfibadf",
-         messages: [
-            {
-               id: "1",
-               text: "Hello, I need help",
-               timestamp: "2024-10-17T10:00:00",
-               type: "incoming",
-            },
-            {
-               id: "2",
-               text: "Sure, I can help.",
-               timestamp: "2024-10-17T10:01:00",
-               type: "outgoing",
-            },
-            {
-               id: "3",
-               text: "Sure, I can help.",
-               timestamp: "2024-10-16T10:01:00",
-               type: "outgoing",
-            },
-            {
-               id: "4",
-               text: "Sure, I can help. what i want you to do for me is that, i would like for you to send in quite a few documents.",
-               timestamp: "2024-10-16T10:01:00",
-               type: "outgoing",
-            },
-            {
-               id: "5",
-               text: "Sure, I can help.",
-               timestamp: "2024-10-16T10:01:00",
-               type: "incoming",
-            },
-            {
-               id: "6",
-               text: "Sure, I can help.",
-               timestamp: "2024-10-16T10:01:00",
-               type: "outgoing",
-            },
-            {
-               id: "6",
-               text: "Hello.",
-               timestamp: "2024-10-18T10:01:00",
-               type: "outgoing",
-            },
-         ],
-      },
-      {
-         title: "Jane Smith",
-         content: "Can you assist me with this?",
-         id: "adfuayr8ef",
-         messages: [
-            {
-               id: "3",
-               text: "Can you assist me with this?",
-               timestamp: "2024-10-16T09:30:00",
-               type: "incoming",
-            },
-         ],
-      },
-      {
-         title: "Jane Doe",
-         content: "I need help with this service?",
-         id: "padfnacvh832",
-         messages: [
-            {
-               id: "3",
-               text: "Can you assist me with this?",
-               timestamp: "2024-10-16T09:30:00",
-               type: "incoming",
-            },
-         ],
-      },
-      {
-         title: "John Doe",
-         content: "Hello, I need help with my account.",
-         id: "823nfdadfu",
-         messages: [
-            {
-               id: "1",
-               text: "Hello, I need help",
-               timestamp: "2024-10-17T10:00:00",
-               type: "incoming",
-            },
-            {
-               id: "2",
-               text: "Sure, I can help.",
-               timestamp: "2024-10-17T10:01:00",
-               type: "outgoing",
-            },
-         ],
-      },
-   ];
+   useEffect(() => {
+      async function fetchData() {
+         // setLoading(true);
+
+         setTimeout(async () => {
+            const fetchedChats = await fetchChats();
+            setChats(fetchedChats);
+            // setLoading(false);
+         }, 500);
+      }
+      fetchData();
+   }, []);
 
    const isChatAccess: string = "on";
 
    const handleOpenChat = (chatId: string) => {
+      /*
+         call api to get the selected chat by the "service id",
+         and then set the response data to the activechat
+      */
       const selectedChat = chats.find((chat) => chat.id === chatId);
       setActiveChat(selectedChat || null);
 
@@ -171,7 +59,7 @@ const Chat = () => {
       setSearchInput(e.target.value);
    };
 
-   const searchSideChats = (user: Chats) => {
+   const searchSideChats = (user: ChatsPropType) => {
       const userName = user.title;
       return userName.toLowerCase().includes(searchInput.toLowerCase());
    };
@@ -294,7 +182,6 @@ const Chat = () => {
                                     {} as { [date: string]: MessageType[] }
                                  )
                               )
-
                                  .sort(([dateA], [dateB]) =>
                                     sortDates(dateA, dateB)
                                  )
@@ -323,15 +210,6 @@ const Chat = () => {
                                        ))}
                                     </React.Fragment>
                                  ))}
-                           <div className="chat-notifications items-center self-center p-3 hidden">
-                              {/* <NotificationMessage 
-                                          statusIcon={CheckIcon}
-                                          notificationText='Your payment service task has been completed'
-                                          notificationAction='Pay now'
-                                          isChatNotification
-                                          handleNotificationAction={handleShowInvoiceModal}
-                                       /> */}
-                           </div>
                         </div>
 
                         <div className="flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">

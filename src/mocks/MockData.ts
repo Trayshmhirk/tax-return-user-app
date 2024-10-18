@@ -8,6 +8,7 @@ import {
    RequestsPropTypes,
    CardsProps,
    MetricCardProps,
+   ChatsPropType,
 } from "@/types/Types";
 
 // request service
@@ -372,5 +373,103 @@ export const invoiceMetrics: MetricCardProps[] = [
       percentage: 19,
       invoice_status: "failed",
       is_percentage_increase: false,
+   },
+];
+
+// chat data
+export const chats: ChatsPropType[] = [
+   {
+      title: "John Doe",
+      content: "Hello, I need help with my account.",
+      id: "yadfibadf",
+      messages: [
+         {
+            id: "1",
+            text: "Hello, I need help",
+            timestamp: "2024-10-17T10:00:00",
+            type: "incoming",
+         },
+         {
+            id: "2",
+            text: "Sure, I can help.",
+            timestamp: "2024-10-17T10:01:00",
+            type: "outgoing",
+         },
+         {
+            id: "3",
+            text: "Sure, I can help.",
+            timestamp: "2024-10-16T10:01:00",
+            type: "outgoing",
+         },
+         {
+            id: "4",
+            text: "Sure, I can help. what i want you to do for me is that, i would like for you to send in quite a few documents.",
+            timestamp: "2024-10-16T10:01:00",
+            type: "outgoing",
+         },
+         {
+            id: "5",
+            text: "Sure, I can help.",
+            timestamp: "2024-10-16T10:01:00",
+            type: "incoming",
+         },
+         {
+            id: "6",
+            text: "Sure, I can help.",
+            timestamp: "2024-10-16T10:01:00",
+            type: "outgoing",
+         },
+         {
+            id: "6",
+            text: "Hello.",
+            timestamp: "2024-10-18T10:01:00",
+            type: "outgoing",
+         },
+      ],
+   },
+   {
+      title: "Jane Smith",
+      content: "Can you assist me with this?",
+      id: "adfuayr8ef",
+      messages: [
+         {
+            id: "3",
+            text: "Can you assist me with this?",
+            timestamp: "2024-10-16T09:30:00",
+            type: "incoming",
+         },
+      ],
+   },
+   {
+      title: "Jane Doe",
+      content: "I need help with this service?",
+      id: "padfnacvh832",
+      messages: [
+         {
+            id: "3",
+            text: "Can you assist me with this?",
+            timestamp: "2024-10-16T09:30:00",
+            type: "incoming",
+         },
+      ],
+   },
+   {
+      title: "John Doe",
+      content: "Hello, I need help with my account.",
+      id: "823nfdadfu",
+      messages: [
+         {
+            id: "1",
+            text: "Hello, I need help",
+            timestamp: "2024-10-17T10:00:00",
+            type: "incoming",
+         },
+         {
+            id: "2",
+            text: "Sure, I can help.",
+            timestamp: "2024-10-17T10:01:00",
+            type: "outgoing",
+         },
+      ],
    },
 ];

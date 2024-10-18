@@ -142,3 +142,18 @@ export type TransactionCardPropTypes = {
    handleClick?: () => void;
    handleDeleteTransaction?: (transactionId: string) => void;
 };
+
+// chat types
+export type MessageType = {
+   id: string;
+   text: string;
+   timestamp: string;
+   type: "incoming" | "outgoing";
+};
+
+export type ChatsPropType = {
+   title: string;
+   content: string; // Preview of the last message
+   id: string; // Unique identifier for each chat
+   messages: MessageType[]; // Array of messages for each chat
+};
