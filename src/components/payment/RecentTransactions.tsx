@@ -7,7 +7,7 @@ import { fetchTransactions } from "@/api/mockApis";
 import { Button } from "../ui/button";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
-import useWindowWidth from "@/hooks/UseWindowWidth";
+import useWindowWidth from "@/hooks/useWindowWidth";
 import SearchAndFilter from "../common/SearchAndFilter";
 import TransactionCard from "../cards/TransactionCard";
 

@@ -25,7 +25,7 @@ import {
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronLeft, ChevronRight, Settings2, Search } from "lucide-react";
-import useWindowWidth from "@/hooks/UseWindowWidth";
+import useWindowWidth from "@/hooks/useWindowWidth";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];

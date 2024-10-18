@@ -6,7 +6,7 @@ import { BiLogOut } from "react-icons/bi";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useSidebar } from "@/hooks/UseSidebar";
+import { useSidebar } from "@/hooks/useSidebar";
 import Overlay from "../common/Overlay";
 import { useTheme } from "@/hooks/useTheme";
 

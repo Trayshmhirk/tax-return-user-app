@@ -11,7 +11,7 @@ import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { DocumentCard } from "@/components/cards/DocumentCard";
 import InvoiceCard from "@/components/cards/InvoiceCard";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
-import useWindowWidth from "@/hooks/UseWindowWidth";
+import useWindowWidth from "@/hooks/useWindowWidth";
 import { Button } from "@/components/ui/button";
 import { fetchDocuments, fetchInvoices } from "@/api/mockApis";
 

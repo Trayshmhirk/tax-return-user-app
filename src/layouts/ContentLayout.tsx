@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Header from "@/components/common/Header";
-import { useSidebar } from "@/hooks/UseSidebar";
+import { useSidebar } from "@/hooks/useSidebar";
 
 type ContentLayoutProps = {
    children: React.ReactNode;

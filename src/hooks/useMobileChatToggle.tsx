@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useWindowWidth from "./UseWindowWidth";
+import useWindowWidth from "./useWindowWidth";
 
 export function useMobileChatToggle(initialState: boolean = false) {
    const windowWidth = useWindowWidth();
