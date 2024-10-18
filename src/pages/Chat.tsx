@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -12,6 +10,7 @@ import { sortDates } from "@/helpers/sortDates";
 import { MessageType, ChatsPropType } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
+import { groupMessagesByType } from "@/helpers/groupMessagesByType";
 
 const Chat = () => {
    const {
@@ -200,57 +199,21 @@ const Chat = () => {
                                        </div>
 
                                        {/* Group messages of the same type (incoming/outgoing) together */}
-                                       {messages
-                                          .reduce(
-                                             (
-                                                groupedMessages,
-                                                currentMessage,
-                                                index,
-                                                arr
-                                             ) => {
-                                                const previousMessage =
-                                                   arr[index - 1];
-
-                                                if (
-                                                   previousMessage &&
-                                                   previousMessage.type ===
-                                                      currentMessage.type
-                                                ) {
-                                                   // Add current message to the previous group if of the same type
-                                                   groupedMessages[
-                                                      groupedMessages.length - 1
-                                                   ].push(
-                                                      <Messages
-                                                         key={currentMessage.id}
-                                                         messages={[
-                                                            currentMessage,
-                                                         ]}
-                                                      />
-                                                   );
-                                                } else {
-                                                   // Start a new group for different types
-                                                   groupedMessages.push([
-                                                      <Messages
-                                                         key={currentMessage.id}
-                                                         messages={[
-                                                            currentMessage,
-                                                         ]}
-                                                      />,
-                                                   ]);
-                                                }
-
-                                                return groupedMessages;
-                                             },
-                                             [] as React.ReactNode[][]
-                                          )
-                                          .map((group, index) => (
+                                       {groupMessagesByType(messages).map(
+                                          (group, index) => (
                                              <div
                                                 key={index}
                                                 className="flex flex-col gap-px"
                                              >
-                                                {group}
+                                                {group.map((message) => (
+                                                   <Messages
+                                                      key={message.id}
+                                                      messages={[message]}
+                                                   />
+                                                ))}
                                              </div>
-                                          ))}
+                                          )
+                                       )}
                                     </React.Fragment>
                                  ))}
                         </div>
