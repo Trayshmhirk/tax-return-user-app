@@ -1,7 +1,7 @@
 type MessageInPropTypes = {
    text: string;
    timeStamp: string;
-   borderRadius: "" | "16px 16px 16px 0px" | "16px 16px 0px 16px";
+   borderRadius: "" | "8px 8px 8px 0px" | "8px 8px 0px 8px";
 };
 const MessageIn = ({ text, timeStamp, borderRadius }: MessageInPropTypes) => {
    return (

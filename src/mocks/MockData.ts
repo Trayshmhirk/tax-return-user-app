@@ -10,6 +10,7 @@ import {
    MetricCardProps,
    ChatsPropType,
 } from "@/types/Types";
+import { v4 as uuidv4 } from "uuid";
 
 // request service
 export const servicesList: ServicesListTypes[] = [
@@ -384,44 +385,68 @@ export const chats: ChatsPropType[] = [
       id: "yadfibadf",
       messages: [
          {
-            id: "1",
-            text: "Hello, I need help",
-            timestamp: "2024-10-17T10:00:00",
+            id: uuidv4(),
+            text: "Hello there",
+            timestamp: "2024-10-16T10:00:00",
+            type: "outgoing",
+         },
+         {
+            id: uuidv4(),
+            text: "I need some help with my taxes",
+            timestamp: "2024-10-16T10:00:00",
+            type: "outgoing",
+         },
+         {
+            id: uuidv4(),
+            text: "Sure, I can help.",
+            timestamp: "2024-10-16T10:01:00",
             type: "incoming",
          },
          {
-            id: "2",
-            text: "Sure, I can help.",
+            id: uuidv4(),
+            text: "What do you want me to help you with exactly?",
+            timestamp: "2024-10-16T10:01:00",
+            type: "incoming",
+         },
+         {
+            id: uuidv4(),
+            text: "Okayy.. what i want you to do for me is that, i would like for you to send in a list of required documents.",
             timestamp: "2024-10-17T10:01:00",
             type: "outgoing",
          },
          {
-            id: "3",
-            text: "Sure, I can help.",
-            timestamp: "2024-10-16T10:01:00",
-            type: "outgoing",
-         },
-         {
-            id: "4",
-            text: "Sure, I can help. what i want you to do for me is that, i would like for you to send in quite a few documents.",
-            timestamp: "2024-10-16T10:01:00",
-            type: "outgoing",
-         },
-         {
-            id: "5",
-            text: "Sure, I can help.",
-            timestamp: "2024-10-16T10:01:00",
+            id: uuidv4(),
+            text: "Okay, great.",
+            timestamp: "2024-10-17T10:01:00",
             type: "incoming",
          },
          {
-            id: "6",
-            text: "Sure, I can help.",
-            timestamp: "2024-10-16T10:01:00",
+            id: "5",
+            text: "I'll send in the list of documents that would be required of you",
+            timestamp: "2024-10-17T10:01:00",
+            type: "incoming",
+         },
+         {
+            id: uuidv4(),
+            text: "Kindly standby, as it would take a few minutes",
+            timestamp: "2024-10-17T10:01:00",
+            type: "incoming",
+         },
+         {
+            id: uuidv4(),
+            text: "okayy.. Great. I will be waiting for a feedback. Thanks",
+            timestamp: "2024-10-17T10:01:00",
             type: "outgoing",
          },
          {
-            id: "6",
-            text: "Hello.",
+            id: uuidv4(),
+            text: "Hello. Are you there?",
+            timestamp: "2024-10-18T10:01:00",
+            type: "outgoing",
+         },
+         {
+            id: uuidv4(),
+            text: "Hi",
             timestamp: "2024-10-18T10:01:00",
             type: "outgoing",
          },
@@ -433,7 +458,7 @@ export const chats: ChatsPropType[] = [
       id: "adfuayr8ef",
       messages: [
          {
-            id: "3",
+            id: uuidv4(),
             text: "Can you assist me with this?",
             timestamp: "2024-10-16T09:30:00",
             type: "incoming",
@@ -446,7 +471,7 @@ export const chats: ChatsPropType[] = [
       id: "padfnacvh832",
       messages: [
          {
-            id: "3",
+            id: uuidv4(),
             text: "Can you assist me with this?",
             timestamp: "2024-10-16T09:30:00",
             type: "incoming",
@@ -459,13 +484,13 @@ export const chats: ChatsPropType[] = [
       id: "823nfdadfu",
       messages: [
          {
-            id: "1",
+            id: uuidv4(),
             text: "Hello, I need help",
             timestamp: "2024-10-17T10:00:00",
             type: "incoming",
          },
          {
-            id: "2",
+            id: uuidv4(),
             text: "Sure, I can help.",
             timestamp: "2024-10-17T10:01:00",
             type: "outgoing",

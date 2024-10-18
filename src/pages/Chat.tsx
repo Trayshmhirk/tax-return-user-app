@@ -165,7 +165,7 @@ const Chat = () => {
                            </div>
                         </div>
 
-                        <div className="overflow-scroll w-full h-full flex flex-col gap-3 py-4 pt-5 px-5">
+                        <div className="overflow-scroll w-full h-full flex flex-col gap-5 py-4 pt-5 px-5">
                            {activeChat &&
                               Object.entries(
                                  activeChat.messages.reduce(
@@ -200,14 +200,58 @@ const Chat = () => {
                                           <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
                                        </div>
 
-                                       {/* Display messages for that date */}
+                                       {/* Group messages of the same type (incoming/outgoing) together */}
+                                       {messages
+                                          .reduce(
+                                             (
+                                                groupedMessages,
+                                                currentMessage,
+                                                index,
+                                                arr
+                                             ) => {
+                                                const previousMessage =
+                                                   arr[index - 1];
 
-                                       {messages.map((message, index) => (
-                                          <Messages
-                                             key={index}
-                                             messages={[message]}
-                                          />
-                                       ))}
+                                                if (
+                                                   previousMessage &&
+                                                   previousMessage.type ===
+                                                      currentMessage.type
+                                                ) {
+                                                   // Add current message to the previous group if of the same type
+                                                   groupedMessages[
+                                                      groupedMessages.length - 1
+                                                   ].push(
+                                                      <Messages
+                                                         key={currentMessage.id}
+                                                         messages={[
+                                                            currentMessage,
+                                                         ]}
+                                                      />
+                                                   );
+                                                } else {
+                                                   // Start a new group for different types
+                                                   groupedMessages.push([
+                                                      <Messages
+                                                         key={currentMessage.id}
+                                                         messages={[
+                                                            currentMessage,
+                                                         ]}
+                                                      />,
+                                                   ]);
+                                                }
+
+                                                return groupedMessages;
+                                             },
+                                             [] as React.ReactNode[][]
+                                          )
+                                          .map((group, index) => (
+                                             <div
+                                                key={index}
+                                                className="flex flex-col gap-px"
+                                             >
+                                                {group}
+                                             </div>
+                                          ))}
                                     </React.Fragment>
                                  ))}
                         </div>
@@ -230,7 +274,7 @@ const Chat = () => {
                                     </div>
                                  </div>
 
-                                 <div className="text w-full flex items-center justify-between gap-3">
+                                 <div className="text w-full flex items-center justify-between gap-4">
                                     <Input
                                        className="w-full bg-transparent dark:bg-transparent px-5 rounded dark:border-spanishGray dark:border-opacity-50"
                                        type="text"

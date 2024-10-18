@@ -73,8 +73,8 @@ const Messages = ({ messages }: MessagesPropTypes) => {
 
       const borderRadiusStyle =
          lastMessage.type === "incoming"
-            ? "16px 16px 16px 0px"
-            : "16px 16px 0px 16px";
+            ? "8px 8px 8px 0px"
+            : "8px 8px 0px 8px";
 
       if (firstMessage.type === "incoming") {
          return (
