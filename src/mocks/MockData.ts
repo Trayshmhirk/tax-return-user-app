@@ -387,31 +387,31 @@ export const chats: ChatsPropType[] = [
          {
             id: uuidv4(),
             text: "Hello there",
-            timestamp: "2024-10-16T10:00:00",
+            timestamp: "2024-10-16T09:50:00",
             type: "outgoing",
          },
          {
             id: uuidv4(),
             text: "I need some help with my taxes",
-            timestamp: "2024-10-16T10:00:00",
+            timestamp: "2024-10-16T10:01:00",
             type: "outgoing",
          },
          {
             id: uuidv4(),
             text: "Sure, I can help.",
-            timestamp: "2024-10-16T10:01:00",
+            timestamp: "2024-10-16T10:01:30",
             type: "incoming",
          },
          {
             id: uuidv4(),
             text: "What do you want me to help you with exactly?",
-            timestamp: "2024-10-16T10:01:00",
+            timestamp: "2024-10-16T10:02:00",
             type: "incoming",
          },
          {
             id: uuidv4(),
             text: "Okayy.. what i want you to do for me is that, i would like for you to send in a list of required documents.",
-            timestamp: "2024-10-17T10:01:00",
+            timestamp: "2024-10-17T10:06:00",
             type: "outgoing",
          },
          {

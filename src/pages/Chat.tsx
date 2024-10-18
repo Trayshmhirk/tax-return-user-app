@@ -24,7 +24,6 @@ const Chat = () => {
    const [chats, setChats] = useState<ChatsPropType[]>([]);
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
-   // const [toggleMobileChat, setToggleMobileChat] = useState(false);
 
    useEffect(() => {
       async function fetchData() {
