@@ -7,20 +7,24 @@ import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
-import useWindowWidth from "@/hooks/UseWindowWidth";
 import { format, isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
 import { MessageType, ChatsPropType } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
+import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 
 const Chat = () => {
-   const windowWidth = useWindowWidth();
-   const mobileView = windowWidth <= 768;
+   const {
+      mobileView,
+      toggleMobileChat,
+      setToggleMobileChat,
+      handleToggleMobileChat,
+   } = useMobileChatToggle();
 
    const [chats, setChats] = useState<ChatsPropType[]>([]);
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
-   const [toggleMobileChat, setToggleMobileChat] = useState(false);
+   // const [toggleMobileChat, setToggleMobileChat] = useState(false);
 
    useEffect(() => {
       async function fetchData() {
@@ -49,10 +53,6 @@ const Chat = () => {
       if (mobileView) {
          setToggleMobileChat(!toggleMobileChat);
       }
-   };
-
-   const handleToggleMobileChat = () => {
-      setToggleMobileChat(!toggleMobileChat);
    };
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
