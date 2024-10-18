@@ -92,8 +92,8 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      <NavItems
                         title="Logout"
                         navIcon={BiLogOut}
-                        id="logout" // Ensure to provide an id for the logout item
-                        onClick={() => console.log("Logout clicked")} // handleLogout function
+                        id="logout"
+                        onClick={() => console.log("Logout clicked")}
                         isCollapsed={isOpen}
                      />
                   </div>
