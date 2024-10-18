@@ -8,6 +8,8 @@ import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
 import useWindowWidth from "@/hooks/UseWindowWidth";
+import { format, isYesterday, isToday } from "date-fns";
+import { sortDates } from "@/helpers/sortDates";
 
 type MessageType = {
    id: string;
@@ -94,6 +96,12 @@ const Chat = () => {
                timestamp: "2024-10-16T10:01:00",
                type: "outgoing",
             },
+            {
+               id: "6",
+               text: "Hello.",
+               timestamp: "2024-10-18T10:01:00",
+               type: "outgoing",
+            },
          ],
       },
       {
@@ -144,22 +152,6 @@ const Chat = () => {
    ];
 
    const isChatAccess: string = "on";
-
-   // Sort function for dates
-   const sortDates = (dateA: string, dateB: string) => {
-      const dateOrder = ["yesterday", "today"];
-
-      const indexA = dateOrder.indexOf(dateA.toLowerCase());
-      const indexB = dateOrder.indexOf(dateB.toLowerCase());
-
-      if (indexA === -1 && indexB === -1) {
-         // If both dates are not in the predefined order, compare them as normal dates
-         // return new Date(dateA) - new Date(dateB);
-      }
-
-      // If one of the dates is not in the predefined order, prioritize it
-      return indexA - indexB;
-   };
 
    const handleOpenChat = (chatId: string) => {
       const selectedChat = chats.find((chat) => chat.id === chatId);
@@ -290,22 +282,19 @@ const Chat = () => {
                               Object.entries(
                                  activeChat.messages.reduce(
                                     (acc, message) => {
-                                       // Format timestamp to just the date part
-                                       const date = new Date(
-                                          message.timestamp
-                                       ).toDateString();
+                                       const date = format(
+                                          new Date(message.timestamp),
+                                          "MMM d, yyyy"
+                                       ); // Format date as 'Oct 18, 2024'
 
-                                       // If the date key doesn't exist, create it and add the message
-                                       if (!acc[date]) {
-                                          acc[date] = [];
-                                       }
-
+                                       if (!acc[date]) acc[date] = [];
                                        acc[date].push(message);
                                        return acc;
                                     },
                                     {} as { [date: string]: MessageType[] }
                                  )
                               )
+
                                  .sort(([dateA], [dateB]) =>
                                     sortDates(dateA, dateB)
                                  )
@@ -315,9 +304,11 @@ const Chat = () => {
                                           <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
 
                                           <p className="w-full lg:w-1/4 text-center text-xs text-mutedGray dark:text-antiFlashWhite">
-                                             {date === new Date().toDateString()
+                                             {isToday(new Date(date))
                                                 ? "Today"
-                                                : date}
+                                                : isYesterday(new Date(date))
+                                                  ? "Yesterday"
+                                                  : date}
                                           </p>
                                           <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
                                        </div>
