@@ -189,14 +189,40 @@ const Chat = () => {
                                           (group, index) => (
                                              <div
                                                 key={index}
-                                                className="flex flex-col gap-px"
+                                                className="flex flex-col"
                                              >
-                                                {group.map((message) => (
-                                                   <Messages
-                                                      key={message.id}
-                                                      messages={[message]}
-                                                   />
-                                                ))}
+                                                {group.map(
+                                                   (message, msgIndex) => {
+                                                      // Check if this is the last message in the group
+                                                      const isLastMessage =
+                                                         msgIndex ===
+                                                         group.length - 1;
+
+                                                      // Determine border radius for the last message in the group
+                                                      const borderRadiusStyle =
+                                                         message.type ===
+                                                         "incoming"
+                                                            ? isLastMessage
+                                                               ? "8px 8px 8px 0px"
+                                                               : "8px"
+                                                            : isLastMessage
+                                                              ? "8px 8px 0px 8px"
+                                                              : "8px";
+
+                                                      return (
+                                                         <Messages
+                                                            key={message.id}
+                                                            messages={[message]} // Pass the individual message
+                                                            borderRadius={
+                                                               borderRadiusStyle
+                                                            } // Pass the calculated border radius
+                                                            isLastMessage={
+                                                               isLastMessage
+                                                            }
+                                                         />
+                                                      );
+                                                   }
+                                                )}
                                              </div>
                                           )
                                        )}

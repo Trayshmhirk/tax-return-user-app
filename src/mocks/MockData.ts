@@ -453,6 +453,12 @@ export const chats: ChatsPropType[] = [
             timestamp: "2024-10-18T11:31:00",
             type: MessageType.outgoing,
          },
+         {
+            id: uuidv4(),
+            text: "Good afternoon",
+            timestamp: "2024-10-18T12:10:00",
+            type: MessageType.outgoing,
+         },
       ],
    },
    {

@@ -1,16 +1,26 @@
 type MessageOutPropTypes = {
    text: string;
    timeStamp: string;
-   borderRadius: "" | "8px 8px 8px 0px" | "8px 8px 0px 8px";
+   borderRadius: string;
+   isLastMessage: boolean;
 };
 
-const MessageOut = ({ text, timeStamp, borderRadius }: MessageOutPropTypes) => {
+const MessageOut = ({
+   text,
+   timeStamp,
+   borderRadius,
+   isLastMessage,
+}: MessageOutPropTypes) => {
    return (
       <div className="w-full flex justify-end">
          <div
             style={{ borderRadius: borderRadius }}
-            className={`min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-bubbles dark:bg-richElectricBlue text-eerieBlack dark:text-white ${borderRadius ? "" : "rounded-lg"}`}
+            className="relative min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-bubbles dark:bg-richElectricBlue text-eerieBlack dark:text-white"
          >
+            {isLastMessage && (
+               <div className="absolute bottom-0 -right-[3px] w-[6px] h-[6px] bg-bubbles dark:bg-richElectricBlue rounded" />
+            )}
+
             <span className="text text-sm">{text}</span>
 
             {/* {selectedDocuments && (

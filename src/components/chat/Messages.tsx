@@ -5,9 +5,15 @@ import { MessagesPropType } from "@/types/Types";
 
 type MessagesPropTypes = {
    messages: MessagesPropType[]; // Array of message objects
+   borderRadius: string; // Optional border radius prop
+   isLastMessage: boolean;
 };
 
-const Messages = ({ messages }: MessagesPropTypes) => {
+const Messages = ({
+   messages,
+   borderRadius,
+   isLastMessage,
+}: MessagesPropTypes) => {
    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
    useEffect(() => {
@@ -25,38 +31,32 @@ const Messages = ({ messages }: MessagesPropTypes) => {
    };
 
    const renderMessages = () => {
-      return messages.map((message) => {
-         const borderRadiusStyle =
-            message.type === "incoming" ? "8px 8px 8px 0px" : "8px 8px 0px 8px";
-
-         if (message.type === "incoming") {
-            return (
-               <MessageIn
-                  key={message.id}
-                  text={message.text}
-                  timeStamp={formatTime(message.timestamp)}
-                  borderRadius={borderRadiusStyle}
-                  // selectedDocuments={message.selectedDocument}
-               />
-            );
-         } else {
-            return (
-               <MessageOut
-                  key={message.id}
-                  text={message.text}
-                  timeStamp={formatTime(message.timestamp)}
-                  borderRadius={borderRadiusStyle}
-                  // selectedDocuments={message.selectedDocument}
-               />
-            );
-         }
-      });
+      return messages.map((message) =>
+         // Use the passed borderRadius for each message
+         message.type === "incoming" ? (
+            <MessageIn
+               key={message.id}
+               text={message.text}
+               timeStamp={formatTime(message.timestamp)}
+               borderRadius={borderRadius} // Apply the border radius
+               isLastMessage={isLastMessage}
+            />
+         ) : (
+            <MessageOut
+               key={message.id}
+               text={message.text}
+               timeStamp={formatTime(message.timestamp)}
+               borderRadius={borderRadius} // Apply the border radius
+               isLastMessage={isLastMessage}
+            />
+         )
+      );
    };
 
    return (
       <div
          ref={messagesEndRef}
-         className="flex flex-col gap-4 px-1 lg:px-8 py-1"
+         className="flex flex-col gap-4 px-1 lg:px-8 py-[3px]"
       >
          {renderMessages()}
       </div>

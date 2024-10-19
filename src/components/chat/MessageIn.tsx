@@ -1,16 +1,26 @@
 type MessageInPropTypes = {
    text: string;
    timeStamp: string;
-   borderRadius: "" | "8px 8px 8px 0px" | "8px 8px 0px 8px";
+   borderRadius: string;
+   isLastMessage: boolean;
 };
 
-const MessageIn = ({ text, timeStamp, borderRadius }: MessageInPropTypes) => {
+const MessageIn = ({
+   text,
+   timeStamp,
+   borderRadius,
+   isLastMessage,
+}: MessageInPropTypes) => {
    return (
       <div className="w-full flex justify-start">
          <div
             style={{ borderRadius: borderRadius }}
-            className={`min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-white dark:bg-mutedGray ${borderRadius ? "" : "rounded-lg"}`}
+            className="relative min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-white dark:bg-mutedGray"
          >
+            {isLastMessage && (
+               <div className="absolute bottom-0 -left-[3px] w-[6px] h-[6px] bg-white dark:bg-mutedGray rounded" />
+            )}
+
             <span className="text-sm">{text}</span>
 
             {/* {selectedDocuments && (
