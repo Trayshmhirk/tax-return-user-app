@@ -15,10 +15,10 @@ const MessageOut = ({
       <div className="w-full flex justify-end">
          <div
             style={{ borderRadius: borderRadius }}
-            className="relative min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-bubbles dark:bg-richElectricBlue text-eerieBlack dark:text-white"
+            className="relative min-w-28 max-w-72 md:max-w-[450px] flex flex-col gap-1 py-3 px-4 bg-richElectricBlue text-white"
          >
             {isLastMessage && (
-               <div className="absolute bottom-0 -right-[3px] w-[6px] h-[6px] bg-bubbles dark:bg-richElectricBlue rounded" />
+               <div className="absolute bottom-0 -right-[3px] w-[6px] h-[6px] bg-richElectricBlue rounded" />
             )}
 
             <span className="text text-sm">{text}</span>

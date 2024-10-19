@@ -162,7 +162,7 @@ const Chat = () => {
                            </div>
                         </div>
 
-                        <div className="overflow-scroll w-full h-full flex flex-col gap-5 py-4 pt-5 px-5">
+                        <div className="overflow-scroll w-full h-full flex flex-col gap-5 bg-lightGray dark:bg-eerieBlack py-4 pt-5 px-5">
                            {activeChat &&
                               // group messages by date and sort by their timestamp within the date
                               groupAndSortMessages(activeChat.messages)
