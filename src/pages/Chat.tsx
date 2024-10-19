@@ -7,7 +7,11 @@ import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
 import { format, isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import { MessageType, ChatsPropType, ChatAccessStatus } from "@/types/Types";
+import {
+   MessagesPropType,
+   ChatsPropType,
+   ChatAccessStatus,
+} from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { groupMessagesByType } from "@/helpers/groupMessagesByType";
@@ -63,8 +67,6 @@ const Chat = () => {
    const filteredSideChats = chats
       ? chats.filter((chat) => searchSideChats(chat))
       : [];
-
-   console.log(activeChat);
 
    return (
       <div className="w-full h-full flex">
@@ -177,7 +179,7 @@ const Chat = () => {
                                        acc[date].push(message);
                                        return acc;
                                     },
-                                    {} as { [date: string]: MessageType[] }
+                                    {} as { [date: string]: MessagesPropType[] }
                                  )
                               )
                                  .sort(([dateA], [dateB]) =>

@@ -3,6 +3,7 @@ type MessageInPropTypes = {
    timeStamp: string;
    borderRadius: "" | "8px 8px 8px 0px" | "8px 8px 0px 8px";
 };
+
 const MessageIn = ({ text, timeStamp, borderRadius }: MessageInPropTypes) => {
    return (
       <div className="w-full flex justify-start">

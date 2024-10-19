@@ -50,14 +50,16 @@ export type DocumentCardPropsTypes = {
    handleDeleteDocument?: (docId: string) => void;
 };
 
-// receipts
+// invoices
+export type InvoiceStatus = "pending" | "paid" | "overdue" | "failed";
+
 export type InvoicesPropTypes = {
    id: string;
    title: string;
    issued_by: string;
    due_date: string;
    amount: number;
-   status: "pending" | "paid" | "overdue" | "failed";
+   status: InvoiceStatus;
    base64: string;
 };
 
@@ -84,9 +86,11 @@ export type QuestionsPropsType = {
 };
 
 // requests
+export type RequestStatus = "pending" | "paid" | "completed";
+
 export type RequestsPropTypes = {
    service_id: string;
-   status: "pending" | "paid" | "completed";
+   status: RequestStatus;
    requestDate: string;
    service_title: string;
 };
@@ -125,8 +129,10 @@ export type MetricCardProps = {
    amount: number;
    percentage: number;
    is_percentage_increase: boolean;
-   invoice_status: "pending" | "paid" | "overdue" | "failed";
+   invoice_status: InvoiceStatus;
 };
+
+export type TransactionStatus = "pending" | "processing" | "success" | "failed";
 
 export type TransactionPropTypes = {
    id: string;
@@ -134,7 +140,7 @@ export type TransactionPropTypes = {
    description: string;
    amount: number;
    currency: string;
-   status: "pending" | "processing" | "success" | "failed";
+   status: TransactionStatus;
 };
 
 export type TransactionCardPropTypes = {
@@ -144,11 +150,16 @@ export type TransactionCardPropTypes = {
 };
 
 // chat types
-export type MessageType = {
+export enum MessageType {
+   incoming = "incoming",
+   outgoing = "outgoing",
+}
+
+export type MessagesPropType = {
    id: string;
    text: string;
    timestamp: string;
-   type: "incoming" | "outgoing";
+   type: MessageType;
 };
 
 export enum ChatAccessStatus {
@@ -160,6 +171,6 @@ export type ChatsPropType = {
    title: string;
    content: string; // Preview of the last message
    id: string; // Unique identifier for each chat
-   messages: MessageType[]; // Array of messages for each chat
+   messages: MessagesPropType[]; // Array of messages for each chat
    chat_access: ChatAccessStatus;
 };

@@ -1,6 +1,6 @@
-import { MessageType } from "@/types/Types";
+import { MessagesPropType } from "@/types/Types";
 
-export function groupMessagesByType(messages: MessageType[]) {
+export function groupMessagesByType(messages: MessagesPropType[]) {
    return messages.reduce((groupedMessages, currentMessage, index, arr) => {
       const previousMessage = arr[index - 1];
 
@@ -13,5 +13,5 @@ export function groupMessagesByType(messages: MessageType[]) {
       }
 
       return groupedMessages;
-   }, [] as MessageType[][]);
+   }, [] as MessagesPropType[][]);
 }
