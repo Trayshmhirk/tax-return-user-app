@@ -5,16 +5,13 @@ import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
-import { format, isYesterday, isToday } from "date-fns";
+import { isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import {
-   MessagesPropType,
-   ChatsPropType,
-   ChatAccessStatus,
-} from "@/types/Types";
+import { ChatsPropType, ChatAccessStatus } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { groupMessagesByType } from "@/helpers/groupMessagesByType";
+import { groupAndSortMessages } from "@/helpers/groupAndSortMessages";
 
 const Chat = () => {
    const {
@@ -167,21 +164,8 @@ const Chat = () => {
 
                         <div className="overflow-scroll w-full h-full flex flex-col gap-5 py-4 pt-5 px-5">
                            {activeChat &&
-                              Object.entries(
-                                 activeChat.messages.reduce(
-                                    (acc, message) => {
-                                       const date = format(
-                                          new Date(message.timestamp),
-                                          "MMM d, yyyy"
-                                       ); // Format date as 'Oct 18, 2024'
-
-                                       if (!acc[date]) acc[date] = [];
-                                       acc[date].push(message);
-                                       return acc;
-                                    },
-                                    {} as { [date: string]: MessagesPropType[] }
-                                 )
-                              )
+                              // group messages by date and sort by their timestamp within the date
+                              groupAndSortMessages(activeChat.messages)
                                  .sort(([dateA], [dateB]) =>
                                     sortDates(dateA, dateB)
                                  )

@@ -1,16 +1,10 @@
 import { useEffect, useRef } from "react";
 import MessageIn from "./MessageIn";
 import MessageOut from "./MessageOut";
-
-type MessageType = {
-   id: string;
-   text: string;
-   timestamp: string; // We can later use a Date type if needed
-   type: "incoming" | "outgoing"; // To differentiate between incoming and outgoing messages
-};
+import { MessagesPropType } from "@/types/Types";
 
 type MessagesPropTypes = {
-   messages: MessageType[]; // Array of message objects
+   messages: MessagesPropType[]; // Array of message objects
 };
 
 const Messages = ({ messages }: MessagesPropTypes) => {
@@ -31,84 +25,32 @@ const Messages = ({ messages }: MessagesPropTypes) => {
    };
 
    const renderMessages = () => {
-      const renderedMessages = [];
+      return messages.map((message) => {
+         const borderRadiusStyle =
+            message.type === "incoming" ? "8px 8px 8px 0px" : "8px 8px 0px 8px";
 
-      if (!Array.isArray(messages) || messages.length === 0) {
-         return null;
-      }
-
-      // Sort messages by timestamp
-      const sortedMessages = [...messages].sort(
-         (a, b) =>
-            new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-      );
-
-      // Group messages by timestamp
-      const messageGroups = sortedMessages.reduce(
-         (groups, message) => {
-            const timestamp = Math.floor(
-               new Date(message.timestamp).getTime() / 1000
-            ); // Group by second
-            if (!groups[timestamp]) {
-               groups[timestamp] = [];
-            }
-            groups[timestamp].push(message);
-            return groups;
-         },
-         {} as Record<number, MessageType[]>
-      );
-
-      // Render each group
-      for (const timestamp in messageGroups) {
-         const group = messageGroups[timestamp];
-         renderedMessages.push(renderMessageGroup(group));
-      }
-
-      return renderedMessages;
-   };
-
-   const renderMessageGroup = (group: MessageType[]) => {
-      const firstMessage = group[0];
-      const lastMessage = group[group.length - 1];
-
-      const borderRadiusStyle =
-         lastMessage.type === "incoming"
-            ? "8px 8px 8px 0px"
-            : "8px 8px 0px 8px";
-
-      if (firstMessage.type === "incoming") {
-         return (
-            <div className="flex flex-col gap-2">
-               {group.map((message, index) => (
-                  <MessageIn
-                     key={index}
-                     text={message.text}
-                     timeStamp={formatTime(message.timestamp)}
-                     borderRadius={
-                        index === group.length - 1 ? borderRadiusStyle : ""
-                     }
-                     // selectedDocuments={message.selectedDocument}
-                  />
-               ))}
-            </div>
-         );
-      } else {
-         return (
-            <div className="flex flex-col justify-end gap-2">
-               {group.map((message, index) => (
-                  <MessageOut
-                     key={index}
-                     text={message.text}
-                     timeStamp={formatTime(message.timestamp)}
-                     borderRadius={
-                        index === group.length - 1 ? borderRadiusStyle : ""
-                     }
-                     // selectedDocuments={message.selectedDocument}
-                  />
-               ))}
-            </div>
-         );
-      }
+         if (message.type === "incoming") {
+            return (
+               <MessageIn
+                  key={message.id}
+                  text={message.text}
+                  timeStamp={formatTime(message.timestamp)}
+                  borderRadius={borderRadiusStyle}
+                  // selectedDocuments={message.selectedDocument}
+               />
+            );
+         } else {
+            return (
+               <MessageOut
+                  key={message.id}
+                  text={message.text}
+                  timeStamp={formatTime(message.timestamp)}
+                  borderRadius={borderRadiusStyle}
+                  // selectedDocuments={message.selectedDocument}
+               />
+            );
+         }
+      });
    };
 
    return (

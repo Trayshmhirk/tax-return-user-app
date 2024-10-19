@@ -408,13 +408,13 @@ export const chats: ChatsPropType[] = [
          {
             id: uuidv4(),
             text: "What do you want me to help you with exactly?",
-            timestamp: "2024-10-16T10:02:00",
+            timestamp: "2024-10-16T12:02:00",
             type: MessageType.incoming,
          },
          {
             id: uuidv4(),
             text: "Okayy.. what i want you to do for me is that, i would like for you to send in a list of required documents.",
-            timestamp: "2024-10-17T10:06:00",
+            timestamp: "2024-10-17T09:06:00",
             type: MessageType.outgoing,
          },
          {
@@ -426,31 +426,31 @@ export const chats: ChatsPropType[] = [
          {
             id: uuidv4(),
             text: "I'll send in the list of documents that would be required of you",
-            timestamp: "2024-10-17T10:01:00",
+            timestamp: "2024-10-17T10:05:00",
             type: MessageType.incoming,
          },
          {
             id: uuidv4(),
             text: "Kindly standby, as it would take a few minutes",
-            timestamp: "2024-10-17T10:01:00",
+            timestamp: "2024-10-17T10:06:00",
             type: MessageType.incoming,
          },
          {
             id: uuidv4(),
             text: "okayy.. Great. I will be waiting for a feedback. Thanks",
-            timestamp: "2024-10-17T10:01:00",
+            timestamp: "2024-10-17T10:05:58",
             type: MessageType.outgoing,
          },
          {
             id: uuidv4(),
             text: "Hello. Are you there?",
-            timestamp: "2024-10-18T10:01:00",
+            timestamp: "2024-10-18T13:01:00",
             type: MessageType.outgoing,
          },
          {
             id: uuidv4(),
             text: "Hi",
-            timestamp: "2024-10-18T10:01:00",
+            timestamp: "2024-10-18T11:31:00",
             type: MessageType.outgoing,
          },
       ],
