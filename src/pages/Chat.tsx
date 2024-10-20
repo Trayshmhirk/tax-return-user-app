@@ -171,17 +171,14 @@ const Chat = () => {
                                  )
                                  .map(([date, messages]) => (
                                     <React.Fragment key={date}>
-                                       <div className="flex items-center gap-3">
-                                          <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
-
-                                          <p className="w-full lg:w-1/4 text-center text-xs text-mutedGray dark:text-antiFlashWhite">
+                                       <div className="flex items-center justify-center">
+                                          <div className="px-4 py-1 bg-americanSilver dark:bg-gray text-center text-xs font-medium text-white dark:text-antiFlashWhite rounded-md">
                                              {isToday(new Date(date))
                                                 ? "Today"
                                                 : isYesterday(new Date(date))
                                                   ? "Yesterday"
                                                   : date}
-                                          </p>
-                                          <div className="w-full h-[1px] bg-mutedGray dark:bg-spanishGray opacity-40" />
+                                          </div>
                                        </div>
 
                                        {/* Group messages of the same type (incoming/outgoing) together */}

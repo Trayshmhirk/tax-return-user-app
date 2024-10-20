@@ -56,7 +56,7 @@ const Messages = ({
    return (
       <div
          ref={messagesEndRef}
-         className="flex flex-col gap-4 px-1 lg:px-8 py-[3px]"
+         className="flex flex-col gap-4 px-1 lg:px-8 py-[2px]"
       >
          {renderMessages()}
       </div>
