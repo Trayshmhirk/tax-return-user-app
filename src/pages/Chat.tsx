@@ -7,11 +7,12 @@ import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
 import { isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import { ChatsPropType, ChatAccessStatus } from "@/types/Types";
+import { ChatsPropType, ChatAccessStatus, MessageType } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { groupMessagesByType } from "@/helpers/groupMessagesByType";
 import { groupAndSortMessages } from "@/helpers/groupAndSortMessages";
+import { v4 as uuidv4 } from "uuid";
 
 const Chat = () => {
    const {
@@ -24,6 +25,7 @@ const Chat = () => {
    const [chats, setChats] = useState<ChatsPropType[]>([]);
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
+   const [inputMessage, setInputMessage] = useState("");
 
    useEffect(() => {
       async function fetchData() {
@@ -52,10 +54,6 @@ const Chat = () => {
       }
    };
 
-   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchInput(e.target.value);
-   };
-
    const searchSideChats = (user: ChatsPropType) => {
       const userName = user.title;
       return userName.toLowerCase().includes(searchInput.toLowerCase());
@@ -64,6 +62,36 @@ const Chat = () => {
    const filteredSideChats = chats
       ? chats.filter((chat) => searchSideChats(chat))
       : [];
+
+   const handleSendMessage = () => {
+      if (!inputMessage.trim() || !activeChat) return; // Prevent empty messages or no active chat
+
+      const newMessage = {
+         id: uuidv4(),
+         text: inputMessage.trim(),
+         timestamp: new Date().toISOString(),
+         type: MessageType.outgoing, // This indicates the message is from the user
+      };
+
+      // Update active chat with the new message
+      const updatedActiveChat = {
+         ...activeChat,
+         messages: [...activeChat.messages, newMessage],
+      };
+
+      // Update the chats array with the updated active chat
+      setChats((prevChats) =>
+         prevChats.map((chat) =>
+            chat.id === activeChat.id ? updatedActiveChat : chat
+         )
+      );
+
+      // Set the active chat to the updated version
+      setActiveChat(updatedActiveChat);
+
+      // Clear the input field
+      setInputMessage("");
+   };
 
    return (
       <div className="w-full h-full flex">
@@ -83,7 +111,7 @@ const Chat = () => {
                         type="text"
                         placeholder="Search"
                         className="bg-transparent dark:bg-transparent border-none outline-none"
-                        onChange={handleSearch}
+                        onChange={(e) => setSearchInput(e.target.value)}
                      />
                   </label>
 
@@ -172,7 +200,7 @@ const Chat = () => {
                                  .map(([date, messages]) => (
                                     <React.Fragment key={date}>
                                        <div className="flex items-center justify-center">
-                                          <div className="px-4 py-1 bg-americanSilver dark:bg-gray text-center text-xs font-medium text-white dark:text-antiFlashWhite rounded-md">
+                                          <div className="px-4 py-1 bg-spanishGray dark:bg-gray text-center text-xs font-medium text-white dark:text-antiFlashWhite rounded-md">
                                              {isToday(new Date(date))
                                                 ? "Today"
                                                 : isYesterday(new Date(date))
@@ -250,14 +278,19 @@ const Chat = () => {
                                        className="w-full bg-transparent dark:bg-transparent px-5 rounded dark:border-spanishGray dark:border-opacity-50"
                                        type="text"
                                        placeholder="Type your message"
-                                       // value={inputMessage}
-                                       // onChange={handleInputChange}
-                                       // onKeyDown={handleKeyPress}
+                                       value={inputMessage}
+                                       onChange={(e) =>
+                                          setInputMessage(e.target.value)
+                                       }
+                                       onKeyDown={(e) =>
+                                          e.key === "Enter" &&
+                                          handleSendMessage()
+                                       }
                                     />
 
                                     <div
                                        className="w-[37px] h-9 flex items-center justify-center bg-richElectricBlue text-white p-2 rounded-full cursor-pointer hover-shadow-body"
-                                       // onClick={handleSend}
+                                       onClick={handleSendMessage}
                                     >
                                        <SendHorizontal className="w-5 h-5" />
                                     </div>
