@@ -1,16 +1,16 @@
-type MessageInPropTypes = {
+type IncomingMessageBubblePropTypes = {
    text: string;
    timeStamp: string;
    borderRadius: string;
    isLastMessage: boolean;
 };
 
-const MessageIn = ({
+const IncomingMessageBubble = ({
    text,
    timeStamp,
    borderRadius,
    isLastMessage,
-}: MessageInPropTypes) => {
+}: IncomingMessageBubblePropTypes) => {
    return (
       <div className="w-full flex justify-start">
          <div
@@ -50,4 +50,4 @@ const MessageIn = ({
    );
 };
 
-export default MessageIn;
+export default IncomingMessageBubble;

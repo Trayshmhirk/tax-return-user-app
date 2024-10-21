@@ -1,16 +1,16 @@
-type MessageOutPropTypes = {
+type OutgoingMessageBubblePropTypes = {
    text: string;
    timeStamp: string;
    borderRadius: string;
    isLastMessage: boolean;
 };
 
-const MessageOut = ({
+const OutgoingMessageBubble = ({
    text,
    timeStamp,
    borderRadius,
    isLastMessage,
-}: MessageOutPropTypes) => {
+}: OutgoingMessageBubblePropTypes) => {
    return (
       <div className="w-full flex justify-end">
          <div
@@ -41,4 +41,4 @@ const MessageOut = ({
    );
 };
 
-export default MessageOut;
+export default OutgoingMessageBubble;

@@ -1,6 +1,6 @@
 // import { useEffect, useRef } from "react";
-import MessageIn from "./MessageIn";
-import MessageOut from "./MessageOut";
+import IncomingMessageBubble from "./IncomingMessageBubble";
+import OutgoingMessageBubble from "./OutgoingMessageBubble";
 import { MessagesPropType } from "@/types/Types";
 import { formatTime } from "@/helpers/formatTime";
 import React from "react";
@@ -21,7 +21,7 @@ const Messages = ({
          {messages.map((message, index) => (
             <React.Fragment key={index}>
                {message.type === "incoming" ? (
-                  <MessageIn
+                  <IncomingMessageBubble
                      key={message.id}
                      text={message.text}
                      timeStamp={formatTime(message.timestamp)}
@@ -29,7 +29,7 @@ const Messages = ({
                      isLastMessage={isLastMessage}
                   />
                ) : (
-                  <MessageOut
+                  <OutgoingMessageBubble
                      key={message.id}
                      text={message.text}
                      timeStamp={formatTime(message.timestamp)}
