@@ -3,6 +3,7 @@ import MessageIn from "./MessageIn";
 import MessageOut from "./MessageOut";
 import { MessagesPropType } from "@/types/Types";
 import { formatTime } from "@/helpers/formatTime";
+import React from "react";
 
 type MessagesPropTypes = {
    messages: MessagesPropType[]; // Array of message objects
@@ -17,8 +18,8 @@ const Messages = ({
 }: MessagesPropTypes) => {
    return (
       <div className="flex flex-col gap-4 px-1 lg:px-8 py-[2px]">
-         {messages.map((message) => (
-            <>
+         {messages.map((message, index) => (
+            <React.Fragment key={index}>
                {message.type === "incoming" ? (
                   <MessageIn
                      key={message.id}
@@ -36,7 +37,7 @@ const Messages = ({
                      isLastMessage={isLastMessage}
                   />
                )}
-            </>
+            </React.Fragment>
          ))}
       </div>
    );

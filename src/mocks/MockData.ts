@@ -441,12 +441,7 @@ export const chats: ChatsPropType[] = [
             timestamp: "2024-10-17T10:05:58",
             type: MessageType.outgoing,
          },
-         {
-            id: uuidv4(),
-            text: "Hello. Are you there?",
-            timestamp: "2024-10-18T13:01:00",
-            type: MessageType.outgoing,
-         },
+
          {
             id: uuidv4(),
             text: "Hi",
@@ -459,13 +454,19 @@ export const chats: ChatsPropType[] = [
             timestamp: "2024-10-18T12:10:00",
             type: MessageType.outgoing,
          },
+         {
+            id: uuidv4(),
+            text: "Hello. Are you there?",
+            timestamp: "2024-10-18T13:01:00",
+            type: MessageType.outgoing,
+         },
       ],
    },
    {
       title: "Jane Smith",
       content: "Can you assist me with this?",
       id: uuidv4(),
-      chat_access: ChatAccessStatus.OFF,
+      chat_access: ChatAccessStatus.ON,
       messages: [
          {
             id: uuidv4(),

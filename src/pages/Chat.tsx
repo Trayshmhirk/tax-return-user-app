@@ -7,12 +7,18 @@ import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import Messages from "@/components/chat/Messages";
 import { isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import { ChatsPropType, ChatAccessStatus, MessageType } from "@/types/Types";
+import {
+   ChatsPropType,
+   ChatAccessStatus,
+   MessageType,
+   MessagesPropType,
+} from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { groupMessagesByType } from "@/helpers/groupMessagesByType";
 import { groupAndSortMessages } from "@/helpers/groupAndSortMessages";
 import { v4 as uuidv4 } from "uuid";
+import { formatTime } from "@/helpers/formatTime";
 
 const Chat = () => {
    const {
@@ -100,6 +106,23 @@ const Chat = () => {
       }
    }, [activeChat?.messages]);
 
+   const getLastMessage = (messages: MessagesPropType[]) => {
+      if (messages.length === 0) return null; // Return null if no messages
+      return messages[messages.length - 1]; // Return the last message
+   };
+
+   // Function to render the text of the last message
+   const renderCurrentMessage = (messages: MessagesPropType[]) => {
+      const lastMessage = getLastMessage(messages);
+      return lastMessage ? lastMessage.text : ""; // Return text or empty string
+   };
+
+   // Function to render the time of the last message
+   const renderCurrentMessageTime = (messages: MessagesPropType[]) => {
+      const lastMessage = getLastMessage(messages);
+      return lastMessage ? formatTime(lastMessage.timestamp) : ""; // Format timestamp or return empty string
+   };
+
    return (
       <div className="w-full h-full flex">
          <div className="w-full h-full flex flex-col gap-7">
@@ -133,7 +156,7 @@ const Chat = () => {
                               `}
                               onClick={() => handleOpenChat(chat.id)}
                            >
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-3">
                                  <div className="flex justify-center items-center font-bold">
                                     <IoChatbubbles className="text-lg text-richElectricBlue" />
                                  </div>
@@ -143,14 +166,17 @@ const Chat = () => {
                                        {truncateString(chat.title, 15)}
                                     </p>
                                     <span className="text-spanishGray text-xs">
-                                       {truncateString(chat.content, 30)}
+                                       {truncateString(
+                                          renderCurrentMessage(chat.messages),
+                                          30
+                                       )}
                                     </span>
                                  </div>
                               </div>
 
                               <div className="flex flex-col gap-2 items-end">
                                  <span className="text-[10px] font-medium text-spanishGray">
-                                    5 mins
+                                    {renderCurrentMessageTime(chat.messages)}
                                  </span>
                                  <div className="w-fit px-[6.5px] py-[2px] rounded-full bg-red-500 dark:bg-red-600 text-[10px] text-white font-medium">
                                     5
