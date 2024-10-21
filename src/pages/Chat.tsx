@@ -1,12 +1,10 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
-import Messages from "@/components/chat/Messages";
-import { isYesterday, isToday } from "date-fns";
-import { sortDates } from "@/helpers/sortDates";
+import MessagesBox from "@/components/chat/MessagesBox";
 import {
    ChatsPropType,
    ChatAccessStatus,
@@ -15,8 +13,6 @@ import {
 } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
-import { groupMessagesByType } from "@/helpers/groupMessagesByType";
-import { groupAndSortMessages } from "@/helpers/groupAndSortMessages";
 import { v4 as uuidv4 } from "uuid";
 import { formatTime } from "@/helpers/formatTime";
 
@@ -32,7 +28,6 @@ const Chat = () => {
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
    const [inputMessage, setInputMessage] = useState("");
-   const chatEndRef = useRef<HTMLDivElement | null>(null);
 
    useEffect(() => {
       async function fetchData() {
@@ -99,12 +94,6 @@ const Chat = () => {
       // Clear the input field
       setInputMessage("");
    };
-
-   useLayoutEffect(() => {
-      if (chatEndRef.current) {
-         chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight;
-      }
-   }, [activeChat?.messages]);
 
    const getLastMessage = (messages: MessagesPropType[]) => {
       if (messages.length === 0) return null; // Return null if no messages
@@ -223,73 +212,7 @@ const Chat = () => {
                            </div>
                         </div>
 
-                        <div
-                           ref={chatEndRef}
-                           className="overflow-scroll w-full h-full flex flex-col gap-5 bg-lightGray dark:bg-eerieBlack py-4 pt-5 px-5"
-                        >
-                           {activeChat &&
-                              // group messages by date and sort by their timestamp within the date
-                              groupAndSortMessages(activeChat.messages)
-                                 .sort(([dateA], [dateB]) =>
-                                    sortDates(dateA, dateB)
-                                 )
-                                 .map(([date, messages]) => (
-                                    <React.Fragment key={date}>
-                                       <div className="flex items-center justify-center">
-                                          <div className="px-4 py-1 bg-spanishGray dark:bg-gray text-center text-xs font-medium text-white dark:text-antiFlashWhite rounded-md">
-                                             {isToday(new Date(date))
-                                                ? "Today"
-                                                : isYesterday(new Date(date))
-                                                  ? "Yesterday"
-                                                  : date}
-                                          </div>
-                                       </div>
-
-                                       {/* Group messages of the same type (incoming/outgoing) together */}
-                                       {groupMessagesByType(messages).map(
-                                          (group, index) => (
-                                             <div
-                                                key={index}
-                                                className="flex flex-col"
-                                             >
-                                                {group.map(
-                                                   (message, msgIndex) => {
-                                                      // Check if this is the last message in the group
-                                                      const isLastMessage =
-                                                         msgIndex ===
-                                                         group.length - 1;
-
-                                                      // Determine border radius for the last message in the group
-                                                      const borderRadiusStyle =
-                                                         message.type ===
-                                                         "incoming"
-                                                            ? isLastMessage
-                                                               ? "8px 8px 8px 0px"
-                                                               : "8px"
-                                                            : isLastMessage
-                                                              ? "8px 8px 0px 8px"
-                                                              : "8px";
-
-                                                      return (
-                                                         <Messages
-                                                            key={message.id}
-                                                            messages={[message]} // Pass the individual message
-                                                            borderRadius={
-                                                               borderRadiusStyle
-                                                            } // Pass the calculated border radius
-                                                            isLastMessage={
-                                                               isLastMessage
-                                                            }
-                                                         />
-                                                      );
-                                                   }
-                                                )}
-                                             </div>
-                                          )
-                                       )}
-                                    </React.Fragment>
-                                 ))}
-                        </div>
+                        <MessagesBox messages={activeChat.messages} />
 
                         <div className="flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
                            {activeChat.chat_access === ChatAccessStatus.OFF ? (
