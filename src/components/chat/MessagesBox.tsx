@@ -1,4 +1,3 @@
-
 import React, { useLayoutEffect, useRef } from "react";
 import IncomingMessageBubble from "./IncomingMessageBubble";
 import OutgoingMessageBubble from "./OutgoingMessageBubble";
@@ -6,8 +5,10 @@ import { MessagesPropType } from "@/types/Types";
 import { formatTime } from "@/helpers/formatTime";
 import { isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";
-import { groupMessagesByType } from "@/helpers/groupMessagesByType";
-import { groupAndSortMessages } from "@/helpers/groupAndSortMessages";
+import {
+   groupMessagesByType,
+   groupAndSortMessages,
+} from "@/helpers/chatHelpers";
 
 type MessagesBoxPropTypes = {
    messages: MessagesPropType[]; // Array of message objects
@@ -62,7 +63,10 @@ const MessagesBox = ({ messages }: MessagesBoxPropTypes) => {
                                       : "8px";
 
                               return (
-                                 <div className="flex flex-col gap-4 px-1 lg:px-8 py-[2px]">
+                                 <div
+                                    key={msgIndex}
+                                    className="flex flex-col gap-4 px-1 lg:px-8 py-[2px]"
+                                 >
                                     {message.type === "incoming" ? (
                                        <IncomingMessageBubble
                                           key={message.id}

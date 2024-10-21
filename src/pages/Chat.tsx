@@ -5,16 +5,14 @@ import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
 import MessagesBox from "@/components/chat/MessagesBox";
-import {
-   ChatsPropType,
-   ChatAccessStatus,
-   MessageType,
-   MessagesPropType,
-} from "@/types/Types";
+import { ChatsPropType, ChatAccessStatus, MessageType } from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { v4 as uuidv4 } from "uuid";
-import { formatTime } from "@/helpers/formatTime";
+import {
+   renderCurrentMessage,
+   renderCurrentMessageTime,
+} from "@/helpers/chatHelpers";
 
 const Chat = () => {
    const {
@@ -93,23 +91,6 @@ const Chat = () => {
 
       // Clear the input field
       setInputMessage("");
-   };
-
-   const getLastMessage = (messages: MessagesPropType[]) => {
-      if (messages.length === 0) return null; // Return null if no messages
-      return messages[messages.length - 1]; // Return the last message
-   };
-
-   // Function to render the text of the last message
-   const renderCurrentMessage = (messages: MessagesPropType[]) => {
-      const lastMessage = getLastMessage(messages);
-      return lastMessage ? lastMessage.text : ""; // Return text or empty string
-   };
-
-   // Function to render the time of the last message
-   const renderCurrentMessageTime = (messages: MessagesPropType[]) => {
-      const lastMessage = getLastMessage(messages);
-      return lastMessage ? formatTime(lastMessage.timestamp) : ""; // Format timestamp or return empty string
    };
 
    return (
@@ -212,6 +193,7 @@ const Chat = () => {
                            </div>
                         </div>
 
+                        {/* render, group and sort messages by date and timestamp, and by message type in the message box */}
                         <MessagesBox messages={activeChat.messages} />
 
                         <div className="flex items-center gap-4 bg-white dark:bg-darkGray border-t border-chineseWhite dark:border-spanishGray px-6 py-4">
