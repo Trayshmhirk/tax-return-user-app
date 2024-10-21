@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
@@ -26,6 +26,7 @@ const Chat = () => {
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
    const [inputMessage, setInputMessage] = useState("");
+   const chatEndRef = useRef<HTMLDivElement | null>(null);
 
    useEffect(() => {
       async function fetchData() {
@@ -92,6 +93,12 @@ const Chat = () => {
       // Clear the input field
       setInputMessage("");
    };
+
+   useLayoutEffect(() => {
+      if (chatEndRef.current) {
+         chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight;
+      }
+   }, [activeChat?.messages]);
 
    return (
       <div className="w-full h-full flex">
@@ -190,7 +197,10 @@ const Chat = () => {
                            </div>
                         </div>
 
-                        <div className="overflow-scroll w-full h-full flex flex-col gap-5 bg-lightGray dark:bg-eerieBlack py-4 pt-5 px-5">
+                        <div
+                           ref={chatEndRef}
+                           className="overflow-scroll w-full h-full flex flex-col gap-5 bg-lightGray dark:bg-eerieBlack py-4 pt-5 px-5"
+                        >
                            {activeChat &&
                               // group messages by date and sort by their timestamp within the date
                               groupAndSortMessages(activeChat.messages)
