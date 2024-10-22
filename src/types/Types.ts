@@ -160,6 +160,7 @@ export type MessagesPropType = {
    text: string;
    timestamp: string;
    type: MessageType;
+   documents: DocumentsPropTypes[];
 };
 
 export enum ChatAccessStatus {

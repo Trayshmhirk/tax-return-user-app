@@ -11,7 +11,14 @@ export const getLastMessage = (messages: MessagesPropType[]) => {
 // Function to render the text of the last message
 export const renderCurrentMessage = (messages: MessagesPropType[]) => {
    const lastMessage = getLastMessage(messages);
-   return lastMessage ? lastMessage.text : ""; // Return text or empty string
+   if (!lastMessage) return "";
+
+   // If the last message contains documents, return the document name instead of the message text
+   if (lastMessage.documents && lastMessage.documents.length > 0) {
+      return lastMessage.documents[0].document_name; // Return the first document name
+   }
+
+   return lastMessage.text; // Return text or empty string
 };
 
 // Function to render the time of the last message

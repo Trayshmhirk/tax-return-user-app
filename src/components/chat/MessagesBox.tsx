@@ -76,6 +76,7 @@ const MessagesBox = ({ messages }: MessagesBoxPropTypes) => {
                                           )}
                                           borderRadius={borderRadius} // Apply the border radius
                                           isLastMessage={isLastMessage}
+                                          document={message.documents[0]}
                                        />
                                     ) : (
                                        <OutgoingMessageBubble
@@ -86,6 +87,7 @@ const MessagesBox = ({ messages }: MessagesBoxPropTypes) => {
                                           )}
                                           borderRadius={borderRadius} // Apply the border radius
                                           isLastMessage={isLastMessage}
+                                          document={message.documents[0]}
                                        />
                                     )}
                                  </div>

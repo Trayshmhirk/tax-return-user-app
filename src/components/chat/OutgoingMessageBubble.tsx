@@ -1,8 +1,14 @@
+import { truncateString } from "@/helpers/truncateString";
+import { DocumentsPropTypes } from "@/types/Types";
+import DocumentTypeIcon from "../icons/DocumentTypeIcon";
+import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
+
 type OutgoingMessageBubblePropTypes = {
    text: string;
    timeStamp: string;
    borderRadius: string;
    isLastMessage: boolean;
+   document: DocumentsPropTypes;
 };
 
 const OutgoingMessageBubble = ({
@@ -10,6 +16,7 @@ const OutgoingMessageBubble = ({
    timeStamp,
    borderRadius,
    isLastMessage,
+   document,
 }: OutgoingMessageBubblePropTypes) => {
    return (
       <div className="w-full flex justify-end">
@@ -23,18 +30,17 @@ const OutgoingMessageBubble = ({
 
             <span className="text text-sm">{text}</span>
 
-            {/* {selectedDocuments && (
-               <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-2">
-                     <DocumentTypeIcon
-                        docType={selectedDocuments.documentType}
-                     />
-                     <p style={{ fontSize: "16px" }}>
-                        {truncateString(selectedDocuments?.documentName, 30)}
-                     </p>
-                  </div>
+            {document && (
+               <div className="flex items-center gap-3">
+                  <DocumentTypeIcon
+                     docType={mapFileTypeToDocumentType(document.document_type)}
+                  />
+
+                  <p className="text-sm">
+                     {truncateString(document.document_name, 60)}
+                  </p>
                </div>
-            )} */}
+            )}
             <div className="text-[10px] self-end">{timeStamp}</div>
          </div>
       </div>

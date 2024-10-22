@@ -3,9 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
-import { Paperclip, Smile, SendHorizontal, ChevronLeft } from "lucide-react";
+import { Paperclip, SendHorizontal, ChevronLeft } from "lucide-react";
 import MessagesBox from "@/components/chat/MessagesBox";
-import { ChatsPropType, ChatAccessStatus, MessageType } from "@/types/Types";
+import {
+   ChatsPropType,
+   ChatAccessStatus,
+   MessageType,
+   DocumentsPropTypes,
+   FileType,
+} from "@/types/Types";
 import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { v4 as uuidv4 } from "uuid";
@@ -13,6 +19,7 @@ import {
    renderCurrentMessage,
    renderCurrentMessageTime,
 } from "@/helpers/chatHelpers";
+import { getBase64 } from "@/helpers/getBase64";
 
 const Chat = () => {
    const {
@@ -71,6 +78,7 @@ const Chat = () => {
          text: inputMessage.trim(),
          timestamp: new Date().toISOString(),
          type: MessageType.outgoing, // This indicates the message is from the user
+         documents: [],
       };
 
       // Update active chat with the new message
@@ -91,6 +99,60 @@ const Chat = () => {
 
       // Clear the input field
       setInputMessage("");
+   };
+
+   const handleSendDocument = async (
+      e: React.ChangeEvent<HTMLInputElement>
+   ) => {
+      const selectedFiles = Array.from(e.target.files || []);
+
+      for (let index = 0; index < selectedFiles.length; index++) {
+         const selectedFile = selectedFiles[index];
+         const base64File = await getBase64(selectedFile);
+
+         // Check if base64File is a string and handle the null case
+         if (typeof base64File !== "string" || !activeChat) {
+            console.error("Failed to convert file to base64");
+            return;
+         }
+
+         const fileSizeInMB = parseFloat(
+            (selectedFile.size / (1024 * 1024)).toFixed(2)
+         );
+
+         // Convert current date to ISO date string
+         const currentDate = new Date().toISOString();
+
+         const newDocument: DocumentsPropTypes = {
+            id: uuidv4(), // Temporary ID generation
+            document_name: selectedFile.name,
+            document_type: selectedFile.type as FileType,
+            document_size: fileSizeInMB.toString(),
+            date_modified: currentDate,
+            base64: base64File, // You can store this if needed for later use
+         };
+
+         const newMessage = {
+            id: uuidv4(),
+            text: "",
+            timestamp: new Date().toISOString(),
+            type: MessageType.outgoing, // This indicates the message is from the user
+            documents: [newDocument],
+         };
+
+         // Update active chat with the new message
+         const updatedActiveChat = {
+            ...activeChat,
+            messages: [...activeChat.messages, newMessage],
+         };
+
+         // Update the chats array with the updated active chat
+         setChats((prevChats) =>
+            prevChats.map((chat) =>
+               chat.id === activeChat.id ? updatedActiveChat : chat
+            )
+         );
+      }
    };
 
    return (
@@ -145,7 +207,7 @@ const Chat = () => {
                               </div>
 
                               <div className="flex flex-col gap-2 items-end">
-                                 <span className="text-[10px] font-medium text-spanishGray">
+                                 <span className="text-[10px] font-medium text-spanishGray text-center">
                                     {renderCurrentMessageTime(chat.messages)}
                                  </span>
                                  <div className="w-fit px-[6.5px] py-[2px] rounded-full bg-red-500 dark:bg-red-600 text-[10px] text-white font-medium">
@@ -205,13 +267,24 @@ const Chat = () => {
                            ) : (
                               <>
                                  <div className="flex items-center gap-3 text-gray dark:text-white">
-                                    <Paperclip
-                                       className="w-5 h-5 text-richElectricBlue cursor-pointer"
-                                       // onClick={handleInsertFileModal}
-                                    />
-                                    <div className="w-[37px] h-9 flex items-center justify-center bg-cultured dark:bg-mutedGray text-muted rounded-full cursor-pointer">
+                                    <label
+                                       htmlFor="uploadDoc"
+                                       className="w-6 h-6 flex items-center justify-center"
+                                    >
+                                       <Paperclip className="w-5 h-5 text-richElectricBlue cursor-pointer" />
+
+                                       <input
+                                          id="uploadDoc"
+                                          type="file"
+                                          accept=".pdf, .png, .jpg, .jpeg"
+                                          onChange={handleSendDocument}
+                                          className="hidden"
+                                       />
+                                    </label>
+                                    {/* emoji picker */}
+                                    {/* <div className="w-[37px] h-9 flex items-center justify-center bg-cultured dark:bg-mutedGray text-muted rounded-full cursor-pointer">
                                        <Smile className="w-5 h-5" />
-                                    </div>
+                                    </div> */}
                                  </div>
 
                                  <div className="text w-full flex items-center justify-between gap-4">
