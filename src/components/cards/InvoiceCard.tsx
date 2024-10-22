@@ -1,5 +1,5 @@
 import { formatDate } from "date-fns";
-import { InvoiceCardPropTypes } from "@/types/AllTypes";
+import { InvoiceCardPropTypes } from "@/types/Types";
 import {
    DropdownMenu,
    DropdownMenuContent,

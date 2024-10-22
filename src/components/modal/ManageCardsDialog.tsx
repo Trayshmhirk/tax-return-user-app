@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import DebitCard from "../payment/DebitCard";
 
 import { differenceInMonths, isPast } from "date-fns";
-import { CardsProps } from "@/types/AllTypes";
+import { CardsProps } from "@/types/Types";
 
 // Function to check if a card is expired
 const isExpired = (exp: string): boolean => {
@@ -113,7 +113,7 @@ export const ManageCardsDialog = ({
                         Expiry:{" "}
                         <span className="font-medium">{selectedCard.exp}</span>{" "}
                         {isExpired(selectedCard.exp) ? (
-                           <span className="text-bostonRed dark:text-red-500">
+                           <span className="text-bostonRed dark:text-red-400">
                               (Expired!)
                            </span>
                         ) : isExpiringSoon(selectedCard.exp) ? (
@@ -132,8 +132,8 @@ export const ManageCardsDialog = ({
 
                   <DialogFooter className="gap-2">
                      <Button
-                        variant="destructive"
-                        className="dark:bg-red-500 text-white dark:text-white"
+                        variant="default"
+                        className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white dark:text-white"
                         onClick={() => handleDeleteCard(selectedCard.id)}
                      >
                         Delete Card
@@ -141,7 +141,7 @@ export const ManageCardsDialog = ({
 
                      <Button
                         variant="default"
-                        className="bg-gray dark:bg-ghostWhite"
+                        className="bg-gray dark:bg-neutral-600 dark:hover:bg-neutral-700"
                         onClick={handleSetDefault}
                      >
                         Set Default

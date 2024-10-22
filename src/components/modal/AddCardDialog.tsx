@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CardForm from "../../components/payment/CardForm";
+import CardForm from "@/components/payment/CardForm";
 import {
    Dialog,
    DialogContent,

@@ -1,7 +1,7 @@
-import HeroTopLeftImage from "../../assets/hero-top-left-image.png";
-import HeroBottomRightImage from "../../assets/hero-bottom-right-image.png";
-import GooglePlayImg from "../../assets/google-play.png";
-import AppStoreImg from "../../assets/apple.png";
+import HeroTopLeftImage from "@/assets/hero-top-left-image.png";
+import HeroBottomRightImage from "@/assets/hero-bottom-right-image.png";
+import GooglePlayImg from "@/assets/google-play.png";
+import AppStoreImg from "@/assets/apple.png";
 import { Button } from "../ui/button";
 
 type HeroProps = {

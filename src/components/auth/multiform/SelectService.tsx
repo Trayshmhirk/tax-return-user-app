@@ -1,8 +1,8 @@
 import { useState } from "react";
 import TextArea from "../../form-components/TextArea";
 import RadioCheckInput from "../../form-components/RadioCheckInput";
-import { SelectServicePropType } from "../../../types/AllTypes";
-import { servicesList } from "../../../mocks/AllMockData";
+import { SelectServicePropType } from "../../../types/Types";
+import { servicesList } from "../../../mocks/MockData";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 

@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { createUserSchema } from "../../../validation/schema";
-import { ISignUpForm } from "../../../types/AllTypes";
+import { ISignUpForm } from "../../../types/Types";
 import { SetStateAction, useState } from "react";
 import Forms from "../Forms";
 import FormInput from "../../form-components/FormInput";

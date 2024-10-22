@@ -8,7 +8,11 @@ import {
    RequestsPropTypes,
    CardsProps,
    MetricCardProps,
-} from "../types/AllTypes";
+   ChatsPropType,
+   ChatAccessStatus,
+   MessageType,
+} from "@/types/Types";
+import { v4 as uuidv4 } from "uuid";
 
 // request service
 export const servicesList: ServicesListTypes[] = [
@@ -372,5 +376,154 @@ export const invoiceMetrics: MetricCardProps[] = [
       percentage: 19,
       invoice_status: "failed",
       is_percentage_increase: false,
+   },
+];
+
+// chat data
+export const chats: ChatsPropType[] = [
+   {
+      title: "John Doe",
+      content: "Hello, I need help with my account.",
+      id: uuidv4(),
+      chat_access: ChatAccessStatus.ON,
+      messages: [
+         {
+            id: uuidv4(),
+            text: "Hello there",
+            timestamp: "2024-10-16T09:50:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "I need some help with my taxes",
+            timestamp: "2024-10-16T10:01:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Sure, I can help.",
+            timestamp: "2024-10-16T10:01:30",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "What do you want me to help you with exactly?",
+            timestamp: "2024-10-16T12:02:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Okayy.. what i want you to do for me is that, i would like for you to send in a list of required documents.",
+            timestamp: "2024-10-17T09:06:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Okay, great.",
+            timestamp: "2024-10-17T10:01:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "I'll send in the list of documents that would be required of you",
+            timestamp: "2024-10-17T10:05:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Kindly standby, as it would take a few minutes",
+            timestamp: "2024-10-17T10:06:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "okayy.. Great. I will be waiting for a feedback. Thanks",
+            timestamp: "2024-10-17T10:05:58",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+
+         {
+            id: uuidv4(),
+            text: "Hi",
+            timestamp: "2024-10-18T11:31:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Good afternoon",
+            timestamp: "2024-10-18T12:10:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Hello. Are you there?",
+            timestamp: "2024-10-18T13:01:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+      ],
+   },
+   {
+      title: "Jane Smith",
+      content: "Can you assist me with this?",
+      id: uuidv4(),
+      chat_access: ChatAccessStatus.ON,
+      messages: [
+         {
+            id: uuidv4(),
+            text: "Can you assist me with this?",
+            timestamp: "2024-10-16T09:30:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+      ],
+   },
+   {
+      title: "Jane Doe",
+      content: "I need help with this service?",
+      id: uuidv4(),
+      chat_access: ChatAccessStatus.OFF,
+      messages: [
+         {
+            id: uuidv4(),
+            text: "Can you assist me with this?",
+            timestamp: "2024-10-16T09:30:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+      ],
+   },
+   {
+      title: "John Doe",
+      content: "Hello, I need help with my account.",
+      id: uuidv4(),
+      chat_access: ChatAccessStatus.OFF,
+      messages: [
+         {
+            id: uuidv4(),
+            text: "Hello, I need help",
+            timestamp: "2024-10-17T10:00:00",
+            type: MessageType.incoming,
+            documents: [],
+         },
+         {
+            id: uuidv4(),
+            text: "Sure, I can help.",
+            timestamp: "2024-10-17T10:01:00",
+            type: MessageType.outgoing,
+            documents: [],
+         },
+      ],
    },
 ];

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SettingsAside from "../components/sidebar/SettingsAside";
+import SettingsAside from "@/components/sidebar/SettingsAside";
 
 const SettingsLayout = () => {
    return (

@@ -5,32 +5,32 @@ import {
    Route,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import MainLayout from "../layouts/MainLayout";
-import FormLayout from "../layouts/FormLayout";
-import { ErrorPage } from "../pages/ErrorPage";
-import PageLoader from "../components/loaders/PageLoader";
+import MainLayout from "@/layouts/MainLayout";
+import FormLayout from "@/layouts/FormLayout";
+import { ErrorPage } from "@/pages/ErrorPage";
+import PageLoader from "@/components/loaders/PageLoader";
 import ProtectedRoute from "./ProtectedRoute";
-import SettingsLayout from "../layouts/SettingsLayout";
+import SettingsLayout from "@/layouts/SettingsLayout";
 
 // Lazy-loaded pages
-const Login = lazy(() => import("../pages/auth/Login"));
-const SignUp = lazy(() => import("../pages/auth/SignUp"));
-const Home = lazy(() => import("../pages/home/Home"));
-const RequestService = lazy(() => import("../pages/RequestService"));
-const NotApprovedHome = lazy(() => import("../pages/home/NotApprovedHome"));
-const UploadDocument = lazy(() => import("../pages/UploadDocument"));
-const Invoices = lazy(() => import("../pages/Invoices"));
-const Chat = lazy(() => import("../pages/Chat"));
-const Bank = lazy(() => import("../pages/payment/Bank"));
-const KnowledgeBase = lazy(() => import("../pages/KnowledgeBase"));
-const Video = lazy(() => import("../pages/Video"));
-const Profile = lazy(() => import("../pages/settings/Profile"));
-const Terms = lazy(() => import("../pages/settings/Terms"));
-const Help = lazy(() => import("../pages/settings/Help"));
-const Privacy = lazy(() => import("../pages/settings/Privacy"));
-const Faq = lazy(() => import("../pages/settings/Faq"));
-const MyRequests = lazy(() => import("../pages/settings/MyRequests"));
-const Files = lazy(() => import("../pages/settings/Files"));
+const Login = lazy(() => import("@/pages/auth/Login"));
+const SignUp = lazy(() => import("@/pages/auth/SignUp"));
+const Home = lazy(() => import("@/pages/home/Home"));
+const RequestService = lazy(() => import("@/pages/RequestService"));
+const NotApprovedHome = lazy(() => import("@/pages/home/NotApprovedHome"));
+const UploadDocument = lazy(() => import("@/pages/UploadDocument"));
+const Invoices = lazy(() => import("@/pages/Invoices"));
+const Chat = lazy(() => import("@/pages/Chat"));
+const Bank = lazy(() => import("@/pages/payment/Bank"));
+const KnowledgeBase = lazy(() => import("@/pages/KnowledgeBase"));
+const Video = lazy(() => import("@/pages/Video"));
+const Profile = lazy(() => import("@/pages/settings/Profile"));
+const Terms = lazy(() => import("@/pages/settings/Terms"));
+const Help = lazy(() => import("@/pages/settings/Help"));
+const Privacy = lazy(() => import("@/pages/settings/Privacy"));
+const Faq = lazy(() => import("@/pages/settings/Faq"));
+const MyRequests = lazy(() => import("@/pages/settings/MyRequests"));
+const Files = lazy(() => import("@/pages/settings/Files"));
 
 const router = createBrowserRouter(
    createRoutesFromElements(

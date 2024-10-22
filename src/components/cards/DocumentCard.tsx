@@ -1,5 +1,5 @@
 import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
-import { DocumentCardPropsTypes } from "@/types/AllTypes";
+import { DocumentCardPropsTypes } from "@/types/Types";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { Checkbox } from "@/components/ui/checkbox";
 import { formatDate } from "date-fns";
@@ -39,7 +39,7 @@ export const DocumentCard = ({
       <div>
          <label
             htmlFor={`selectDoc${document.id}`}
-            className="relative w-full flex flex-col gap-3 bg-white dark:bg-gray p-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
+            className="relative w-full h-full flex flex-col justify-between gap-3 bg-white dark:bg-gray p-3 rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body"
          >
             <div className="flex justify-between items-center">
                <div className="w-5 h-5 flex justify-center">

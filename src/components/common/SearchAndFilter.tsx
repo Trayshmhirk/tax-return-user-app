@@ -34,14 +34,14 @@ const SearchAndFilter = ({
       <div className="w-full flex flex-col md:flex-row md:items-center gap-4">
          <label
             htmlFor="search"
-            className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-3 px-4 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
+            className="max-w-72 w-full h-10 flex items-center bg-white dark:bg-gray p-1 px-4 rounded sm:w-[300px] shadow-md dark:shadow-md-dark"
          >
             <Search className="w-4 h-4 dark:text-white" />
             <Input
                id="search"
                type="text"
                placeholder="Search"
-               className="bg-transparent dark:bg-transparent border-none outline-none"
+               className="h-full py-1 bg-transparent dark:bg-transparent border-none outline-none"
                onChange={handleSearch}
             />
          </label>
@@ -54,7 +54,7 @@ const SearchAndFilter = ({
                   aria-expanded={open}
                   className="w-[200px] h-10 flex items-center bg-white dark:bg-gray px-4 py-3 rounded shadow-md dark:shadow-md-dark justify-between border-0"
                >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                      <IoFilter className="w-4 h-4" />
                      {value ? title.find((t) => t === value) : "Filters"}
                   </div>

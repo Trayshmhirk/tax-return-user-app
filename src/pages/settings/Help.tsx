@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchAndFilter from "../../components/common/SearchAndFilter";
-import { Accordion } from "../../components/common/Accordion";
-import { QuestionsPropsType } from "../../types/AllTypes";
-import { help } from "../../mocks/AllMockData";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import { Accordion } from "@/components/common/Accordion";
+import { QuestionsPropsType } from "@/types/Types";
+import { help } from "@/mocks/MockData";
 import TextArea from "@/components/form-components/TextArea";
 import { Button } from "@/components/ui/button";
 
@@ -43,32 +43,45 @@ const Help = () => {
       <>
          <h1 className="text-lg font-bold">Help and support</h1>
 
-         <SearchAndFilter
-            handleSearch={handleSearch}
-            handleFilter={handleFilter}
-            title={filterTitleList}
-         />
+         <div className="flex flex-col gap-6">
+            <p className="text-sm max-w-5xl">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit.
+               Voluptates deserunt cum, quaerat quae praesentium dolor quos
+               quibusdam quia, quam tenetur delectus earum ab illo? Commodi
+               nobis accusamus tempora laborum? Doloribus voluptate praesentium
+               provident sed dolor nulla exercitationem veniam. Ea magni modi
+               eos quisquam assumenda odio numquam ipsam nesciunt. Expedita,
+               vitae dolor similique quibusdam ut aut voluptates autem in! Modi,
+               consequuntur.
+            </p>
 
-         <div className="flex flex-col gap-4">
-            {filterQuestions.length ? (
-               filterQuestions.map((question, index) => (
-                  <Accordion
-                     key={index}
-                     question={question.question}
-                     answer={question.answer}
-                  />
-               ))
-            ) : (
-               <div className="flex flex-col gap-4">
-                  <TextArea
-                     label="Have a question?"
-                     placeholder="Type question here"
-                  />
-                  <Button type="button" onClick={handleSubmitQuestion}>
-                     Submit question
-                  </Button>
-               </div>
-            )}
+            <SearchAndFilter
+               handleSearch={handleSearch}
+               handleFilter={handleFilter}
+               title={filterTitleList}
+            />
+
+            <div className="flex flex-col gap-4">
+               {filterQuestions.length ? (
+                  filterQuestions.map((question, index) => (
+                     <Accordion
+                        key={index}
+                        question={question.question}
+                        answer={question.answer}
+                     />
+                  ))
+               ) : (
+                  <div className="flex flex-col gap-4">
+                     <TextArea
+                        label="Have a question?"
+                        placeholder="Type question here"
+                     />
+                     <Button type="button" onClick={handleSubmitQuestion}>
+                        Submit question
+                     </Button>
+                  </div>
+               )}
+            </div>
          </div>
       </>
    );

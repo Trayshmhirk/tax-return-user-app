@@ -1,12 +1,12 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { navItemsData } from "../../mocks/NavItemData";
+import { navItemsData } from "@/mocks/NavItemData";
 import { NavItems } from "./NavItems";
 import { HamburgerIcon } from "../icons/HamburgerIcon";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsMoonStars } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useSidebar } from "../../hooks/UseSidebar";
+import { useSidebar } from "@/hooks/useSidebar";
 import Overlay from "../common/Overlay";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -46,7 +46,7 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
             className={`fixed inset-y-0 z-50 transform ${
                isOpen ? "translate-x-0" : "-translate-x-full"
             } sm:static sm:translate-x-0 transition-transform duration-300 ease-in-out ${
-               isOpen ? "w-[265px] sm:w-[290px] lg:w-[300px]" : "w-fit px-4"
+               isOpen ? "w-[265px] xs:w-[290px] lg:w-[300px]" : "w-fit px-4"
             } flex flex-col bg-white dark:bg-darkGray text-eerieBlack dark:text-white p-6 rounded-r-2xl shadow-md dark:shadow-md-dark`}
          >
             <div className="h-full flex flex-col justify-between">
@@ -92,8 +92,8 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                      <NavItems
                         title="Logout"
                         navIcon={BiLogOut}
-                        id="logout" // Ensure to provide an id for the logout item
-                        onClick={() => console.log("Logout clicked")} // handleLogout function
+                        id="logout"
+                        onClick={() => console.log("Logout clicked")}
                         isCollapsed={isOpen}
                      />
                   </div>

@@ -32,7 +32,7 @@ import {
    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DocumentsPropTypes } from "@/types/AllTypes";
+import { DocumentsPropTypes } from "@/types/Types";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";

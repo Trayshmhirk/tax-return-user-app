@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import SearchAndFilter from "../components/common/SearchAndFilter";
-import UploadPdfImage from "../components/common/UploadPdfImage";
-import { DocumentCard } from "../components/cards/DocumentCard";
-import DocumentTypeIcon from "../components/icons/DocumentTypeIcon";
-import { DocumentsPropTypes, FileType } from "../types/AllTypes";
-import { getBase64 } from "../helpers/getBase64";
-import { mapFileTypeToDocumentType } from "../helpers/mapFileType";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import UploadPdfImage from "@/components/common/UploadPdfImage";
+import { DocumentCard } from "@/components/cards/DocumentCard";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
+import { DocumentsPropTypes, FileType } from "@/types/Types";
+import { getBase64 } from "@/helpers/getBase64";
+import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import { v4 as uuidv4 } from "uuid";
 import { fetchDocuments } from "@/api/mockApis";
@@ -13,12 +13,12 @@ import { ClipLoader } from "react-spinners";
 
 const UploadDocument = () => {
    const [loading, setLoading] = useState(false);
-   const [searchInput, setSearchInput] = useState<string>("");
-   const [selectedFilter, setSelectedFilter] = useState<string>("");
-   const [ongoingUploads, setOngoingUploads] = useState<number>(0);
-   const [uploadProgress, setUploadProgress] = useState<number>(0);
-   const [currentFileSize, setCurrentFileSize] = useState<number>(0);
-   const [fileSizeInMB, setFileSizeInMB] = useState<number>(0);
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
+   const [ongoingUploads, setOngoingUploads] = useState(0);
+   const [uploadProgress, setUploadProgress] = useState(0);
+   const [currentFileSize, setCurrentFileSize] = useState(0);
+   const [fileSizeInMB, setFileSizeInMB] = useState(0);
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
    const [uploadedDocuments, setUploadedDocuments] = useState<
       DocumentsPropTypes[]

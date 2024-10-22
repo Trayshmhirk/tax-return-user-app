@@ -3,8 +3,8 @@
 import { PureComponent } from "react";
 import { XAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from "recharts";
 
-import { CustomTick } from "../components/custom/CustomTick";
-import { CustomTooltip } from "../components/custom/CustomTooltip";
+import { CustomTick } from "../custom/CustomTick";
+import { CustomTooltip } from "../custom/CustomTooltip";
 
 // Sample data
 const data = [

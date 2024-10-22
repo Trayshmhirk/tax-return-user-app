@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import {
    ColumnDef,
@@ -25,7 +25,7 @@ import {
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronLeft, ChevronRight, Settings2, Search } from "lucide-react";
-import useWindowWidth from "@/hooks/UseWindowWidth";
+import useWindowWidth from "@/hooks/useWindowWidth";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -38,15 +38,14 @@ export function DataTable<TData, TValue>({
    data,
    isInvoice,
 }: DataTableProps<TData, TValue>) {
-   const [sorting, setSorting] = React.useState<SortingState>([
+   const [sorting, setSorting] = useState<SortingState>([
       { id: `${isInvoice ? "due_date" : "date_modified"}`, desc: true }, // Default sorting by date_modified in descending order
    ]);
-   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-      []
+   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {}
    );
-   const [columnVisibility, setColumnVisibility] =
-      React.useState<VisibilityState>({});
-   const [rowSelection, setRowSelection] = React.useState({});
+   const [rowSelection, setRowSelection] = useState({});
 
    // Get the window width from the hook
    const windowWidth = useWindowWidth();

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import InvoiceCard from "@/components/cards/InvoiceCard";
-import { InvoicesPropTypes } from "@/types/AllTypes";
+import { InvoicesPropTypes } from "@/types/Types";
 import { fetchInvoices } from "@/api/mockApis";
 import { ClipLoader } from "react-spinners";
 import MetricsCard from "@/components/cards/MetricsCard";
-import { invoiceMetrics } from "@/mocks/AllMockData";
+import { invoiceMetrics } from "@/mocks/MockData";
 
 const Invoices = () => {
    const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
    const [loading, setLoading] = useState(false);
-   const [searchInput, setSearchInput] = useState<string>("");
-   const [selectedFilter, setSelectedFilter] = useState<string>("");
+   const [searchInput, setSearchInput] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("");
    const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
 
    useEffect(() => {

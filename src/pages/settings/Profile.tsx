@@ -1,5 +1,5 @@
 import DebitCard from "@/components/payment/DebitCard";
-import { initialCards } from "@/mocks/AllMockData";
+import { initialCards } from "@/mocks/MockData";
 import { Mail, MapPinned, Smartphone, SquarePen } from "lucide-react";
 import { differenceInMonths, isPast } from "date-fns";
 import { NavLink } from "react-router-dom";
