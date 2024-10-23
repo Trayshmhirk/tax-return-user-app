@@ -152,6 +152,9 @@ const Chat = () => {
                chat.id === activeChat.id ? updatedActiveChat : chat
             )
          );
+
+         // Set the active chat to the updated version
+         setActiveChat(updatedActiveChat);
       }
    };
 
