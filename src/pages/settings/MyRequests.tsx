@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { RequestsPropTypes } from "@/types/Types";
 import { requests } from "@/mocks/MockData";
-import { formatDate } from "date-fns";
+import RequestCard from "@/components/cards/RequestCard";
 
 const MyRequests = () => {
    const [searchInput, setSearchInput] = useState("");
@@ -52,36 +52,11 @@ const MyRequests = () => {
             {filteredRequests.length ? (
                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                   {filteredRequests.map((request, index) => (
-                     <div
+                     <RequestCard
                         key={index}
-                        onClick={handleRequestCardClick}
-                        className="relative w-full flex flex-col justify-center gap-2 bg-white dark:bg-gray px-4 py-3 rounded-lg shadow-md dark:shadow-md-dark hover-shadow-body"
-                     >
-                        <div
-                           className={`
-                              absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
-                              ${request.status.toLowerCase() === "pending" ? "warning" : ""}
-                              ${request.status.toLowerCase() === "paid" ? "success" : ""}
-                              ${request.status.toLowerCase() === "completed" ? "completed" : ""}
-                           `}
-                        >
-                           {request.status}
-                        </div>
-
-                        <div className="text-sm">{request.service_id}</div>
-
-                        <div className="text-sm">
-                           <span className="text-richElectricBlue">
-                              {request.service_title}
-                           </span>
-                        </div>
-
-                        <div className="text-xs">
-                           <span className="">
-                              {formatDate(request.requestDate, "dd.MM.yyyy")}
-                           </span>
-                        </div>
-                     </div>
+                        request={request}
+                        handleRequestCardClick={handleRequestCardClick}
+                     />
                   ))}
                </div>
             ) : (

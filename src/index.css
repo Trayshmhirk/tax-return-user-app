@@ -78,6 +78,11 @@
       background: rgba(0, 0, 195, 0.05);
    }
 
+   .completed {
+      @apply bg-blue-300 bg-opacity-20 text-richElectricBlue dark:text-blue-300 border border-richElectricBlue dark:border-blue-400;
+      background: rgba(0, 0, 195, 0.05);
+   }
+
    .success {
       @apply bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border border-green-600 dark:border-green-400;
       background: rgba(41, 206, 156, 0.05);
