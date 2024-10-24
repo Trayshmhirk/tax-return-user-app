@@ -17,11 +17,11 @@ const RequestCard = ({
       >
          <div
             className={`
-                              absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
-                              ${request.status.toLowerCase() === "pending" ? "warning" : ""}
-                              ${request.status.toLowerCase() === "paid" ? "success" : ""}
-                              ${request.status.toLowerCase() === "completed" ? "completed" : ""}
-                           `}
+               absolute right-4 top-4 py-[2px] px-[6px] text-xs rounded
+               ${request.status.toLowerCase() === "pending" ? "warning" : ""}
+               ${request.status.toLowerCase() === "paid" ? "success" : ""}
+               ${request.status.toLowerCase() === "completed" ? "completed" : ""}
+            `}
          >
             {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
          </div>
