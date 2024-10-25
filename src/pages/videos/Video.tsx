@@ -18,6 +18,8 @@ const Video = () => {
    // Find the selected video based on the videoId
    const selectedVideo = videoData.find((video) => video.id === videoId);
 
+   if (!videoId || !selectedVideo) return;
+
    // Find sibling videos in the same category
    const siblingVideos = videoData.filter(
       (video) => video.category === selectedVideo?.category
@@ -33,7 +35,7 @@ const Video = () => {
          {" "}
          <div className="w-full flex flex-col self-center gap-4 md:w-[600px] lg:w-[800px] xl:w-[1000px]">
             <h3 className="text-xl font-medium">
-               {<p>{selectedVideo?.title}</p>}
+               {<p>{selectedVideo.title}</p>}
             </h3>
 
             <div className="flex flex-col gap-2">
@@ -49,7 +51,7 @@ const Video = () => {
                   </div>
                </div>
                <p className="text-sm text-mutedGray dark:text-white">
-                  {selectedVideo?.uploaded}
+                  {selectedVideo.date_uploaded}
                </p>
             </div>
 
@@ -86,8 +88,7 @@ const Video = () => {
                      video.id !== videoId ? (
                         <VideoCard
                            key={video.id}
-                           title={video.title}
-                           time={video.time}
+                           video={video}
                            handleClick={() => handleSelectVideo(video.id)}
                         />
                      ) : (

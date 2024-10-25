@@ -1,13 +1,13 @@
 import { MdOutlinePlayCircle } from "react-icons/md";
 import WatchImg from "@/assets/watch-small.png";
+import { VideoDataTypes } from "@/types/Types";
 
 type VideoCardPropTypes = {
-   title: string;
-   time: string;
+   video: VideoDataTypes;
    handleClick: () => void;
 };
 
-const VideoCard = ({ title, time, handleClick }: VideoCardPropTypes) => {
+const VideoCard = ({ video, handleClick }: VideoCardPropTypes) => {
    const watchStyle = {
       background: `url(${WatchImg})`,
       backgroundRepeat: "no-repeat",
@@ -26,9 +26,9 @@ const VideoCard = ({ title, time, handleClick }: VideoCardPropTypes) => {
             </div>
          </div>
 
-         <div className="px-4 py-3">
-            <p className="text-sm md:text-base">{title}</p>
-            <p className="text-xs md:text-sm">{time}</p>
+         <div className="flex flex-col gap-1 px-4 py-3">
+            <p className="text-sm md:text-base">{video.title}</p>
+            <p className="text-xs">{video.duration}</p>
          </div>
       </div>
    );

@@ -1,5 +1,3 @@
-// types
-
 // services
 export type SelectServicePropType = {
    selectedCategory: string;
@@ -72,8 +70,8 @@ export type InvoiceCardPropTypes = {
 // videos
 export type VideoDataTypes = {
    title: string;
-   time: string;
-   uploaded: string;
+   duration: string;
+   date_uploaded: string;
    id: string;
    category: string;
 };

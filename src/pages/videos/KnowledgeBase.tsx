@@ -11,13 +11,7 @@ const KnowledgeBase = () => {
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const filterTitleList = [
-      "All",
-      "Tax",
-      "Payment",
-      // "Attestation",
-      // "Accounting",
-   ];
+   const filterTitleList = ["All", "Tax", "Bank", "Documents"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -49,8 +43,12 @@ const KnowledgeBase = () => {
       (video) => video.category === "tax"
    );
 
-   const paymentFilteredVideos = filteredVideos.filter(
-      (video) => video.category === "payment"
+   const bankFilteredVideos = filteredVideos.filter(
+      (video) => video.category === "bank"
+   );
+
+   const documentsFilteredVideos = filteredVideos.filter(
+      (video) => video.category === "documents"
    );
 
    const handleSelectVideo = (videoId: string) => {
@@ -69,14 +67,13 @@ const KnowledgeBase = () => {
                />
 
                <div className="flex flex-col gap-3">
-                  <p className="font-medium">Tax filing</p>
+                  <p className="font-medium">Tax service request</p>
                   <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
                      {taxFilteredVideos.length ? (
                         taxFilteredVideos.map((video, index) => (
                            <VideoCard
                               key={index}
-                              title={video.title}
-                              time={video.time}
+                              video={video}
                               handleClick={() => handleSelectVideo(video.id)}
                            />
                         ))
@@ -89,14 +86,32 @@ const KnowledgeBase = () => {
                </div>
 
                <div className="flex flex-col gap-3">
-                  <p className="font-medium">Store receipts</p>
+                  <p className="font-medium">Bank</p>
                   <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
-                     {paymentFilteredVideos.length ? (
-                        paymentFilteredVideos.map((video, index) => (
+                     {bankFilteredVideos.length ? (
+                        bankFilteredVideos.map((video, index) => (
                            <VideoCard
                               key={index}
-                              title={video.title}
-                              time={video.time}
+                              video={video}
+                              handleClick={() => handleSelectVideo(video.id)}
+                           />
+                        ))
+                     ) : (
+                        <p className="w-full pending-text text-center">
+                           No results found
+                        </p>
+                     )}
+                  </div>
+               </div>
+
+               <div className="flex flex-col gap-3">
+                  <p className="font-medium">Documents</p>
+                  <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
+                     {documentsFilteredVideos.length ? (
+                        documentsFilteredVideos.map((video, index) => (
+                           <VideoCard
+                              key={index}
+                              video={video}
                               handleClick={() => handleSelectVideo(video.id)}
                            />
                         ))
