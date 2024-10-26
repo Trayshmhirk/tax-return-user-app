@@ -17,7 +17,7 @@ const VideoCard = ({ video, handleClick }: VideoCardPropTypes) => {
    return (
       <div
          onClick={handleClick}
-         className="calc-width-two flex flex-col bg-white dark:bg-gray rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body md:w-64"
+         className="w-full flex flex-col bg-white dark:bg-gray rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body overflow-hidden"
       >
          <div className="relative h-14 text-white md:h-24" style={watchStyle}>
             <div className="absolute bottom-3 left-6 flex items-center gap-3">

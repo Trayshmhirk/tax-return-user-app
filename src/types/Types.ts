@@ -74,6 +74,7 @@ export type VideoDataTypes = {
    date_uploaded: string;
    id: string;
    category: string;
+   description: string;
 };
 
 // faqs and help
