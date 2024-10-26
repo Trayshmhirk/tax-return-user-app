@@ -87,7 +87,7 @@ const SelectService = ({ selectedCategory }: SelectServicePropType) => {
    return (
       <>
          <div className="flex flex-col gap-7 mb-auto">
-            <h2 className="font-medium text-lg md:text-xl">
+            <h2 className="font-medium md:text-lg">
                Select the services you require
             </h2>
 

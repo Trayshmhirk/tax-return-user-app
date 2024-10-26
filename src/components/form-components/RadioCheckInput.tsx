@@ -1,4 +1,3 @@
-import { FaSquareCheck } from "react-icons/fa6";
 import { IoRadioButtonOnSharp } from "react-icons/io5";
 
 type RadioCheckInputPropTypes = {
@@ -51,30 +50,8 @@ const RadioCheckInput = ({
                <IoRadioButtonOnSharp
                   className={`w-4 h-4 text-richElectricBlue ${isChecked ? "block" : "hidden"}`}
                />
-               <span className="text-sm md:text-xl">{value}</span>
+               <span className="text-sm">{value}</span>
             </>
-         )}
-
-         {isCheckBox && (
-            <div className="flex self-start items-center gap-4">
-               <input
-                  className="input-checkbox"
-                  type="checkbox"
-                  value={value}
-                  // {...register("checkbox", {
-                  //    required: `This field is required`,
-                  //    // Add other validation rules as needed
-                  // })}
-                  onChange={handleRadioAndCheckChange}
-                  checked={isChecked}
-               />
-               <span
-                  className={`hidden ${isChecked ? "flex items-center justify-center" : "hidden"}`}
-               >
-                  <FaSquareCheck />
-               </span>
-               <span className="text-sm md:text-xl">{value}</span>
-            </div>
          )}
       </label>
    );
