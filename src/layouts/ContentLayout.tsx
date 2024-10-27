@@ -17,8 +17,6 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
             return "Welcome";
          case "/not-approved":
             return "Please wait...";
-         case "/request-service":
-            return "Request a service";
          case "/upload-documents":
             return "Upload documents";
          case "/invoices":

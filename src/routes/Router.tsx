@@ -16,7 +16,6 @@ import SettingsLayout from "@/layouts/SettingsLayout";
 const Login = lazy(() => import("@/pages/auth/Login"));
 const SignUp = lazy(() => import("@/pages/auth/SignUp"));
 const Home = lazy(() => import("@/pages/home/Home"));
-const RequestService = lazy(() => import("@/pages/features/RequestService"));
 const NotApprovedHome = lazy(() => import("@/pages/home/NotApprovedHome"));
 const UploadDocument = lazy(() => import("@/pages/features/UploadDocument"));
 const Invoices = lazy(() => import("@/pages/features/Invoices"));
@@ -79,14 +78,6 @@ const router = createBrowserRouter(
                element={
                   <ProtectedRoute>
                      <Home />
-                  </ProtectedRoute>
-               }
-            />
-            <Route
-               path="request-service"
-               element={
-                  <ProtectedRoute>
-                     <RequestService />
                   </ProtectedRoute>
                }
             />
