@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RadioCheckInput from "../../form-components/RadioCheckInput";
+import RadioInput from "../../form-components/RadioInput";
 import { SelectCategoryPropTypes } from "../../../types/Types";
 import { categoryList } from "../../../mocks/MockData";
 import Forms from "../Forms";
@@ -31,20 +31,16 @@ const SelectCategory = ({
    };
 
    const onSubmit = () => {
+      setIsLoading(true);
       if (isRequestService) {
-         setIsLoading(true);
-
-         // Simulate API call with setTimeout
          setTimeout(() => {
             setIsLoading(false);
             category;
 
             onNext();
-         }, 1000); // Mock API call delay of 2 seconds
+         }, 1000);
+         
       } else {
-         setIsLoading(true);
-
-         // Simulate API call with setTimeout
          setTimeout(() => {
             setIsLoading(false);
             category;
@@ -54,7 +50,7 @@ const SelectCategory = ({
                // Next after mock success
                onNext();
             }, 700);
-         }, 2000); // Mock API call delay of 2 seconds
+         }, 2000);
       }
    };
 
@@ -69,12 +65,11 @@ const SelectCategory = ({
                <div className="flex flex-col gap-7 mb-auto">
                   <div className="flex flex-col gap-4">
                      {categoryList.map((category, index) => (
-                        <RadioCheckInput
+                        <RadioInput
                            key={index}
                            value={category.name}
-                           isRadio
                            isChecked={checkedRadio === `${category.name}`}
-                           onRadioAndCheckChange={handleRadioChange}
+                           onRadioChange={handleRadioChange}
                         />
                      ))}
                   </div>
@@ -102,12 +97,11 @@ const SelectCategory = ({
             >
                <div className="flex flex-col gap-3 mb-auto mt-2">
                   {categoryList.map((category, index) => (
-                     <RadioCheckInput
+                     <RadioInput
                         key={index}
                         value={category.name}
-                        isRadio
                         isChecked={checkedRadio === `${category.name}`}
-                        onRadioAndCheckChange={handleRadioChange}
+                        onRadioChange={handleRadioChange}
                      />
                   ))}
                </div>

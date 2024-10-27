@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RadioCheckInput from "../../form-components/RadioCheckInput";
+import RadioInput from "../../form-components/RadioInput";
 import { SelectServicePropType } from "../../../types/Types";
 import { servicesList } from "../../../mocks/MockData";
 import { ClipLoader } from "react-spinners";
@@ -30,6 +30,7 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
          setIsLoading(false);
          selectedServiceId;
          selectedCategory;
+
          setTimeout(() => {
             // after mock success
             navigate("/chat");
@@ -80,13 +81,12 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
          <div className="flex flex-col gap-7 mb-auto">
             <div className="flex flex-col gap-4">
                {servicesList.map((service, index) => (
-                  <RadioCheckInput
+                  <RadioInput
                      key={index}
                      serviceId={service.service_id}
                      value={service.title}
-                     isRadio
                      isChecked={checkedRadio === `${service.title}`}
-                     onRadioAndCheckChange={handleRadioChange}
+                     onRadioChange={handleRadioChange}
                   />
                ))}
             </div>
