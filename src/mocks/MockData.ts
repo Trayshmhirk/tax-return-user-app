@@ -18,57 +18,57 @@ import { v4 as uuidv4 } from "uuid";
 export const servicesList: ServicesListTypes[] = [
    {
       title: "Accounting",
-      service_id: "1",
+      service_id: uuidv4(),
    },
    {
       title: "Attestation services",
-      service_id: "2",
+      service_id: uuidv4(),
    },
    {
       title: "Management consulting",
-      service_id: "3",
+      service_id: uuidv4(),
    },
    {
       title: "Tax services",
-      service_id: "4",
+      service_id: uuidv4(),
    },
    {
       title: "Payment services",
-      service_id: "5",
+      service_id: uuidv4(),
    },
    {
       title: "Custom services",
-      service_id: "6",
+      service_id: uuidv4(),
    },
 ];
 
 export const categoryList: CategoryListTypes[] = [
    {
       name: "Individuals",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Partnership",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Corporation",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Sole Proprietorship",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Others",
-      category_id: "",
+      category_id: uuidv4(),
    },
 ];
 
 // documents
 export const uploadedDocuments: DocumentsPropTypes[] = [
    {
-      id: "id1",
+      id: uuidv4(),
       document_name: "Document 1adfuubadfdajhjahdf",
       document_size: "20",
       document_type: "application/pdf",
@@ -339,19 +339,19 @@ export const help: QuestionsPropsType[] = [
 // requests
 export const requests: RequestsPropTypes[] = [
    {
-      service_id: "5tdfG8rnfP",
+      service_id: uuidv4(),
       status: "pending",
       requestDate: "2024-08-30",
       service_title: "tax",
    },
    {
-      service_id: "Iu83Hnd8Oi",
+      service_id: uuidv4(),
       status: "completed",
       requestDate: "2024-08-25",
       service_title: "attestation",
    },
    {
-      service_id: "Ko9fJk32hN",
+      service_id: uuidv4(),
       status: "paid",
       requestDate: "2024-06-25",
       service_title: "payment",
@@ -360,7 +360,7 @@ export const requests: RequestsPropTypes[] = [
 
 export const initialCards: CardsProps[] = [
    {
-      id: "er634e7",
+      id: uuidv4(),
       name: "Debit card",
       last4: "4364",
       exp: "12/22",
@@ -369,7 +369,7 @@ export const initialCards: CardsProps[] = [
       isDefault: true,
    },
    {
-      id: "hd2376y",
+      id: uuidv4(),
       name: "Travel card",
       last4: "1234",
       exp: "09/23",
@@ -378,7 +378,7 @@ export const initialCards: CardsProps[] = [
       isDefault: false,
    },
    {
-      id: "ab987hg",
+      id: uuidv4(),
       name: "Work card",
       last4: "3456",
       exp: "10/24",
