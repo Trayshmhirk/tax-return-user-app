@@ -1,6 +1,7 @@
 // services
 export type SelectServicePropType = {
    selectedCategory: string;
+   onPrev: () => void;
 };
 
 export type ServicesListTypes = {

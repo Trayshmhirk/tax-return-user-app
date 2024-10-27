@@ -37,7 +37,7 @@ export const servicesList: ServicesListTypes[] = [
       service_id: "5",
    },
    {
-      title: "Other",
+      title: "Custom services",
       service_id: "6",
    },
 ];

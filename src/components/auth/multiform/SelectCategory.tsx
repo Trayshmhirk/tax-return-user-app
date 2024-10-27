@@ -32,7 +32,15 @@ const SelectCategory = ({
 
    const onSubmit = () => {
       if (isRequestService) {
-         onNext();
+         setIsLoading(true);
+
+         // Simulate API call with setTimeout
+         setTimeout(() => {
+            setIsLoading(false);
+            category;
+
+            onNext();
+         }, 1000); // Mock API call delay of 2 seconds
       } else {
          setIsLoading(true);
 
@@ -59,10 +67,6 @@ const SelectCategory = ({
          {isRequestService ? (
             <>
                <div className="flex flex-col gap-7 mb-auto">
-                  <h2 className="font-medium text-lg md:text-xl">
-                     Select the category you fall under
-                  </h2>
-
                   <div className="flex flex-col gap-4">
                      {categoryList.map((category, index) => (
                         <RadioCheckInput
@@ -81,7 +85,11 @@ const SelectCategory = ({
                   type="submit"
                   disabled={isButtonDisabled || isLoading}
                >
-                  Proceed
+                  {isLoading ? (
+                     <ClipLoader color="#ffffff" size={20} />
+                  ) : (
+                     "Proceed"
+                  )}
                </Button>
             </>
          ) : (
