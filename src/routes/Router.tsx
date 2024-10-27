@@ -121,7 +121,14 @@ const router = createBrowserRouter(
                   </ProtectedRoute>
                }
             >
-               <Route path="video/:videoId" element={<Video />}></Route>
+               <Route
+                  path="video/:videoId"
+                  element={
+                     <ProtectedRoute>
+                        <Video />
+                     </ProtectedRoute>
+                  }
+               ></Route>
             </Route>
 
             <Route

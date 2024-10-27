@@ -14,6 +14,26 @@ import {
 } from "@/types/Types";
 import { v4 as uuidv4 } from "uuid";
 
+export const headerTitleMap: Record<string, string> = {
+   "/": "Welcome",
+   "/not-approved": "Please wait...",
+   "/upload-documents": "Upload documents",
+   "/invoices": "Invoices",
+   "/chat": "Chat",
+   "/transactions": "Transactions",
+   "/bank": "Bank",
+   "/knowledge-base": "Knowledge base",
+   "/settings/profile": "Account settings",
+   "/settings/faq": "Account settings",
+   "/settings/help-and-support": "Account settings",
+   "/settings/privacy-policy": "Account settings",
+   "/settings/my-requests": "Account settings",
+   "/settings/files": "Account settings",
+   "/settings/integrated-banks": "Account settings",
+   "/settings/terms-and-conditions": "Account settings",
+   "/knowledge-base/video/": "Watch video",
+};
+
 // request service
 export const servicesList: ServicesListTypes[] = [
    {

@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Header from "@/components/common/Header";
 import { useSidebar } from "@/hooks/useSidebar";
+import { headerTitleMap } from "@/mocks/MockData";
 
 type ContentLayoutProps = {
    children: React.ReactNode;
@@ -8,49 +9,17 @@ type ContentLayoutProps = {
 
 const ContentLayout = ({ children }: ContentLayoutProps) => {
    const location = useLocation();
-
    const { isOpen } = useSidebar();
 
+   // Check if the path matches any in titleMap or is a dynamic path for "Watch video"
    const getTitle = (pathname: string) => {
-      switch (pathname) {
-         case "/":
-            return "Welcome";
-         case "/not-approved":
-            return "Please wait...";
-         case "/upload-documents":
-            return "Upload documents";
-         case "/invoices":
-            return "Invoices";
-         case "/chat":
-            return "Chat";
-         case "/transactions":
-            return "Transactions";
-         case "/bank":
-            return "Bank";
-         case "/knowledge-base":
-            return "Knowledge base";
-         case "/settings/profile":
-            return "Account settings";
-         case "/settings/faq":
-            return "Account settings";
-         case "/settings/help-and-support":
-            return "Account settings";
-         case "/settings/privacy-policy":
-            return "Account settings";
-         case "/settings/my-requests":
-            return "Account settings";
-         case "/settings/files":
-            return "Account settings";
-         case "/settings/integrated-banks":
-            return "Account settings";
-         case "/settings/terms-and-conditions":
-            return "Account settings";
-         default:
-            return "";
+      if (pathname.startsWith("/knowledge-base/video/")) {
+         return "Watch video";
       }
+      return headerTitleMap[pathname] || ""; // Fallback to empty title if not matched
    };
 
-   const title = getTitle(location.pathname);
+   const title = getTitle(location.pathname); // Default to an empty string if no match
 
    // Check if current route starts with /settings/
    const isSettings = location.pathname.startsWith("/settings");
