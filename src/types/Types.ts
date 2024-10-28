@@ -123,6 +123,7 @@ export type CardsProps = {
    brand: string;
    cardholderName: string;
    isDefault: boolean;
+   transactions: TransactionPropTypes[];
 };
 
 export type MetricCardProps = {
