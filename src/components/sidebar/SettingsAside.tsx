@@ -37,7 +37,6 @@ import { Navigation2 } from "lucide-react";
 const route = [
    { name: "Profile", route: "profile" },
    { name: "Privacy policy", route: "privacy-policy" },
-   { name: "My requests", route: "my-requests" },
    { name: "Files", route: "files" },
    { name: "FAQ", route: "faq" },
    { name: "Help and support", route: "help-and-support" },
@@ -195,16 +194,6 @@ const SettingsAside = () => {
                   <h2 className="font-medium">Account overview</h2>
 
                   <nav className="flex flex-col gap-2">
-                     <NavLink
-                        to="my-requests"
-                        className={`
-                           flex items-center justify-between py-1 px-3 rounded-md no-underline
-                           ${location.pathname === "/settings/my-requests" ? "bg-richElectricBlue text-white" : "bg-white dark:bg-gray text-mutedGray dark:text-white hover-shadow"}
-                        `}
-                     >
-                        <span className="text-sm">My requests</span>
-                     </NavLink>
-
                      <NavLink
                         to="files"
                         className={`

@@ -28,7 +28,6 @@ const Terms = lazy(() => import("@/pages/settings/Terms"));
 const Help = lazy(() => import("@/pages/settings/Help"));
 const Privacy = lazy(() => import("@/pages/settings/Privacy"));
 const Faq = lazy(() => import("@/pages/settings/Faq"));
-const MyRequests = lazy(() => import("@/pages/settings/MyRequests"));
 const Files = lazy(() => import("@/pages/settings/Files"));
 
 const router = createBrowserRouter(
@@ -145,14 +144,6 @@ const router = createBrowserRouter(
                   element={
                      <ProtectedRoute>
                         <Profile />
-                     </ProtectedRoute>
-                  }
-               />
-               <Route
-                  path="my-requests"
-                  element={
-                     <ProtectedRoute>
-                        <MyRequests />
                      </ProtectedRoute>
                   }
                />

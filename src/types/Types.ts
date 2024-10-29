@@ -85,16 +85,6 @@ export type QuestionsPropsType = {
    questionCategory?: string;
 };
 
-// requests
-export type RequestStatus = "pending" | "paid" | "completed";
-
-export type RequestsPropTypes = {
-   service_id: string;
-   status: RequestStatus;
-   requestDate: string;
-   service_title: string;
-};
-
 // forms
 export type ILoginForm = {
    email: string;

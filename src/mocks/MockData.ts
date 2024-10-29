@@ -5,7 +5,6 @@ import {
    ServicesListTypes,
    CategoryListTypes,
    QuestionsPropsType,
-   RequestsPropTypes,
    CardsProps,
    MetricCardProps,
    ChatsPropType,
@@ -27,7 +26,6 @@ export const headerTitleMap: Record<string, string> = {
    "/settings/faq": "Account settings",
    "/settings/help-and-support": "Account settings",
    "/settings/privacy-policy": "Account settings",
-   "/settings/my-requests": "Account settings",
    "/settings/files": "Account settings",
    "/settings/integrated-banks": "Account settings",
    "/settings/terms-and-conditions": "Account settings",
@@ -353,28 +351,6 @@ export const help: QuestionsPropsType[] = [
          "•	National Center for Strategic Nonprofit Planning & Community Leadership",
          "•	District of Columbia Government, Roots Public Charter School",
       ],
-   },
-];
-
-// requests
-export const requests: RequestsPropTypes[] = [
-   {
-      service_id: uuidv4(),
-      status: "pending",
-      requestDate: "2024-08-30",
-      service_title: "tax",
-   },
-   {
-      service_id: uuidv4(),
-      status: "completed",
-      requestDate: "2024-08-25",
-      service_title: "attestation",
-   },
-   {
-      service_id: uuidv4(),
-      status: "paid",
-      requestDate: "2024-06-25",
-      service_title: "payment",
    },
 ];
 
