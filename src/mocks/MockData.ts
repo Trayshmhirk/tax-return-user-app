@@ -565,7 +565,7 @@ export const invoiceMetrics: MetricCardProps[] = [
 export const chats: ChatsPropType[] = [
    {
       title: "John Doe",
-      content: "Hello, I need help with my account.",
+      service_id: "string",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -658,7 +658,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Smith",
-      content: "Can you assist me with this?",
+      service_id: "string",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -673,7 +673,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Doe",
-      content: "I need help with this service?",
+      service_id: "string",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [
@@ -688,7 +688,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "John Doe",
-      content: "Hello, I need help with my account.",
+      service_id: "string",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [
