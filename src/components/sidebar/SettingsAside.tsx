@@ -63,8 +63,8 @@ const SettingsAside = () => {
    };
 
    const onSubmit = async (data: IChangePasswordForm) => {
-      console.log(data);
       setIsLoading(true);
+      data;
 
       // Simulate API call with setTimeout
       setTimeout(() => {
