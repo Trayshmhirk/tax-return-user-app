@@ -5,7 +5,6 @@ import {
    ServicesListTypes,
    CategoryListTypes,
    QuestionsPropsType,
-   RequestsPropTypes,
    CardsProps,
    MetricCardProps,
    ChatsPropType,
@@ -14,61 +13,80 @@ import {
 } from "@/types/Types";
 import { v4 as uuidv4 } from "uuid";
 
+export const headerTitleMap: Record<string, string> = {
+   "/": "Welcome",
+   "/not-approved": "Please wait...",
+   "/upload-documents": "Upload documents",
+   "/invoices": "Invoices",
+   "/chat": "Chat",
+   "/transactions": "Transactions",
+   "/bank": "Bank",
+   "/knowledge-base": "Knowledge base",
+   "/settings/profile": "Account settings",
+   "/settings/faq": "Account settings",
+   "/settings/help-and-support": "Account settings",
+   "/settings/privacy-policy": "Account settings",
+   "/settings/files": "Account settings",
+   "/settings/integrated-banks": "Account settings",
+   "/settings/terms-and-conditions": "Account settings",
+   "/knowledge-base/video/": "Watch video",
+};
+
 // request service
 export const servicesList: ServicesListTypes[] = [
    {
       title: "Accounting",
-      service_id: "1",
+      service_id: uuidv4(),
    },
    {
       title: "Attestation services",
-      service_id: "2",
+      service_id: uuidv4(),
    },
    {
       title: "Management consulting",
-      service_id: "3",
+      service_id: uuidv4(),
    },
    {
       title: "Tax services",
-      service_id: "4",
+      service_id: uuidv4(),
    },
    {
       title: "Payment services",
-      service_id: "5",
+      service_id: uuidv4(),
    },
    {
-      title: "Other",
-      service_id: "6",
+      title: "Custom services",
+      service_id: uuidv4(),
    },
 ];
 
 export const categoryList: CategoryListTypes[] = [
    {
       name: "Individuals",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Partnership",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Corporation",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Sole Proprietorship",
-      category_id: "",
+      category_id: uuidv4(),
    },
    {
       name: "Others",
-      category_id: "",
+      category_id: uuidv4(),
    },
 ];
 
 // documents
 export const uploadedDocuments: DocumentsPropTypes[] = [
    {
-      id: "id1",
+      id: uuidv4(),
       document_name: "Document 1adfuubadfdajhjahdf",
       document_size: "20",
       document_type: "application/pdf",
@@ -110,39 +128,84 @@ export const invoices: InvoicesPropTypes[] = [
 
 export const videoData: VideoDataTypes[] = [
    {
-      title: "View previous filing",
-      time: "1mins 15secs",
-      uploaded: "1 day ago",
-      id: "ad3f79ja7HD985af",
+      title: "Request service",
+      duration: "1mins 15secs",
+      date_uploaded: "1 day ago",
+      id: uuidv4(),
       category: "tax",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
-      title: "Create new filing",
-      time: "2mins 15secs",
-      uploaded: "2 days ago",
-      id: "7fdYbfj73748ffgb",
+      title: "Chat with admin",
+      duration: "2mins 15secs",
+      date_uploaded: "2 days ago",
+      id: uuidv4(),
       category: "tax",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
-      title: "Scan receipt",
-      time: "1mins 15secs",
-      uploaded: "4 days ago",
-      id: "vnFHu830847bjhbf",
-      category: "payment",
+      title: "Pay for service",
+      duration: "2mins 15secs",
+      date_uploaded: "2 days ago",
+      id: uuidv4(),
+      category: "tax",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
-      title: "Upload e-receipt",
-      time: "2mins 15secs",
-      uploaded: "5 days ago",
-      id: "Pfb7bYB8fbY47cb",
-      category: "payment",
+      title: "Manage credit cards",
+      duration: "1mins 15secs",
+      date_uploaded: "4 days ago",
+      id: uuidv4(),
+      category: "bank",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
-      title: "Share receipt",
-      time: "1mins 15secs",
-      uploaded: "7 days ago",
-      id: "0bfbd74BvdtGff8bf9j",
-      category: "payment",
+      title: "Manage transactions",
+      duration: "2mins 15secs",
+      date_uploaded: "5 days ago",
+      id: uuidv4(),
+      category: "bank",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
+   },
+   {
+      title: "Share transaction receipt",
+      duration: "1mins 15secs",
+      date_uploaded: "7 days ago",
+      id: uuidv4(),
+      category: "bank",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
+   },
+   {
+      title: "Upload documents",
+      duration: "1mins 15secs",
+      date_uploaded: "7 days ago",
+      id: uuidv4(),
+      category: "documents",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
+   },
+   {
+      title: "Share documents to admin",
+      duration: "1mins 15secs",
+      date_uploaded: "7 days ago",
+      id: uuidv4(),
+      category: "documents",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
 ];
 
@@ -300,55 +363,159 @@ export const help: QuestionsPropsType[] = [
    },
 ];
 
-// requests
-export const requests: RequestsPropTypes[] = [
+export const cards: CardsProps[] = [
    {
-      service_id: "5tdfG8rnfP",
-      status: "pending",
-      requestDate: "2024-08-30",
-      service_title: "tax",
-   },
-   {
-      service_id: "Iu83Hnd8Oi",
-      status: "completed",
-      requestDate: "2024-08-25",
-      service_title: "attestation",
-   },
-   {
-      service_id: "Ko9fJk32hN",
-      status: "paid",
-      requestDate: "2024-06-25",
-      service_title: "payment",
-   },
-];
-
-export const initialCards: CardsProps[] = [
-   {
-      id: "er634e7",
+      id: "card1",
       name: "Debit card",
       last4: "4364",
       exp: "12/22",
       brand: "Visa",
       cardholderName: "John Doe",
       isDefault: true,
+      transactions: [
+         {
+            id: "txn_01",
+            date: "2024-08-01",
+            description: "Grocery Store",
+            amount: 50.25,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_02",
+            date: "2024-08-05",
+            description: "Flight Ticket",
+            amount: 250.0,
+            currency: "USD",
+            status: "failed",
+         },
+         {
+            id: "txn_03",
+            date: "2024-08-10",
+            description: "Restaurant",
+            amount: 80.15,
+            currency: "USD",
+            status: "pending",
+         },
+         {
+            id: "txn_04",
+            date: "2024-08-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+         {
+            id: "txn_05",
+            date: "2024-07-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+         {
+            id: "txn_06",
+            date: "2024-08-25",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_07",
+            date: "2024-08-26",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+      ],
    },
    {
-      id: "hd2376y",
+      id: "card2",
       name: "Travel card",
       last4: "1234",
       exp: "09/23",
       brand: "Mastercard",
       cardholderName: "Jane Smith",
       isDefault: false,
+      transactions: [
+         {
+            id: "txn_01",
+            date: "2024-08-01",
+            description: "Grocery Store",
+            amount: 50.25,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_02",
+            date: "2024-08-05",
+            description: "Flight Ticket",
+            amount: 250.0,
+            currency: "USD",
+            status: "failed",
+         },
+         {
+            id: "txn_03",
+            date: "2024-08-10",
+            description: "Restaurant",
+            amount: 80.15,
+            currency: "USD",
+            status: "pending",
+         },
+         {
+            id: "txn_04",
+            date: "2024-08-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+      ],
    },
    {
-      id: "ab987hg",
+      id: "card3",
       name: "Work card",
       last4: "3456",
       exp: "10/24",
       brand: "Visa",
       cardholderName: "John Doe",
       isDefault: false,
+      transactions: [
+         {
+            id: "txn_01",
+            date: "2024-08-01",
+            description: "Grocery Store",
+            amount: 50.25,
+            currency: "USD",
+            status: "success",
+         },
+         {
+            id: "txn_02",
+            date: "2024-08-05",
+            description: "Flight Ticket",
+            amount: 250.0,
+            currency: "USD",
+            status: "failed",
+         },
+         {
+            id: "txn_03",
+            date: "2024-08-10",
+            description: "Restaurant",
+            amount: 80.15,
+            currency: "USD",
+            status: "pending",
+         },
+         {
+            id: "txn_04",
+            date: "2024-08-15",
+            description: "Refund - Online Purchase",
+            amount: 100.0,
+            currency: "USD",
+            status: "processing",
+         },
+      ],
    },
 ];
 
@@ -383,7 +550,7 @@ export const invoiceMetrics: MetricCardProps[] = [
 export const chats: ChatsPropType[] = [
    {
       title: "John Doe",
-      content: "Hello, I need help with my account.",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -476,7 +643,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Smith",
-      content: "Can you assist me with this?",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -491,7 +658,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Doe",
-      content: "I need help with this service?",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [
@@ -506,7 +673,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "John Doe",
-      content: "Hello, I need help with my account.",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [

@@ -70,7 +70,7 @@ const CardForm: React.FC = () => {
          setSuccess(false);
          setTimeout(() => setError(null), 2000);
       } else {
-         console.log("Token created:", token);
+         token;
          setError(null);
          setLoading(false);
          setSuccess(true);

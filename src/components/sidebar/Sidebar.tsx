@@ -93,7 +93,6 @@ const Sidebar = ({ isNotApproved }: SidebarProps) => {
                         title="Logout"
                         navIcon={BiLogOut}
                         id="logout"
-                        onClick={() => console.log("Logout clicked")}
                         isCollapsed={isOpen}
                      />
                   </div>

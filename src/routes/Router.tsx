@@ -16,7 +16,6 @@ import SettingsLayout from "@/layouts/SettingsLayout";
 const Login = lazy(() => import("@/pages/auth/Login"));
 const SignUp = lazy(() => import("@/pages/auth/SignUp"));
 const Home = lazy(() => import("@/pages/home/Home"));
-const RequestService = lazy(() => import("@/pages/features/RequestService"));
 const NotApprovedHome = lazy(() => import("@/pages/home/NotApprovedHome"));
 const UploadDocument = lazy(() => import("@/pages/features/UploadDocument"));
 const Invoices = lazy(() => import("@/pages/features/Invoices"));
@@ -29,7 +28,6 @@ const Terms = lazy(() => import("@/pages/settings/Terms"));
 const Help = lazy(() => import("@/pages/settings/Help"));
 const Privacy = lazy(() => import("@/pages/settings/Privacy"));
 const Faq = lazy(() => import("@/pages/settings/Faq"));
-const MyRequests = lazy(() => import("@/pages/settings/MyRequests"));
 const Files = lazy(() => import("@/pages/settings/Files"));
 
 const router = createBrowserRouter(
@@ -83,14 +81,6 @@ const router = createBrowserRouter(
                }
             />
             <Route
-               path="request-service"
-               element={
-                  <ProtectedRoute>
-                     <RequestService />
-                  </ProtectedRoute>
-               }
-            />
-            <Route
                path="upload-documents"
                element={
                   <ProtectedRoute>
@@ -130,7 +120,14 @@ const router = createBrowserRouter(
                   </ProtectedRoute>
                }
             >
-               <Route path="video/:videoId" element={<Video />}></Route>
+               <Route
+                  path="video/:videoId"
+                  element={
+                     <ProtectedRoute>
+                        <Video />
+                     </ProtectedRoute>
+                  }
+               ></Route>
             </Route>
 
             <Route
@@ -147,14 +144,6 @@ const router = createBrowserRouter(
                   element={
                      <ProtectedRoute>
                         <Profile />
-                     </ProtectedRoute>
-                  }
-               />
-               <Route
-                  path="my-requests"
-                  element={
-                     <ProtectedRoute>
-                        <MyRequests />
                      </ProtectedRoute>
                   }
                />

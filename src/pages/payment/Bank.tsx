@@ -5,11 +5,11 @@ import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
 import { CardsProps } from "@/types/Types";
-import { initialCards } from "@/mocks/MockData";
+import { cards } from "@/mocks/MockData";
 import { Button } from "@/components/ui/button";
 
 const Bank = () => {
-   const [bankCards, setbankCards] = useState<CardsProps[]>(initialCards);
+   const [bankCards, setbankCards] = useState<CardsProps[]>(cards);
    const defaultCard = bankCards.find((card) => card.isDefault) || bankCards[0];
    const [selectedCardId, setSelectedCardId] = useState<string>(defaultCard.id);
 

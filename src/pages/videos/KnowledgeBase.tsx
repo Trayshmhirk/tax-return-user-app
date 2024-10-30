@@ -4,20 +4,16 @@ import VideoCard from "@/components/cards/VideoCard";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { videoData } from "@/mocks/MockData";
 import { VideoDataTypes } from "@/types/Types";
+import { useVideoContext } from "@/hooks/useVideoContext";
 
 const KnowledgeBase = () => {
    const navigate = useNavigate();
    const location = useLocation();
+   const { setCurrentVideo } = useVideoContext();
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
-   const filterTitleList = [
-      "All",
-      "Tax",
-      "Payment",
-      // "Attestation",
-      // "Accounting",
-   ];
+   const filterTitleList = ["All", "Tax", "Bank", "Documents"];
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -49,13 +45,17 @@ const KnowledgeBase = () => {
       (video) => video.category === "tax"
    );
 
-   const paymentFilteredVideos = filteredVideos.filter(
-      (video) => video.category === "payment"
+   const bankFilteredVideos = filteredVideos.filter(
+      (video) => video.category === "bank"
    );
 
-   const handleSelectVideo = (videoId: string) => {
-      // Navigate to the "Watch Video" route and pass the title as a parameter
-      navigate(`video/${videoId}`);
+   const documentsFilteredVideos = filteredVideos.filter(
+      (video) => video.category === "documents"
+   );
+
+   const handleSelectVideo = (video: VideoDataTypes) => {
+      setCurrentVideo(video);
+      navigate(`video/${video.id}`);
    };
 
    return (
@@ -69,15 +69,14 @@ const KnowledgeBase = () => {
                />
 
                <div className="flex flex-col gap-3">
-                  <p className="font-medium">Tax filing</p>
-                  <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
+                  <p className="font-medium">Tax service request</p>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                      {taxFilteredVideos.length ? (
                         taxFilteredVideos.map((video, index) => (
                            <VideoCard
                               key={index}
-                              title={video.title}
-                              time={video.time}
-                              handleClick={() => handleSelectVideo(video.id)}
+                              video={video}
+                              handleClick={() => handleSelectVideo(video)}
                            />
                         ))
                      ) : (
@@ -89,15 +88,33 @@ const KnowledgeBase = () => {
                </div>
 
                <div className="flex flex-col gap-3">
-                  <p className="font-medium">Store receipts</p>
-                  <div className="w-full flex flex-wrap gap-4 justify-between md:justify-normal">
-                     {paymentFilteredVideos.length ? (
-                        paymentFilteredVideos.map((video, index) => (
+                  <p className="font-medium">Bank</p>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                     {bankFilteredVideos.length ? (
+                        bankFilteredVideos.map((video, index) => (
                            <VideoCard
                               key={index}
-                              title={video.title}
-                              time={video.time}
-                              handleClick={() => handleSelectVideo(video.id)}
+                              video={video}
+                              handleClick={() => handleSelectVideo(video)}
+                           />
+                        ))
+                     ) : (
+                        <p className="w-full pending-text text-center">
+                           No results found
+                        </p>
+                     )}
+                  </div>
+               </div>
+
+               <div className="flex flex-col gap-3">
+                  <p className="font-medium">Documents</p>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                     {documentsFilteredVideos.length ? (
+                        documentsFilteredVideos.map((video, index) => (
+                           <VideoCard
+                              key={index}
+                              video={video}
+                              handleClick={() => handleSelectVideo(video)}
                            />
                         ))
                      ) : (

@@ -1,5 +1,5 @@
 import DebitCard from "@/components/payment/DebitCard";
-import { initialCards } from "@/mocks/MockData";
+import { cards } from "@/mocks/MockData";
 import { Mail, MapPinned, Smartphone, SquarePen } from "lucide-react";
 import { differenceInMonths, isPast } from "date-fns";
 import { NavLink } from "react-router-dom";
@@ -16,7 +16,7 @@ const Profile = () => {
    const initials = getInitials("Frank Micheal");
    const isProfilePicture = true;
 
-   const displayedCards = initialCards.slice(0, 1);
+   const displayedCards = cards.slice(0, 1);
 
    return (
       <>

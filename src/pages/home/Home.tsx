@@ -3,6 +3,7 @@ import { BsCardChecklist } from "react-icons/bs";
 import TodoCard from "@/components/cards/TodoCard";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
+import RequestServiceDialog from "@/components/modal/RequestServiceDialog";
 
 const Home = () => {
    const navigate = useNavigate();
@@ -17,11 +18,15 @@ const Home = () => {
                   What would you like to do?
                </span>
                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                  <TodoCard
-                     todoIcon={BsCardChecklist}
-                     text="Request service"
-                     handleClick={() => navigate("request-service")}
-                  />
+                  <RequestServiceDialog>
+                     <button>
+                        <TodoCard
+                           todoIcon={BsCardChecklist}
+                           text="Request service"
+                           handleClick={() => {}}
+                        />
+                     </button>
+                  </RequestServiceDialog>
                   <TodoCard
                      todoIcon={IoCloudUploadOutline}
                      text="Upload pdf or image"

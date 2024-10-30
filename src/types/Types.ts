@@ -1,8 +1,7 @@
-// types
-
 // services
 export type SelectServicePropType = {
    selectedCategory: string;
+   onPrev: () => void;
 };
 
 export type ServicesListTypes = {
@@ -72,10 +71,12 @@ export type InvoiceCardPropTypes = {
 // videos
 export type VideoDataTypes = {
    title: string;
-   time: string;
-   uploaded: string;
+   duration: string;
+   date_uploaded: string;
    id: string;
    category: string;
+   description: string;
+   url: string;
 };
 
 // faqs and help
@@ -83,16 +84,6 @@ export type QuestionsPropsType = {
    question: string;
    answer: string | string[];
    questionCategory?: string;
-};
-
-// requests
-export type RequestStatus = "pending" | "paid" | "completed";
-
-export type RequestsPropTypes = {
-   service_id: string;
-   status: RequestStatus;
-   requestDate: string;
-   service_title: string;
 };
 
 // forms
@@ -123,6 +114,7 @@ export type CardsProps = {
    brand: string;
    cardholderName: string;
    isDefault: boolean;
+   transactions: TransactionPropTypes[];
 };
 
 export type MetricCardProps = {
@@ -170,7 +162,7 @@ export enum ChatAccessStatus {
 
 export type ChatsPropType = {
    title: string;
-   content: string; // Preview of the last message
+   service_id: string;
    id: string; // Unique identifier for each chat
    messages: MessagesPropType[]; // Array of messages for each chat
    chat_access: ChatAccessStatus;
