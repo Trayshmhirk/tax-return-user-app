@@ -19,6 +19,7 @@ const defaultVideo = {
    id: "",
    category: "",
    description: "",
+   url: "",
 };
 
 const initialState: VideoContextState = {
