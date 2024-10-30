@@ -76,6 +76,7 @@ export type VideoDataTypes = {
    id: string;
    category: string;
    description: string;
+   url: string;
 };
 
 // faqs and help

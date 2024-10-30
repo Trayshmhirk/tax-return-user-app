@@ -134,7 +134,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "tax",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Chat with admin",
@@ -143,7 +144,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "tax",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Pay for service",
@@ -152,7 +154,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "tax",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Manage credit cards",
@@ -161,7 +164,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "bank",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Manage transactions",
@@ -170,7 +174,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "bank",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Share transaction receipt",
@@ -179,7 +184,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "bank",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Upload documents",
@@ -188,7 +194,8 @@ export const videoData: VideoDataTypes[] = [
       id: uuidv4(),
       category: "documents",
       description:
-         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium? ",
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
    {
       title: "Share documents to admin",
@@ -196,7 +203,9 @@ export const videoData: VideoDataTypes[] = [
       date_uploaded: "7 days ago",
       id: uuidv4(),
       category: "documents",
-      description: "",
+      description:
+         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quos dicta quasi praesentium, natus, sapiente labore accusantium, nesciunt nostrum reprehenderit doloribus nihiliusto inventore porro repellendus. Earum soluta veniam dolorum fuga, minus aperiam debitis possimus animi alias assumendasint vero aspernatur ratione blanditiis eius. Reiciendis libero voluptatum architecto, fugiat provident accusantiumdeleniti quas, sapiente nam ab quia. Cum id facere quibusdam reiciendis culpa possimus consectetur quis. Eligendi quidemfugit mollitia cum alias aliquam sit hic, laborum, officia,numquam fugiat vel at! Esse quaerat unde dignissimos voluptates non. Vero id, magni veniam animi fuga odio neque esse deleniti praesentium?",
+      url: "",
    },
 ];
 
@@ -541,7 +550,7 @@ export const invoiceMetrics: MetricCardProps[] = [
 export const chats: ChatsPropType[] = [
    {
       title: "John Doe",
-      service_id: "string",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -634,7 +643,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Smith",
-      service_id: "string",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.ON,
       messages: [
@@ -649,7 +658,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "Jane Doe",
-      service_id: "string",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [
@@ -664,7 +673,7 @@ export const chats: ChatsPropType[] = [
    },
    {
       title: "John Doe",
-      service_id: "string",
+      service_id: "",
       id: uuidv4(),
       chat_access: ChatAccessStatus.OFF,
       messages: [
