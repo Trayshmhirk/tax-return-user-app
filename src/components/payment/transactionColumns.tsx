@@ -213,13 +213,14 @@ export const transactionColumns = (
             <Badge
                variant="outline"
                className={`
+                  capitalize
                   ${status === "failed" ? "bg-red-300 bg-opacity-20 text-red-500 dark:text-red-300 border-red-500 dark:border-red-400" : ""}
                   ${status === "pending" ? "bg-yellow-200 bg-opacity-20 text-yellow-500 dark:text-yellow-300 border-yellow-400 dark:border-yellow-300" : ""}
                   ${status === "processing" ? "bg-blue-300 bg-opacity-20 text-richElectricBlue dark:text-blue-300 border-richElectricBlue dark:border-blue-400" : ""}
                   ${status === "success" ? "bg-green-300 bg-opacity-20 text-green-600 dark:text-green-300 border-green-600 dark:border-green-400" : ""}   
                `}
             >
-               {status.charAt(0).toUpperCase() + status.slice(1)}
+               {status}
             </Badge>
          );
       },
