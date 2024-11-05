@@ -41,15 +41,14 @@ const InvoiceCard = ({
          <div className="flex items-center justify-between gap-3">
             <div
                className={`
-                w-fit py-[2px] px-2 text-xs rounded
+                w-fit py-[2px] px-2 text-xs rounded capitalize
                ${invoice.status.toLowerCase() === "overdue" ? "danger" : ""}
                ${invoice.status.toLowerCase() === "paid" ? "success" : ""}
                ${invoice.status.toLowerCase() === "pending" ? "warning" : ""}
                ${invoice.status.toLowerCase() === "failed" ? "danger" : ""}
             `}
             >
-               {invoice.status.charAt(0).toUpperCase() +
-                  invoice.status.slice(1)}
+               {invoice.status}
             </div>
 
             <DropdownMenu>

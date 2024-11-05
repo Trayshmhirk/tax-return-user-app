@@ -37,15 +37,14 @@ const TransactionCard = ({
          <div className="flex items-center justify-between gap-3">
             <div
                className={`
-                w-fit py-[2px] px-2 text-xs rounded
+                w-fit py-[2px] px-2 text-xs rounded capitalize
                ${transaction.status.toLowerCase() === "failed" ? "danger" : ""}
                ${transaction.status.toLowerCase() === "success" ? "success" : ""}
                ${transaction.status.toLowerCase() === "pending" ? "warning" : ""}
                ${transaction.status.toLowerCase() === "processing" ? "processing" : ""}
             `}
             >
-               {transaction.status.charAt(0).toUpperCase() +
-                  transaction.status.slice(1)}
+               {transaction.status}
             </div>
 
             <DropdownMenu>
