@@ -1,9 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import documentReducer from "./features/documentSlice";
 
-const appReducers = {
-   documents: documentReducer,
-};
+const appReducers = {};
 
 export const store = configureStore({
    reducer: appReducers,
