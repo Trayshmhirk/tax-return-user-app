@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store"; // Assuming RootState is set up with user slice
 import {
+   CategoriesType,
    DocumentsPropTypes,
    ServicesTypes,
    VideoPropTypes,
@@ -25,9 +26,18 @@ export const apiSlice = createApi({
       },
    }),
 
-   tagTypes: ["Documents", "Videos", "Services"],
+   tagTypes: ["Documents", "Videos", "Services", "Categories"],
 
    endpoints: (builder) => ({
+      // categories api
+      getCategories: builder.query<CategoriesType[], string | void>({
+         query: () => ({
+            url: "/categories",
+            method: "GET",
+         }),
+         providesTags: ["Categories"],
+      }),
+
       // services api
       getServices: builder.query<ServicesTypes[], string | void>({
          query: () => ({
@@ -86,6 +96,7 @@ export const apiSlice = createApi({
 });
 
 export const {
+   useGetCategoriesQuery,
    useGetServicesQuery,
    useGetDocsQuery,
    useSetDocsMutation,

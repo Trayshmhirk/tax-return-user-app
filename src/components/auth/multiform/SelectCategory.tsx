@@ -1,11 +1,11 @@
 import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
-import { SelectCategoryPropTypes } from "../../../types/Types";
-import { categoryList } from "../../../mocks/MockData";
+import { SelectCategoryPropType } from "../../../types/Types";
 import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
+import { useGetCategoriesQuery } from "@/redux/api/apiSlice";
 
 const SelectCategory = ({
    isRequestService,
@@ -15,35 +15,30 @@ const SelectCategory = ({
    currentForm,
    formSuccess,
    setFormSuccess,
-}: SelectCategoryPropTypes) => {
+}: SelectCategoryPropType) => {
    const { handleSubmit } = useForm();
+   const { data: categories = [], isLoading } = useGetCategoriesQuery();
 
-   const [isLoading, setIsLoading] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-   const [category, setCategory] = useState("");
 
    const handleRadioChange = (value: string) => {
       setCheckedRadio(value);
       setIsButtonDisabled(!value);
       setSelectedCategory && setSelectedCategory(value);
-      setCategory(value);
    };
 
    const onSubmit = () => {
-      setIsLoading(true);
+      // setIsLoading(true);
       if (isRequestService) {
          setTimeout(() => {
-            setIsLoading(false);
-            category;
+            // setIsLoading(false);
 
             onNext();
          }, 1000);
-         
       } else {
          setTimeout(() => {
-            setIsLoading(false);
-            category;
+            // setIsLoading(false);
             setFormSuccess && setFormSuccess(true);
 
             setTimeout(() => {
@@ -64,7 +59,7 @@ const SelectCategory = ({
             <>
                <div className="flex flex-col gap-7 mb-auto">
                   <div className="flex flex-col gap-4">
-                     {categoryList.map((category, index) => (
+                     {categories.map((category, index) => (
                         <RadioInput
                            key={index}
                            value={category.name}
@@ -96,7 +91,7 @@ const SelectCategory = ({
                isFormSuccess={formSuccess && formSuccess}
             >
                <div className="flex flex-col gap-3 mb-auto mt-2">
-                  {categoryList.map((category, index) => (
+                  {categories.map((category, index) => (
                      <RadioInput
                         key={index}
                         value={category.name}

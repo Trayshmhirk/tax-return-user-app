@@ -1,6 +1,6 @@
 import {
    InvoicesPropTypes,
-   CategoryListTypes,
+   CategoriesType,
    QuestionsPropsType,
    CardsProps,
    MetricCardProps,
@@ -29,7 +29,7 @@ export const headerTitleMap: Record<string, string> = {
    "/knowledge-base/video/": "Watch video",
 };
 
-export const categoryList: CategoryListTypes[] = [
+export const categoryList: CategoriesType[] = [
    {
       name: "Individuals",
       category_id: uuidv4(),

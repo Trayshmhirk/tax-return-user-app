@@ -9,7 +9,7 @@ export type ServicesTypes = {
    service_id: string;
 };
 
-export type SelectCategoryPropTypes = {
+export type SelectCategoryPropType = {
    isRequestService?: boolean;
    onNext: () => void;
    onPrev?: () => void;
@@ -19,7 +19,7 @@ export type SelectCategoryPropTypes = {
    setFormSuccess?: (success: boolean) => void;
 };
 
-export type CategoryListTypes = {
+export type CategoriesType = {
    name: string;
    category_id: string;
 };
