@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store"; // Assuming RootState is set up with user slice
-import { DocumentsPropTypes, VideoPropTypes } from "@/types/Types";
+import {
+   DocumentsPropTypes,
+   ServicesTypes,
+   VideoPropTypes,
+} from "@/types/Types";
 
 export interface UserSecurity {
    email: string;
@@ -20,8 +24,19 @@ export const apiSlice = createApi({
          return headers;
       },
    }),
-   tagTypes: ["Documents", "Videos"],
+
+   tagTypes: ["Documents", "Videos", "Services"],
+
    endpoints: (builder) => ({
+      // services api
+      getServices: builder.query<ServicesTypes[], string | void>({
+         query: () => ({
+            url: "/services",
+            method: "GET",
+         }),
+         providesTags: ["Services"],
+      }),
+
       // documents api calls
       getDocs: builder.query<DocumentsPropTypes[], string | void>({
          query: () => ({
@@ -52,7 +67,7 @@ export const apiSlice = createApi({
          invalidatesTags: ["Documents"],
       }),
 
-      // videos
+      // videos api
       getVideos: builder.query<VideoPropTypes[], string | void>({
          query: () => ({
             url: "/videos",
@@ -71,6 +86,7 @@ export const apiSlice = createApi({
 });
 
 export const {
+   useGetServicesQuery,
    useGetDocsQuery,
    useSetDocsMutation,
    useDeleteDocsMutation,

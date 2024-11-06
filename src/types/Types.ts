@@ -4,7 +4,7 @@ export type SelectServicePropType = {
    onPrev: () => void;
 };
 
-export type ServicesListTypes = {
+export type ServicesTypes = {
    title: string;
    service_id: string;
 };

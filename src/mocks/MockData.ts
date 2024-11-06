@@ -1,6 +1,5 @@
 import {
    InvoicesPropTypes,
-   ServicesListTypes,
    CategoryListTypes,
    QuestionsPropsType,
    CardsProps,
@@ -29,34 +28,6 @@ export const headerTitleMap: Record<string, string> = {
    "/settings/terms-and-conditions": "Account settings",
    "/knowledge-base/video/": "Watch video",
 };
-
-// request service
-export const servicesList: ServicesListTypes[] = [
-   {
-      title: "Accounting",
-      service_id: uuidv4(),
-   },
-   {
-      title: "Attestation services",
-      service_id: uuidv4(),
-   },
-   {
-      title: "Management consulting",
-      service_id: uuidv4(),
-   },
-   {
-      title: "Tax services",
-      service_id: uuidv4(),
-   },
-   {
-      title: "Payment services",
-      service_id: uuidv4(),
-   },
-   {
-      title: "Custom services",
-      service_id: uuidv4(),
-   },
-];
 
 export const categoryList: CategoryListTypes[] = [
    {

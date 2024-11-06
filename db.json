@@ -27,7 +27,32 @@
    "invoices": [],
    "cards": [],
    "categories": [],
-   "services": [],
+   "services": [
+      {
+         "title": "Accounting",
+         "service_id": "1"
+      },
+      {
+         "title": "Attestation services",
+         "service_id": "2"
+      },
+      {
+         "title": "Management consulting",
+         "service_id": "3"
+      },
+      {
+         "title": "Tax services",
+         "service_id": "3"
+      },
+      {
+         "title": "Payment services",
+         "service_id": "4"
+      },
+      {
+         "title": "Custom services",
+         "service_id": "5"
+      }
+   ],
    "videos": [
       {
          "title": "Request service",

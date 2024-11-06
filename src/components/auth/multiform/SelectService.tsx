@@ -1,14 +1,16 @@
 import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
 import { SelectServicePropType } from "../../../types/Types";
-import { servicesList } from "../../../mocks/MockData";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useGetServicesQuery } from "@/redux/api/apiSlice";
 
 const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    const navigate = useNavigate();
-   const [isLoading, setIsLoading] = useState(false);
+   const { data: services = [], isLoading } = useGetServicesQuery();
+
+   // const [isLoading, setIsLoading] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
    const [selectedServiceId, setSelectedServiceId] = useState<
@@ -24,10 +26,10 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    };
 
    const onSubmit = async () => {
-      setIsLoading(true);
+      // setIsLoading(true);
       // Simulate API call with setTimeout
       setTimeout(() => {
-         setIsLoading(false);
+         // setIsLoading(false);
          selectedServiceId;
          selectedCategory;
 
@@ -36,51 +38,13 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
             navigate("/chat");
          }, 700);
       }, 2000); // Mock API call delay of 2 seconds
-
-      // api call
-      // const { email, token } = userProfile;
-      // try {
-      //    const res = await api.post(
-      //       "/request-service",
-      //       {
-      //          service_id: selectedServiceId,
-      //          category: selectedCategory,
-      //          user_id: currentUser.ID,
-      //       },
-      //       {
-      //          headers: {
-      //             useremail: email,
-      //             usertoken: token,
-      //          },
-      //       }
-      //    );
-      //    // Handle successful response here
-      //    if (res.status === 200) {
-      //       // dispatch(setConversation(res.data.chats.conversation))
-      //       setConfirmationModal({
-      //          show: true,
-      //          title: "Your service request has been successful",
-      //          content:
-      //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      //       });
-      //       setTimeout(() => {
-      //          setConfirmationModal({ show: false });
-      //          navigate("/live-chat", {
-      //             state: { data: res.data.chats.conversation },
-      //          });
-      //       }, 2000);
-      //    }
-      // } catch (error) {
-      //    console.error("API Error:", error);
-      //    // Handle error, log it, or display a user-friendly message
-      // }
    };
 
    return (
       <>
          <div className="flex flex-col gap-7 mb-auto">
             <div className="flex flex-col gap-4">
-               {servicesList.map((service, index) => (
+               {services.map((service, index) => (
                   <RadioInput
                      key={index}
                      serviceId={service.service_id}
