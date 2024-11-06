@@ -1,6 +1,5 @@
 import {
    InvoicesPropTypes,
-   CategoriesType,
    QuestionsPropsType,
    CardsProps,
    MetricCardProps,
@@ -28,29 +27,6 @@ export const headerTitleMap: Record<string, string> = {
    "/settings/terms-and-conditions": "Account settings",
    "/knowledge-base/video/": "Watch video",
 };
-
-export const categoryList: CategoriesType[] = [
-   {
-      name: "Individuals",
-      category_id: uuidv4(),
-   },
-   {
-      name: "Partnership",
-      category_id: uuidv4(),
-   },
-   {
-      name: "Corporation",
-      category_id: uuidv4(),
-   },
-   {
-      name: "Sole Proprietorship",
-      category_id: uuidv4(),
-   },
-   {
-      name: "Others",
-      category_id: uuidv4(),
-   },
-];
 
 // invoices
 export const invoices: InvoicesPropTypes[] = [

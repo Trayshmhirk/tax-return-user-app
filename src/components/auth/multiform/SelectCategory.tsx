@@ -17,8 +17,9 @@ const SelectCategory = ({
    setFormSuccess,
 }: SelectCategoryPropType) => {
    const { handleSubmit } = useForm();
-   const { data: categories = [], isLoading } = useGetCategoriesQuery();
+   const { data: categories = [] } = useGetCategoriesQuery();
 
+   const [isSubmitting, setIsSubmitting] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -29,23 +30,25 @@ const SelectCategory = ({
    };
 
    const onSubmit = () => {
-      // setIsLoading(true);
+      setIsSubmitting(!isSubmitting);
+
       if (isRequestService) {
          setTimeout(() => {
-            // setIsLoading(false);
+            setIsSubmitting(!isSubmitting);
 
             onNext();
-         }, 1000);
+         }, 500);
       } else {
          setTimeout(() => {
-            // setIsLoading(false);
+            setIsSubmitting(!isSubmitting);
+
             setFormSuccess && setFormSuccess(true);
 
             setTimeout(() => {
                // Next after mock success
                onNext();
-            }, 700);
-         }, 2000);
+            }, 500);
+         }, 500);
       }
    };
 
@@ -73,9 +76,9 @@ const SelectCategory = ({
                <Button
                   onClick={onSubmit}
                   type="submit"
-                  disabled={isButtonDisabled || isLoading}
+                  disabled={isButtonDisabled || isSubmitting}
                >
-                  {isLoading ? (
+                  {isSubmitting ? (
                      <ClipLoader color="#ffffff" size={20} />
                   ) : (
                      "Proceed"
@@ -112,9 +115,9 @@ const SelectCategory = ({
                   <Button
                      type="submit"
                      className="w-full"
-                     disabled={isButtonDisabled || isLoading}
+                     disabled={isButtonDisabled || isSubmitting}
                   >
-                     {isLoading ? (
+                     {isSubmitting ? (
                         <ClipLoader color="#ffffff" size={20} />
                      ) : (
                         "Next"
