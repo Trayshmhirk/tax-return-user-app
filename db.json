@@ -1,0 +1,35 @@
+{
+   "users": [
+      {
+         "id": 1,
+         "fullname": "John Doe",
+         "phonenumber": "1234567890",
+         "email": "johndoe@example.com",
+         "password": "password123",
+         "userRole": "user",
+         "user_status": "active",
+         "user_security": {
+            "email": "johndoe@example.com",
+            "token": "some_mock_token_123"
+         }
+      }
+   ],
+   "documents": [
+      {
+         "id": 1,
+         "document_name": "Document 1adfuubadfdajhjahdf",
+         "document_size": "20",
+         "document_type": "application/pdf",
+         "date_modified": "2024-08-25",
+         "base64": ""
+      }
+   ],
+   "invoices": [],
+   "cards": [],
+   "categories": [],
+   "services": [],
+   "videos": [],
+   "faqs": [],
+   "help": [],
+   "chats": []
+}

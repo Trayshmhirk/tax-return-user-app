@@ -1,10 +1,23 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import userReducer from "./slices/userSlice";
+import { apiSlice } from "./api/apiSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
-const appReducers = {};
+const appReducers = {
+   user: userReducer,
+   [apiSlice.reducerPath]: apiSlice.reducer,
+};
 
 export const store = configureStore({
    reducer: appReducers,
+   middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat(apiSlice.middleware);
+   },
 });
+
+// optional, but required for refetchOnFocus/refetchOnReconnect behaviors
+// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
+setupListeners(store.dispatch);
 
 // Infer the type of `store`
 export type AppStore = typeof store;
