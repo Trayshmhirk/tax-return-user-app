@@ -13,14 +13,22 @@ import InvoiceCard from "@/components/cards/InvoiceCard";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import { Button } from "@/components/ui/button";
-import { fetchDocuments, fetchInvoices } from "@/api/mockApis";
+import { fetchInvoices } from "@/api/mockApis";
+import { useDeleteDocsMutation, useGetDocsQuery } from "@/redux/api/apiSlice";
 
 const Files = () => {
    // Get the window width from the hook
    const windowWidth = useWindowWidth();
    const isbelowXs = windowWidth < 375;
 
-   const [documents, setDocuments] = useState<DocumentsPropTypes[]>([]);
+   const {
+      data: docs = [],
+      isLoading,
+      // isError,
+      // error,
+   } = useGetDocsQuery();
+   const [deleteDocs] = useDeleteDocsMutation();
+
    const [selectedDocuments, setSelectedDocuments] = useState<
       DocumentsPropTypes[]
    >([]);
@@ -40,9 +48,7 @@ const Files = () => {
          setLoading(true);
 
          setTimeout(async () => {
-            const fetchedDocuments = await fetchDocuments();
             const fetchedInvoices = await fetchInvoices();
-            setDocuments(fetchedDocuments);
             setInvoices(fetchedInvoices);
             setLoading(false);
          }, 500);
@@ -75,8 +81,8 @@ const Files = () => {
       setSelectedFilter(title);
    };
 
-   const filteredDocs = documents
-      ? documents
+   const filteredDocs = docs
+      ? docs
            .filter(
               (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
            )
@@ -120,8 +126,7 @@ const Files = () => {
    };
 
    const handleDeleteDocument = (docId: string) => {
-      // Remove the document with the specified ID from the uploadedDocuments state
-      setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== docId));
+      deleteDocs({ id: docId });
 
       // Also remove it from the selectedDocuments state if it's selected
       setSelectedDocuments((prevSelectedDocs) =>
@@ -161,7 +166,7 @@ const Files = () => {
       <>
          <div className="flex justify-between items-center gap-4 mt-[2px]">
             <h1 className="text-lg font-bold">
-               Files ({documents.length || invoices.length})
+               Files ({docs.length || invoices.length})
             </h1>
 
             <div className="flex items-center gap-3">
@@ -212,15 +217,15 @@ const Files = () => {
                            <div className="flex items-center gap-2">
                               <p className="font-medium">Recent documents</p>
                               <span>
-                                 {documents && documents.length
-                                    ? `(${documents.length})`
+                                 {docs && docs.length
+                                    ? `(${docs.length})`
                                     : "(0)"}
                               </span>
                            </div>
                         </div>
                         <DataTable
                            columns={documentColumns(handleDeleteDocument)}
-                           data={documents}
+                           data={docs}
                         />
                      </div>
                   ) : (
@@ -229,8 +234,8 @@ const Files = () => {
                            <div className="flex items-center gap-2">
                               <p className="font-medium">Recent documents</p>
                               <span>
-                                 {documents && documents.length
-                                    ? `(${documents.length})`
+                                 {docs && docs.length
+                                    ? `(${docs.length})`
                                     : "(0)"}
                               </span>
                            </div>
@@ -254,7 +259,7 @@ const Files = () => {
                            title={docTypeFilterList}
                         />
 
-                        {loading ? (
+                        {isLoading ? (
                            <div className="w-full h-20 flex justify-center items-center">
                               <ClipLoader color="#00A2C9" />
                            </div>

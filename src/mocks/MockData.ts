@@ -1,5 +1,4 @@
 import {
-   DocumentsPropTypes,
    InvoicesPropTypes,
    VideoDataTypes,
    ServicesListTypes,
@@ -80,18 +79,6 @@ export const categoryList: CategoryListTypes[] = [
    {
       name: "Others",
       category_id: uuidv4(),
-   },
-];
-
-// documents
-export const uploadedDocuments: DocumentsPropTypes[] = [
-   {
-      id: uuidv4(),
-      document_name: "Document 1adfuubadfdajhjahdf",
-      document_size: "20",
-      document_type: "application/pdf",
-      date_modified: "2024-08-25",
-      base64: "",
    },
 ];
 
