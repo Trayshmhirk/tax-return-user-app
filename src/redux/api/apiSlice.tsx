@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store"; // Assuming RootState is set up with user slice
-import { DocumentsPropTypes } from "@/types/Types";
+import { DocumentsPropTypes, VideoPropTypes } from "@/types/Types";
 
 export interface UserSecurity {
    email: string;
@@ -20,7 +20,7 @@ export const apiSlice = createApi({
          return headers;
       },
    }),
-   tagTypes: ["Documents"],
+   tagTypes: ["Documents", "Videos"],
    endpoints: (builder) => ({
       // documents api calls
       getDocs: builder.query<DocumentsPropTypes[], string | void>({
@@ -32,7 +32,7 @@ export const apiSlice = createApi({
       }),
       setDocs: builder.mutation<
          DocumentsPropTypes,
-         Partial<DocumentsPropTypes>
+         Partial<DocumentsPropTypes> // use Omit<DocumentsPropTypes, "id"> when actual api is live
       >({
          query: (document) => ({
             url: "/documents",
@@ -51,8 +51,29 @@ export const apiSlice = createApi({
          }),
          invalidatesTags: ["Documents"],
       }),
+
+      // videos
+      getVideos: builder.query<VideoPropTypes[], string | void>({
+         query: () => ({
+            url: "/videos",
+            method: "GET",
+         }),
+         providesTags: ["Videos"],
+      }),
+      getVideoByID: builder.query<VideoPropTypes, { id: string }>({
+         query: ({ id }) => ({
+            url: `/videos/${id}`,
+            method: "GET",
+         }),
+         providesTags: ["Videos"],
+      }),
    }),
 });
 
-export const { useGetDocsQuery, useSetDocsMutation, useDeleteDocsMutation } =
-   apiSlice;
+export const {
+   useGetDocsQuery,
+   useSetDocsMutation,
+   useDeleteDocsMutation,
+   useGetVideosQuery,
+   useGetVideoByIDQuery,
+} = apiSlice;

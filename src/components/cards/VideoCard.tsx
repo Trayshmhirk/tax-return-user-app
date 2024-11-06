@@ -1,25 +1,26 @@
 import { MdOutlinePlayCircle } from "react-icons/md";
 import WatchImg from "@/assets/watch-small.png";
-import { VideoDataTypes } from "@/types/Types";
+import { VideoPropTypes } from "@/types/Types";
 
 type VideoCardPropTypes = {
-   video: VideoDataTypes;
+   video: VideoPropTypes;
    handleClick: () => void;
 };
 
 const VideoCard = ({ video, handleClick }: VideoCardPropTypes) => {
-   const watchStyle = {
-      background: `url(${WatchImg})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-   };
-
    return (
       <div
          onClick={handleClick}
          className="w-full flex flex-col bg-white dark:bg-gray rounded-lg cursor-pointer shadow-md dark:shadow-md-dark hover-shadow-body overflow-hidden"
       >
-         <div className="relative h-14 text-white md:h-24" style={watchStyle}>
+         <div
+            className="relative h-14 text-white md:h-24"
+            style={{
+               background: `url(${WatchImg})`,
+               backgroundRepeat: "no-repeat",
+               backgroundSize: "cover",
+            }}
+         >
             <div className="absolute bottom-3 left-6 flex items-center gap-3">
                <MdOutlinePlayCircle className="w-6 h-6" />
                <p className="font-medium">Watch</p>

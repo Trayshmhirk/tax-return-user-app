@@ -1,31 +1,43 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import WatchImg from "@/assets/watch-large.png";
 import { MdOutlinePlayCircle } from "react-icons/md";
 import VideoCard from "@/components/cards/VideoCard";
-import { videoData } from "@/mocks/MockData";
-import { useVideoContext } from "@/hooks/useVideoContext";
-import { VideoDataTypes } from "@/types/Types";
+import { VideoPropTypes } from "@/types/Types";
+import { useGetVideoByIDQuery, useGetVideosQuery } from "@/redux/api/apiSlice";
 
 const Video = () => {
+   const { videoId } = useParams<{ videoId: string }>();
+
    const navigate = useNavigate();
-   const { currentVideo, setCurrentVideo } = useVideoContext();
+
+   const {
+      data: currentVideo,
+      // isLoading
+   } = useGetVideoByIDQuery({
+      id: videoId || "",
+   });
+   const {
+      data: videos = [],
+      // isLoading
+   } = useGetVideosQuery();
+
+   console.log(videos);
 
    // Find sibling videos in the same category
-   const siblingVideos = videoData.filter(
+   const siblingVideos = videos.filter(
       (video) =>
-         video.category === currentVideo.category &&
-         video.id !== currentVideo.id
+         video.category === currentVideo?.category &&
+         video.id !== currentVideo?.id
    );
 
    // Navigate to the "Watch Video" route and pass the title as a parameter
-   const handleSelectVideo = (video: VideoDataTypes) => {
-      setCurrentVideo(video);
+   const handleSelectVideo = (video: VideoPropTypes) => {
       navigate(`/knowledge-base/video/${video.id}`);
    };
 
    return (
       <div className="w-full flex flex-col self-center gap-7">
-         <h3 className="text-xl font-medium">{<p>{currentVideo.title}</p>}</h3>
+         <h3 className="text-xl font-medium">{<p>{currentVideo?.title}</p>}</h3>
 
          <div className="flex flex-col gap-3">
             <div
@@ -44,15 +56,15 @@ const Video = () => {
                </div>
             </div>
             <p className="flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-mutedGray dark:text-white">
-               <span>Uploaded: {currentVideo.date_uploaded}</span>
+               <span>Uploaded: {currentVideo?.date_uploaded}</span>
 
-               <span>Duration: {currentVideo.duration}</span>
+               <span>Duration: {currentVideo?.duration}</span>
             </p>
          </div>
 
          <div className="flex flex-col gap-3">
             <h5 className="font-medium">Brief description</h5>
-            <p className="text-sm">{currentVideo.description}</p>
+            <p className="text-sm">{currentVideo?.description}</p>
          </div>
 
          <div className="flex flex-col gap-3">

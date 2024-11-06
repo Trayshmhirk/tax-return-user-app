@@ -69,11 +69,11 @@ export type InvoiceCardPropTypes = {
 };
 
 // videos
-export type VideoDataTypes = {
+export type VideoPropTypes = {
+   id: string;
    title: string;
    duration: string;
    date_uploaded: string;
-   id: string;
    category: string;
    description: string;
    url: string;
