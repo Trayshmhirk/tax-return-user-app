@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DocumentsPropTypes, InvoicesPropTypes } from "@/types/Types";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
@@ -13,8 +13,12 @@ import InvoiceCard from "@/components/cards/InvoiceCard";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import { Button } from "@/components/ui/button";
-import { fetchInvoices } from "@/api/mockApis";
-import { useDeleteDocsMutation, useGetDocsQuery } from "@/redux/api/apiSlice";
+import {
+   useDeleteDocsMutation,
+   useDeleteInvoiceMutation,
+   useGetDocsQuery,
+   useGetInvoicesQuery,
+} from "@/redux/api/apiSlice";
 
 const Files = () => {
    // Get the window width from the hook
@@ -29,11 +33,13 @@ const Files = () => {
    } = useGetDocsQuery();
    const [deleteDocs] = useDeleteDocsMutation();
 
+   const { data: invoices = [], isLoading: isFetchingInvoices } =
+      useGetInvoicesQuery();
+   const [deleteInvoice] = useDeleteInvoiceMutation();
+
    const [selectedDocuments, setSelectedDocuments] = useState<
       DocumentsPropTypes[]
    >([]);
-   const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
-   const [loading, setLoading] = useState(false);
    const [isList, setIsList] = useState(false);
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
@@ -42,19 +48,6 @@ const Files = () => {
    );
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
    const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
-
-   useEffect(() => {
-      async function fetchData() {
-         setLoading(true);
-
-         setTimeout(async () => {
-            const fetchedInvoices = await fetchInvoices();
-            setInvoices(fetchedInvoices);
-            setLoading(false);
-         }, 500);
-      }
-      fetchData();
-   }, []);
 
    const handleToggleGrid = () => {
       setIsList(false);
@@ -106,7 +99,7 @@ const Files = () => {
          setSelectedDocuments([]);
       } else {
          // Select all documents
-         setSelectedDocuments(filteredDocs); // `filteredDocs` represents the currently filtered documents.
+         setSelectedDocuments(filteredDocs);
       }
    };
 
@@ -135,7 +128,6 @@ const Files = () => {
    };
 
    // invoice functions
-
    const searchInvoices = (invoice: InvoicesPropTypes) => {
       const docName = invoice.title;
       return docName.toLowerCase().includes(searchInput.toLowerCase());
@@ -156,10 +148,7 @@ const Files = () => {
       : [];
 
    const handleDeleteInvoice = (invoiceId: string) => {
-      // Remove the invoice with the specified ID from the invoices state
-      setInvoices((prevInvoices) =>
-         prevInvoices.filter((invoice) => invoice.id !== invoiceId)
-      );
+      deleteInvoice({ id: invoiceId });
    };
 
    return (
@@ -333,7 +322,7 @@ const Files = () => {
                            title={filterTitleList}
                         />
 
-                        {loading ? (
+                        {isFetchingInvoices ? (
                            <div className="w-full h-20 flex justify-center items-center">
                               <ClipLoader color="#00A2C9" />
                            </div>

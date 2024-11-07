@@ -24,7 +24,35 @@
       "base64": ""
     }
   ],
-  "invoices": [],
+  "invoices": [
+    {
+      "id": "INV83647",
+      "title": "Tax payment",
+      "issued_by": "admin@taxreturns",
+      "due_date": "2024-10-03",
+      "amount": 5900,
+      "status": "pending",
+      "invoice_url": ""
+    },
+    {
+      "id": "INV63478",
+      "title": "Asset tax",
+      "issued_by": "superadmin@taxreturns",
+      "due_date": "2024-10-01",
+      "amount": 4799,
+      "status": "overdue",
+      "invoice_url": ""
+    },
+    {
+      "id": "INV93788",
+      "title": "Asset tax",
+      "issued_by": "superadmin@taxreturns",
+      "due_date": "2024-10-01",
+      "amount": 4799,
+      "status": "paid",
+      "invoice_url": ""
+    }
+  ],
   "cards": [],
   "categories": [
     {

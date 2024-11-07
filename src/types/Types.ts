@@ -59,7 +59,7 @@ export type InvoicesPropTypes = {
    due_date: string;
    amount: number;
    status: InvoiceStatus;
-   base64: string;
+   invoice_url: string;
 };
 
 export type InvoiceCardPropTypes = {

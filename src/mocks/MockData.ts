@@ -1,9 +1,4 @@
-import {
-   InvoicesPropTypes,
-   QuestionsPropsType,
-   CardsProps,
-   MetricCardProps,
-} from "@/types/Types";
+import { QuestionsPropsType, CardsProps, MetricCardProps } from "@/types/Types";
 
 export const headerTitleMap: Record<string, string> = {
    "/": "Welcome",
@@ -23,37 +18,6 @@ export const headerTitleMap: Record<string, string> = {
    "/settings/terms-and-conditions": "Account settings",
    "/knowledge-base/video/": "Watch video",
 };
-
-// invoices
-export const invoices: InvoicesPropTypes[] = [
-   {
-      id: "INV83647",
-      title: "Tax payment",
-      issued_by: "admin@taxreturns",
-      due_date: "2024-10-03",
-      amount: 5900,
-      status: "pending",
-      base64: "",
-   },
-   {
-      id: "INV63478",
-      title: "Asset tax",
-      issued_by: "superadmin@taxreturns",
-      due_date: "2024-10-01",
-      amount: 4799,
-      status: "overdue",
-      base64: "",
-   },
-   {
-      id: "INV93788",
-      title: "Asset tax",
-      issued_by: "superadmin@taxreturns",
-      due_date: "2024-10-01",
-      amount: 4799,
-      status: "paid",
-      base64: "",
-   },
-];
 
 // faqs
 export const faqs: QuestionsPropsType[] = [

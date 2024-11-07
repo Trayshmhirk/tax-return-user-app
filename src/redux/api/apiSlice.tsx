@@ -4,6 +4,7 @@ import {
    CategoriesType,
    ChatsPropType,
    DocumentsPropTypes,
+   InvoicesPropTypes,
    ServicesTypes,
    VideoPropTypes,
 } from "@/types/Types";
@@ -27,7 +28,14 @@ export const apiSlice = createApi({
       },
    }),
 
-   tagTypes: ["Documents", "Videos", "Services", "Categories", "Chats"],
+   tagTypes: [
+      "Documents",
+      "Videos",
+      "Services",
+      "Categories",
+      "Chats",
+      "Invoices",
+   ],
 
    endpoints: (builder) => ({
       // categories api
@@ -100,7 +108,26 @@ export const apiSlice = createApi({
          invalidatesTags: ["Documents"],
       }),
 
-      // videos api
+      // invoices api calls
+      getInvoices: builder.query<InvoicesPropTypes[], string | void>({
+         query: () => ({
+            url: "/invoices",
+            method: "GET",
+         }),
+         providesTags: ["Invoices"],
+      }),
+      deleteInvoice: builder.mutation<
+         { success: boolean; id: string },
+         { id: string }
+      >({
+         query: ({ id }) => ({
+            url: `/invoices/${id}`,
+            method: "DELETE",
+         }),
+         invalidatesTags: ["Invoices"],
+      }),
+
+      // videos api calls
       getVideos: builder.query<VideoPropTypes[], string | void>({
          query: () => ({
             url: "/videos",
@@ -126,6 +153,8 @@ export const {
    useGetDocsQuery,
    useSetDocsMutation,
    useDeleteDocsMutation,
+   useGetInvoicesQuery,
+   useDeleteInvoiceMutation,
    useGetVideosQuery,
    useGetVideoByIDQuery,
 } = apiSlice;
