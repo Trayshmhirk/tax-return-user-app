@@ -1,7 +1,7 @@
 {
    "users": [
       {
-         "id": 1,
+         "id": "1",
          "fullname": "John Doe",
          "phonenumber": "1234567890",
          "email": "johndoe@example.com",
@@ -16,7 +16,7 @@
    ],
    "documents": [
       {
-         "id": 1,
+         "id": "1",
          "document_name": "Document 1adfuubadfdajhjahdf",
          "document_size": "20",
          "document_type": "application/pdf",
@@ -29,49 +29,60 @@
    "categories": [
       {
          "name": "Individuals",
-         "category_id": "1"
+         "category_id": "1",
+         "id": "65e8"
       },
       {
          "name": "Partnership",
-         "category_id": "2"
+         "category_id": "2",
+         "id": "b66d"
       },
       {
          "name": "Corporation",
-         "category_id": "3"
+         "category_id": "3",
+         "id": "e7b5"
       },
       {
          "name": "Sole Proprietorship",
-         "category_id": "4"
+         "category_id": "4",
+         "id": "3ebb"
       },
       {
          "name": "Others",
-         "category_id": "5"
+         "category_id": "5",
+         "id": "21d3"
       }
    ],
    "services": [
       {
-         "title": "Accounting",
-         "service_id": "1"
+         "title": "Accounting services",
+         "service_id": "1",
+         "id": "8b59"
       },
       {
          "title": "Attestation services",
-         "service_id": "2"
+         "service_id": "2",
+         "id": "c19d"
       },
       {
          "title": "Management consulting",
-         "service_id": "3"
+         "service_id": "3",
+         "id": "421d"
       },
       {
          "title": "Tax services",
-         "service_id": "3"
+         "service_id": "3",
+         "id": "25d8"
       },
       {
          "title": "Payment services",
-         "service_id": "4"
+         "service_id": "4",
+         "id": "5b91"
       },
       {
          "title": "Custom services",
-         "service_id": "5"
+         "service_id": "5",
+         "id": "a713"
       }
    ],
    "videos": [
@@ -150,5 +161,139 @@
    ],
    "faqs": [],
    "help": [],
-   "chats": []
+   "chats": [
+      {
+         "id": "1",
+         "title": "John Doe",
+         "service_id": "1",
+         "chat_access": "on",
+         "messages": [
+            {
+               "id": "",
+               "text": "Hello there",
+               "timestamp": "2024-10-16T09:50:00",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "I need some help with my taxes",
+               "timestamp": "2024-10-16T10:01:00",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Sure, I can help.",
+               "timestamp": "2024-10-16T10:01:30",
+               "type": "incoming",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "What do you want me to help you with exactly?",
+               "timestamp": "2024-10-16T12:02:00",
+               "type": "incoming",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Okayy.. what i want you to do for me is that, i would like for you to send in a list of required documents.",
+               "timestamp": "2024-10-17T09:06:00",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Okay, great.",
+               "timestamp": "2024-10-17T10:01:00",
+               "type": "incoming",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "I'll send in the list of documents that would be required of you",
+               "timestamp": "2024-10-17T10:05:00",
+               "type": "incoming",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Kindly standby, as it would take a few minutes",
+               "timestamp": "2024-10-17T10:06:00",
+               "type": "incoming",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "okayy.. Great. I will be waiting for a feedback. Thanks",
+               "timestamp": "2024-10-17T10:05:58",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Hi",
+               "timestamp": "2024-10-18T11:31:00",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Good afternoon",
+               "timestamp": "2024-10-18T12:10:00",
+               "type": "outgoing",
+               "documents": []
+            },
+            {
+               "id": "",
+               "text": "Hello. Are you there?",
+               "timestamp": "2024-10-18T13:01:00",
+               "type": "outgoing",
+               "documents": []
+            }
+         ],
+         "category": "Individuals"
+      },
+      {
+         "id": "2",
+         "title": "Jane Smith",
+         "service_id": "2",
+         "chat_access": "on",
+         "messages": [
+            {
+               "id": "",
+               "text": "Can you assist me with this?",
+               "timestamp": "2024-10-16T09:30:00",
+               "type": "incoming",
+               "documents": []
+            }
+         ],
+         "category": "Individuals"
+      },
+      {
+         "id": "3",
+         "title": "Jane Doe",
+         "service_id": "3",
+         "chat_access": "off",
+         "messages": [
+            {
+               "id": "",
+               "text": "Can you assist me with this?",
+               "timestamp": "2024-10-16T09:30:00",
+               "type": "incoming",
+               "documents": []
+            }
+         ],
+         "category": "Individuals"
+      },
+      {
+         "id": "",
+         "title": "Accounting",
+         "service_id": "1",
+         "chat_access": "on",
+         "category": "Individuals",
+         "messages": []
+      }
+   ]
 }

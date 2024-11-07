@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store"; // Assuming RootState is set up with user slice
 import {
    CategoriesType,
+   ChatsPropType,
    DocumentsPropTypes,
    ServicesTypes,
    VideoPropTypes,
@@ -26,7 +27,7 @@ export const apiSlice = createApi({
       },
    }),
 
-   tagTypes: ["Documents", "Videos", "Services", "Categories"],
+   tagTypes: ["Documents", "Videos", "Services", "Categories", "Chats"],
 
    endpoints: (builder) => ({
       // categories api
@@ -45,6 +46,19 @@ export const apiSlice = createApi({
             method: "GET",
          }),
          providesTags: ["Services"],
+      }),
+
+      // create service chat api
+      createServiceChat: builder.mutation<
+         ChatsPropType,
+         Partial<ChatsPropType>
+      >({
+         query: (serviceChat) => ({
+            url: "/chats",
+            method: "POST",
+            body: serviceChat,
+         }),
+         invalidatesTags: ["Chats"],
       }),
 
       // documents api calls
@@ -98,6 +112,7 @@ export const apiSlice = createApi({
 export const {
    useGetCategoriesQuery,
    useGetServicesQuery,
+   useCreateServiceChatMutation,
    useGetDocsQuery,
    useSetDocsMutation,
    useDeleteDocsMutation,

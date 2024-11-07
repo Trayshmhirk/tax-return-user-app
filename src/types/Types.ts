@@ -161,9 +161,10 @@ export enum ChatAccessStatus {
 }
 
 export type ChatsPropType = {
+   id: string; // Unique identifier for each chat
    title: string;
    service_id: string;
-   id: string; // Unique identifier for each chat
    messages: MessagesPropType[]; // Array of messages for each chat
    chat_access: ChatAccessStatus;
+   category: string;
 };

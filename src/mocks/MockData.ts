@@ -490,6 +490,7 @@ export const chats: ChatsPropType[] = [
             documents: [],
          },
       ],
+      category: "",
    },
    {
       title: "Jane Smith",
@@ -505,6 +506,7 @@ export const chats: ChatsPropType[] = [
             documents: [],
          },
       ],
+      category: "",
    },
    {
       title: "Jane Doe",
@@ -520,6 +522,7 @@ export const chats: ChatsPropType[] = [
             documents: [],
          },
       ],
+      category: "",
    },
    {
       title: "John Doe",
@@ -542,5 +545,6 @@ export const chats: ChatsPropType[] = [
             documents: [],
          },
       ],
+      category: "",
    },
 ];
