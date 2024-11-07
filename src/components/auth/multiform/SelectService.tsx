@@ -66,7 +66,7 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
       setTimeout(() => {
          // after mock success
          navigate("/chat");
-      }, 700);
+      }, 300);
    };
 
    return (
