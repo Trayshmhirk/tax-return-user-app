@@ -3,6 +3,7 @@ import RadioInput from "../../form-components/RadioInput";
 import {
    ChatAccessStatus,
    ChatsPropType,
+   MessageType,
    SelectServicePropType,
    ServicesTypes,
 } from "../../../types/Types";
@@ -43,13 +44,21 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
       // Simulate API call with setTimeout
       if (!selectedService) return;
 
+      const defaultMessage = {
+         id: uuidv4(),
+         text: "Hello, i would like to request for a service",
+         timestamp: new Date().toISOString(),
+         type: MessageType.outgoing, // This indicates the message is from the user
+         documents: [],
+      };
+
       const newChat: ChatsPropType = {
          id: uuidv4(),
          title: selectedService.title,
          service_id: selectedService.service_id,
          category: selectedCategory,
          chat_access: ChatAccessStatus.ON,
-         messages: [],
+         messages: [defaultMessage],
       };
 
       createServiceChat(newChat);
