@@ -1,9 +1,5 @@
-import {
-   ChatsPropType,
-   InvoicesPropTypes,
-   TransactionPropTypes,
-} from "@/types/Types";
-import { invoices, cards, chats } from "@/mocks/MockData";
+import { InvoicesPropTypes, TransactionPropTypes } from "@/types/Types";
+import { invoices, cards } from "@/mocks/MockData";
 
 export async function fetchInvoices(): Promise<InvoicesPropTypes[]> {
    return invoices;
@@ -22,8 +18,4 @@ export async function fetchTransactions(
 
    // If card is found, return its transactions, otherwise return an empty array
    return card ? card.transactions : [];
-}
-
-export async function fetchChats(): Promise<ChatsPropType[]> {
-   return chats;
 }

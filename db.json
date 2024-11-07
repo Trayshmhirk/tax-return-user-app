@@ -166,6 +166,7 @@
          "id": "1",
          "title": "John Doe",
          "service_id": "1",
+         "category": "Individuals",
          "chat_access": "on",
          "messages": [
             {
@@ -252,30 +253,14 @@
                "type": "outgoing",
                "documents": []
             }
-         ],
-         "category": "Individuals"
+         ]
       },
       {
          "id": "2",
          "title": "Jane Smith",
          "service_id": "2",
-         "chat_access": "on",
-         "messages": [
-            {
-               "id": "",
-               "text": "Can you assist me with this?",
-               "timestamp": "2024-10-16T09:30:00",
-               "type": "incoming",
-               "documents": []
-            }
-         ],
-         "category": "Individuals"
-      },
-      {
-         "id": "3",
-         "title": "Jane Doe",
-         "service_id": "3",
          "chat_access": "off",
+         "category": "Individuals",
          "messages": [
             {
                "id": "",
@@ -284,16 +269,7 @@
                "type": "incoming",
                "documents": []
             }
-         ],
-         "category": "Individuals"
-      },
-      {
-         "id": "",
-         "title": "Accounting",
-         "service_id": "1",
-         "chat_access": "on",
-         "category": "Individuals",
-         "messages": []
+         ]
       }
    ]
 }

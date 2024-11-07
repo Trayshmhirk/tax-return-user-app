@@ -164,7 +164,7 @@ export type ChatsPropType = {
    id: string; // Unique identifier for each chat
    title: string;
    service_id: string;
-   messages: MessagesPropType[]; // Array of messages for each chat
-   chat_access: ChatAccessStatus;
    category: string;
+   chat_access: ChatAccessStatus;
+   messages: MessagesPropType[]; // Array of messages for each chat
 };

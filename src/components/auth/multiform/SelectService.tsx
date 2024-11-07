@@ -47,9 +47,9 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
          id: uuidv4(),
          title: selectedService.title,
          service_id: selectedService.service_id,
-         messages: [],
-         chat_access: ChatAccessStatus.ON,
          category: selectedCategory,
+         chat_access: ChatAccessStatus.ON,
+         messages: [],
       };
 
       createServiceChat(newChat);

@@ -61,6 +61,15 @@ export const apiSlice = createApi({
          invalidatesTags: ["Chats"],
       }),
 
+      // fetch service chats
+      getServiceChats: builder.query<ChatsPropType[], string | void>({
+         query: () => ({
+            url: "/chats",
+            method: "GET",
+         }),
+         providesTags: ["Chats"],
+      }),
+
       // documents api calls
       getDocs: builder.query<DocumentsPropTypes[], string | void>({
          query: () => ({
@@ -113,6 +122,7 @@ export const {
    useGetCategoriesQuery,
    useGetServicesQuery,
    useCreateServiceChatMutation,
+   useGetServiceChatsQuery,
    useGetDocsQuery,
    useSetDocsMutation,
    useDeleteDocsMutation,

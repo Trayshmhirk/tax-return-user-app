@@ -37,7 +37,7 @@ const SelectCategory = ({
             setIsSubmitting(!isSubmitting);
 
             onNext();
-         }, 500);
+         }, 300);
       } else {
          setTimeout(() => {
             setIsSubmitting(!isSubmitting);
@@ -47,8 +47,8 @@ const SelectCategory = ({
             setTimeout(() => {
                // Next after mock success
                onNext();
-            }, 500);
-         }, 500);
+            }, 300);
+         }, 300);
       }
    };
 
