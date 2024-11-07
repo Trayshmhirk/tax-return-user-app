@@ -2,6 +2,7 @@ import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
 import {
    ChatAccessStatus,
+   ChatsPropType,
    SelectServicePropType,
    ServicesTypes,
 } from "../../../types/Types";
@@ -12,6 +13,7 @@ import {
    useCreateServiceChatMutation,
    useGetServicesQuery,
 } from "@/redux/api/apiSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    const navigate = useNavigate();
@@ -39,14 +41,18 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
 
    const onSubmit = async () => {
       // Simulate API call with setTimeout
-      createServiceChat({
-         id: "",
-         title: selectedService?.title,
-         service_id: selectedService?.service_id,
+      if (!selectedService) return;
+
+      const newChat: ChatsPropType = {
+         id: uuidv4(),
+         title: selectedService.title,
+         service_id: selectedService.service_id,
          messages: [],
          chat_access: ChatAccessStatus.ON,
          category: selectedCategory,
-      });
+      };
+
+      createServiceChat(newChat);
 
       setTimeout(() => {
          // after mock success
