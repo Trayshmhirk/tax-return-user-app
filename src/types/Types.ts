@@ -4,12 +4,12 @@ export type SelectServicePropType = {
    onPrev: () => void;
 };
 
-export type ServicesListTypes = {
+export type ServicesTypes = {
    title: string;
    service_id: string;
 };
 
-export type SelectCategoryPropTypes = {
+export type SelectCategoryPropType = {
    isRequestService?: boolean;
    onNext: () => void;
    onPrev?: () => void;
@@ -19,7 +19,7 @@ export type SelectCategoryPropTypes = {
    setFormSuccess?: (success: boolean) => void;
 };
 
-export type CategoryListTypes = {
+export type CategoriesType = {
    name: string;
    category_id: string;
 };
@@ -59,7 +59,7 @@ export type InvoicesPropTypes = {
    due_date: string;
    amount: number;
    status: InvoiceStatus;
-   base64: string;
+   invoice_url: string;
 };
 
 export type InvoiceCardPropTypes = {
@@ -69,11 +69,11 @@ export type InvoiceCardPropTypes = {
 };
 
 // videos
-export type VideoDataTypes = {
+export type VideoPropTypes = {
+   id: string;
    title: string;
    duration: string;
    date_uploaded: string;
-   id: string;
    category: string;
    description: string;
    url: string;
@@ -161,9 +161,10 @@ export enum ChatAccessStatus {
 }
 
 export type ChatsPropType = {
+   id: string; // Unique identifier for each chat
    title: string;
    service_id: string;
-   id: string; // Unique identifier for each chat
-   messages: MessagesPropType[]; // Array of messages for each chat
+   category: string;
    chat_access: ChatAccessStatus;
+   messages: MessagesPropType[]; // Array of messages for each chat
 };

@@ -1,31 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import InvoiceCard from "@/components/cards/InvoiceCard";
 import { InvoicesPropTypes } from "@/types/Types";
-import { fetchInvoices } from "@/api/mockApis";
 import { ClipLoader } from "react-spinners";
 import MetricsCard from "@/components/cards/MetricsCard";
 import { invoiceMetrics } from "@/mocks/MockData";
+import {
+   useDeleteInvoiceMutation,
+   useGetInvoicesQuery,
+} from "@/redux/api/apiSlice";
 
 const Invoices = () => {
-   const [invoices, setInvoices] = useState<InvoicesPropTypes[]>([]);
-   const [loading, setLoading] = useState(false);
+   const { data: invoices = [], isLoading } = useGetInvoicesQuery();
+   const [deleteInvoice] = useDeleteInvoiceMutation();
+
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
    const filterTitleList = ["All", "Pending", "Paid", "Overdue", "Failed"];
-
-   useEffect(() => {
-      async function fetchData() {
-         setLoading(true);
-
-         setTimeout(async () => {
-            const fetchedInvoices = await fetchInvoices();
-            setInvoices(fetchedInvoices);
-            setLoading(false);
-         }, 500);
-      }
-      fetchData();
-   }, []);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -60,10 +51,7 @@ const Invoices = () => {
       : [];
 
    const handleDeleteInvoice = (invoiceId: string) => {
-      // Remove the invoice with the specified ID from the invoices state
-      setInvoices((prevInvoices) =>
-         prevInvoices.filter((invoice) => invoice.id !== invoiceId)
-      );
+      deleteInvoice({ id: invoiceId });
    };
 
    return (
@@ -88,7 +76,7 @@ const Invoices = () => {
                title={filterTitleList}
             />
 
-            {loading ? (
+            {isLoading ? (
                <div className="w-full h-20 flex justify-center items-center">
                   <ClipLoader color="#00A2C9" />
                </div>

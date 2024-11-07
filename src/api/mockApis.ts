@@ -1,18 +1,5 @@
-import {
-   ChatsPropType,
-   DocumentsPropTypes,
-   InvoicesPropTypes,
-   TransactionPropTypes,
-} from "@/types/Types";
-import { uploadedDocuments, invoices, cards, chats } from "@/mocks/MockData";
-
-export async function fetchDocuments(): Promise<DocumentsPropTypes[]> {
-   return uploadedDocuments;
-}
-
-export async function fetchInvoices(): Promise<InvoicesPropTypes[]> {
-   return invoices;
-}
+import { TransactionPropTypes } from "@/types/Types";
+import { cards } from "@/mocks/MockData";
 
 export async function fetchTransactions(
    cardId: string | null
@@ -27,8 +14,4 @@ export async function fetchTransactions(
 
    // If card is found, return its transactions, otherwise return an empty array
    return card ? card.transactions : [];
-}
-
-export async function fetchChats(): Promise<ChatsPropType[]> {
-   return chats;
 }

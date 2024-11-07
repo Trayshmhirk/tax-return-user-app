@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import UploadPdfImage from "@/components/common/UploadPdfImage";
 import { DocumentCard } from "@/components/cards/DocumentCard";
@@ -8,11 +8,23 @@ import { getBase64 } from "@/helpers/getBase64";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { filterByDoctype } from "@/helpers/filterByDoctype";
 import { v4 as uuidv4 } from "uuid";
-import { fetchDocuments } from "@/api/mockApis";
 import { ClipLoader } from "react-spinners";
+import {
+   useDeleteDocsMutation,
+   useGetDocsQuery,
+   useSetDocsMutation,
+} from "@/redux/api/apiSlice";
 
 const UploadDocument = () => {
-   const [loading, setLoading] = useState(false);
+   const {
+      data: docs = [],
+      isLoading,
+      // isError,
+      // error,
+   } = useGetDocsQuery();
+   const [setDocs] = useSetDocsMutation();
+   const [deleteDocs] = useDeleteDocsMutation();
+
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
    const [ongoingUploads, setOngoingUploads] = useState(0);
@@ -20,26 +32,10 @@ const UploadDocument = () => {
    const [currentFileSize, setCurrentFileSize] = useState(0);
    const [fileSizeInMB, setFileSizeInMB] = useState(0);
    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-   const [uploadedDocuments, setUploadedDocuments] = useState<
-      DocumentsPropTypes[]
-   >([]);
    const [selectedDocuments, setSelectedDocuments] = useState<
       DocumentsPropTypes[]
    >([]);
    const docTypeFilterList = ["All", "PDF", "PNG", "JPEG", "DOC", "XLS"];
-
-   useEffect(() => {
-      async function fetchData() {
-         setLoading(true);
-
-         setTimeout(async () => {
-            const fetchedDocuments = await fetchDocuments();
-            setUploadedDocuments(fetchedDocuments);
-            setLoading(false);
-         }, 500);
-      }
-      fetchData();
-   }, []);
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchInput(e.target.value);
@@ -107,42 +103,6 @@ const UploadDocument = () => {
          // Simulate file upload completion and set the file to the state
          setTimeout(
             async () => {
-               // const { email, token } = userProfile;
-
-               // try {
-               //    const uploadResponse = await api.post(
-               //       "/upload-document",
-               //       {
-               //          document_name: selectedFile.name,
-               //          document: base64File, // Pass base64 file here
-               //          size: fileSizeInMB, // Pass document size here
-               //          type: selectedFile.type, // Pass document type here
-               //       },
-               //       {
-               //          headers: {
-               //             useremail: email,
-               //             usertoken: token,
-               //          },
-               //       }
-               //    );
-
-               //    // If upload is successful, add the new document to the Redux state
-               //    if (uploadResponse.status === 200) {
-               //       // Optionally fetch the updated list of documents from the server
-               //       const updatedDocuments = await getDocs(email, token);
-               //       dispatch(setDocuments(updatedDocuments.data.documents));
-               //    }
-
-               //    // Handle successful response here
-               // } catch (error) {
-               //    console.error("API Error:", error);
-               //    // Handle error, log it, or display a user-friendly message
-               // }
-
-               // Add uploaded document to the state
-               // Map the file's type to your FileType enum or union
-               // Ensure selectedFile.type is a valid FileType
-
                const newDocument: DocumentsPropTypes = {
                   id: uuidv4(), // Temporary ID generation
                   document_name: selectedFile.name,
@@ -152,8 +112,7 @@ const UploadDocument = () => {
                   base64: base64File, // You can store this if needed for later use
                };
 
-               // Add the new document
-               setUploadedDocuments((prevDocs) => [...prevDocs, newDocument]);
+               setDocs(newDocument);
 
                // Reset upload progress after 2 seconds
                setTimeout(() => {
@@ -170,8 +129,8 @@ const UploadDocument = () => {
       }
    };
 
-   const filteredDocs = uploadedDocuments
-      ? uploadedDocuments
+   const filteredDocs = docs
+      ? docs
            .filter(
               (doc) => searchDocs(doc) && filterByDoctype(doc, selectedFilter)
            )
@@ -215,10 +174,7 @@ const UploadDocument = () => {
    };
 
    const handleDeleteDocument = (docId: string) => {
-      // Remove the document with the specified ID from the uploadedDocuments state
-      setUploadedDocuments((prevDocs) =>
-         prevDocs.filter((doc) => doc.id !== docId)
-      );
+      deleteDocs({ id: docId });
 
       // Also remove it from the selectedDocuments state if it's selected
       setSelectedDocuments((prevSelectedDocs) =>
@@ -276,9 +232,7 @@ const UploadDocument = () => {
                <div className="flex items-center gap-2">
                   <p className="font-medium">Recent uploads</p>
                   <span>
-                     {uploadedDocuments && uploadedDocuments.length
-                        ? `(${uploadedDocuments.length})`
-                        : "(0)"}
+                     {docs && docs.length ? `(${docs.length})` : "(0)"}
                   </span>
                </div>
 
@@ -296,7 +250,7 @@ const UploadDocument = () => {
                title={docTypeFilterList}
             />
 
-            {loading ? (
+            {isLoading ? (
                <div className="w-full h-20 flex justify-center items-center">
                   <ClipLoader color="#00A2C9" />
                </div>

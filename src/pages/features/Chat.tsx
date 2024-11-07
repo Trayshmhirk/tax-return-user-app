@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { truncateString } from "@/helpers/truncateString";
@@ -12,7 +12,6 @@ import {
    DocumentsPropTypes,
    FileType,
 } from "@/types/Types";
-import { fetchChats } from "@/api/mockApis";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -20,6 +19,7 @@ import {
    renderCurrentMessageTime,
 } from "@/helpers/chatHelpers";
 import { getBase64 } from "@/helpers/getBase64";
+import { useGetServiceChatsQuery } from "@/redux/api/apiSlice";
 
 const Chat = () => {
    const {
@@ -28,24 +28,12 @@ const Chat = () => {
       setToggleMobileChat,
       handleToggleMobileChat,
    } = useMobileChatToggle();
+   const { data: chats = [] } = useGetServiceChatsQuery();
 
-   const [chats, setChats] = useState<ChatsPropType[]>([]);
+   // const [chats, setChats] = useState<ChatsPropType[]>([]);
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
    const [searchInput, setSearchInput] = useState("");
    const [inputMessage, setInputMessage] = useState("");
-
-   useEffect(() => {
-      async function fetchData() {
-         // setLoading(true);
-
-         setTimeout(async () => {
-            const fetchedChats = await fetchChats();
-            setChats(fetchedChats);
-            // setLoading(false);
-         }, 500);
-      }
-      fetchData();
-   }, []);
 
    const handleOpenChat = (chatId: string) => {
       /*
@@ -87,15 +75,15 @@ const Chat = () => {
          messages: [...activeChat.messages, newMessage],
       };
 
-      // Update the chats array with the updated active chat
-      setChats((prevChats) =>
-         prevChats.map((chat) =>
-            chat.id === activeChat.id ? updatedActiveChat : chat
-         )
-      );
-
       // Set the active chat to the updated version
       setActiveChat(updatedActiveChat);
+
+      // Update the chats array with the updated active chat
+      // setChats((prevChats) =>
+      //    prevChats.map((chat) =>
+      //       chat.id === activeChat.id ? updatedActiveChat : chat
+      //    )
+      // );
 
       // Clear the input field
       setInputMessage("");
@@ -146,15 +134,15 @@ const Chat = () => {
             messages: [...activeChat.messages, newMessage],
          };
 
-         // Update the chats array with the updated active chat
-         setChats((prevChats) =>
-            prevChats.map((chat) =>
-               chat.id === activeChat.id ? updatedActiveChat : chat
-            )
-         );
-
          // Set the active chat to the updated version
          setActiveChat(updatedActiveChat);
+
+         // Update the chats array with the updated active chat
+         // setChats((prevChats) =>
+         //    prevChats.map((chat) =>
+         //       chat.id === activeChat.id ? updatedActiveChat : chat
+         //    )
+         // );
       }
    };
 

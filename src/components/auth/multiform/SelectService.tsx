@@ -1,89 +1,82 @@
 import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
-import { SelectServicePropType } from "../../../types/Types";
-import { servicesList } from "../../../mocks/MockData";
+import {
+   ChatAccessStatus,
+   ChatsPropType,
+   MessageType,
+   SelectServicePropType,
+   ServicesTypes,
+} from "../../../types/Types";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import {
+   useCreateServiceChatMutation,
+   useGetServicesQuery,
+} from "@/redux/api/apiSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    const navigate = useNavigate();
-   const [isLoading, setIsLoading] = useState(false);
+   const { data: services = [] } = useGetServicesQuery();
+   const [createServiceChat, { isLoading: isSubmit }] =
+      useCreateServiceChatMutation();
+
+   // const [isSubmitting, setIsSubmitting] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-   const [selectedServiceId, setSelectedServiceId] = useState<
-      string | undefined
-   >("");
+   const [selectedService, setSelectedService] = useState<
+      ServicesTypes | undefined
+   >();
 
-   const handleRadioChange = (value: string, serviceId: string | undefined) => {
+   const handleRadioChange = (
+      value: string,
+      service: ServicesTypes | undefined
+   ) => {
       setCheckedRadio(value);
       setIsButtonDisabled(!value);
-      if (serviceId) {
-         setSelectedServiceId(serviceId);
+      if (service) {
+         setSelectedService(service);
       }
    };
 
    const onSubmit = async () => {
-      setIsLoading(true);
       // Simulate API call with setTimeout
+      if (!selectedService) return;
+
+      const defaultMessage = {
+         id: uuidv4(),
+         text: "Hello, i would like to request for a service",
+         timestamp: new Date().toISOString(),
+         type: MessageType.outgoing, // This indicates the message is from the user
+         documents: [],
+      };
+
+      const newChat: ChatsPropType = {
+         id: uuidv4(),
+         title: selectedService.title,
+         service_id: selectedService.service_id,
+         category: selectedCategory,
+         chat_access: ChatAccessStatus.ON,
+         messages: [defaultMessage],
+      };
+
+      createServiceChat(newChat);
+
       setTimeout(() => {
-         setIsLoading(false);
-         selectedServiceId;
-         selectedCategory;
-
-         setTimeout(() => {
-            // after mock success
-            navigate("/chat");
-         }, 700);
-      }, 2000); // Mock API call delay of 2 seconds
-
-      // api call
-      // const { email, token } = userProfile;
-      // try {
-      //    const res = await api.post(
-      //       "/request-service",
-      //       {
-      //          service_id: selectedServiceId,
-      //          category: selectedCategory,
-      //          user_id: currentUser.ID,
-      //       },
-      //       {
-      //          headers: {
-      //             useremail: email,
-      //             usertoken: token,
-      //          },
-      //       }
-      //    );
-      //    // Handle successful response here
-      //    if (res.status === 200) {
-      //       // dispatch(setConversation(res.data.chats.conversation))
-      //       setConfirmationModal({
-      //          show: true,
-      //          title: "Your service request has been successful",
-      //          content:
-      //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      //       });
-      //       setTimeout(() => {
-      //          setConfirmationModal({ show: false });
-      //          navigate("/live-chat", {
-      //             state: { data: res.data.chats.conversation },
-      //          });
-      //       }, 2000);
-      //    }
-      // } catch (error) {
-      //    console.error("API Error:", error);
-      //    // Handle error, log it, or display a user-friendly message
-      // }
+         // after mock success
+         navigate("/chat");
+      }, 300);
    };
 
    return (
       <>
          <div className="flex flex-col gap-7 mb-auto">
             <div className="flex flex-col gap-4">
-               {servicesList.map((service, index) => (
+               {services.map((service, index) => (
                   <RadioInput
                      key={index}
-                     serviceId={service.service_id}
+                     service={service}
                      value={service.title}
                      isChecked={checkedRadio === `${service.title}`}
                      onRadioChange={handleRadioChange}
@@ -104,10 +97,10 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
             <Button
                type="button"
                onClick={onSubmit}
-               disabled={isButtonDisabled || isLoading}
+               disabled={isButtonDisabled || isSubmit}
                className="w-full"
             >
-               {isLoading ? (
+               {isSubmit ? (
                   <ClipLoader color="#ffffff" size={20} />
                ) : (
                   "Chat with an agent"

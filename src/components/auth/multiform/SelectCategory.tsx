@@ -1,11 +1,11 @@
 import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
-import { SelectCategoryPropTypes } from "../../../types/Types";
-import { categoryList } from "../../../mocks/MockData";
+import { SelectCategoryPropType } from "../../../types/Types";
 import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
+import { useGetCategoriesQuery } from "@/redux/api/apiSlice";
 
 const SelectCategory = ({
    isRequestService,
@@ -15,42 +15,40 @@ const SelectCategory = ({
    currentForm,
    formSuccess,
    setFormSuccess,
-}: SelectCategoryPropTypes) => {
+}: SelectCategoryPropType) => {
    const { handleSubmit } = useForm();
+   const { data: categories = [] } = useGetCategoriesQuery();
 
-   const [isLoading, setIsLoading] = useState(false);
+   const [isSubmitting, setIsSubmitting] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-   const [category, setCategory] = useState("");
 
    const handleRadioChange = (value: string) => {
       setCheckedRadio(value);
       setIsButtonDisabled(!value);
       setSelectedCategory && setSelectedCategory(value);
-      setCategory(value);
    };
 
    const onSubmit = () => {
-      setIsLoading(true);
+      setIsSubmitting(!isSubmitting);
+
       if (isRequestService) {
          setTimeout(() => {
-            setIsLoading(false);
-            category;
+            setIsSubmitting(!isSubmitting);
 
             onNext();
-         }, 1000);
-         
+         }, 300);
       } else {
          setTimeout(() => {
-            setIsLoading(false);
-            category;
+            setIsSubmitting(!isSubmitting);
+
             setFormSuccess && setFormSuccess(true);
 
             setTimeout(() => {
                // Next after mock success
                onNext();
-            }, 700);
-         }, 2000);
+            }, 300);
+         }, 300);
       }
    };
 
@@ -64,7 +62,7 @@ const SelectCategory = ({
             <>
                <div className="flex flex-col gap-7 mb-auto">
                   <div className="flex flex-col gap-4">
-                     {categoryList.map((category, index) => (
+                     {categories.map((category, index) => (
                         <RadioInput
                            key={index}
                            value={category.name}
@@ -78,9 +76,9 @@ const SelectCategory = ({
                <Button
                   onClick={onSubmit}
                   type="submit"
-                  disabled={isButtonDisabled || isLoading}
+                  disabled={isButtonDisabled || isSubmitting}
                >
-                  {isLoading ? (
+                  {isSubmitting ? (
                      <ClipLoader color="#ffffff" size={20} />
                   ) : (
                      "Proceed"
@@ -96,7 +94,7 @@ const SelectCategory = ({
                isFormSuccess={formSuccess && formSuccess}
             >
                <div className="flex flex-col gap-3 mb-auto mt-2">
-                  {categoryList.map((category, index) => (
+                  {categories.map((category, index) => (
                      <RadioInput
                         key={index}
                         value={category.name}
@@ -117,9 +115,9 @@ const SelectCategory = ({
                   <Button
                      type="submit"
                      className="w-full"
-                     disabled={isButtonDisabled || isLoading}
+                     disabled={isButtonDisabled || isSubmitting}
                   >
-                     {isLoading ? (
+                     {isSubmitting ? (
                         <ClipLoader color="#ffffff" size={20} />
                      ) : (
                         "Next"

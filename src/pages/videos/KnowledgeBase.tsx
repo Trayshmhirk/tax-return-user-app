@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import VideoCard from "@/components/cards/VideoCard";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { videoData } from "@/mocks/MockData";
-import { VideoDataTypes } from "@/types/Types";
-import { useVideoContext } from "@/hooks/useVideoContext";
+import { VideoPropTypes } from "@/types/Types";
+import { useGetVideosQuery } from "@/redux/api/apiSlice";
+import { ClipLoader } from "react-spinners";
 
 const KnowledgeBase = () => {
    const navigate = useNavigate();
    const location = useLocation();
-   const { setCurrentVideo } = useVideoContext();
+   const { data: videos = [], isLoading } = useGetVideosQuery();
 
    const [searchInput, setSearchInput] = useState("");
    const [selectedFilter, setSelectedFilter] = useState("");
@@ -19,7 +19,7 @@ const KnowledgeBase = () => {
       setSearchInput(e.target.value);
    };
 
-   const searchVideos = (video: VideoDataTypes) => {
+   const searchVideos = (video: VideoPropTypes) => {
       const title = video.title;
       return title.toLowerCase().includes(searchInput.toLowerCase());
    };
@@ -28,15 +28,15 @@ const KnowledgeBase = () => {
       setSelectedFilter(title);
    };
 
-   const filterByVideoCategory = (video: VideoDataTypes) => {
+   const filterByVideoCategory = (video: VideoPropTypes) => {
       if (selectedFilter === "" || selectedFilter === "All") {
          return true;
       }
       return video.category.toLowerCase() === selectedFilter.toLowerCase();
    };
 
-   const filteredVideos = videoData
-      ? videoData.filter(
+   const filteredVideos = videos
+      ? videos.filter(
            (video) => searchVideos(video) && filterByVideoCategory(video)
         )
       : [];
@@ -53,9 +53,8 @@ const KnowledgeBase = () => {
       (video) => video.category === "documents"
    );
 
-   const handleSelectVideo = (video: VideoDataTypes) => {
-      setCurrentVideo(video);
-      navigate(`video/${video.id}`);
+   const handleSelectVideo = (videoID: string) => {
+      navigate(`video/${videoID}`);
    };
 
    return (
@@ -68,62 +67,76 @@ const KnowledgeBase = () => {
                   title={filterTitleList}
                />
 
-               <div className="flex flex-col gap-3">
-                  <p className="font-medium">Tax service request</p>
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {taxFilteredVideos.length ? (
-                        taxFilteredVideos.map((video, index) => (
-                           <VideoCard
-                              key={index}
-                              video={video}
-                              handleClick={() => handleSelectVideo(video)}
-                           />
-                        ))
-                     ) : (
-                        <p className="w-full pending-text text-center">
-                           No results found
-                        </p>
-                     )}
+               {isLoading ? (
+                  <div className="w-full h-20 flex justify-center items-center">
+                     <ClipLoader color="#00A2C9" />
                   </div>
-               </div>
+               ) : (
+                  <>
+                     <div className="w-full flex flex-col gap-4">
+                        <p className="font-medium">Tax service request</p>
+                        {taxFilteredVideos.length ? (
+                           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                              {taxFilteredVideos.map((video, index) => (
+                                 <VideoCard
+                                    key={index}
+                                    video={video}
+                                    handleClick={() =>
+                                       handleSelectVideo(video.id)
+                                    }
+                                 />
+                              ))}
+                           </div>
+                        ) : (
+                           <p className="w-full pending-text text-center">
+                              No results found
+                           </p>
+                        )}
+                     </div>
 
-               <div className="flex flex-col gap-3">
-                  <p className="font-medium">Bank</p>
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {bankFilteredVideos.length ? (
-                        bankFilteredVideos.map((video, index) => (
-                           <VideoCard
-                              key={index}
-                              video={video}
-                              handleClick={() => handleSelectVideo(video)}
-                           />
-                        ))
-                     ) : (
-                        <p className="w-full pending-text text-center">
-                           No results found
-                        </p>
-                     )}
-                  </div>
-               </div>
+                     <div className="flex flex-col gap-3">
+                        <p className="font-medium">Bank</p>
+                        {bankFilteredVideos.length ? (
+                           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                              {bankFilteredVideos.map((video, index) => (
+                                 <VideoCard
+                                    key={index}
+                                    video={video}
+                                    handleClick={() =>
+                                       handleSelectVideo(video.id)
+                                    }
+                                 />
+                              ))}
+                           </div>
+                        ) : (
+                           <p className="w-full pending-text text-center">
+                              No results found
+                           </p>
+                        )}
+                     </div>
 
-               <div className="flex flex-col gap-3">
-                  <p className="font-medium">Documents</p>
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                     {documentsFilteredVideos.length ? (
-                        documentsFilteredVideos.map((video, index) => (
-                           <VideoCard
-                              key={index}
-                              video={video}
-                              handleClick={() => handleSelectVideo(video)}
-                           />
-                        ))
-                     ) : (
-                        <p className="w-full pending-text text-center">
-                           No results found
-                        </p>
-                     )}
-                  </div>
-               </div>
+                     <div className="flex flex-col gap-3">
+                        <p className="font-medium">Documents</p>
+                        {documentsFilteredVideos.length ? (
+                           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                              {documentsFilteredVideos.map((video, index) => (
+                                 <VideoCard
+                                    key={index}
+                                    video={video}
+                                    handleClick={() =>
+                                       handleSelectVideo(video.id)
+                                    }
+                                 />
+                              ))}
+                           </div>
+                        ) : (
+                           <p className="w-full pending-text text-center">
+                              No results found
+                           </p>
+                        )}
+                     </div>
+                  </>
+               )}
             </div>
          ) : (
             <Outlet />
