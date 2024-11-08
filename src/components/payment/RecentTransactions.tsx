@@ -14,7 +14,7 @@ import TransactionCard from "../cards/TransactionCard";
 const RecentTransactions = ({
    selectedCardId,
 }: {
-   selectedCardId: string | null;
+   selectedCardId: string | undefined;
 }) => {
    // Get the window width from the hook
    const windowWidth = useWindowWidth();

@@ -2,24 +2,38 @@ import DebitChart from "@/components/charts/DebitChart";
 import DebitCard from "@/components/payment/DebitCard";
 import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
-import { CardsProps } from "@/types/Types";
-import { cards } from "@/mocks/MockData";
+import { CreditCardsProps } from "@/types/Types";
 import { Button } from "@/components/ui/button";
+import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
+import { ClipLoader } from "react-spinners";
 
 const Bank = () => {
-   const [bankCards, setbankCards] = useState<CardsProps[]>(cards);
-   const defaultCard = bankCards.find((card) => card.isDefault) || bankCards[0];
-   const [selectedCardId, setSelectedCardId] = useState<string>(defaultCard.id);
+   const { data: cards = [], isLoading } = useGetCreditCardsQuery();
 
-   const displayedCards = [
-      defaultCard,
-      ...bankCards.filter((card) => card.id !== defaultCard.id),
-   ].slice(0, 2);
+   const [bankCards, setBankCards] = useState<CreditCardsProps[]>([]);
+   const [selectedCardId, setSelectedCardId] = useState<string | undefined>();
 
-   const handleCardUpdate = (updatedCards: CardsProps[]) => {
-      setbankCards(updatedCards);
+   // Update bankCards only after data has loaded
+   useEffect(() => {
+      if (!isLoading && cards.length > 0) {
+         setBankCards(cards);
+
+         const defaultCard = cards.find((card) => card.isDefault) || cards[0];
+         setSelectedCardId(defaultCard?.id);
+      }
+   }, [isLoading, cards]);
+
+   const displayedCards = bankCards.length
+      ? [
+           bankCards.find((card) => card.id === selectedCardId),
+           ...bankCards.filter((card) => card.id !== selectedCardId),
+        ].slice(0, 2)
+      : [];
+
+   const handleCardUpdate = (updatedCards: CreditCardsProps[]) => {
+      setBankCards(updatedCards);
       const newDefaultCard =
          updatedCards.find((card) => card.isDefault) || updatedCards[0];
       setSelectedCardId(newDefaultCard.id);
@@ -29,7 +43,7 @@ const Bank = () => {
       <div className="w-full">
          <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
             <div className="w-full">
-               <div className="flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
+               <div className="h-full flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                   <div className="flex justify-between items-center gap-3">
                      <div className="text-xl font-semibold">Your cards</div>
 
@@ -40,21 +54,41 @@ const Bank = () => {
                      </AddCardDialog>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {displayedCards.map((card) => (
-                           <DebitCard
-                              key={card.id}
-                              card={card}
-                              onClick={() => setSelectedCardId(card.id)}
-                           />
-                        ))}
+                  {isLoading ? (
+                     <div className="w-full h-20 flex justify-center items-center">
+                        <ClipLoader color="#00A2C9" />
                      </div>
-                     <ManageCardsDialog
-                        cards={bankCards}
-                        onUpdate={handleCardUpdate}
-                     />
-                  </div>
+                  ) : (
+                     <div className="w-full h-full flex flex-col gap-4 justify-between">
+                        {displayedCards && displayedCards.length !== 0 ? (
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              {displayedCards.map(
+                                 (card) =>
+                                    card && (
+                                       <DebitCard
+                                          key={card.id}
+                                          card={card}
+                                          onClick={() =>
+                                             setSelectedCardId(card.id)
+                                          }
+                                       />
+                                    )
+                              )}
+                           </div>
+                        ) : (
+                           <div className="h-full flex items-center justify-center">
+                              <p className="pending-text text-center">
+                                 No credit cards found, please add a card!
+                              </p>
+                           </div>
+                        )}
+
+                        <ManageCardsDialog
+                           cards={bankCards}
+                           onUpdate={handleCardUpdate}
+                        />
+                     </div>
+                  )}
                </div>
             </div>
 

@@ -2,7 +2,7 @@ import { TransactionPropTypes } from "@/types/Types";
 import { cards } from "@/mocks/MockData";
 
 export async function fetchTransactions(
-   cardId: string | null
+   cardId: string | undefined
 ): Promise<TransactionPropTypes[]> {
    // Check if a valid cardId is provided
    if (!cardId) {

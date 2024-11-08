@@ -16,6 +16,8 @@ type DebitCardPropTypes = {
 };
 
 const DebitCard = ({ card, onClick, isDialog }: DebitCardPropTypes) => {
+   console.log(card.name);
+
    return (
       <div
          className={`relative w-full xl:max-w-[350px] ${isDialog ? "min-w-[300px]" : ""} rounded-xl shadow-lg cursor-pointer overflow-hidden`}
