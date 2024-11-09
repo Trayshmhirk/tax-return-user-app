@@ -55,7 +55,7 @@ const Bank = () => {
                   </div>
 
                   {isLoading ? (
-                     <div className="w-full h-20 flex justify-center items-center">
+                     <div className="w-full h-full flex justify-center items-center">
                         <ClipLoader color="#00A2C9" />
                      </div>
                   ) : (
