@@ -1,11 +1,11 @@
 import DebitCard from "@/components/payment/DebitCard";
 import { Mail, MapPinned, Smartphone, SquarePen } from "lucide-react";
-import { differenceInMonths, isPast } from "date-fns";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "@/hooks/reduxHooks";
 import { selectDefaultCard } from "@/helpers/selectDefaultCard";
 import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
+import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
 
 const Profile = () => {
    // Using the RTK Query hook to get the loading state and cards
@@ -230,18 +230,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-// Function to check if a card is expired
-const isExpired = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   return isPast(expDate);
-};
-
-// Function to check if a card is about to expire
-const isExpiringSoon = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   const currentDate = new Date();
-   return differenceInMonths(expDate, currentDate) <= 3 && !isPast(expDate);
-};

@@ -10,24 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import DebitCard from "../payment/DebitCard";
-
-import { differenceInMonths, isPast } from "date-fns";
 import { CreditCardsProps } from "@/types/Types";
-
-// Function to check if a card is expired
-const isExpired = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   return isPast(expDate);
-};
-
-// Function to check if a card is about to expire
-const isExpiringSoon = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   const currentDate = new Date();
-   return differenceInMonths(expDate, currentDate) <= 3 && !isPast(expDate);
-};
+import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
 
 type ManageCardsDialogProps = {
    cards: CreditCardsProps[];
