@@ -11,7 +11,7 @@ const Header = ({ title, isHome }: HeaderProps) => {
    const { toggleSidebar } = useSidebar();
 
    return (
-      <header className="h-14 flex justify-between items-center py-4 px-6 border-b border-alabaster dark:border-spanishGray dark:border-opacity-70 sm:px-8 md:px-20">
+      <header className="h-14 flex justify-between items-center py-4 px-6 border-b border-alabaster dark:border-spanishGray dark:border-opacity-50 sm:px-8 md:px-20">
          <div className="font-bold sm:text-lg">
             {isHome ? `${title} {Username}!` : title}
          </div>
