@@ -10,37 +10,23 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import DebitCard from "../payment/DebitCard";
-
-import { differenceInMonths, isPast } from "date-fns";
-import { CardsProps } from "@/types/Types";
-
-// Function to check if a card is expired
-const isExpired = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   return isPast(expDate);
-};
-
-// Function to check if a card is about to expire
-const isExpiringSoon = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   const currentDate = new Date();
-   return differenceInMonths(expDate, currentDate) <= 3 && !isPast(expDate);
-};
+import { CreditCardsProps } from "@/types/Types";
+import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
 
 type ManageCardsDialogProps = {
-   cards: CardsProps[];
-   onUpdate: (updatedCards: CardsProps[]) => void;
+   cards: CreditCardsProps[];
+   onUpdate: (updatedCards: CreditCardsProps[]) => void;
 };
 
 export const ManageCardsDialog = ({
    cards,
    onUpdate,
 }: ManageCardsDialogProps) => {
-   const [selectedCard, setSelectedCard] = useState<CardsProps | null>(null);
+   const [selectedCard, setSelectedCard] = useState<CreditCardsProps | null>(
+      null
+   );
 
-   const handleCardClick = (card: CardsProps) => {
+   const handleCardClick = (card: CreditCardsProps) => {
       setSelectedCard(card);
    };
 

@@ -21,8 +21,6 @@ const Video = () => {
       // isLoading
    } = useGetVideosQuery();
 
-   console.log(videos);
-
    // Find sibling videos in the same category
    const siblingVideos = videos.filter(
       (video) =>

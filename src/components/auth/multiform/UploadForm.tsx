@@ -108,27 +108,6 @@ const UploadForm = ({
             }, 700);
          }
       }, 2000);
-
-      // try {
-      //    const uploadResponse = await api.post(
-      //       "/upload-document",
-      //       { documents }, // Send the array of documents
-      //       {
-      //          headers: {
-      //             useremail: "user@example.com",
-      //             usertoken: "token",
-      //          },
-      //       }
-      //    );
-
-      //    if (uploadResponse.status === 200) {
-      //       onNext();
-      //    }
-      // } catch (error) {
-      //    console.error("API Error:", error);
-      // } finally {
-      //    setIsLoading(false);
-      // }
    };
 
    const handlePrevForm = () => {

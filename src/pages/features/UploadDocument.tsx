@@ -14,6 +14,7 @@ import {
    useGetDocsQuery,
    useSetDocsMutation,
 } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const UploadDocument = () => {
    const {
@@ -219,10 +220,10 @@ const UploadDocument = () => {
                   </div>
                </div>
             ) : (
-               <p className="pending-text text-center">
-                  You do not have any pending uploads. Click on the upload
-                  section above to begin the process.
-               </p>
+               <PlaceholderText
+                  text="You do not have any pending uploads. Click on the upload
+                  section above to begin the process."
+               />
             )}
          </div>
 
@@ -256,7 +257,7 @@ const UploadDocument = () => {
                </div>
             ) : (
                <div className="w-full">
-                  {filteredDocs.length ? (
+                  {filteredDocs.length !== 0 ? (
                      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                         {filteredDocs.map((doc) => (
                            <DocumentCard
@@ -271,9 +272,7 @@ const UploadDocument = () => {
                         ))}
                      </div>
                   ) : (
-                     <p className="pending-text w-100 text-center">
-                        No results found.
-                     </p>
+                     <PlaceholderText text="No documents found." />
                   )}
                </div>
             )}

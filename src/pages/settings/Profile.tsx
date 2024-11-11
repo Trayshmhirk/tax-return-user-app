@@ -1,10 +1,18 @@
 import DebitCard from "@/components/payment/DebitCard";
-import { cards } from "@/mocks/MockData";
 import { Mail, MapPinned, Smartphone, SquarePen } from "lucide-react";
-import { differenceInMonths, isPast } from "date-fns";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "@/hooks/reduxHooks";
+import { selectDefaultCard } from "@/helpers/selectDefaultCard";
+import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
+import { ClipLoader } from "react-spinners";
+import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Profile = () => {
+   // Using the RTK Query hook to get the loading state and cards
+   const { isLoading } = useGetCreditCardsQuery();
+   const defaultCard = useAppSelector(selectDefaultCard);
+
    // Function to get initials from a full name
    const getInitials = (name: string) => {
       const words = name.split(" ");
@@ -15,8 +23,6 @@ const Profile = () => {
    const fullName = "Frank Micheal";
    const initials = getInitials("Frank Micheal");
    const isProfilePicture = true;
-
-   const displayedCards = cards.slice(0, 1);
 
    return (
       <>
@@ -146,69 +152,78 @@ const Profile = () => {
             <div className="lg:row-start-5 lg:row-end-6 lg:col-span-2 xl:row-start-1 xl:row-end-4 xl:col-start-3 xl:col-end-4 flex flex-col gap-5 px-5 py-6 border border-chineseWhite dark:border-opacity-50 rounded-xl">
                <h2 className="font-bold">Preferred Payment method</h2>
 
-               {/* Cards list */}
-               <div className="sm:max-w-[320px] md:max-w-full xl:max-w-[320px]">
-                  {displayedCards.map((card) => (
-                     <DebitCard key={card.id} card={card} />
-                  ))}
-               </div>
-
-               {/* Card Details */}
-               <div className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-3">
-                     <h3 className="font-semibold text-xl">Card Details</h3>
-                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center justify-between gap-1">
-                           <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                              Cardholder:{" "}
-                           </p>
-                           <span className="font-medium">
-                              {displayedCards[0].cardholderName}
-                           </span>
-                        </div>
-                        <div className="flex items-center justify-between gap-1">
-                           <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                              Brand:{" "}
-                           </p>
-                           <p className="font-medium">
-                              {displayedCards[0].brand}
-                           </p>
-                        </div>
-                        <div className="flex items-center justify-between gap-1">
-                           <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                              Expiry:{" "}
-                           </p>
-                           <p className="font-medium">
-                              {displayedCards[0].exp}{" "}
-                              {isExpired(displayedCards[0].exp) ? (
-                                 <span className="text-bostonRed dark:text-red-500">
-                                    (Expired!)
-                                 </span>
-                              ) : isExpiringSoon(displayedCards[0].exp) ? (
-                                 <span className="text-yellow-500">
-                                    (Expiring Soon!)
-                                 </span>
-                              ) : null}
-                           </p>
-                        </div>
-                        <div className="flex items-center justify-between gap-1">
-                           <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                              Last 4 Digits:{" "}
-                           </p>
-                           <p className="font-medium">
-                              **** **** **** {displayedCards[0].last4}
-                           </p>
-                        </div>
-                     </div>
+               {isLoading ? (
+                  <div className="w-full h-full flex justify-center items-center">
+                     <ClipLoader color="#00A2C9" />
                   </div>
+               ) : defaultCard ? (
+                  <>
+                     <div className="sm:max-w-[320px] md:max-w-full xl:max-w-[320px]">
+                        <DebitCard key={defaultCard.id} card={defaultCard} />
+                     </div>
 
-                  <NavLink
-                     to="/bank"
-                     className="bg-richElectricBlue text-white font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded text-center no-underline hover-shadow-body"
-                  >
-                     Manage cards
-                  </NavLink>
-               </div>
+                     {/* Card Details */}
+                     <div className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-3">
+                           <h3 className="font-semibold text-xl">
+                              Card Details
+                           </h3>
+                           <div className="flex flex-col gap-2">
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Cardholder:{" "}
+                                 </p>
+                                 <span className="font-medium">
+                                    {defaultCard.cardholderName}
+                                 </span>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Brand:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    {defaultCard.brand}
+                                 </p>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Expiry:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    {defaultCard.exp}{" "}
+                                    {isExpired(defaultCard.exp) ? (
+                                       <span className="text-bostonRed dark:text-red-500">
+                                          (Expired!)
+                                       </span>
+                                    ) : isExpiringSoon(defaultCard.exp) ? (
+                                       <span className="text-yellow-500">
+                                          (Expiring Soon!)
+                                       </span>
+                                    ) : null}
+                                 </p>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Last 4 Digits:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    **** **** **** {defaultCard.last4}
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+
+                        <NavLink
+                           to="/bank"
+                           className="bg-richElectricBlue text-white font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded text-center no-underline hover-shadow-body"
+                        >
+                           Manage cards
+                        </NavLink>
+                     </div>
+                  </>
+               ) : (
+                  <PlaceholderText text="No default credit cards available" />
+               )}
             </div>
          </div>
       </>
@@ -216,18 +231,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-// Function to check if a card is expired
-const isExpired = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   return isPast(expDate);
-};
-
-// Function to check if a card is about to expire
-const isExpiringSoon = (exp: string): boolean => {
-   const [month, year] = exp.split("/");
-   const expDate = new Date(parseInt(`20${year}`), parseInt(month) - 1);
-   const currentDate = new Date();
-   return differenceInMonths(expDate, currentDate) <= 3 && !isPast(expDate);
-};

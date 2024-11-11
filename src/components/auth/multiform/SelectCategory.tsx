@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 import { useGetCategoriesQuery } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const SelectCategory = ({
    isRequestService,
@@ -17,7 +18,7 @@ const SelectCategory = ({
    setFormSuccess,
 }: SelectCategoryPropType) => {
    const { handleSubmit } = useForm();
-   const { data: categories = [] } = useGetCategoriesQuery();
+   const { data: categories = [], isLoading } = useGetCategoriesQuery();
 
    const [isSubmitting, setIsSubmitting] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
@@ -60,17 +61,27 @@ const SelectCategory = ({
       <>
          {isRequestService ? (
             <>
-               <div className="flex flex-col gap-7 mb-auto">
-                  <div className="flex flex-col gap-4">
-                     {categories.map((category, index) => (
-                        <RadioInput
-                           key={index}
-                           value={category.name}
-                           isChecked={checkedRadio === `${category.name}`}
-                           onRadioChange={handleRadioChange}
-                        />
-                     ))}
-                  </div>
+               <div className="h-full flex flex-col gap-4 mb-auto">
+                  {isLoading ? (
+                     <div className="w-full h-full flex justify-center items-center">
+                        <ClipLoader color="#00A2C9" />
+                     </div>
+                  ) : (
+                     <>
+                        {categories.length !== 0 ? (
+                           categories.map((category, index) => (
+                              <RadioInput
+                                 key={index}
+                                 value={category.name}
+                                 isChecked={checkedRadio === `${category.name}`}
+                                 onRadioChange={handleRadioChange}
+                              />
+                           ))
+                        ) : (
+                           <PlaceholderText text="No categories found." />
+                        )}
+                     </>
+                  )}
                </div>
 
                <Button
@@ -94,14 +105,18 @@ const SelectCategory = ({
                isFormSuccess={formSuccess && formSuccess}
             >
                <div className="flex flex-col gap-3 mb-auto mt-2">
-                  {categories.map((category, index) => (
-                     <RadioInput
-                        key={index}
-                        value={category.name}
-                        isChecked={checkedRadio === `${category.name}`}
-                        onRadioChange={handleRadioChange}
-                     />
-                  ))}
+                  {categories.length !== 0 ? (
+                     categories.map((category, index) => (
+                        <RadioInput
+                           key={index}
+                           value={category.name}
+                           isChecked={checkedRadio === `${category.name}`}
+                           onRadioChange={handleRadioChange}
+                        />
+                     ))
+                  ) : (
+                     <PlaceholderText text="No categories found." />
+                  )}
                </div>
 
                <div className="w-full flex gap-4 text-center">

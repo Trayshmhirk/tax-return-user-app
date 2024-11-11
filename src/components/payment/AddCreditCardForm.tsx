@@ -15,7 +15,7 @@ import { ClipLoader } from "react-spinners";
 import { Button } from "../ui/button";
 import { useTheme } from "@/hooks/useTheme";
 
-const CardForm: React.FC = () => {
+const AddCreditCardForm: React.FC = () => {
    const stripe = useStripe();
    const elements = useElements();
    const { theme } = useTheme();
@@ -165,4 +165,4 @@ const CardForm: React.FC = () => {
    );
 };
 
-export default CardForm;
+export default AddCreditCardForm;

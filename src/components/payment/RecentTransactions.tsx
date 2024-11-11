@@ -10,11 +10,12 @@ import { RiListCheck3 } from "react-icons/ri";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import SearchAndFilter from "../common/SearchAndFilter";
 import TransactionCard from "../cards/TransactionCard";
+import PlaceholderText from "../common/PlaceholderText";
 
 const RecentTransactions = ({
    selectedCardId,
 }: {
-   selectedCardId: string | null;
+   selectedCardId: string | undefined;
 }) => {
    // Get the window width from the hook
    const windowWidth = useWindowWidth();
@@ -93,7 +94,7 @@ const RecentTransactions = ({
    return (
       <div className="flex flex-col gap-7 bg-white dark:bg-gray p-5 rounded-xl shadow-md dark:shadow-md-dark w-full">
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h2 className="text-xl font-semibold">Recent Transactions</h2>
+            <h2 className="text-lg font-semibold">Recent Transactions</h2>
 
             <div className="flex items-center gap-3">
                <Button
@@ -141,7 +142,7 @@ const RecentTransactions = ({
                         />
 
                         <div className="w-full pb-3">
-                           {filteredTransactions.length ? (
+                           {filteredTransactions.length !== 0 ? (
                               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                                  {filteredTransactions.map((transaction) => (
                                     <TransactionCard
@@ -154,9 +155,7 @@ const RecentTransactions = ({
                                  ))}
                               </div>
                            ) : (
-                              <p className="pending-text w-full text-center">
-                                 No results found.
-                              </p>
+                              <PlaceholderText text="No transactions found." />
                            )}
                         </div>
                      </div>

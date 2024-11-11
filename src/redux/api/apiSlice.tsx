@@ -3,6 +3,7 @@ import { RootState } from "../store"; // Assuming RootState is set up with user 
 import {
    CategoriesType,
    ChatsPropType,
+   CreditCardsProps,
    DocumentsPropTypes,
    InvoicesPropTypes,
    ServicesTypes,
@@ -35,6 +36,7 @@ export const apiSlice = createApi({
       "Categories",
       "Chats",
       "Invoices",
+      "Cards",
    ],
 
    endpoints: (builder) => ({
@@ -127,6 +129,15 @@ export const apiSlice = createApi({
          invalidatesTags: ["Invoices"],
       }),
 
+      // get cards
+      getCreditCards: builder.query<CreditCardsProps[], string | void>({
+         query: () => ({
+            url: "/cards",
+            method: "GET",
+         }),
+         providesTags: ["Cards"],
+      }),
+
       // videos api calls
       getVideos: builder.query<VideoPropTypes[], string | void>({
          query: () => ({
@@ -155,6 +166,7 @@ export const {
    useDeleteDocsMutation,
    useGetInvoicesQuery,
    useDeleteInvoiceMutation,
+   useGetCreditCardsQuery,
    useGetVideosQuery,
    useGetVideoByIDQuery,
 } = apiSlice;

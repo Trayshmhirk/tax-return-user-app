@@ -9,6 +9,7 @@ import {
    useDeleteInvoiceMutation,
    useGetInvoicesQuery,
 } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Invoices = () => {
    const { data: invoices = [], isLoading } = useGetInvoicesQuery();
@@ -82,7 +83,7 @@ const Invoices = () => {
                </div>
             ) : (
                <div className="w-full">
-                  {filteredInvoices.length ? (
+                  {filteredInvoices.length !== 0 ? (
                      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
                         {filteredInvoices.map((invoice, index) => (
                            <InvoiceCard
@@ -93,9 +94,7 @@ const Invoices = () => {
                         ))}
                      </div>
                   ) : (
-                     <p className="pending-text w-full text-center">
-                        No results found.
-                     </p>
+                     <PlaceholderText text="No invoices found." />
                   )}
                </div>
             )}

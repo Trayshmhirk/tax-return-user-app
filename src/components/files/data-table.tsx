@@ -203,7 +203,7 @@ export function DataTable<TData, TValue>({
                      </div>
                   ))
                ) : (
-                  <div className="h-24 flex items-center justify-center">
+                  <div className="h-24 pending-text flex items-center justify-center">
                      No results.
                   </div>
                )}

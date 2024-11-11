@@ -15,10 +15,11 @@ import {
    useGetServicesQuery,
 } from "@/redux/api/apiSlice";
 import { v4 as uuidv4 } from "uuid";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    const navigate = useNavigate();
-   const { data: services = [] } = useGetServicesQuery();
+   const { data: services = [], isLoading } = useGetServicesQuery();
    const [createServiceChat, { isLoading: isSubmit }] =
       useCreateServiceChatMutation();
 
@@ -71,18 +72,28 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
 
    return (
       <>
-         <div className="flex flex-col gap-7 mb-auto">
-            <div className="flex flex-col gap-4">
-               {services.map((service, index) => (
-                  <RadioInput
-                     key={index}
-                     service={service}
-                     value={service.title}
-                     isChecked={checkedRadio === `${service.title}`}
-                     onRadioChange={handleRadioChange}
-                  />
-               ))}
-            </div>
+         <div className="h-full flex flex-col gap-4 mb-auto">
+            {isLoading ? (
+               <div className="w-full h-full flex justify-center items-center">
+                  <ClipLoader color="#00A2C9" />
+               </div>
+            ) : (
+               <>
+                  {services.length !== 0 ? (
+                     services.map((service, index) => (
+                        <RadioInput
+                           key={index}
+                           service={service}
+                           value={service.title}
+                           isChecked={checkedRadio === `${service.title}`}
+                           onRadioChange={handleRadioChange}
+                        />
+                     ))
+                  ) : (
+                     <PlaceholderText text="No services found." />
+                  )}
+               </>
+            )}
          </div>
 
          <div className="w-full flex gap-4 text-center">

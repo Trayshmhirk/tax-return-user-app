@@ -106,7 +106,7 @@ export type IChangePasswordForm = {
    newPassword: string;
 };
 
-export type CardsProps = {
+export type CreditCardsProps = {
    id: string;
    name: string;
    last4: string;

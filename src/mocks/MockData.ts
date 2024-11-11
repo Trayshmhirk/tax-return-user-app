@@ -1,4 +1,8 @@
-import { QuestionsPropsType, CardsProps, MetricCardProps } from "@/types/Types";
+import {
+   QuestionsPropsType,
+   CreditCardsProps,
+   MetricCardProps,
+} from "@/types/Types";
 
 export const headerTitleMap: Record<string, string> = {
    "/": "Welcome",
@@ -173,7 +177,7 @@ export const help: QuestionsPropsType[] = [
    },
 ];
 
-export const cards: CardsProps[] = [
+export const cards: CreditCardsProps[] = [
    {
       id: "card1",
       name: "Debit card",

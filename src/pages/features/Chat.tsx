@@ -20,6 +20,8 @@ import {
 } from "@/helpers/chatHelpers";
 import { getBase64 } from "@/helpers/getBase64";
 import { useGetServiceChatsQuery } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
+import { ClipLoader } from "react-spinners";
 
 const Chat = () => {
    const {
@@ -28,7 +30,7 @@ const Chat = () => {
       setToggleMobileChat,
       handleToggleMobileChat,
    } = useMobileChatToggle();
-   const { data: chats = [] } = useGetServiceChatsQuery();
+   const { data: chats = [], isLoading } = useGetServiceChatsQuery();
 
    // const [chats, setChats] = useState<ChatsPropType[]>([]);
    const [activeChat, setActiveChat] = useState<ChatsPropType | null>(null);
@@ -169,7 +171,11 @@ const Chat = () => {
                   </label>
 
                   <div className="overflow-scroll h-full flex flex-col bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark">
-                     {filteredSideChats.length ? (
+                     {isLoading ? (
+                        <div className="w-full flex justify-center items-center py-10">
+                           <ClipLoader color="#00A2C9" />
+                        </div>
+                     ) : filteredSideChats.length !== 0 ? (
                         filteredSideChats.map((chat, index) => (
                            <div
                               key={index}
@@ -208,11 +214,10 @@ const Chat = () => {
                            </div>
                         ))
                      ) : (
-                        <div className="py-8 px-6">
-                           <p className="pending-text text-center">
-                              Request a service to begin a chat
-                           </p>
-                        </div>
+                        <PlaceholderText
+                           isServiceChats
+                           text="Request a service to begin a chat"
+                        />
                      )}
                   </div>
                </aside>
@@ -305,11 +310,7 @@ const Chat = () => {
                         </div>
                      </>
                   ) : (
-                     <div className="w-full h-full flex items-center justify-center">
-                        <p className="pending-text">
-                           Click on a chat to begin conversation
-                        </p>
-                     </div>
+                     <PlaceholderText text="Click on a chat to begin conversation" />
                   )}
                </div>
             </div>

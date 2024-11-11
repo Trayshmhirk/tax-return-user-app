@@ -53,7 +53,161 @@
       "invoice_url": ""
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "id": "card1",
+      "name": "Debit card",
+      "last4": "4364",
+      "exp": "12/22",
+      "brand": "Visa",
+      "cardholderName": "John Doe",
+      "isDefault": true,
+      "transactions": [
+        {
+          "id": "txn_01",
+          "date": "2024-08-01",
+          "description": "Grocery Store",
+          "amount": 50.25,
+          "currency": "USD",
+          "status": "success"
+        },
+        {
+          "id": "txn_02",
+          "date": "2024-08-05",
+          "description": "Flight Ticket",
+          "amount": 250,
+          "currency": "USD",
+          "status": "failed"
+        },
+        {
+          "id": "txn_03",
+          "date": "2024-08-10",
+          "description": "Restaurant",
+          "amount": 80.15,
+          "currency": "USD",
+          "status": "pending"
+        },
+        {
+          "id": "txn_04",
+          "date": "2024-08-15",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "processing"
+        },
+        {
+          "id": "txn_05",
+          "date": "2024-07-15",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "processing"
+        },
+        {
+          "id": "txn_06",
+          "date": "2024-08-25",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "success"
+        },
+        {
+          "id": "txn_07",
+          "date": "2024-08-26",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "processing"
+        }
+      ]
+    },
+    {
+      "id": "card2",
+      "name": "Travel card",
+      "last4": "1234",
+      "exp": "09/23",
+      "brand": "Mastercard",
+      "cardholderName": "Jane Smith",
+      "isDefault": false,
+      "transactions": [
+        {
+          "id": "txn_01",
+          "date": "2024-08-01",
+          "description": "Grocery Store",
+          "amount": 50.25,
+          "currency": "USD",
+          "status": "success"
+        },
+        {
+          "id": "txn_02",
+          "date": "2024-08-05",
+          "description": "Flight Ticket",
+          "amount": 250,
+          "currency": "USD",
+          "status": "failed"
+        },
+        {
+          "id": "txn_03",
+          "date": "2024-08-10",
+          "description": "Restaurant",
+          "amount": 80.15,
+          "currency": "USD",
+          "status": "pending"
+        },
+        {
+          "id": "txn_04",
+          "date": "2024-08-15",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "processing"
+        }
+      ]
+    },
+    {
+      "id": "card3",
+      "name": "Work card",
+      "last4": "3456",
+      "exp": "10/24",
+      "brand": "Visa",
+      "cardholderName": "John Doe",
+      "isDefault": false,
+      "transactions": [
+        {
+          "id": "txn_01",
+          "date": "2024-08-01",
+          "description": "Grocery Store",
+          "amount": 50.25,
+          "currency": "USD",
+          "status": "success"
+        },
+        {
+          "id": "txn_02",
+          "date": "2024-08-05",
+          "description": "Flight Ticket",
+          "amount": 250,
+          "currency": "USD",
+          "status": "failed"
+        },
+        {
+          "id": "txn_03",
+          "date": "2024-08-10",
+          "description": "Restaurant",
+          "amount": 80.15,
+          "currency": "USD",
+          "status": "pending"
+        },
+        {
+          "id": "txn_04",
+          "date": "2024-08-15",
+          "description": "Refund - Online Purchase",
+          "amount": 100,
+          "currency": "USD",
+          "status": "processing"
+        }
+      ]
+    }
+  ],
   "categories": [
     {
       "name": "Individuals",
