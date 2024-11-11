@@ -94,7 +94,7 @@ const RecentTransactions = ({
    return (
       <div className="flex flex-col gap-7 bg-white dark:bg-gray p-5 rounded-xl shadow-md dark:shadow-md-dark w-full">
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h2 className="text-lg font-semibold">Recent Transactions</h2>
+            <h2 className="font-semibold">Recent Transactions</h2>
 
             <div className="flex items-center gap-3">
                <Button
