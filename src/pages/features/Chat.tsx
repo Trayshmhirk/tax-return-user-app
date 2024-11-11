@@ -20,6 +20,7 @@ import {
 } from "@/helpers/chatHelpers";
 import { getBase64 } from "@/helpers/getBase64";
 import { useGetServiceChatsQuery } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Chat = () => {
    const {
@@ -169,7 +170,7 @@ const Chat = () => {
                   </label>
 
                   <div className="overflow-scroll h-full flex flex-col bg-white dark:bg-gray rounded-md shadow-md dark:shadow-md-dark">
-                     {filteredSideChats.length ? (
+                     {filteredSideChats.length !== 0 ? (
                         filteredSideChats.map((chat, index) => (
                            <div
                               key={index}
@@ -208,11 +209,10 @@ const Chat = () => {
                            </div>
                         ))
                      ) : (
-                        <div className="py-8 px-6">
-                           <p className="pending-text text-center">
-                              Request a service to begin a chat
-                           </p>
-                        </div>
+                        <PlaceholderText
+                           isServiceChats
+                           text="Request a service to begin a chat"
+                        />
                      )}
                   </div>
                </aside>
@@ -305,11 +305,7 @@ const Chat = () => {
                         </div>
                      </>
                   ) : (
-                     <div className="w-full h-full flex items-center justify-center">
-                        <p className="pending-text">
-                           Click on a chat to begin conversation
-                        </p>
-                     </div>
+                     <PlaceholderText text="Click on a chat to begin conversation" />
                   )}
                </div>
             </div>

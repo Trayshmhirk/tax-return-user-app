@@ -19,6 +19,7 @@ import {
    useGetDocsQuery,
    useGetInvoicesQuery,
 } from "@/redux/api/apiSlice";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Files = () => {
    // Get the window width from the hook
@@ -33,7 +34,7 @@ const Files = () => {
    } = useGetDocsQuery();
    const [deleteDocs] = useDeleteDocsMutation();
 
-   const { data: invoices = [], isLoading: isFetchingInvoices } =
+   const { data: invoices = [], isLoading: isLoadingInvoices } =
       useGetInvoicesQuery();
    const [deleteInvoice] = useDeleteInvoiceMutation();
 
@@ -254,7 +255,7 @@ const Files = () => {
                            </div>
                         ) : (
                            <div className="w-full">
-                              {filteredDocs.length ? (
+                              {filteredDocs.length !== 0 ? (
                                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                                     {filteredDocs.map((doc) => (
                                        <DocumentCard
@@ -272,9 +273,7 @@ const Files = () => {
                                     ))}
                                  </div>
                               ) : (
-                                 <p className="pending-text w-full text-center">
-                                    No results found.
-                                 </p>
+                                 <PlaceholderText text="No documents found." />
                               )}
                            </div>
                         )}
@@ -322,13 +321,13 @@ const Files = () => {
                            title={filterTitleList}
                         />
 
-                        {isFetchingInvoices ? (
+                        {isLoadingInvoices ? (
                            <div className="w-full h-20 flex justify-center items-center">
                               <ClipLoader color="#00A2C9" />
                            </div>
                         ) : (
                            <div className="w-full">
-                              {filteredInvoices.length ? (
+                              {filteredInvoices.length !== 0 ? (
                                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                                     {filteredInvoices.map((invoice) => (
                                        <InvoiceCard
@@ -341,9 +340,7 @@ const Files = () => {
                                     ))}
                                  </div>
                               ) : (
-                                 <p className="pending-text w-full text-center">
-                                    No results found.
-                                 </p>
+                                 <PlaceholderText text="No invoices found." />
                               )}
                            </div>
                         )}

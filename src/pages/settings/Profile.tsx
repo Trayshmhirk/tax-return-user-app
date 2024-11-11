@@ -6,6 +6,7 @@ import { selectDefaultCard } from "@/helpers/selectDefaultCard";
 import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
 import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Profile = () => {
    // Using the RTK Query hook to get the loading state and cards
@@ -155,73 +156,73 @@ const Profile = () => {
                   <div className="w-full h-full flex justify-center items-center">
                      <ClipLoader color="#00A2C9" />
                   </div>
-               ) : (
-                  defaultCard && (
-                     <>
-                        <div className="sm:max-w-[320px] md:max-w-full xl:max-w-[320px]">
-                           <DebitCard key={defaultCard.id} card={defaultCard} />
-                        </div>
+               ) : defaultCard ? (
+                  <>
+                     <div className="sm:max-w-[320px] md:max-w-full xl:max-w-[320px]">
+                        <DebitCard key={defaultCard.id} card={defaultCard} />
+                     </div>
 
-                        {/* Card Details */}
-                        <div className="flex flex-col gap-5">
-                           <div className="flex flex-col gap-3">
-                              <h3 className="font-semibold text-xl">
-                                 Card Details
-                              </h3>
-                              <div className="flex flex-col gap-2">
-                                 <div className="flex items-center justify-between gap-1">
-                                    <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                                       Cardholder:{" "}
-                                    </p>
-                                    <span className="font-medium">
-                                       {defaultCard.cardholderName}
-                                    </span>
-                                 </div>
-                                 <div className="flex items-center justify-between gap-1">
-                                    <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                                       Brand:{" "}
-                                    </p>
-                                    <p className="font-medium">
-                                       {defaultCard.brand}
-                                    </p>
-                                 </div>
-                                 <div className="flex items-center justify-between gap-1">
-                                    <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                                       Expiry:{" "}
-                                    </p>
-                                    <p className="font-medium">
-                                       {defaultCard.exp}{" "}
-                                       {isExpired(defaultCard.exp) ? (
-                                          <span className="text-bostonRed dark:text-red-500">
-                                             (Expired!)
-                                          </span>
-                                       ) : isExpiringSoon(defaultCard.exp) ? (
-                                          <span className="text-yellow-500">
-                                             (Expiring Soon!)
-                                          </span>
-                                       ) : null}
-                                    </p>
-                                 </div>
-                                 <div className="flex items-center justify-between gap-1">
-                                    <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
-                                       Last 4 Digits:{" "}
-                                    </p>
-                                    <p className="font-medium">
-                                       **** **** **** {defaultCard.last4}
-                                    </p>
-                                 </div>
+                     {/* Card Details */}
+                     <div className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-3">
+                           <h3 className="font-semibold text-xl">
+                              Card Details
+                           </h3>
+                           <div className="flex flex-col gap-2">
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Cardholder:{" "}
+                                 </p>
+                                 <span className="font-medium">
+                                    {defaultCard.cardholderName}
+                                 </span>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Brand:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    {defaultCard.brand}
+                                 </p>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Expiry:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    {defaultCard.exp}{" "}
+                                    {isExpired(defaultCard.exp) ? (
+                                       <span className="text-bostonRed dark:text-red-500">
+                                          (Expired!)
+                                       </span>
+                                    ) : isExpiringSoon(defaultCard.exp) ? (
+                                       <span className="text-yellow-500">
+                                          (Expiring Soon!)
+                                       </span>
+                                    ) : null}
+                                 </p>
+                              </div>
+                              <div className="flex items-center justify-between gap-1">
+                                 <p className="text-sm font-medium text-mutedGray dark:text-chineseWhite text-opacity-80">
+                                    Last 4 Digits:{" "}
+                                 </p>
+                                 <p className="font-medium">
+                                    **** **** **** {defaultCard.last4}
+                                 </p>
                               </div>
                            </div>
-
-                           <NavLink
-                              to="/bank"
-                              className="bg-richElectricBlue text-white font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded text-center no-underline hover-shadow-body"
-                           >
-                              Manage cards
-                           </NavLink>
                         </div>
-                     </>
-                  )
+
+                        <NavLink
+                           to="/bank"
+                           className="bg-richElectricBlue text-white font-medium px-3 py-1 shadow-md dark:shadow-md-dark rounded text-center no-underline hover-shadow-body"
+                        >
+                           Manage cards
+                        </NavLink>
+                     </div>
+                  </>
+               ) : (
+                  <PlaceholderText text="No default credit cards available" />
                )}
             </div>
          </div>

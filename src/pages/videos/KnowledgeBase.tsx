@@ -5,6 +5,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { VideoPropTypes } from "@/types/Types";
 import { useGetVideosQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const KnowledgeBase = () => {
    const navigate = useNavigate();
@@ -75,7 +76,7 @@ const KnowledgeBase = () => {
                   <>
                      <div className="w-full flex flex-col gap-4">
                         <p className="font-medium">Tax service request</p>
-                        {taxFilteredVideos.length ? (
+                        {taxFilteredVideos.length !== 0 ? (
                            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                               {taxFilteredVideos.map((video, index) => (
                                  <VideoCard
@@ -88,15 +89,13 @@ const KnowledgeBase = () => {
                               ))}
                            </div>
                         ) : (
-                           <p className="w-full pending-text text-center">
-                              No results found
-                           </p>
+                           <PlaceholderText text="No results found." />
                         )}
                      </div>
 
                      <div className="flex flex-col gap-3">
                         <p className="font-medium">Bank</p>
-                        {bankFilteredVideos.length ? (
+                        {bankFilteredVideos.length !== 0 ? (
                            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                               {bankFilteredVideos.map((video, index) => (
                                  <VideoCard
@@ -109,15 +108,13 @@ const KnowledgeBase = () => {
                               ))}
                            </div>
                         ) : (
-                           <p className="w-full pending-text text-center">
-                              No results found
-                           </p>
+                           <PlaceholderText text="No results found." />
                         )}
                      </div>
 
                      <div className="flex flex-col gap-3">
                         <p className="font-medium">Documents</p>
-                        {documentsFilteredVideos.length ? (
+                        {documentsFilteredVideos.length !== 0 ? (
                            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                               {documentsFilteredVideos.map((video, index) => (
                                  <VideoCard
@@ -130,9 +127,7 @@ const KnowledgeBase = () => {
                               ))}
                            </div>
                         ) : (
-                           <p className="w-full pending-text text-center">
-                              No results found
-                           </p>
+                           <PlaceholderText text="No results found." />
                         )}
                      </div>
                   </>

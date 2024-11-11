@@ -8,6 +8,7 @@ import { CreditCardsProps } from "@/types/Types";
 import { Button } from "@/components/ui/button";
 import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const Bank = () => {
    const { data: cards = [], isLoading } = useGetCreditCardsQuery();
@@ -76,11 +77,10 @@ const Bank = () => {
                               )}
                            </div>
                         ) : (
-                           <div className="h-full flex items-center justify-center">
-                              <p className="pending-text text-center">
-                                 No credit cards found, please add a card!
-                              </p>
-                           </div>
+                           <PlaceholderText
+                              text="No credit cards found, please add a new credit
+                                 card!"
+                           />
                         )}
 
                         <ManageCardsDialog

@@ -10,6 +10,7 @@ import { RiListCheck3 } from "react-icons/ri";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import SearchAndFilter from "../common/SearchAndFilter";
 import TransactionCard from "../cards/TransactionCard";
+import PlaceholderText from "../common/PlaceholderText";
 
 const RecentTransactions = ({
    selectedCardId,
@@ -141,7 +142,7 @@ const RecentTransactions = ({
                         />
 
                         <div className="w-full pb-3">
-                           {filteredTransactions.length ? (
+                           {filteredTransactions.length !== 0 ? (
                               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                                  {filteredTransactions.map((transaction) => (
                                     <TransactionCard
@@ -154,9 +155,7 @@ const RecentTransactions = ({
                                  ))}
                               </div>
                            ) : (
-                              <p className="pending-text w-full text-center">
-                                 No results found.
-                              </p>
+                              <PlaceholderText text="No transactions found." />
                            )}
                         </div>
                      </div>
