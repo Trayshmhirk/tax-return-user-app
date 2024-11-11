@@ -40,7 +40,7 @@ export default class DebitChart extends PureComponent {
             <div className="h-full flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                <div className="flex flex-col gap-2">
                   <div className="text-xs font-medium">Debit analytics</div>
-                  <div className="text-xl font-semibold">
+                  <div className="text-lg font-semibold">
                      {currentMonthName}:{" "}
                      <span className="bg-richElectricBlue text-lg font-medium text-white px-2 rounded">
                         {" "}
