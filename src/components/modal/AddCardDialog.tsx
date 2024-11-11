@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CardForm from "@/components/payment/CardForm";
+import AddCreditCardForm from "@/components/payment/AddCreditCardForm";
 import {
    Dialog,
    DialogContent,
@@ -33,7 +33,7 @@ const AddCardDialog = ({ children }: addCardDialogProps) => {
 
             <div className="w-full h-full flex flex-col gap-4 rounded-2xl">
                <Elements stripe={stripePromise}>
-                  <CardForm />
+                  <AddCreditCardForm />
                </Elements>
             </div>
          </DialogContent>
