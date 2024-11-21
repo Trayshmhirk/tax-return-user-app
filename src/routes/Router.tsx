@@ -55,15 +55,7 @@ const router = createBrowserRouter(
             <Route path="sign-up" element={<SignUp />} />
          </Route>
 
-         <Route
-            path="/"
-            element={
-               <Suspense fallback={<PageLoader />}>
-                  <MainLayout />
-               </Suspense>
-            }
-            errorElement={<ErrorPage />}
-         >
+         <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
             <Route
                path="not-approved"
                element={

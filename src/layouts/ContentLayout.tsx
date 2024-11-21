@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import Header from "@/components/common/Header";
 import { useSidebar } from "@/hooks/useSidebar";
 import { headerTitleMap } from "@/mocks/MockData";
+import { Suspense } from "react";
+import PageLoader from "@/components/loaders/PageLoader";
 
 type ContentLayoutProps = {
    children: React.ReactNode;
@@ -31,19 +33,21 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
       >
          <Header title={title} isHome={location.pathname === "/"} />
 
-         <div
-            className={`content px-5 ${isSettings || isLiveChat ? "py-5 sm:px-7 md:px-9 lg:px-12 md:py-8" : "py-5 overflow-hidden sm:px-8 md:px-12 lg:px-14 md:py-10 md:pb-7"}`}
-         >
-            {!isSettings ? (
-               <div
-                  className={`h-full ${isLiveChat ? "" : "overflow-auto px-1 py-1 pb-2"}`}
-               >
-                  {children}
-               </div>
-            ) : (
-               <>{children}</>
-            )}
-         </div>
+         <Suspense fallback={<PageLoader />}>
+            <div
+               className={`content px-5 ${isSettings || isLiveChat ? "py-5 sm:px-7 md:px-9 lg:px-12 md:py-8" : "py-5 overflow-hidden sm:px-8 md:px-12 lg:px-14 md:py-10 md:pb-7"}`}
+            >
+               {!isSettings ? (
+                  <div
+                     className={`h-full ${isLiveChat ? "" : "overflow-auto px-1 py-1 pb-2"}`}
+                  >
+                     {children}
+                  </div>
+               ) : (
+                  <>{children}</>
+               )}
+            </div>
+         </Suspense>
       </main>
    );
 };
