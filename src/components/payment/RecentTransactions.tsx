@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { transactionColumns } from "./transactionColumns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
-import { TransactionPropTypes } from "@/types/Types";
 import { fetchTransactions } from "@/api/mockApis";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
 import useWindowWidth from "@/hooks/useWindowWidth";
-import SearchAndFilter from "../common/SearchAndFilter";
-import TransactionCard from "../cards/TransactionCard";
-import PlaceholderText from "../common/PlaceholderText";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import TransactionCard from "@/components/cards/TransactionCard";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const RecentTransactions = ({
    selectedCardId,
@@ -94,7 +93,7 @@ const RecentTransactions = ({
    return (
       <div className="flex flex-col gap-7 bg-white dark:bg-gray p-5 rounded-xl shadow-md dark:shadow-md-dark w-full">
          <div className="flex justify-between items-center gap-4 mt-[2px]">
-            <h2 className="text-lg font-semibold">Recent Transactions</h2>
+            <h2 className="font-semibold">Recent Transactions</h2>
 
             <div className="flex items-center gap-3">
                <Button

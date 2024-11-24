@@ -14,9 +14,7 @@ const Home = () => {
 
          <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-3">
-               <span className="font-medium md:text-xl">
-                  What would you like to do?
-               </span>
+               <span className="font-medium">What would you like to do?</span>
                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                   <RequestServiceDialog>
                      <button>
@@ -37,7 +35,7 @@ const Home = () => {
 
             <div className="flex flex-col gap-3">
                <div className="flex justify-between items-center">
-                  <p className="font-medium md:text-xl">Transactions</p>
+                  <p className="font-medium">Transactions</p>
                   <NavLink to={"/bank"} className="font-bold">
                      See all
                   </NavLink>

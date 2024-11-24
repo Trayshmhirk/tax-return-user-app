@@ -3,10 +3,9 @@ import { createContext, useEffect, useState } from "react";
 type Theme = "dark" | "light" | "system";
 
 type ThemeContextProps = {
-   children: React.ReactNode;
    defaultTheme?: Theme;
    storageKey?: string;
-};
+} & ChildrenNode;
 
 type ThemeContextState = {
    theme: Theme;

@@ -1,9 +1,3 @@
-import {
-   QuestionsPropsType,
-   CreditCardsProps,
-   MetricCardProps,
-} from "@/types/Types";
-
 export const headerTitleMap: Record<string, string> = {
    "/": "Welcome",
    "/not-approved": "Please wait...",

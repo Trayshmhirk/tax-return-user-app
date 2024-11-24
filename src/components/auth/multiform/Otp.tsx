@@ -1,21 +1,9 @@
 import { useForm } from "react-hook-form";
 import Forms from "../Forms";
-import OtpInput from "../../form-components/OtpInput";
+import OtpInput from "@/components/form-components/OtpInput";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-
-type OtpPropTypes = {
-   title: string;
-   description: string;
-   email: string;
-   currentForm: number;
-   onNext: () => void;
-   onPrev: () => void;
-   isRecoverPasswordOTP?: boolean;
-   formSuccess: { completed: boolean; index: number }[];
-   setFormSuccess: (success: boolean) => void;
-};
 
 const Otp = ({
    title,

@@ -1,10 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-type ProtectedRoutePropType = {
-   children: React.ReactNode;
-};
-
-const ProtectedRoute = ({ children }: ProtectedRoutePropType) => {
+const ProtectedRoute = ({ children }: ChildrenNode) => {
    const isAuthenticated = true; // Replace this with your actual authentication logic
 
    if (!isAuthenticated) {

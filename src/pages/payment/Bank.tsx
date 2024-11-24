@@ -4,7 +4,6 @@ import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useEffect, useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
-import { CreditCardsProps } from "@/types/Types";
 import { Button } from "@/components/ui/button";
 import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
@@ -46,7 +45,7 @@ const Bank = () => {
             <div className="w-full">
                <div className="h-full flex flex-col gap-5 bg-white dark:bg-gray rounded-xl px-5 py-4 shadow-md dark:shadow-md-dark">
                   <div className="flex justify-between items-center gap-3">
-                     <div className="text-lg font-semibold">Your cards</div>
+                     <div className="font-semibold">Your cards</div>
 
                      <AddCardDialog>
                         <Button className="px-3 py-2">

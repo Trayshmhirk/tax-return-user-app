@@ -1,12 +1,4 @@
-import { ServicesTypes } from "@/types/Types";
 import { IoRadioButtonOnSharp } from "react-icons/io5";
-
-type RadioInputPropTypes = {
-   value: string;
-   isChecked: boolean;
-   onRadioChange: (value: string, service: ServicesTypes | undefined) => void;
-   service?: ServicesTypes;
-};
 
 const RadioInput = ({
    value,

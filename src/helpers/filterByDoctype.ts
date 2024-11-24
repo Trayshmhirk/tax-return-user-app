@@ -1,5 +1,4 @@
 import { mapFileTypeToDocumentType } from "./mapFileType";
-import { DocumentsPropTypes } from "@/types/Types";
 
 export const filterByDoctype = (
    doc: DocumentsPropTypes,

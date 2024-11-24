@@ -1,4 +1,3 @@
-import { TransactionPropTypes } from "@/types/Types";
 import { cards } from "@/mocks/MockData";
 
 export async function fetchTransactions(

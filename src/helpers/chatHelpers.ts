@@ -1,4 +1,3 @@
-import { MessagesPropType } from "@/types/Types";
 import { formatTime } from "./formatTime";
 import { format } from "date-fns";
 

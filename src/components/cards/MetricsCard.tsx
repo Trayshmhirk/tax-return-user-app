@@ -1,4 +1,3 @@
-import { MetricCardProps } from "@/types/Types";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
 const MetricsCard = ({ metric }: MetricCardPropsTypes) => {

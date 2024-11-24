@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import WatchImg from "@/assets/watch-large.png";
 import { MdOutlinePlayCircle } from "react-icons/md";
 import VideoCard from "@/components/cards/VideoCard";
-import { VideoPropTypes } from "@/types/Types";
 import { useGetVideoByIDQuery, useGetVideosQuery } from "@/redux/api/apiSlice";
 
 const Video = () => {

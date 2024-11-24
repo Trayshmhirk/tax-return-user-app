@@ -1,16 +1,5 @@
 import { FaAngleLeft, FaCheck } from "react-icons/fa6";
 
-type FormLayoutPropType = {
-   children: React.ReactNode;
-   handleSubmit: () => void;
-   title: string;
-   description: string;
-   isCurrentForm?: number;
-   isDocUpload?: boolean;
-   onCancel?: () => void;
-   isFormSuccess?: { completed: boolean; index: number }[];
-};
-
 const Forms = ({
    children,
    handleSubmit,

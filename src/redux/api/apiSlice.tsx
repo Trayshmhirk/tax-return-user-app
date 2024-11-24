@@ -1,14 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store"; // Assuming RootState is set up with user slice
-import {
-   CategoriesType,
-   ChatsPropType,
-   CreditCardsProps,
-   DocumentsPropTypes,
-   InvoicesPropTypes,
-   ServicesTypes,
-   VideoPropTypes,
-} from "@/types/Types";
 
 export interface UserSecurity {
    email: string;
