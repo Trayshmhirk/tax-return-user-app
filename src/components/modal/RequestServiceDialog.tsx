@@ -10,11 +10,7 @@ import {
 import SelectCategory from "../auth/multiform/SelectCategory";
 import SelectService from "../auth/multiform/SelectService";
 
-type RequestServiceDialogProps = {
-   children: React.ReactNode;
-};
-
-const RequestServiceDialog = ({ children }: RequestServiceDialogProps) => {
+const RequestServiceDialog = ({ children }: ChildrenNode) => {
    const [currentForm, setCurrentForm] = useState(1);
    const [selectedCategory, setSelectedCategory] = useState("");
 

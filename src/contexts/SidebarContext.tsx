@@ -1,8 +1,4 @@
-import { createContext, useState, ReactNode } from "react";
-
-type SidebarContextProps = {
-   children: ReactNode;
-};
+import { createContext, useState } from "react";
 
 type SidebarContextState = {
    isOpen: boolean;
@@ -11,7 +7,7 @@ type SidebarContextState = {
 
 export const SidebarProviderContext = createContext({} as SidebarContextState);
 
-export const SidebarContext = ({ children }: SidebarContextProps) => {
+export const SidebarContext = ({ children }: ChildrenNode) => {
    const [isOpen, setIsOpen] = useState(false);
 
    const toggleSidebar = () => {
@@ -24,6 +20,3 @@ export const SidebarContext = ({ children }: SidebarContextProps) => {
       </SidebarProviderContext.Provider>
    );
 };
-
-// explicitly exporting type
-export type { SidebarContextProps };

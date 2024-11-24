@@ -10,15 +10,11 @@ import {
    DialogTrigger,
 } from "../ui/dialog";
 
-type addCardDialogProps = {
-   children: React.ReactNode;
-};
-
 const stripePromise = loadStripe(
    `${import.meta.env.VITE_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
 );
 
-const AddCardDialog = ({ children }: addCardDialogProps) => {
+const AddCardDialog = ({ children }: ChildrenNode) => {
    return (
       <Dialog>
          <DialogTrigger asChild>{children}</DialogTrigger>

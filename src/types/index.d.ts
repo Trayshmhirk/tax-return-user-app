@@ -18,7 +18,6 @@ declare type IChangePasswordForm = {
 };
 
 declare type FormLayoutPropType = {
-   children: React.ReactNode;
    handleSubmit: () => void;
    title: string;
    description: string;
@@ -26,7 +25,7 @@ declare type FormLayoutPropType = {
    isDocUpload?: boolean;
    onCancel?: () => void;
    isFormSuccess?: { completed: boolean; index: number }[];
-};
+} & ChildrenNode;
 
 declare type OtpPropTypes = {
    title: string;

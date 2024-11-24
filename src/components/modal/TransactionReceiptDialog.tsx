@@ -13,8 +13,7 @@ import { exportToPDF } from "@/helpers/exportToPDF";
 
 type TransactionReceiptDialogProps = {
    transaction: TransactionPropTypes;
-   children: React.ReactNode;
-};
+} & ChildrenNode;
 
 export const TransactionReceiptDialog: React.FC<
    TransactionReceiptDialogProps
