@@ -1,12 +1,5 @@
 import { useState } from "react";
 import RadioInput from "../../form-components/RadioInput";
-import {
-   ChatAccessStatus,
-   ChatsPropType,
-   MessageType,
-   SelectServicePropType,
-   ServicesTypes,
-} from "../../../types/Types";
 import { ClipLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +16,6 @@ const SelectService = ({ selectedCategory, onPrev }: SelectServicePropType) => {
    const [createServiceChat, { isLoading: isSubmit }] =
       useCreateServiceChatMutation();
 
-   // const [isSubmitting, setIsSubmitting] = useState(false);
    const [checkedRadio, setCheckedRadio] = useState("");
    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
    const [selectedService, setSelectedService] = useState<

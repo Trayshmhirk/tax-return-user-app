@@ -9,7 +9,6 @@ import {
    DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { TransactionPropTypes } from "@/types/Types";
 import { exportToPDF } from "@/helpers/exportToPDF";
 
 type TransactionReceiptDialogProps = {

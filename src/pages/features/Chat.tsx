@@ -5,13 +5,6 @@ import { truncateString } from "@/helpers/truncateString";
 import { IoChatbubbles } from "react-icons/io5";
 import { Paperclip, SendHorizontal, ChevronLeft } from "lucide-react";
 import MessagesBox from "@/components/chat/MessagesBox";
-import {
-   ChatsPropType,
-   ChatAccessStatus,
-   MessageType,
-   DocumentsPropTypes,
-   FileType,
-} from "@/types/Types";
 import { useMobileChatToggle } from "@/hooks/useMobileChatToggle";
 import { v4 as uuidv4 } from "uuid";
 import {

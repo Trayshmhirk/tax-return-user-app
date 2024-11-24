@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import IncomingMessageBubble from "./IncomingMessageBubble";
 import OutgoingMessageBubble from "./OutgoingMessageBubble";
-import { MessagesPropType } from "@/types/Types";
 import { formatTime } from "@/helpers/formatTime";
 import { isYesterday, isToday } from "date-fns";
 import { sortDates } from "@/helpers/sortDates";

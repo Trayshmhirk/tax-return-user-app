@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import InvoiceCard from "@/components/cards/InvoiceCard";
-import { InvoicesPropTypes } from "@/types/Types";
 import { ClipLoader } from "react-spinners";
 import MetricsCard from "@/components/cards/MetricsCard";
 import { invoiceMetrics } from "@/mocks/MockData";

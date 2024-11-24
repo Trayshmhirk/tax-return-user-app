@@ -9,7 +9,6 @@ import {
    Trash2,
    Share,
 } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
    DropdownMenu,
@@ -32,7 +31,6 @@ import {
    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DocumentsPropTypes } from "@/types/Types";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { formatDate } from "date-fns";

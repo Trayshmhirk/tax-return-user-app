@@ -1,6 +1,5 @@
 import { MdOutlinePlayCircle } from "react-icons/md";
 import WatchImg from "@/assets/watch-small.png";
-import { VideoPropTypes } from "@/types/Types";
 
 type VideoCardPropTypes = {
    video: VideoPropTypes;

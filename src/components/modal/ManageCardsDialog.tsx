@@ -9,8 +9,7 @@ import {
    DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import DebitCard from "../payment/DebitCard";
-import { CreditCardsProps } from "@/types/Types";
+import DebitCard from "@/components/payment/DebitCard";
 import { isExpired, isExpiringSoon } from "@/helpers/isExpiringCardHelpers";
 
 type ManageCardsDialogProps = {

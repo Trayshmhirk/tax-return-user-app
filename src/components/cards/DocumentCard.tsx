@@ -1,5 +1,4 @@
 import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
-import { DocumentCardPropsTypes } from "@/types/Types";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 import { Checkbox } from "@/components/ui/checkbox";
 import { formatDate } from "date-fns";

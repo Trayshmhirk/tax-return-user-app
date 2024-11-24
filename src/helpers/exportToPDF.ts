@@ -1,4 +1,3 @@
-import { TransactionPropTypes } from "@/types/Types";
 import jsPDF from "jspdf";
 
 export const exportToPDF = (transaction: TransactionPropTypes) => {

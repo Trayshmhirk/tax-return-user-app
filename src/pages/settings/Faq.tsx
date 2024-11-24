@@ -3,7 +3,6 @@ import SearchAndFilter from "@/components/common/SearchAndFilter";
 import TextArea from "@/components/form-components/TextArea";
 import { Accordion } from "@/components/common/Accordion";
 import { faqs } from "@/mocks/MockData";
-import { QuestionsPropsType } from "@/types/Types";
 import { Button } from "@/components/ui/button";
 
 const Faq = () => {

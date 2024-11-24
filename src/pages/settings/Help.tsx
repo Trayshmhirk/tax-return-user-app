@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import { Accordion } from "@/components/common/Accordion";
-import { QuestionsPropsType } from "@/types/Types";
 import { help } from "@/mocks/MockData";
 import TextArea from "@/components/form-components/TextArea";
 import { Button } from "@/components/ui/button";

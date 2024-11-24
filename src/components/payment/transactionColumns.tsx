@@ -43,7 +43,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { TransactionReceiptDialog } from "@/components/modal/TransactionReceiptDialog";
 import { exportToPDF } from "@/helpers/exportToPDF";
-import { TransactionPropTypes } from "@/types/Types";
 
 const handleSendToChat = () => {};
 

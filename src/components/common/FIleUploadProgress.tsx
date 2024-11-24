@@ -1,5 +1,4 @@
-import DocumentTypeIcon from "../icons/DocumentTypeIcon";
-import { FileType } from "@/types/Types";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
 
 // Reusable component to show file upload progress

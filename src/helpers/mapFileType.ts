@@ -1,5 +1,3 @@
-import { FileType } from "../types/Types";
-
 // Map file types to document types
 export const mapFileTypeToDocumentType = (fileType: FileType): string => {
    const fileTypeMapping: Record<FileType, string> = {

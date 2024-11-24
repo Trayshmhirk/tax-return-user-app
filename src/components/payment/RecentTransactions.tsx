@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { transactionColumns } from "./transactionColumns";
 import { DataTable } from "./data-table";
 import { ClipLoader } from "react-spinners";
-import { TransactionPropTypes } from "@/types/Types";
 import { fetchTransactions } from "@/api/mockApis";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { BsFillGridFill } from "react-icons/bs";
 import { RiListCheck3 } from "react-icons/ri";
 import useWindowWidth from "@/hooks/useWindowWidth";
-import SearchAndFilter from "../common/SearchAndFilter";
-import TransactionCard from "../cards/TransactionCard";
-import PlaceholderText from "../common/PlaceholderText";
+import SearchAndFilter from "@/components/common/SearchAndFilter";
+import TransactionCard from "@/components/cards/TransactionCard";
+import PlaceholderText from "@/components/common/PlaceholderText";
 
 const RecentTransactions = ({
    selectedCardId,

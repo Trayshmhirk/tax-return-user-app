@@ -7,13 +7,6 @@ import { FileUploadProgress } from "../../common/FIleUploadProgress";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-type UploadFormPropTypes = {
-   onPrev: () => void;
-   currentForm: number;
-   formSuccess: { completed: boolean; index: number }[];
-   setFormSuccess: (success: boolean) => void;
-};
-
 const UploadForm = ({
    onPrev,
    currentForm,

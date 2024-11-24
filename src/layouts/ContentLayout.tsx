@@ -5,11 +5,7 @@ import { headerTitleMap } from "@/mocks/MockData";
 import { Suspense } from "react";
 import PageLoader from "@/components/loaders/PageLoader";
 
-type ContentLayoutProps = {
-   children: React.ReactNode;
-};
-
-const ContentLayout = ({ children }: ContentLayoutProps) => {
+const ContentLayout = ({ children }: ChildrenNode) => {
    const location = useLocation();
    const { isOpen } = useSidebar();
 

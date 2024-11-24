@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SearchAndFilter from "@/components/common/SearchAndFilter";
 import VideoCard from "@/components/cards/VideoCard";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { VideoPropTypes } from "@/types/Types";
 import { useGetVideosQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";
 import PlaceholderText from "@/components/common/PlaceholderText";

@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import FormInput from "@/components/form-components/FormInput";
-import { IChangePasswordForm } from "@/types/Types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { changePasswordSchema } from "@/validation/schema";

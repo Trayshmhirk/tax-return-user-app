@@ -1,6 +1,5 @@
 import { useState } from "react";
-import RadioInput from "../../form-components/RadioInput";
-import { SelectCategoryPropType } from "../../../types/Types";
+import RadioInput from "@/components/form-components/RadioInput";
 import Forms from "../Forms";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";

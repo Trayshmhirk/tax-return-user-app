@@ -4,7 +4,6 @@ import RecentTransactions from "@/components/payment/RecentTransactions";
 import { ManageCardsDialog } from "@/components/modal/ManageCardsDialog";
 import { useEffect, useState } from "react";
 import AddCardDialog from "@/components/modal/AddCardDialog";
-import { CreditCardsProps } from "@/types/Types";
 import { Button } from "@/components/ui/button";
 import { useGetCreditCardsQuery } from "@/redux/api/apiSlice";
 import { ClipLoader } from "react-spinners";

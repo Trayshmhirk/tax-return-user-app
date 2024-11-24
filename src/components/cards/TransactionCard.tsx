@@ -1,5 +1,4 @@
 import { formatDate } from "date-fns";
-import { TransactionCardPropTypes } from "@/types/Types";
 import {
    DropdownMenu,
    DropdownMenuContent,

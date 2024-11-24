@@ -1,15 +1,6 @@
 import { truncateString } from "@/helpers/truncateString";
-import { DocumentsPropTypes } from "@/types/Types";
-import DocumentTypeIcon from "../icons/DocumentTypeIcon";
+import DocumentTypeIcon from "@/components/icons/DocumentTypeIcon";
 import { mapFileTypeToDocumentType } from "@/helpers/mapFileType";
-
-type OutgoingMessageBubblePropTypes = {
-   text: string;
-   timeStamp: string;
-   borderRadius: string;
-   isLastMessage: boolean;
-   document: DocumentsPropTypes;
-};
 
 const OutgoingMessageBubble = ({
    text,
