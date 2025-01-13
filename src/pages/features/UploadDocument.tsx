@@ -108,7 +108,8 @@ const UploadDocument = () => {
             base64: base64File, // You can store this if needed for later use
           };
 
-          setDocs(newDocument);
+          await setDocs(newDocument);
+          toast.success("Document uploaded successfully");
 
           // Reset upload progress after 2 seconds
           setTimeout(() => {
