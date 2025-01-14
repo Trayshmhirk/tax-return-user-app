@@ -147,8 +147,9 @@ const Files = () => {
       )
     : [];
 
-  const handleDeleteInvoice = (invoiceId: string) => {
-    deleteInvoice({ id: invoiceId });
+  const handleDeleteInvoice = async (invoiceId: string) => {
+    await deleteInvoice({ id: invoiceId });
+    toast.success("Invoice deleted successfully");
   };
 
   return (
