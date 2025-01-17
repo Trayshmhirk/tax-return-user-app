@@ -4,15 +4,15 @@ import { apiSlice } from "./api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 const appReducers = {
-   user: userReducer,
-   [apiSlice.reducerPath]: apiSlice.reducer,
+  user: userReducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
 };
 
 export const store = configureStore({
-   reducer: appReducers,
-   middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(apiSlice.middleware);
-   },
+  reducer: appReducers,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(apiSlice.middleware);
+  },
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
@@ -26,8 +26,8 @@ export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
 // Define a reusable type describing thunk functions
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
-   ThunkReturnType,
-   RootState,
-   unknown,
-   Action
+  ThunkReturnType,
+  RootState,
+  unknown,
+  Action
 >;
