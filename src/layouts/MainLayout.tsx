@@ -3,18 +3,18 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import ContentLayout from "./ContentLayout";
 
 const MainLayout = () => {
-   const location = useLocation();
-   const isNotApproved = location.pathname === "/not-approved";
+  const location = useLocation();
+  const isNotApproved = location.pathname === "/not-approved";
 
-   return (
-      <div className="w-full flex overflow-hidden bg-ghostWhite dark:bg-eerieBlack">
-         <Sidebar isNotApproved={isNotApproved} />
+  return (
+    <div className="w-full flex overflow-hidden bg-ghostWhite dark:bg-eerieBlack">
+      <Sidebar isNotApproved={isNotApproved} />
 
-         <ContentLayout>
-            <Outlet />
-         </ContentLayout>
-      </div>
-   );
+      <ContentLayout>
+        <Outlet />
+      </ContentLayout>
+    </div>
+  );
 };
 
 export default MainLayout;
